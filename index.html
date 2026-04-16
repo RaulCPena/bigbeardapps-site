@@ -21,9 +21,20 @@
             padding: 80px 20px;
             text-align: center;
         }
-        .brand-icon {
-            font-size: 3em;
-            margin-bottom: 16px;
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #333, #1a1a1a);
+            border: 1px solid #444;
+            font-size: 1.6em;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
         }
         header h1 {
             font-size: 2.8em;
@@ -60,13 +71,23 @@
         }
         .app-card {
             border: 1px solid #e5e5e5;
-            border-radius: 18px;
+            border-radius: 20px;
             padding: 32px;
             text-decoration: none;
             color: inherit;
             display: block;
             transition: box-shadow 0.2s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
         }
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .app-card.payoffpilot::before { background: linear-gradient(90deg, #0066cc, #00509e); }
+        .app-card.feastmark::before   { background: linear-gradient(90deg, #D4A843, #A0722A); }
         .app-card:hover {
             box-shadow: 0 8px 32px rgba(0,0,0,0.10);
             transform: translateY(-2px);
@@ -78,14 +99,17 @@
             margin-bottom: 16px;
         }
         .app-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 14px;
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8em;
             flex-shrink: 0;
+            font-size: 1.35em;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -1px;
         }
         .app-icon.payoffpilot { background: linear-gradient(135deg, #0066cc, #00509e); }
         .app-icon.feastmark   { background: linear-gradient(135deg, #D4A843, #A0722A); }
@@ -127,7 +151,7 @@
 <body>
 
 <header>
-    <div class="brand-icon">🧔</div>
+    <div class="brand-mark">BB</div>
     <h1>Big Beard Apps</h1>
     <p>Independent iOS apps built with care.</p>
 </header>
@@ -136,9 +160,9 @@
     <h2>Our Apps</h2>
     <div class="apps-grid">
 
-        <a href="/payoffpilot/" class="app-card">
+        <a href="/payoffpilot/" class="app-card payoffpilot">
             <div class="app-card-header">
-                <div class="app-icon payoffpilot">💳</div>
+                <div class="app-icon payoffpilot">PP</div>
                 <div>
                     <div class="app-name">PayoffPilot</div>
                     <span class="app-status status-beta">Beta</span>
@@ -147,9 +171,9 @@
             <p class="app-desc">Strategic debt payoff calculator. Compare Snowball and Avalanche methods, track payments, and become debt-free faster.</p>
         </a>
 
-        <a href="/feastmark/" class="app-card">
+        <a href="/feastmark/" class="app-card feastmark">
             <div class="app-card-header">
-                <div class="app-icon feastmark">🍽</div>
+                <div class="app-icon feastmark">FM</div>
                 <div>
                     <div class="app-name">Feastmark</div>
                     <span class="app-status status-coming">Coming Soon</span>

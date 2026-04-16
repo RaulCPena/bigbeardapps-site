@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PayoffPilot - Your strategic debt elimination partner. Compare Snowball and Avalanche methods, track payments, and become debt-free faster.">
-    <title>PayoffPilot - Strategic Debt Payoff Calculator</title>
+    <meta name="description" content="PayoffPilot — Strategic debt payoff calculator for iPhone. Compare Snowball and Avalanche methods and become debt-free faster.">
+    <title>PayoffPilot — Strategic Debt Payoff</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -13,594 +13,187 @@
             color: #1d1d1f;
             background: #fff;
         }
+        nav {
+            background: #111;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        nav a { color: #aaa; text-decoration: none; font-size: 0.9em; }
+        nav a:hover { color: #fff; }
+        nav span { color: #555; font-size: 0.9em; }
+
         .hero {
             background: linear-gradient(135deg, #0066cc 0%, #00509e 100%);
             color: white;
             padding: 100px 20px;
             text-align: center;
         }
+        .hero-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 22px;
+            margin: 0 auto 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .hero-icon img { width: 100%; height: 100%; object-fit: cover; }
         .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
+            font-size: 3.2em;
             font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
         }
         .hero p {
-            font-size: 1.3em;
-            margin-bottom: 40px;
-            opacity: 0.95;
+            font-size: 1.25em;
+            opacity: 0.92;
+            max-width: 520px;
+            margin: 0 auto 36px;
         }
-        .app-badge {
+        .badge {
             display: inline-block;
-            margin-top: 20px;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: #fff;
+            font-size: 0.9em;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
         }
-        .app-badge img {
-            height: 50px;
-        }
+
         .container {
-            max-width: 1200px;
+            max-width: 960px;
             margin: 0 auto;
             padding: 80px 20px;
         }
+        .section-label {
+            font-size: 1em;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #0066cc;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+        .section-sub {
+            font-size: 1.05em;
+            color: #555;
+            max-width: 560px;
+            margin-bottom: 48px;
+        }
+
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
         }
         .feature {
-            text-align: center;
-        }
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        .feature h3 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: #1d1d1f;
-        }
-        .feature p {
-            color: #515154;
-            font-size: 1.1em;
-        }
-        .cta-section {
             background: #f5f5f7;
-            padding: 80px 20px;
+            border-radius: 16px;
+            padding: 28px;
+        }
+        .feature-icon { font-size: 2em; margin-bottom: 14px; }
+        .feature h3 { font-size: 1.1em; font-weight: 700; margin-bottom: 8px; }
+        .feature p { font-size: 0.95em; color: #555; }
+
+        .privacy-block {
+            background: #f5f5f7;
+            border-radius: 20px;
+            padding: 48px;
             text-align: center;
+            margin-top: 80px;
         }
-        .cta-section h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-        .cta-section p {
-            font-size: 1.2em;
-            color: #515154;
-            margin-bottom: 40px;
-        }
-        .btn-primary {
-            display: inline-block;
-            background: #0066cc;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-        .btn-primary:hover {
-            background: #00509e;
-        }
-        .footer {
-            background: #1d1d1f;
-            color: #f5f5f7;
+        .privacy-block h2 { font-size: 1.6em; font-weight: 700; margin-bottom: 10px; }
+        .privacy-block p { color: #555; max-width: 520px; margin: 0 auto; }
+
+        footer {
+            background: #111;
+            color: #888;
+            text-align: center;
             padding: 40px 20px;
-            text-align: center;
+            font-size: 0.9em;
         }
-        .footer-links {
-            margin-bottom: 20px;
-        }
-        .footer-links a {
-            color: #f5f5f7;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-        .privacy-first {
-            background: #e8f5e9;
-            padding: 40px;
-            border-radius: 16px;
-            margin: 60px 0;
-            text-align: center;
-        }
-        .privacy-first h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            color: #1d1d1f;
-        }
-        .privacy-first p {
-            font-size: 1.1em;
-            color: #515154;
-        }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5em; }
-            .hero p { font-size: 1.1em; }
-            .features { grid-template-columns: 1fr; }
-        }
-        .beta-banner {
-            background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%);
-            color: white;
-            padding: 12px 20px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.95em;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .beta-banner a {
-            color: white;
-            text-decoration: underline;
-            font-weight: 700;
-        }
-        .main-nav {
-            background: white;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .nav-logo {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #0066cc;
-            text-decoration: none;
-        }
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .nav-links a {
-            color: #1d1d1f;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: #0066cc;
-        }
-        .nav-links .nav-cta {
-            background: #0066cc;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-        }
-        .nav-links .nav-cta:hover {
-            background: #00509e;
-            color: white;
-        }
-        @media (max-width: 768px) {
-            .nav-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .nav-links {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-        
-        /* Why PayoffPilot Comparison Section */
-        .why-payoffpilot {
-            background: #f5f5f7;
-            padding: 80px 20px;
-            margin: 80px 0;
-        }
-        .why-payoffpilot .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .why-payoffpilot h2 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #1d1d1f;
-        }
-        .why-payoffpilot .subtitle {
-            text-align: center;
-            font-size: 1.2em;
-            color: #515154;
-            margin-bottom: 60px;
-        }
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        .comparison-card {
-            background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        .comparison-card.other-apps {
-            border-left: 4px solid #ff3b30;
-        }
-        .comparison-card.payoffpilot {
-            border-left: 4px solid #34c759;
-        }
-        .comparison-card h3 {
-            font-size: 1.8em;
-            margin-bottom: 25px;
-            color: #1d1d1f;
-        }
-        .comparison-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        .comparison-card ul li {
-            padding: 12px 0;
-            color: #515154;
-            font-size: 1.05em;
-            line-height: 1.6;
-            border-bottom: 1px solid #e5e5e7;
-        }
-        .comparison-card ul li:last-child {
-            border-bottom: none;
-        }
-        
-        /* FAQ Section */
-        .faq-section {
-            max-width: 900px;
-            margin: 80px auto;
-            padding: 0 20px;
-        }
-        .faq-section h2 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 60px;
-            color: #1d1d1f;
-        }
-        .faq-item {
-            background: #f5f5f7;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-        .faq-item details {
-            cursor: pointer;
-        }
-        .faq-item summary {
-            padding: 25px 30px;
-            font-size: 1.2em;
-            font-weight: 600;
-            color: #1d1d1f;
-            list-style: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-        .faq-item summary::before {
-            content: '+';
-            float: right;
-            font-size: 1.5em;
-            font-weight: 300;
-            color: #0066cc;
-        }
-        .faq-item details[open] summary::before {
-            content: '−';
-        }
-        .faq-item summary:hover {
-            background: #e8e8ed;
-        }
-        .faq-answer {
-            padding: 0 30px 25px 30px;
-            color: #515154;
-            font-size: 1.05em;
-            line-height: 1.7;
-        }
-        
-        /* Enhanced CTA */
-        .enhanced-cta {
-            background: linear-gradient(135deg, #0066cc 0%, #00509e 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-        .enhanced-cta h2 {
-            font-size: 2.8em;
-            margin-bottom: 20px;
-        }
-        .enhanced-cta .cta-description {
-            font-size: 1.3em;
-            margin-bottom: 40px;
-            opacity: 0.95;
-        }
-        .enhanced-cta .btn-large {
-            display: inline-block;
-            background: white;
-            color: #0066cc;
-            padding: 20px 50px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 1.3em;
-            font-weight: 700;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .enhanced-cta .btn-large:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        .enhanced-cta .requirements {
-            margin-top: 25px;
-            font-size: 1em;
-            opacity: 0.9;
-        }
-        .enhanced-cta .requirements span {
-            margin: 0 15px;
-        }
-        
-        @media (max-width: 768px) {
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-            .why-payoffpilot h2 {
-                font-size: 2em;
-            }
-            .enhanced-cta h2 {
-                font-size: 2em;
-            }
-            .enhanced-cta .requirements span {
-                display: block;
-                margin: 5px 0;
-            }
-        }
+        footer a { color: #aaa; text-decoration: none; margin: 0 12px; }
+        footer a:hover { color: #fff; }
+        .footer-links { margin-bottom: 16px; }
     </style>
 </head>
 <body>
-    <nav style="background:#111;padding:14px 24px;display:flex;align-items:center;gap:8px;">
-        <a href="/" style="color:#aaa;text-decoration:none;font-size:0.9em;font-family:-apple-system,sans-serif;">Big Beard Apps</a>
-        <span style="color:#555;font-size:0.9em;">/</span>
-        <a href="/payoffpilot/" style="color:#4da3ff;text-decoration:none;font-size:0.9em;font-family:-apple-system,sans-serif;">PayoffPilot</a>
-    </nav>
-    <!-- Beta Testing Banner -->
-    <div class="beta-banner">
-        🧪 PayoffPilot is currently in beta testing! <a href="https://testflight.apple.com/join/J7bj4ycg" target="_blank">Join our TestFlight beta</a> to try it first.
+
+<nav>
+    <a href="/">Big Beard Apps</a>
+    <span>/</span>
+    <a href="/payoffpilot/" style="color:#4da3ff;">PayoffPilot</a>
+</nav>
+
+<section class="hero">
+    <div class="hero-icon">
+        <img src="images/app-icon.png" alt="PayoffPilot">
     </div>
-    
-    <!-- Main Navigation -->
-    <nav class="main-nav">
-        <div class="nav-content">
-            <a href="index.html" class="nav-logo">
-                <img src="images/bigbeard-logo.png" alt="Big Beard Apps" style="height: 80px; vertical-align: middle;">
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="roadmap.html">Roadmap</a>
-                <a href="https://testflight.apple.com/join/J7bj4ycg" target="_blank" class="nav-cta">Join Beta</a>
-            </div>
+    <h1>PayoffPilot</h1>
+    <p>Strategic debt payoff calculator. Compare Snowball and Avalanche methods and become debt-free faster.</p>
+    <div class="badge">Coming Soon to the App Store</div>
+</section>
+
+<div class="container">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Everything you need to crush your debt</h2>
+    <p class="section-sub">Enter your debts, choose your strategy, and PayoffPilot maps the fastest path to financial freedom.</p>
+
+    <div class="features">
+        <div class="feature">
+            <div class="feature-icon">📊</div>
+            <h3>Strategy Comparison</h3>
+            <p>See Snowball vs. Avalanche side-by-side. Compare total interest paid, payoff dates, and savings to pick your best path.</p>
         </div>
-    </nav>
-    
-    <div class="hero">
-        <img src="images/bigbeard-logo.png" alt="Big Beard Apps" style="height: 150px; margin-bottom: 20px; background: white; border-radius: 50%; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-        <h1>Big Beard Apps</h1>
-        <p>Apps Built with Big Ideas</p>
-        <p style="font-size: 1.1em; opacity: 0.9;">Quality apps crafted by Raul Pena. Starting with PayoffPilot - your strategic debt elimination partner.</p>
-        <p style="font-size: 1em; opacity: 0.9; margin-top: 30px; background: rgba(255,255,255,0.2); padding: 15px 30px; border-radius: 8px; display: inline-block;">
-            📱 Currently in Beta Testing | <a href="https://testflight.apple.com/join/J7bj4ycg" target="_blank" style="color: white; font-weight: 700; text-decoration: underline;">Join Now on TestFlight</a>
-        </p>
-    </div>
-
-    <div class="container">
-        <!-- How It Works Section -->
-        <div style="text-align: center; margin-bottom: 80px;">
-            <h2 style="font-size: 2.5em; margin-bottom: 20px;">How It Works</h2>
-            <p style="font-size: 1.2em; color: #515154; margin-bottom: 60px;">Get debt-free in three simple steps</p>
-            <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; max-width: 1100px; margin: 0 auto;">
-                <div style="text-align: center; flex: 1; min-width: 250px; max-width: 300px;">
-                    <div style="background: linear-gradient(135deg, #0066cc 0%, #00509e 100%); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2em; font-weight: 700; margin: 0 auto 20px; box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);">1</div>
-                    <h3 style="font-size: 1.4em; margin-bottom: 15px; font-weight: 600;">Add Your Debts</h3>
-                    <p style="color: #515154; line-height: 1.6;">Enter your credit cards, loans, and other debts with their balances and interest rates.</p>
-                </div>
-                <div style="text-align: center; flex: 1; min-width: 250px; max-width: 300px;">
-                    <div style="background: linear-gradient(135deg, #0066cc 0%, #00509e 100%); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2em; font-weight: 700; margin: 0 auto 20px; box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);">2</div>
-                    <h3 style="font-size: 1.4em; margin-bottom: 15px; font-weight: 600;">Choose Your Strategy</h3>
-                    <p style="color: #515154; line-height: 1.6;">Compare Snowball and Avalanche methods to find the fastest path to debt freedom.</p>
-                </div>
-                <div style="text-align: center; flex: 1; min-width: 250px; max-width: 300px;">
-                    <div style="background: linear-gradient(135deg, #0066cc 0%, #00509e 100%); color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2em; font-weight: 700; margin: 0 auto 20px; box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);">3</div>
-                    <h3 style="font-size: 1.4em; margin-bottom: 15px; font-weight: 600;">Track Your Progress</h3>
-                    <p style="color: #515154; line-height: 1.6;">Log payments, watch your balances drop, and stay motivated with visual progress tracking.</p>
-                </div>
-            </div>
+        <div class="feature">
+            <div class="feature-icon">💰</div>
+            <h3>Payment Tracking</h3>
+            <p>Log payments and track your actual progress vs. projections. Stay motivated with real-time updates as balances drop.</p>
         </div>
-
-        <!-- Features Section -->
-        <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 60px;">Powerful Features</h2>
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h3>Strategy Comparison</h3>
-                <p>See Snowball vs. Avalanche side-by-side. Compare total interest, payoff dates, and savings to pick your best path.</p>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">💰</div>
-                <h3>Payment Tracking</h3>
-                <p>Log payments with a simple swipe. Track your actual progress vs. projections and stay motivated with real-time updates.</p>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">🎯</div>
-                <h3>Scenario Simulator</h3>
-                <p>Test "what if" scenarios with extra payments or windfalls. See exactly how much time and money you'll save.</p>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">🔔</div>
-                <h3>Smart Reminders</h3>
-                <p>Never miss a payment with automatic reminders 3 days before due dates. Avoid late fees and stay on track.</p>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">📄</div>
-                <h3>PDF Export</h3>
-                <p>Export professional payment schedules and debt summaries. Share with advisors, print for reference, or save to Files.</p>
-            </div>
-
-            <div class="feature">
-                <div class="feature-icon">🌙</div>
-                <h3>Beautiful Design</h3>
-                <p>Modern iOS design with full dark mode support. Institution logos, colorful charts, and intuitive navigation.</p>
-            </div>
+        <div class="feature">
+            <div class="feature-icon">🎯</div>
+            <h3>Scenario Simulator</h3>
+            <p>Test "what if" scenarios with extra payments or windfalls. See exactly how much time and money you'll save.</p>
         </div>
-
-        <div class="privacy-first">
-            <h3>🔒 Your Privacy, Guaranteed</h3>
-            <p>All your financial data stays on YOUR device. No account required, no data collection, no third-party tracking. End-to-end encrypted iCloud sync is optional. Your debt payoff journey is private.</p>
+        <div class="feature">
+            <div class="feature-icon">🔔</div>
+            <h3>Smart Reminders</h3>
+            <p>Never miss a payment with automatic reminders before due dates. Avoid late fees and stay on track.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📄</div>
+            <h3>PDF Export</h3>
+            <p>Export professional payment schedules and debt summaries to share with advisors or save for reference.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🌙</div>
+            <h3>Beautiful Design</h3>
+            <p>Native iOS app built in SwiftUI with full dark mode support, colorful charts, and intuitive navigation.</p>
         </div>
     </div>
 
-    <!-- Why PayoffPilot Section -->
-    <section class="why-payoffpilot">
-        <div class="container">
-            <h2>Why Choose PayoffPilot?</h2>
-            <p class="subtitle">See how PayoffPilot compares to other debt apps</p>
-            
-            <div class="comparison-grid">
-                <div class="comparison-card other-apps">
-                    <h3>❌ Other Debt Apps</h3>
-                    <ul>
-                        <li>Require account creation (your financial data on their servers)</li>
-                        <li>$10-15/month subscriptions</li>
-                        <li>Only show one strategy at a time</li>
-                        <li>No "what if" scenario testing</li>
-                        <li>Clunky web wrappers or Android ports</li>
-                        <li>Sell your data to third parties</li>
-                    </ul>
-                </div>
-                
-                <div class="comparison-card payoffpilot">
-                    <h3>✅ PayoffPilot</h3>
-                    <ul>
-                        <li>100% private - all data stays on YOUR device</li>
-                        <li>Free beta, then one-time purchase (no subscription)</li>
-                        <li>Side-by-side strategy comparison</li>
-                        <li>Built-in scenario simulator</li>
-                        <li>Native iOS app built in SwiftUI</li>
-                        <li>Zero data collection or tracking</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <h2>Frequently Asked Questions</h2>
-        
-        <div class="faq-item">
-            <details>
-                <summary>Is my financial data really safe?</summary>
-                <div class="faq-answer">
-                    <p>Yes! All your data stays on YOUR device using Apple's encrypted SwiftData framework. We never collect, store, or see your financial information. There's no account required, no analytics, and no tracking. Optional iCloud sync is end-to-end encrypted by Apple.</p>
-                </div>
-            </details>
-        </div>
-        
-        <div class="faq-item">
-            <details>
-                <summary>How accurate are the debt payoff calculations?</summary>
-                <div class="faq-answer">
-                    <p>PayoffPilot uses the same standard amortization formulas used by banks and financial institutions. We calculate compound interest monthly and apply payments according to proven Snowball (smallest balance first) and Avalanche (highest APR first) methodologies. We've validated our calculations against other debt calculators and real-world scenarios.</p>
-                </div>
-            </details>
-        </div>
-        
-        <div class="faq-item">
-            <details>
-                <summary>Is this really free or is there a catch?</summary>
-                <div class="faq-answer">
-                    <p>The beta is completely free with all features unlocked - no catch! When we launch on the App Store, we'll offer a free tier (up to 5 debts) and a Pro version with unlimited debts. We're considering both one-time purchase ($15-20) and subscription options, and we'll ask beta testers for feedback on which they prefer.</p>
-                </div>
-            </details>
-        </div>
-        
-        <div class="faq-item">
-            <details>
-                <summary>Does PayoffPilot work offline?</summary>
-                <div class="faq-answer">
-                    <p>Yes! Since all your data is stored locally on your device, PayoffPilot works completely offline. No internet connection required for any calculations, tracking, or features.</p>
-                </div>
-            </details>
-        </div>
-        
-        <div class="faq-item">
-            <details>
-                <summary>What devices does PayoffPilot support?</summary>
-                <div class="faq-answer">
-                    <p>PayoffPilot requires iOS 17.0 or later and works on iPhone and iPad. It's built natively in SwiftUI for the best iOS experience. Android support may come in 2026 if there's demand.</p>
-                </div>
-            </details>
-        </div>
-        
-        <div class="faq-item">
-            <details>
-                <summary>How do I report bugs or request features?</summary>
-                <div class="faq-answer">
-                    <p>During beta testing, the best way is through the TestFlight app - just tap "Send Beta Feedback" and include screenshots if possible. You can also email us at <a href="mailto:support@bigbeardapps.com" style="color: #0066cc;">support@bigbeardapps.com</a> or reach out on Twitter/X <a href="https://x.com/BigBeardApps" target="_blank" style="color: #0066cc;">@BigBeardApps</a>.</p>
-                </div>
-            </details>
-        </div>
-    </section>
-
-    <!-- Enhanced CTA Section -->
-    <section class="enhanced-cta">
-        <h2>Ready to Take Control of Your Debt?</h2>
-        <p class="cta-description">Join our TestFlight beta and get free access to all features</p>
-        <a href="https://testflight.apple.com/join/J7bj4ycg" target="_blank" class="btn-large">🚀 Join Beta on TestFlight</a>
-        <div class="requirements">
-            <span>✅ No credit card required</span>
-            <span>✅ iOS 17+ needed</span>
-            <span>✅ Takes 2 minutes to install</span>
-        </div>
-    </section>
-
-    <div class="footer">
-        <div class="footer-links">
-            <a href="roadmap.html">Roadmap</a>
-            <a href="https://testflight.apple.com/join/J7bj4ycg" target="_blank">Beta Testing</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-            <a href="support.html">Support</a>
-        </div>
-        <p>© 2025 Big Beard Apps by Raul Pena. All rights reserved.</p>
-        <p style="margin-top: 10px; opacity: 0.7; font-size: 0.9em;">
-            Coded by hand. Beard by nature.
-        </p>
+    <div class="privacy-block">
+        <h2>Your finances stay private</h2>
+        <p>All your data is stored locally on your device using Apple's encrypted SwiftData framework. No account required, no data collection, no tracking.</p>
     </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="/payoffpilot/privacy.html">Privacy Policy</a>
+        <a href="mailto:support@bigbeardapps.com">Support</a>
+        <a href="/">Big Beard Apps</a>
+    </div>
+    <p>&copy; 2026 Big Beard Apps. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
-

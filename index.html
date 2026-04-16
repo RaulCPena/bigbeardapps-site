@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Big Beard Apps — Independent iOS apps built with care.">
+    <title>Big Beard Apps</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #fff;
+        }
+
+        /* Header */
+        header {
+            background: #111;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .brand-icon {
+            font-size: 3em;
+            margin-bottom: 16px;
+        }
+        header h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+        header p {
+            font-size: 1.15em;
+            color: #aaa;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Apps section */
+        .apps-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .apps-section h2 {
+            font-size: 1.1em;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        .app-card {
+            border: 1px solid #e5e5e5;
+            border-radius: 18px;
+            padding: 32px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .app-card:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+            transform: translateY(-2px);
+        }
+        .app-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            flex-shrink: 0;
+        }
+        .app-icon.payoffpilot { background: linear-gradient(135deg, #0066cc, #00509e); }
+        .app-icon.feastmark   { background: linear-gradient(135deg, #D4A843, #A0722A); }
+        .app-name {
+            font-size: 1.25em;
+            font-weight: 700;
+        }
+        .app-status {
+            display: inline-block;
+            font-size: 0.7em;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .status-beta    { background: #fff3cd; color: #856404; }
+        .status-coming  { background: #d1ecf1; color: #0c5460; }
+        .app-desc {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.55;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: #888;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+        }
+        footer a { color: #aaa; text-decoration: none; margin: 0 12px; }
+        footer a:hover { color: #fff; }
+        .footer-links { margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand-icon">🧔</div>
+    <h1>Big Beard Apps</h1>
+    <p>Independent iOS apps built with care.</p>
+</header>
+
+<section class="apps-section">
+    <h2>Our Apps</h2>
+    <div class="apps-grid">
+
+        <a href="/payoffpilot/" class="app-card">
+            <div class="app-card-header">
+                <div class="app-icon payoffpilot">💳</div>
+                <div>
+                    <div class="app-name">PayoffPilot</div>
+                    <span class="app-status status-beta">Beta</span>
+                </div>
+            </div>
+            <p class="app-desc">Strategic debt payoff calculator. Compare Snowball and Avalanche methods, track payments, and become debt-free faster.</p>
+        </a>
+
+        <a href="/feastmark/" class="app-card">
+            <div class="app-card-header">
+                <div class="app-icon feastmark">🍽</div>
+                <div>
+                    <div class="app-name">Feastmark</div>
+                    <span class="app-status status-coming">Coming Soon</span>
+                </div>
+            </div>
+            <p class="app-desc">Save recipes from Instagram, TikTok, and YouTube in one tap. Organize into collections, scale ingredients, and cook with confidence.</p>
+        </a>
+
+    </div>
+</section>
+
+<footer>
+    <div class="footer-links">
+        <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
+        <a href="/feastmark/privacy.html">Feastmark Privacy</a>
+        <a href="mailto:support@bigbeardapps.com">Contact</a>
+    </div>
+    <p>&copy; 2026 Big Beard Apps. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

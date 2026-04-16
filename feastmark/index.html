@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Feastmark — Save recipes from Instagram, TikTok, and YouTube in one tap.">
+    <title>Feastmark — Save Recipes from Anywhere</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #fff;
+        }
+        nav {
+            background: #111;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        nav a:hover { color: #fff; }
+        nav span { color: #555; font-size: 0.9em; }
+
+        .hero {
+            background: linear-gradient(135deg, #D4A843 0%, #A0722A 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero-icon { font-size: 4em; margin-bottom: 20px; }
+        .hero h1 {
+            font-size: 3.2em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+        .hero p {
+            font-size: 1.25em;
+            opacity: 0.92;
+            max-width: 520px;
+            margin: 0 auto 36px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: #fff;
+            font-size: 0.9em;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        .section-label {
+            font-size: 1em;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #A0722A;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+        .section-sub {
+            font-size: 1.05em;
+            color: #555;
+            max-width: 560px;
+            margin-bottom: 48px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+        }
+        .feature {
+            background: #f5f5f7;
+            border-radius: 16px;
+            padding: 28px;
+        }
+        .feature-icon { font-size: 2em; margin-bottom: 14px; }
+        .feature h3 { font-size: 1.1em; font-weight: 700; margin-bottom: 8px; }
+        .feature p { font-size: 0.95em; color: #555; }
+
+        .platforms {
+            background: #f5f5f7;
+            border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        .platforms h2 { font-size: 1.6em; font-weight: 700; margin-bottom: 10px; }
+        .platforms p { color: #555; margin-bottom: 32px; }
+        .platform-list {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .platform {
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px 24px;
+            font-weight: 600;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+
+        footer {
+            background: #111;
+            color: #888;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+        }
+        footer a { color: #aaa; text-decoration: none; margin: 0 12px; }
+        footer a:hover { color: #fff; }
+        .footer-links { margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/">Big Beard Apps</a>
+    <span>/</span>
+    <a href="/feastmark/" style="color:#D4A843;">Feastmark</a>
+</nav>
+
+<section class="hero">
+    <div class="hero-icon">🍽</div>
+    <h1>Feastmark</h1>
+    <p>Save recipes from Instagram, TikTok, and YouTube in one tap. Your kitchen, organized.</p>
+    <div class="badge">Coming Soon to the App Store</div>
+</section>
+
+<div class="container">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Everything your recipe collection needs</h2>
+    <p class="section-sub">Share a video or post from any app and Feastmark extracts the recipe automatically — ingredients, instructions, and all.</p>
+
+    <div class="features">
+        <div class="feature">
+            <div class="feature-icon">⚡️</div>
+            <h3>Save in One Tap</h3>
+            <p>Share any recipe video or post to Feastmark. We extract the full recipe automatically — no copying, no typing.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📚</div>
+            <h3>Collections</h3>
+            <p>Organize recipes into collections like "Weeknight Dinners" or "Date Night." Filter your library in seconds.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">⚖️</div>
+            <h3>Ingredient Scaling</h3>
+            <p>Cooking for two or twelve? Adjust serving size and every ingredient scales automatically.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">❤️</div>
+            <h3>Favorites</h3>
+            <p>Heart the recipes you keep coming back to and find them instantly in your Favorites tab.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🔍</div>
+            <h3>Search by Tag</h3>
+            <p>Search your entire library by recipe name or tag. Find exactly what you're craving.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🔒</div>
+            <h3>Private by Design</h3>
+            <p>Your recipes stay on your device. No account required, no data sold.</p>
+        </div>
+    </div>
+
+    <div class="platforms">
+        <h2>Works with your favorite apps</h2>
+        <p>Share from wherever you find recipes</p>
+        <div class="platform-list">
+            <div class="platform">📸 Instagram</div>
+            <div class="platform">🎵 TikTok</div>
+            <div class="platform">▶️ YouTube</div>
+            <div class="platform">📌 Pinterest</div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="/feastmark/privacy.html">Privacy Policy</a>
+        <a href="mailto:support@bigbeardapps.com">Support</a>
+        <a href="/">Big Beard Apps</a>
+    </div>
+    <p>&copy; 2026 Big Beard Apps. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

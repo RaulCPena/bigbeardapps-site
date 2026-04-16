@@ -22,19 +22,9 @@
             text-align: center;
         }
         .brand-mark {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 72px;
-            height: 72px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #333, #1a1a1a);
-            border: 1px solid #444;
-            font-size: 1.6em;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: -2px;
-            margin-bottom: 20px;
+            display: block;
+            height: 80px;
+            margin: 0 auto 20px;
         }
         header h1 {
             font-size: 2.8em;
@@ -102,17 +92,14 @@
             width: 64px;
             height: 64px;
             border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             flex-shrink: 0;
-            font-size: 1.35em;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: -1px;
+            overflow: hidden;
         }
-        .app-icon.payoffpilot { background: linear-gradient(135deg, #0066cc, #00509e); }
-        .app-icon.feastmark   { background: linear-gradient(135deg, #D4A843, #A0722A); }
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         .app-name {
             font-size: 1.25em;
             font-weight: 700;
@@ -151,7 +138,7 @@
 <body>
 
 <header>
-    <div class="brand-mark">BB</div>
+    <img class="brand-mark" src="/payoffpilot/images/bigbeard-logo.png" alt="Big Beard Apps">
     <h1>Big Beard Apps</h1>
     <p>Independent iOS apps built with care.</p>
 </header>
@@ -162,7 +149,7 @@
 
         <a href="/payoffpilot/" class="app-card payoffpilot">
             <div class="app-card-header">
-                <div class="app-icon payoffpilot">PP</div>
+                <div class="app-icon"><img src="/payoffpilot/images/app-icon.png" alt="PayoffPilot"></div>
                 <div>
                     <div class="app-name">PayoffPilot</div>
                     <span class="app-status status-beta">Beta</span>
@@ -173,7 +160,7 @@
 
         <a href="/feastmark/" class="app-card feastmark">
             <div class="app-card-header">
-                <div class="app-icon feastmark">FM</div>
+                <div class="app-icon"><img src="/feastmark/images/app-icon.png" alt="Feastmark"></div>
                 <div>
                     <div class="app-name">Feastmark</div>
                     <span class="app-status status-coming">Coming Soon</span>

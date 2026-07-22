@@ -31,10 +31,20 @@
         .hero {
             background: linear-gradient(135deg, #D4A843 0%, #A0722A 100%);
             color: white;
-            padding: 100px 20px;
+            padding: 90px 20px;
             text-align: center;
         }
-        .hero-icon { font-size: 4em; margin-bottom: 20px; }
+        .hero-inner {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 56px;
+            flex-wrap: wrap;
+        }
+        .hero-copy { max-width: 460px; text-align: left; }
+        .hero-icon { font-size: 3em; margin-bottom: 14px; }
         .hero h1 {
             font-size: 3.2em;
             font-weight: 700;
@@ -42,10 +52,19 @@
             letter-spacing: -0.5px;
         }
         .hero p {
-            font-size: 1.25em;
-            opacity: 0.92;
-            max-width: 520px;
-            margin: 0 auto 36px;
+            font-size: 1.2em;
+            opacity: 0.94;
+            margin: 0 0 32px;
+        }
+        .hero-phone {
+            width: 260px;
+            border-radius: 34px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.32);
+            display: block;
+        }
+        @media (max-width: 760px) {
+            .hero-copy { text-align: center; }
+            .hero-inner { gap: 36px; }
         }
         .badge {
             display: inline-block;
@@ -101,16 +120,19 @@
 
         .screens {
             display: flex;
-            justify-content: center;
-            gap: 28px;
-            flex-wrap: wrap;
+            gap: 24px;
             margin-top: 80px;
+            overflow-x: auto;
+            padding: 8px 4px 24px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
         }
         .screens img {
-            width: 280px;
-            max-width: 100%;
-            border-radius: 24px;
+            width: 240px;
+            flex-shrink: 0;
+            border-radius: 22px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.16);
+            scroll-snap-align: center;
         }
 
         .platforms {
@@ -161,10 +183,17 @@
 </nav>
 
 <section class="hero">
-    <div class="hero-icon">🍽</div>
-    <h1>Feastmark</h1>
-    <p>Save recipes from Instagram, TikTok, and YouTube in one tap — even when the recipe is only spoken in the video. Your kitchen, organized.</p>
-    <div class="badge">Coming Soon to the App Store</div>
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <div class="hero-icon">🍽</div>
+            <h1>Feastmark</h1>
+            <p>Save recipes from Instagram, TikTok, and YouTube in one tap — even when the recipe is only spoken in the video. Your kitchen, organized.</p>
+            <div class="badge">Coming Soon to the App Store</div>
+        </div>
+        <video class="hero-phone" autoplay muted loop playsinline poster="images/demo-poster.jpg">
+            <source src="images/demo.mp4" type="video/mp4">
+        </video>
+    </div>
 </section>
 
 <div class="container">
@@ -217,7 +246,10 @@
 
     <div class="screens">
         <img src="images/screen-library.png" alt="Feastmark recipe library">
-        <img src="images/screen-cook-mode.png" alt="Feastmark Cook Mode with ingredient checklist">
+        <img src="images/screen-recipe-detail.png" alt="Recipe detail with ingredients and Cook button">
+        <img src="images/screen-cook-mode.png" alt="Cook Mode with ingredient checklist">
+        <img src="images/screen-collection.png" alt="Recipe collections">
+        <img src="images/screen-search.png" alt="Ingredient search">
     </div>
 
     <div class="platforms">

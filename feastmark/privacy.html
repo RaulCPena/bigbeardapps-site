@@ -59,7 +59,7 @@
 
 <div class="content">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: April 15, 2026</p>
+    <p class="updated">Last updated: July 22, 2026</p>
 
     <p>Big Beard Apps ("we," "us," or "our") built Feastmark as a personal recipe library app. This page informs you of our policies regarding the collection, use, and disclosure of information when you use our app.</p>
 
@@ -72,7 +72,7 @@
         <li>Only the URL you share is sent to our server.</li>
         <li>We do not log or store your IP address beyond what is necessary for the server to respond.</li>
         <li>Extracted recipe data is returned to your device and stored locally using Apple's SwiftData framework.</li>
-        <li>We do not retain your recipes on our servers after extraction is complete.</li>
+        <li>To avoid re-processing popular links, our server keeps an anonymous cache that maps a shared URL to its extracted recipe for up to 30 days. This cache contains no information about you or your device and is not linked to any user or account.</li>
     </ul>
 
     <h2>Data Stored on Your Device</h2>
@@ -81,6 +81,10 @@
     <h2>Third-Party Services</h2>
     <p>Our extraction server uses OpenAI's API to parse recipe content from raw text. The URL and page content of the shared link may be processed by OpenAI to extract recipe details. OpenAI's privacy policy applies to this processing. We do not send any personal information to OpenAI.</p>
     <p>We also query platform APIs (such as the YouTube Data API) to retrieve metadata for shared videos. These requests include only the video identifier, not any personal information.</p>
+    <p>When a recipe cannot be found in a post's caption or description, our server may request the video's spoken transcript from Supadata (supadata.ai), a transcript service. Only the public URL you shared is sent to Supadata — never any personal information. Supadata's privacy policy applies to that processing.</p>
+
+    <h2>Photos</h2>
+    <p>If you attach a photo to a recipe, Feastmark uses Apple's system photo picker, which lets you choose an image without granting the app access to your photo library. Chosen photos are stored only on your device and are never uploaded anywhere.</p>
 
     <h2>Analytics</h2>
     <p>Feastmark does not use any third-party analytics services. We do not track how you use the app.</p>

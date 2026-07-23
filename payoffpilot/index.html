@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PayoffPilot — Strategic debt payoff calculator for iPhone. Compare Snowball and Avalanche methods and become debt-free faster.">
-    <title>PayoffPilot — Strategic Debt Payoff</title>
+    <meta name="description" content="PayoffPilot — Plan your debt payoff, compare Snowball vs. Avalanche, and track your way to debt-free. No subscription, no account, no ads.">
+    <title>PayoffPilot — Pay Off Debt. Pay Once. Done.</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -20,25 +20,36 @@
             align-items: center;
             gap: 8px;
         }
-        nav a { color: #aaa; text-decoration: none; font-size: 0.9em; }
+        nav a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
         nav a:hover { color: #fff; }
         nav span { color: #555; font-size: 0.9em; }
 
         .hero {
-            background: linear-gradient(135deg, #0066cc 0%, #00509e 100%);
-            color: white;
-            padding: 100px 20px;
+            background: #F2F7FD;
+            color: #1a1a1a;
+            padding: 90px 20px;
             text-align: center;
         }
-        .hero-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 22px;
-            margin: 0 auto 24px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        .hero-inner {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 56px;
+            flex-wrap: wrap;
         }
-        .hero-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-copy { max-width: 460px; text-align: left; }
+        .hero-icon {
+            width: 72px;
+            border-radius: 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 8px 24px rgba(0,60,140,0.18);
+        }
         .hero h1 {
             font-size: 3.2em;
             font-weight: 700;
@@ -46,15 +57,24 @@
             letter-spacing: -0.5px;
         }
         .hero p {
-            font-size: 1.25em;
-            opacity: 0.92;
-            max-width: 520px;
-            margin: 0 auto 36px;
+            font-size: 1.2em;
+            color: #555;
+            margin: 0 0 32px;
+        }
+        .hero-phone {
+            width: 260px;
+            border-radius: 34px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.32);
+            display: block;
+        }
+        @media (max-width: 760px) {
+            .hero-copy { text-align: center; }
+            .hero-inner { gap: 36px; }
         }
         .badge {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.4);
+            background: #0066cc;
+            border: none;
             color: #fff;
             font-size: 0.9em;
             font-weight: 600;
@@ -73,7 +93,7 @@
             font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #0066cc;
+            color: #0059b3;
             margin-bottom: 12px;
         }
         .section-title {
@@ -98,20 +118,79 @@
             background: #f5f5f7;
             border-radius: 16px;
             padding: 28px;
+            position: relative;
         }
         .feature-icon { font-size: 2em; margin-bottom: 14px; }
         .feature h3 { font-size: 1.1em; font-weight: 700; margin-bottom: 8px; }
         .feature p { font-size: 0.95em; color: #555; }
+        .pro-tag {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: #0066cc;
+            color: #fff;
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
 
-        .privacy-block {
+        .screens {
+            display: flex;
+            gap: 24px;
+            margin-top: 80px;
+            overflow-x: auto;
+            padding: 8px 4px 24px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .screens img {
+            width: 240px;
+            flex-shrink: 0;
+            border-radius: 22px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.16);
+            scroll-snap-align: center;
+        }
+
+        .pricing {
             background: #f5f5f7;
             border-radius: 20px;
             padding: 48px;
             text-align: center;
             margin-top: 80px;
         }
-        .privacy-block h2 { font-size: 1.6em; font-weight: 700; margin-bottom: 10px; }
-        .privacy-block p { color: #555; max-width: 520px; margin: 0 auto; }
+        .pricing h2 { font-size: 1.6em; font-weight: 700; margin-bottom: 10px; }
+        .pricing > p { color: #555; margin-bottom: 32px; max-width: 54ch; margin-left: auto; margin-right: auto; }
+        .price-cards {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .price-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px 32px;
+            width: 280px;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        .price-card h3 { font-size: 1.1em; font-weight: 700; }
+        .price-card .price {
+            font-size: 2em;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin: 6px 0 2px;
+        }
+        .price-card .price-note { color: #0059b3; font-size: 0.85em; font-weight: 600; margin-bottom: 14px; }
+        .price-card ul { list-style: none; }
+        .price-card li { font-size: 0.92em; color: #555; padding: 4px 0; }
+        .price-card li::before { content: "✓  "; color: #0066cc; font-weight: 700; }
+        .no-sub-line {
+            margin-top: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
 
         footer {
             background: #111;
@@ -130,66 +209,119 @@
 <nav>
     <a href="/">Big Beard Apps</a>
     <span>/</span>
-    <a href="/payoffpilot/" style="color:#4da3ff;">PayoffPilot</a>
+    <a href="/payoffpilot/" style="color:#5aa2e8;">PayoffPilot</a>
 </nav>
 
 <section class="hero">
-    <div class="hero-icon">
-        <img src="images/app-icon.png" alt="PayoffPilot">
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <img class="hero-icon" src="images/app-icon.png" alt="PayoffPilot app icon">
+            <h1>Payoff<span style="color:#0066cc;">Pilot</span></h1>
+            <p>Plan your way out of debt. Compare Snowball vs. Avalanche with your real numbers, see your debt-free date, and track every payment — all private, all on your phone.</p>
+            <div class="badge">Coming Soon to the App Store</div>
+        </div>
+        <video class="hero-phone" autoplay muted loop playsinline poster="images/demo-poster.jpg">
+            <source src="images/demo.mp4" type="video/mp4">
+        </video>
     </div>
-    <h1>PayoffPilot</h1>
-    <p>Strategic debt payoff calculator. Compare Snowball and Avalanche methods and become debt-free faster.</p>
-    <div class="badge">Coming Soon to the App Store</div>
 </section>
 
 <div class="container">
     <div class="section-label">Features</div>
-    <h2 class="section-title">Everything you need to crush your debt</h2>
-    <p class="section-sub">Enter your debts, choose your strategy, and PayoffPilot maps the fastest path to financial freedom.</p>
+    <h2 class="section-title">A debt payoff plan you can actually see</h2>
+    <p class="section-sub">Add your debts, set a monthly budget, and PayoffPilot shows you the fastest way out — with real dollar amounts, not vibes.</p>
 
     <div class="features">
         <div class="feature">
-            <div class="feature-icon">📊</div>
-            <h3>Strategy Comparison</h3>
-            <p>See Snowball vs. Avalanche side-by-side. Compare total interest paid, payoff dates, and savings to pick your best path.</p>
+            <div class="feature-icon">⚖️</div>
+            <h3>Snowball vs. Avalanche</h3>
+            <p>See both proven strategies side by side — interest saved, time saved, and which debts to hit first.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">💰</div>
-            <h3>Payment Tracking</h3>
-            <p>Log payments and track your actual progress vs. projections. Stay motivated with real-time updates as balances drop.</p>
+            <div class="feature-icon">📅</div>
+            <h3>Your Debt-Free Date</h3>
+            <p>A real calendar date to aim for, updated with every payment you log.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">🎯</div>
+            <div class="feature-icon">🧮</div>
             <h3>Scenario Simulator</h3>
-            <p>Test "what if" scenarios with extra payments or windfalls. See exactly how much time and money you'll save.</p>
-        </div>
-        <div class="feature">
-            <div class="feature-icon">🔔</div>
-            <h3>Smart Reminders</h3>
-            <p>Never miss a payment with automatic reminders before due dates. Avoid late fees and stay on track.</p>
+            <p>What if you added $200 a month? Or dropped in a bonus? Test it before you commit real money.</p>
+            <div class="pro-tag">PRO</div>
         </div>
         <div class="feature">
             <div class="feature-icon">📄</div>
-            <h3>PDF Export</h3>
-            <p>Export professional payment schedules and debt summaries to share with advisors or save for reference.</p>
+            <h3>PDF Reports</h3>
+            <p>Export your full payoff plan to share with a partner or keep for your records.</p>
+            <div class="pro-tag">PRO</div>
         </div>
         <div class="feature">
-            <div class="feature-icon">🌙</div>
-            <h3>Beautiful Design</h3>
-            <p>Native iOS app built in SwiftUI with full dark mode support, colorful charts, and intuitive navigation.</p>
+            <div class="feature-icon">🏆</div>
+            <h3>Milestones</h3>
+            <p>First debt down, 25%, 50%, debt-free — celebrate progress that used to be invisible.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🔔</div>
+            <h3>Payment Reminders</h3>
+            <p>A nudge before every due date so late fees never eat your progress.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🔒</div>
+            <h3>Face ID Lock</h3>
+            <p>Your finances behind your face. Optional app lock with Face ID or Touch ID.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🛡️</div>
+            <h3>Private by Design</h3>
+            <p>No account. No data collection. Everything stays on your device.</p>
         </div>
     </div>
 
-    <div class="privacy-block">
-        <h2>Your finances stay private</h2>
-        <p>All your data is stored locally on your device using Apple's encrypted SwiftData framework. No account required, no data collection, no tracking.</p>
+    <div class="screens">
+        <img src="images/screen-dashboard.png" alt="PayoffPilot dashboard with total debt and debt-free date">
+        <img src="images/screen-compare.png" alt="Snowball vs Avalanche method comparison">
+        <img src="images/screen-scenarios.png" alt="Scenario simulator">
+        <img src="images/screen-debts.png" alt="Debt list">
+        <img src="images/screen-progress.png" alt="Progress with milestones">
+    </div>
+
+    <div class="pricing">
+        <h2>Free forever. Pro if you want it.</h2>
+        <p>People paying off debt don't need another monthly bill. That's why PayoffPilot Pro is a single one-time purchase — not a subscription.</p>
+        <div class="price-cards">
+            <div class="price-card">
+                <h3>Free</h3>
+                <div class="price">$0</div>
+                <div class="price-note">forever</div>
+                <ul>
+                    <li>Unlimited debts</li>
+                    <li>Snowball &amp; Avalanche comparison</li>
+                    <li>Debt-free date &amp; payment tracking</li>
+                    <li>Milestones &amp; reminders</li>
+                    <li>Face ID lock</li>
+                </ul>
+            </div>
+            <div class="price-card">
+                <h3>Pro</h3>
+                <div class="price">$9.99</div>
+                <div class="price-note">one time — launch price $6.99</div>
+                <ul>
+                    <li>Everything in Free</li>
+                    <li>Scenario Simulator</li>
+                    <li>PDF reports</li>
+                    <li>Full comparison detail</li>
+                </ul>
+            </div>
+        </div>
+        <p class="no-sub-line">No subscription. No account. No ads. Ever.</p>
     </div>
 </div>
 
 <footer>
     <div class="footer-links">
         <a href="/payoffpilot/privacy.html">Privacy Policy</a>
-        <a href="/contact.html">Support</a>
+        <a href="/payoffpilot/terms.html">Terms</a>
+        <a href="/payoffpilot/support.html">Support</a>
+        <a href="/contact.html">Contact</a>
         <a href="/">Big Beard Apps</a>
     </div>
     <p>&copy; 2026 Big Beard Apps. All rights reserved.</p>

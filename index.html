@@ -7,221 +7,366 @@
     <title>Big Beard Apps</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             line-height: 1.6;
             color: #1d1d1f;
-            background: #fff;
+            background: #0d0c0a;
         }
 
-        /* Header */
-        header {
-            background: #111;
-            color: #fff;
-            padding: 80px 20px;
-            text-align: center;
+        /* ── Nav ───────────────────────────── */
+        nav {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px clamp(20px, 5vw, 56px);
+            z-index: 10;
         }
-        .brand-mark {
-            display: block;
-            height: 120px;
-            margin: 0 auto 20px;
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .nav-brand img {
+            height: 34px;
+            border-radius: 9px;
             background: #fff;
-            border-radius: 24px;
-            padding: 12px;
+            padding: 3px;
             color-scheme: light;
         }
-        header h1 {
-            font-size: 2.8em;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 12px;
+        nav .nav-contact {
+            color: #b9b3a8;
+            text-decoration: none;
+            font-size: 0.92em;
+            font-weight: 500;
         }
-        header p {
+        nav .nav-contact:hover { color: #fff; }
+
+        /* ── Hero ──────────────────────────── */
+        .hero {
+            position: relative;
+            background: #0d0c0a;
+            color: #fff;
+            padding: clamp(140px, 20vh, 200px) 24px clamp(90px, 14vh, 150px);
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-glow {
+            position: absolute;
+            top: -160px; left: 50%;
+            width: 640px; height: 640px;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(212,146,42,0.34) 0%, rgba(212,146,42,0.08) 45%, transparent 70%);
+            filter: blur(50px);
+            animation: drift 16s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes drift {
+            from { transform: translateX(-62%) translateY(0); }
+            to   { transform: translateX(-38%) translateY(38px); }
+        }
+        .hero-eyebrow {
+            font-size: 0.85em;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #D4A843;
+            margin-bottom: 26px;
+            animation: rise 0.9s ease both;
+        }
+        .hero h1 {
+            font-size: clamp(2.6em, 7vw, 4.6em);
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 1.08;
+            max-width: 15ch;
+            margin: 0 auto 26px;
+            animation: rise 0.9s 0.12s ease both;
+        }
+        .hero h1 em {
+            font-family: ui-serif, "New York", Georgia, serif;
+            font-style: italic;
+            font-weight: 600;
+            color: #D4A843;
+        }
+        .hero p {
+            color: #b9b3a8;
             font-size: 1.15em;
-            color: #aaa;
-            max-width: 480px;
+            max-width: 44ch;
             margin: 0 auto;
+            animation: rise 0.9s 0.24s ease both;
+        }
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(26px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Apps section */
-        .apps-section {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-        .apps-section h2 {
-            font-size: 1.1em;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 28px;
-        }
-        .app-card {
-            border: 1px solid #e5e5e5;
-            border-radius: 20px;
-            padding: 32px;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: box-shadow 0.2s, transform 0.2s;
+        /* ── Feastmark showcase ────────────── */
+        .showcase {
+            background: #FDF8F2;
+            border-radius: clamp(24px, 4vw, 44px) clamp(24px, 4vw, 44px) 0 0;
+            padding: clamp(70px, 10vw, 120px) 24px;
             position: relative;
             overflow: hidden;
         }
-        .app-card.featured {
-            grid-column: 1 / -1;
-            background: #FDF8F2;
-            border-color: #efe3d0;
+        .showcase-inner {
+            max-width: 1060px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
             justify-content: center;
+            gap: clamp(40px, 7vw, 96px);
+            flex-wrap: wrap;
         }
-        .featured-copy { max-width: 460px; flex: 1 1 300px; }
-        .featured-phone {
-            width: 190px;
-            border-radius: 26px;
-            box-shadow: 0 16px 44px rgba(0,0,0,0.22);
-            display: block;
-            flex-shrink: 0;
-        }
-        .featured-cta {
-            display: inline-block;
-            margin-top: 18px;
+        .showcase-copy { max-width: 470px; flex: 1 1 320px; }
+        .showcase-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid #eadfca;
             color: #A0722A;
-            font-weight: 600;
-            font-size: 0.95em;
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 7px 16px;
+            border-radius: 30px;
+            margin-bottom: 22px;
         }
-        .app-card::before {
+        .showcase-pill::before {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #D4922A;
+            animation: pulse 2.2s ease-in-out infinite;
         }
-        .app-card.payoffpilot::before { background: linear-gradient(90deg, #0066cc, #00509e); }
-        .app-card.feastmark::before   { background: linear-gradient(90deg, #D4A843, #A0722A); }
-        .app-card:hover {
-            box-shadow: 0 8px 32px rgba(0,0,0,0.10);
-            transform: translateY(-2px);
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.4; transform: scale(0.75); }
         }
-        .app-card-header {
+        .showcase h2 {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 16px;
+            font-size: clamp(2.2em, 5vw, 3.2em);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 18px;
         }
-        .app-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            flex-shrink: 0;
-            overflow: hidden;
+        .showcase h2 img {
+            width: 0.95em; height: 0.95em;
+            border-radius: 22%;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
         }
-        .app-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .showcase h2 span { color: #D4922A; }
+        .showcase-copy > p {
+            color: #5c564c;
+            font-size: 1.12em;
+            margin-bottom: 26px;
         }
-        .app-name {
-            font-size: 1.25em;
-            font-weight: 700;
-        }
-        .app-status {
-            display: inline-block;
-            font-size: 0.7em;
+        .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 34px; }
+        .chip {
+            background: #fff;
+            border: 1px solid #efe6d4;
+            border-radius: 12px;
+            padding: 9px 15px;
+            font-size: 0.9em;
             font-weight: 600;
-            padding: 3px 10px;
+            color: #4a4438;
+            box-shadow: 0 2px 8px rgba(160,114,42,0.07);
+        }
+        .cta {
+            display: inline-block;
+            background: #D4922A;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1em;
+            padding: 15px 32px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(212,146,42,0.35);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(212,146,42,0.45);
+        }
+        .showcase-phone-wrap {
+            position: relative;
+            flex-shrink: 0;
+            animation: floaty 7s ease-in-out infinite;
+        }
+        @keyframes floaty {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-14px); }
+        }
+        .phone-glow {
+            position: absolute;
+            inset: -70px;
+            background: radial-gradient(circle, rgba(212,146,42,0.30) 0%, transparent 66%);
+            filter: blur(38px);
+            pointer-events: none;
+        }
+        .showcase-phone {
+            position: relative;
+            width: clamp(220px, 26vw, 280px);
+            border-radius: 34px;
+            transform: rotate(-4deg);
+            box-shadow:
+                0 40px 90px rgba(60,40,10,0.32),
+                0 14px 34px rgba(60,40,10,0.20);
+            display: block;
+        }
+
+        /* ── PayoffPilot ───────────────────── */
+        .second {
+            background: #FDF8F2;
+            padding: 0 24px clamp(80px, 11vw, 130px);
+        }
+        .second-card {
+            max-width: 1060px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #edeae4;
+            border-radius: 28px;
+            padding: clamp(34px, 5vw, 54px);
+            display: flex;
+            align-items: center;
+            gap: clamp(24px, 4vw, 44px);
+            flex-wrap: wrap;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+        }
+        .second-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 44px rgba(0,40,90,0.10);
+        }
+        .second-card img {
+            width: 84px; height: 84px;
             border-radius: 20px;
-            margin-top: 4px;
-            letter-spacing: 0.5px;
+            box-shadow: 0 8px 22px rgba(0,60,140,0.18);
+            flex-shrink: 0;
+        }
+        .second-copy { flex: 1 1 300px; }
+        .second-copy h3 {
+            font-size: 1.5em;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .beta-pill {
+            font-size: 0.55em;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #0059b3;
+            background: #e8f1fc;
+            padding: 4px 12px;
+            border-radius: 20px;
             text-transform: uppercase;
         }
-        .status-beta    { background: #fff3cd; color: #856404; }
-        .status-coming  { background: #d1ecf1; color: #0c5460; }
-        .app-desc {
-            font-size: 0.95em;
-            color: #555;
-            line-height: 1.55;
+        .second-copy p { color: #5f6368; margin-top: 8px; max-width: 56ch; }
+        .second-arrow {
+            font-size: 1.6em;
+            color: #0066cc;
+            font-weight: 700;
+            flex-shrink: 0;
         }
 
-        /* Footer */
+        /* ── Footer ────────────────────────── */
         footer {
-            background: #111;
-            color: #888;
+            background: #0d0c0a;
+            color: #8d867a;
             text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9em;
+            padding: 56px 20px;
+            font-size: 0.92em;
         }
-        footer a { color: #aaa; text-decoration: none; margin: 0 12px; }
+        footer a { color: #b9b3a8; text-decoration: none; margin: 0 14px; }
         footer a:hover { color: #fff; }
-        .footer-links { margin-bottom: 16px; }
+        .footer-links { margin-bottom: 18px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-glow, .showcase-phone-wrap, .showcase-pill::before,
+            .hero-eyebrow, .hero h1, .hero p { animation: none; }
+        }
 
         @media (prefers-color-scheme: dark) {
-            body { background: #1c1c1e; color: #f5f5f7; }
-            .brand-mark { background: #fff; color-scheme: light; }
-            .apps-section h2 { color: #888; }
-            .app-card { border-color: #3a3a3c; background: #2c2c2e; color: #f5f5f7; }
-            .app-card.featured { background: #26221a; border-color: #40382a; }
-            .featured-cta { color: #D4A843; }
-            .app-desc { color: #aaa; }
-            footer { background: #111; }
+            .showcase, .second { background: #171512; }
+            .showcase h2, .second-copy h3 { color: #f5f0e8; }
+            .showcase-copy > p { color: #b0a894; }
+            .chip { background: #221f1a; border-color: #353026; color: #cfc6b4; }
+            .showcase-pill { background: #221f1a; border-color: #3a3226; }
+            .second-card { background: #1e1b17; border-color: #322d25; }
+            .second-copy p { color: #a49d90; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <img class="brand-mark" src="/payoffpilot/images/bigbeard-logo.png" alt="Big Beard Apps">
-    <h1>Big Beard Apps</h1>
-    <p>Independent iOS apps built with care.</p>
-</header>
+<nav>
+    <a class="nav-brand" href="/">
+        <img src="/payoffpilot/images/bigbeard-logo.png" alt="">
+        Big Beard Apps
+    </a>
+    <a class="nav-contact" href="mailto:support@bigbeardapps.com">Contact</a>
+</nav>
 
-<section class="apps-section">
-    <h2>Our Apps</h2>
-    <div class="apps-grid">
+<section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-eyebrow">Big Beard Apps</div>
+    <h1>Independent iOS apps, built with <em>care</em>.</h1>
+    <p>Small studio. No ads, no tracking, no nonsense — just useful apps that respect the people using them.</p>
+</section>
 
-        <a href="/feastmark/" class="app-card feastmark featured">
-            <div class="featured-copy">
-                <div class="app-card-header">
-                    <div class="app-icon"><img src="/feastmark/images/app-icon.png" alt="Feastmark"></div>
-                    <div>
-                        <div class="app-name">Feastmark</div>
-                        <span class="app-status status-coming">Coming Soon</span>
-                    </div>
-                </div>
-                <p class="app-desc">Turn recipe videos into your personal cookbook. Save from Instagram, TikTok, and YouTube in one tap — even when the recipe is only spoken in the video — then cook hands-free with Cook Mode. Private by design.</p>
-                <span class="featured-cta">See Feastmark →</span>
+<section class="showcase">
+    <div class="showcase-inner">
+        <div class="showcase-copy">
+            <div class="showcase-pill">Coming soon to the App Store</div>
+            <h2><img src="/feastmark/images/app-icon.png" alt=""><div>Feast<span>mark</span></div></h2>
+            <p>Turn recipe videos into your personal cookbook. One tap from Instagram, TikTok, or YouTube — even when the recipe is only spoken in the video.</p>
+            <div class="chips">
+                <div class="chip">🎙 Hears spoken recipes</div>
+                <div class="chip">👨‍🍳 Hands-free Cook Mode</div>
+                <div class="chip">✏️ Edit anything</div>
+                <div class="chip">🔒 Private by design</div>
             </div>
-            <video class="featured-phone" autoplay muted loop playsinline poster="/feastmark/images/demo-poster.jpg">
+            <a class="cta" href="/feastmark/">Explore Feastmark →</a>
+        </div>
+        <div class="showcase-phone-wrap">
+            <div class="phone-glow"></div>
+            <video class="showcase-phone" autoplay muted loop playsinline poster="/feastmark/images/demo-poster.jpg">
                 <source src="/feastmark/images/demo.mp4" type="video/mp4">
             </video>
-        </a>
-
-        <a href="/payoffpilot/" class="app-card payoffpilot">
-            <div class="app-card-header">
-                <div class="app-icon"><img src="/payoffpilot/images/app-icon.png" alt="PayoffPilot"></div>
-                <div>
-                    <div class="app-name">PayoffPilot</div>
-                    <span class="app-status status-beta">Beta</span>
-                </div>
-            </div>
-            <p class="app-desc">Strategic debt payoff calculator. Compare Snowball and Avalanche methods, track payments, and become debt-free faster.</p>
-        </a>
-
+        </div>
     </div>
+</section>
+
+<section class="second">
+    <a class="second-card" href="/payoffpilot/">
+        <img src="/payoffpilot/images/app-icon.png" alt="PayoffPilot">
+        <div class="second-copy">
+            <h3>PayoffPilot <span class="beta-pill">Beta</span></h3>
+            <p>Strategic debt payoff calculator. Compare Snowball and Avalanche methods, track payments, and become debt-free faster.</p>
+        </div>
+        <div class="second-arrow">→</div>
+    </a>
 </section>
 
 <footer>
     <div class="footer-links">
-        <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
         <a href="/feastmark/privacy.html">Feastmark Privacy</a>
+        <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
         <a href="mailto:support@bigbeardapps.com">Contact</a>
     </div>
     <p>&copy; 2026 Big Beard Apps. All rights reserved.</p>

@@ -74,6 +74,31 @@
             position: relative;
             overflow: hidden;
         }
+        .app-card.featured {
+            grid-column: 1 / -1;
+            background: #FDF8F2;
+            border-color: #efe3d0;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .featured-copy { max-width: 460px; flex: 1 1 300px; }
+        .featured-phone {
+            width: 190px;
+            border-radius: 26px;
+            box-shadow: 0 16px 44px rgba(0,0,0,0.22);
+            display: block;
+            flex-shrink: 0;
+        }
+        .featured-cta {
+            display: inline-block;
+            margin-top: 18px;
+            color: #A0722A;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
         .app-card::before {
             content: '';
             position: absolute;
@@ -143,6 +168,8 @@
             .brand-mark { background: #fff; color-scheme: light; }
             .apps-section h2 { color: #888; }
             .app-card { border-color: #3a3a3c; background: #2c2c2e; color: #f5f5f7; }
+            .app-card.featured { background: #26221a; border-color: #40382a; }
+            .featured-cta { color: #D4A843; }
             .app-desc { color: #aaa; }
             footer { background: #111; }
         }
@@ -160,6 +187,23 @@
     <h2>Our Apps</h2>
     <div class="apps-grid">
 
+        <a href="/feastmark/" class="app-card feastmark featured">
+            <div class="featured-copy">
+                <div class="app-card-header">
+                    <div class="app-icon"><img src="/feastmark/images/app-icon.png" alt="Feastmark"></div>
+                    <div>
+                        <div class="app-name">Feastmark</div>
+                        <span class="app-status status-coming">Coming Soon</span>
+                    </div>
+                </div>
+                <p class="app-desc">Turn recipe videos into your personal cookbook. Save from Instagram, TikTok, and YouTube in one tap — even when the recipe is only spoken in the video — then cook hands-free with Cook Mode. Private by design.</p>
+                <span class="featured-cta">See Feastmark →</span>
+            </div>
+            <video class="featured-phone" autoplay muted loop playsinline poster="/feastmark/images/demo-poster.jpg">
+                <source src="/feastmark/images/demo.mp4" type="video/mp4">
+            </video>
+        </a>
+
         <a href="/payoffpilot/" class="app-card payoffpilot">
             <div class="app-card-header">
                 <div class="app-icon"><img src="/payoffpilot/images/app-icon.png" alt="PayoffPilot"></div>
@@ -169,17 +213,6 @@
                 </div>
             </div>
             <p class="app-desc">Strategic debt payoff calculator. Compare Snowball and Avalanche methods, track payments, and become debt-free faster.</p>
-        </a>
-
-        <a href="/feastmark/" class="app-card feastmark">
-            <div class="app-card-header">
-                <div class="app-icon"><img src="/feastmark/images/app-icon.png" alt="Feastmark"></div>
-                <div>
-                    <div class="app-name">Feastmark</div>
-                    <span class="app-status status-coming">Coming Soon</span>
-                </div>
-            </div>
-            <p class="app-desc">Save recipes from Instagram, TikTok, and YouTube in one tap. Organize into collections, scale ingredients, and cook with confidence.</p>
         </a>
 
     </div>

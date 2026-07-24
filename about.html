@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Big Beard Apps — a one-person iOS studio by Raul Pena. Privacy-first apps, and notes from building them.">
+    <title>About — Big Beard Apps</title>
+    <link rel="icon" type="image/png" href="/assets/bigbeard-logo.png">
+    <link rel="stylesheet" href="/assets/site.css">
+    <style>
+        /* ── About hero (matches the homepage's ink + amber glow) ── */
+        .about-hero {
+            position: relative;
+            background: var(--ink);
+            color: #fff;
+            text-align: center;
+            padding: clamp(70px, 12vh, 120px) 24px clamp(60px, 9vh, 96px);
+            overflow: hidden;
+        }
+        .about-hero-glow {
+            position: absolute;
+            top: -160px; left: 50%;
+            width: 600px; height: 600px;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(212,146,42,0.28) 0%, rgba(212,146,42,0.07) 45%, transparent 70%);
+            filter: blur(48px);
+            pointer-events: none;
+        }
+        .about-hero .eyebrow {
+            position: relative;
+            font-size: 0.85em; font-weight: 700; letter-spacing: 0.28em;
+            text-transform: uppercase; color: var(--amber-light); margin-bottom: 20px;
+        }
+        .about-hero h1 {
+            position: relative;
+            font-size: clamp(2.2em, 5.5vw, 3.4em); font-weight: 800;
+            letter-spacing: -0.03em; line-height: 1.08; margin: 0 auto 18px; max-width: 16ch;
+        }
+        .about-hero h1 em {
+            font-family: var(--font-serif); font-style: italic; font-weight: 600; color: var(--amber-light);
+        }
+        .about-hero p {
+            position: relative; color: var(--on-dark); font-size: 1.12em; max-width: 52ch; margin: 0 auto;
+        }
+
+        /* ── Build log timeline ── */
+        .log {
+            max-width: var(--maxw-read);
+            margin: 0 auto clamp(40px, 8vw, 80px);
+            padding: 0 24px;
+        }
+        .log h2 {
+            font-size: 1.5em; font-weight: 800; letter-spacing: -0.02em;
+            margin-bottom: 6px; color: var(--text);
+        }
+        .log > p { color: var(--text-2); margin-bottom: 34px; }
+        .log-entry {
+            position: relative;
+            border-left: 2px solid var(--border);
+            padding: 0 0 30px 26px;
+        }
+        .log-entry:last-child { padding-bottom: 0; }
+        .log-entry::before {
+            content: ''; position: absolute; left: -7px; top: 4px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--amber); border: 3px solid var(--surface);
+            box-shadow: 0 0 0 1px var(--border);
+        }
+        .log-date {
+            font-size: 0.8em; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--amber-ink); margin-bottom: 6px;
+        }
+        .log-entry h3 { font-size: 1.12em; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+        .log-entry p { color: var(--text-2); margin-bottom: 0; }
+
+        @media (prefers-color-scheme: dark) {
+            .log h2, .log-entry h3 { color: var(--on-dark-strong); }
+            .log > p, .log-entry p { color: var(--on-dark); }
+            .log-entry { border-left-color: #322d25; }
+            .log-entry::before { border-color: var(--ink-soft); box-shadow: 0 0 0 1px #322d25; }
+            .log-date { color: var(--amber-light); }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <a class="site-nav__brand" href="/">
+        <img src="/payoffpilot/images/bigbeard-logo.png" alt="">
+        Big Beard Apps
+    </a>
+    <div class="site-nav__links">
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/about.html" aria-current="page">About</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+</nav>
+
+<section class="about-hero">
+    <div class="about-hero-glow"></div>
+    <div class="eyebrow">The Studio</div>
+    <h1>Built by one person, with <em>care</em>.</h1>
+    <p>Big Beard Apps is a one-person iOS studio run by Raul Pena — building small, private apps that respect the people using them.</p>
+</section>
+
+<main class="legal">
+    <!-- EDIT ME: this is your story. Rewrite in your own voice. -->
+    <h2>Hi, I'm Raul.</h2>
+    <p>I build iOS apps out of Texas as a one-person studio. Big Beard Apps started from a simple frustration: too many apps treat the people using them as the product — ads, tracking, accounts you never asked for, data quietly sold on.</p>
+    <p>So I build the opposite. Every Big Beard app is built around one idea: <strong>your data belongs on your device.</strong> No accounts required, no ads, no trackers, nothing sold to third parties. Where an app needs a server, it sends the least it can and keeps nothing about you.</p>
+
+    <h2>The apps</h2>
+    <p><strong><a href="/feastmark/">Feastmark</a></strong> turns recipe videos from Instagram, TikTok, and YouTube into your personal cookbook — even when the recipe is only spoken in the video. <strong><a href="/payoffpilot/">PayoffPilot</a></strong> is a private debt-payoff planner: compare Snowball and Avalanche with your real numbers, run what-ifs, and track your way to debt-free. One-time purchase, never a subscription.</p>
+
+    <h2>Why "Big Beard"</h2>
+    <!-- EDIT ME: the origin of the name — a good place to add personality. -->
+    <p>Because I have one, and because the apps are built the way I'd want them built for myself. If you want to follow along or reach out, I'm on <a href="https://x.com/BigBeardApps" target="_blank" rel="me noopener">X</a>, <a href="https://mastodon.social/@BigBeardApps" target="_blank" rel="me noopener">Mastodon</a>, and <a href="https://bsky.app/profile/bigbeardapps.bsky.social" target="_blank" rel="me noopener">Bluesky</a> — or just use the <a href="/contact.html">contact form</a>.</p>
+</main>
+
+<section class="log">
+    <h2>Build log</h2>
+    <p>Notes from building in the open. Newest first.</p>
+
+    <!-- EDIT ME: these are starter entries. Update the dates and write what actually happened. -->
+    <div class="log-entry">
+        <div class="log-date">July 2026</div>
+        <h3>Both apps submitted for App Review</h3>
+        <p>Feastmark and PayoffPilot are in Apple's review queue and coming soon to the App Store. Placeholder for launch-day notes.</p>
+    </div>
+    <div class="log-entry">
+        <div class="log-date">July 2026</div>
+        <h3>Rebuilt the site on a shared design system</h3>
+        <p>Pulled every page onto one stylesheet — consistent nav, footer, type, and color — so the whole site reads as one studio instead of a pile of separate pages.</p>
+    </div>
+    <div class="log-entry">
+        <div class="log-date">Earlier</div>
+        <h3>Why I started Big Beard Apps</h3>
+        <p>Placeholder — a good first real post: the itch that made you build the first app, and what "privacy-first" means to you in practice.</p>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="/">Big Beard Apps</a>
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/about.html">About</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <div class="footer-legal">
+        <a href="/feastmark/privacy.html">Feastmark Privacy</a>
+        <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
+        <a href="/payoffpilot/terms.html">PayoffPilot Terms</a>
+    </div>
+    <div class="footer-social">
+        <a href="https://x.com/BigBeardApps" target="_blank" rel="me noopener" aria-label="Big Beard Apps on X">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://mastodon.social/@BigBeardApps" target="_blank" rel="me noopener" aria-label="Big Beard Apps on Mastodon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+        </a>
+        <a href="https://bsky.app/profile/bigbeardapps.bsky.social" target="_blank" rel="me noopener" aria-label="Big Beard Apps on Bluesky">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.7 3.1C8.6 5.3 11.7 9.7 12 12c.3-2.3 3.4-6.7 6.3-8.9C20.4 1.6 24 .3 24 4.4c0 .8-.5 6.9-.7 7.9-.9 3.4-4.3 4.2-7.4 3.7 5.4.9 6.8 4 3.8 7-5.6 5.8-8.1-1.5-8.7-3.3-.1-.3-.2-.5-.2-.3 0-.2-.1 0-.2.3-.6 1.8-3.1 9.1-8.7 3.3-3-3-1.6-6.1 3.8-7-3.1.5-6.5-.3-7.4-3.7C.5 11.3 0 5.2 0 4.4 0 .3 3.6 1.6 5.7 3.1z"/></svg>
+        </a>
+    </div>
+    <p class="footer-signoff">Built by <strong>Raul Pena</strong>.</p>
+    <p class="footer-copy">&copy; 2025&ndash;2026 Big Beard Apps. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

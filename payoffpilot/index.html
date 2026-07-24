@@ -192,6 +192,50 @@
             color: #1a1a1a;
         }
 
+        .crosspromo {
+            background: #111;
+            padding: 60px 20px 10px;
+        }
+        .crosspromo-inner { max-width: 620px; margin: 0 auto; }
+        .crosspromo-label {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.78em;
+            font-weight: 700;
+            color: #888;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .promo-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: #1e1e1e;
+            border: 1px solid #2e2e2e;
+            border-radius: 18px;
+            padding: 20px 22px;
+            text-decoration: none;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+        .promo-card:hover {
+            background: #262626;
+            border-color: #5aa2e8;
+            transform: translateY(-2px);
+        }
+        .promo-card img {
+            width: 60px; height: 60px;
+            border-radius: 14px;
+            flex-shrink: 0;
+        }
+        .promo-copy { flex: 1; }
+        .promo-copy h3 { color: #fff; font-size: 1.05em; font-weight: 700; margin-bottom: 4px; }
+        .promo-copy p { color: #999; font-size: 0.9em; line-height: 1.45; }
+        .promo-arrow { color: #5aa2e8; font-size: 1.3em; flex-shrink: 0; }
+        @media (max-width: 480px) {
+            .promo-card { flex-wrap: wrap; }
+            .promo-arrow { display: none; }
+        }
+
         footer {
             background: #111;
             color: #888;
@@ -315,6 +359,20 @@
         <p class="no-sub-line">No subscription. No account. No ads. Ever.</p>
     </div>
 </div>
+
+<section class="crosspromo">
+    <div class="crosspromo-inner">
+        <p class="crosspromo-label">More from Big Beard Apps</p>
+        <a class="promo-card" href="/feastmark/">
+            <img src="/feastmark/images/app-icon.png" alt="Feastmark app icon">
+            <div class="promo-copy">
+                <h3>Feastmark</h3>
+                <p>Turn recipe videos into your personal cookbook.</p>
+            </div>
+            <span class="promo-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+    </div>
+</section>
 
 <footer>
     <div class="footer-links">

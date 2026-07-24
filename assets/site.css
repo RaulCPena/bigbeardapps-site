@@ -333,5 +333,4 @@ em, .accent-serif {
     .legal .highlight { background: rgba(212,146,42,0.12); }
     .legal .important { background: rgba(212,168,67,0.12); }
     .legal code, .faq-item code { background: #1a1712; border-color: #322d25; color: var(--on-dark-strong); }
-    .container { color: var(--on-dark-strong); }
 }

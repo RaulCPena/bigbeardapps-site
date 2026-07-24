@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="PayoffPilot — Plan your debt payoff, compare Snowball vs. Avalanche, and track your way to debt-free. No subscription, no account, no ads.">
     <title>PayoffPilot — Pay Off Debt. Pay Once. Done.</title>
+    <link rel="stylesheet" href="/assets/site.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -13,20 +14,6 @@
             color: #1d1d1f;
             background: #fff;
         }
-        nav {
-            background: #111;
-            padding: 16px 24px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        nav a {
-            color: #aaa;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-        nav a:hover { color: #fff; }
-        nav span { color: #555; font-size: 0.9em; }
 
         .hero {
             background: #F2F7FD;
@@ -236,24 +223,21 @@
             .promo-arrow { display: none; }
         }
 
-        footer {
-            background: #111;
-            color: #888;
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9em;
-        }
-        footer a { color: #aaa; text-decoration: none; margin: 0 12px; }
-        footer a:hover { color: #fff; }
-        .footer-links { margin-bottom: 16px; }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="/">Big Beard Apps</a>
-    <span>/</span>
-    <a href="/payoffpilot/" style="color:#5aa2e8;">PayoffPilot</a>
+<nav class="site-nav">
+    <a class="site-nav__brand" href="/">
+        <img src="/payoffpilot/images/bigbeard-logo.png" alt="">
+        Big Beard Apps
+    </a>
+    <div class="site-nav__links">
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/" aria-current="page">PayoffPilot</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html">Contact</a>
+    </div>
 </nav>
 
 <section class="hero">
@@ -374,17 +358,27 @@
     </div>
 </section>
 
-<footer>
+<footer class="site-footer">
     <div class="footer-links">
-        <a href="/payoffpilot/privacy.html">Privacy Policy</a>
-        <a href="/payoffpilot/terms.html">Terms</a>
-        <a href="/payoffpilot/support.html">Support</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/feastmark/">Feastmark</a>
-        <a href="/press/">Press</a>
         <a href="/">Big Beard Apps</a>
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html">Contact</a>
     </div>
-    <p>&copy; 2025&ndash;2026 Big Beard Apps. All rights reserved.</p>
+    <div class="footer-legal">
+        <a href="/feastmark/privacy.html">Feastmark Privacy</a>
+        <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
+        <a href="/payoffpilot/terms.html">PayoffPilot Terms</a>
+        <a href="/payoffpilot/support.html">PayoffPilot Support</a>
+    </div>
+    <!-- Phase 2: social links — fill href, duplicate per platform
+    <div class="footer-social">
+        <a href="" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="…"/></svg></a>
+    </div>
+    -->
+    <p class="footer-signoff">Built by <strong>Raul Pena</strong>.</p>
+    <p class="footer-copy">&copy; 2025&ndash;2026 Big Beard Apps. All rights reserved.</p>
 </footer>
 
 </body>

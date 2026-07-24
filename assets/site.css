@@ -106,6 +106,16 @@ em, .accent-serif {
 .site-nav__links a:hover { color: #fff; }
 .site-nav__links a[aria-current="page"] { color: var(--amber-light); }
 
+/* Overlay variant — transparent, floats over a dark hero (homepage) */
+.site-nav--overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    background: transparent;
+    z-index: 10;
+    padding-top: 22px;
+    padding-bottom: 22px;
+}
+
 /* ── Reading / legal content ──────────────────────────────────── */
 .legal {
     max-width: var(--maxw-read);

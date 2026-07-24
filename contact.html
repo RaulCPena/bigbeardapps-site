@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Contact Big Beard Apps — questions, feedback, and support for Feastmark and PayoffPilot.">
     <title>Contact — Big Beard Apps</title>
+    <link rel="stylesheet" href="/assets/site.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -16,36 +17,6 @@
             display: flex;
             flex-direction: column;
         }
-
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 22px clamp(20px, 5vw, 56px);
-        }
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-        .nav-brand img {
-            height: 34px;
-            border-radius: 9px;
-            background: #fff;
-            padding: 3px;
-            color-scheme: light;
-        }
-        nav .nav-back {
-            color: #b9b3a8;
-            text-decoration: none;
-            font-size: 0.92em;
-            font-weight: 500;
-        }
-        nav .nav-back:hover { color: #fff; }
 
         main {
             flex: 1;
@@ -148,27 +119,23 @@
         .status.ok { display: block; background: #17251a; color: #7fd191; border: 1px solid #26492f; }
         .status.err { display: block; background: #2b1a17; color: #e09a8d; border: 1px solid #4d2b24; }
 
-        footer {
-            color: #8d867a;
-            text-align: center;
-            padding: 32px 20px;
-            font-size: 0.88em;
-        }
-        footer a { color: #b9b3a8; text-decoration: none; margin: 0 12px; }
-        footer a:hover { color: #fff; }
-
         /* honeypot */
         .hp { position: absolute; left: -9999px; opacity: 0; }
     </style>
 </head>
 <body>
 
-<nav>
-    <a class="nav-brand" href="/">
+<nav class="site-nav">
+    <a class="site-nav__brand" href="/">
         <img src="/payoffpilot/images/bigbeard-logo.png" alt="">
         Big Beard Apps
     </a>
-    <a class="nav-back" href="/">← Back to home</a>
+    <div class="site-nav__links">
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html" aria-current="page">Contact</a>
+    </div>
 </nav>
 
 <main>
@@ -203,10 +170,26 @@
     </div>
 </main>
 
-<footer>
-    <a href="/feastmark/privacy.html">Feastmark Privacy</a>
-    <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
-    <p style="margin-top:14px;">&copy; 2025&ndash;2026 Big Beard Apps. All rights reserved.</p>
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="/">Big Beard Apps</a>
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <div class="footer-legal">
+        <a href="/feastmark/privacy.html">Feastmark Privacy</a>
+        <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
+        <a href="/payoffpilot/terms.html">PayoffPilot Terms</a>
+    </div>
+    <!-- Phase 2: social links — fill href, duplicate per platform
+    <div class="footer-social">
+        <a href="" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="…"/></svg></a>
+    </div>
+    -->
+    <p class="footer-signoff">Built by <strong>Raul Pena</strong>.</p>
+    <p class="footer-copy">&copy; 2025&ndash;2026 Big Beard Apps. All rights reserved.</p>
 </footer>
 
 <script>

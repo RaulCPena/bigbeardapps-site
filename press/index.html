@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Press kit for Big Beard Apps — app icons, screenshots, preview videos, boilerplate copy, and contact for Feastmark and PayoffPilot.">
+    <title>Press Kit — Big Beard Apps</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #FDF8F2;
+        }
+
+        /* ── Nav ───────────────────────────── */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px clamp(20px, 5vw, 56px);
+            background: #0d0c0a;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .nav-brand img {
+            height: 32px;
+            border-radius: 9px;
+            background: #fff;
+            padding: 3px;
+            color-scheme: light;
+        }
+        nav .nav-contact {
+            color: #b9b3a8;
+            text-decoration: none;
+            font-size: 0.92em;
+            font-weight: 500;
+        }
+        nav .nav-contact:hover { color: #fff; }
+
+        /* ── Hero ──────────────────────────── */
+        .hero {
+            background: #0d0c0a;
+            color: #fff;
+            padding: clamp(60px, 9vw, 96px) 24px clamp(70px, 10vw, 110px);
+            text-align: center;
+        }
+        .hero-eyebrow {
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #D4A843;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(2.2em, 6vw, 3.6em);
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero h1 em {
+            font-family: ui-serif, "New York", Georgia, serif;
+            font-style: italic;
+            font-weight: 600;
+            color: #D4A843;
+        }
+        .hero p {
+            color: #b9b3a8;
+            font-size: 1.1em;
+            max-width: 56ch;
+            margin: 0 auto 28px;
+        }
+        .hero-meta {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .hero-meta span {
+            border: 1px solid #322d25;
+            background: #171512;
+            color: #9d9686;
+            font-size: 0.82em;
+            padding: 6px 14px;
+            border-radius: 30px;
+        }
+
+        /* ── Layout ────────────────────────── */
+        .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        section.block { padding: clamp(52px, 8vw, 84px) 0; }
+        .section-label {
+            font-size: 0.78em;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #A0722A;
+            margin-bottom: 12px;
+        }
+        h2 {
+            font-size: clamp(1.7em, 4vw, 2.4em);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+        }
+        h3 {
+            font-size: 1.05em;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 10px;
+        }
+        .lede { color: #5c564c; font-size: 1.05em; max-width: 62ch; }
+        .muted { color: #5c564c; }
+        .lnk { color: #A0722A; }
+        .rule { height: 1px; background: #e8ddc9; border: 0; }
+
+        /* ── App header ────────────────────── */
+        .app-head {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        .app-head img {
+            width: 76px; height: 76px;
+            border-radius: 18px;
+            box-shadow: 0 8px 22px rgba(60,40,10,0.20);
+        }
+        .app-head h2 { margin-bottom: 4px; }
+        .app-head p { color: #5c564c; }
+        .accent-amber { color: #D4922A; }
+        .accent-blue  { color: #0066cc; }
+
+        /* ── Fact table ────────────────────── */
+        .facts {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border: 1px solid #efe6d4;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 34px;
+            font-size: 0.95em;
+        }
+        .facts th, .facts td {
+            text-align: left;
+            padding: 12px 18px;
+            border-bottom: 1px solid #f2ead9;
+            vertical-align: top;
+        }
+        .facts tr:last-child th, .facts tr:last-child td { border-bottom: 0; }
+        .facts th {
+            width: 34%;
+            font-weight: 600;
+            color: #8a8072;
+            white-space: nowrap;
+        }
+        .facts td { color: #33302a; }
+        .pending {
+            display: inline-block;
+            background: #fdf1dc;
+            border: 1px dashed #dcbb7a;
+            color: #8a6420;
+            font-size: 0.85em;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        /* ── Copy blocks ───────────────────── */
+        .copyblock {
+            background: #fff;
+            border: 1px solid #efe6d4;
+            border-radius: 16px;
+            padding: 20px 22px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .copyblock .label {
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #A0722A;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .copyblock p {
+            color: #33302a;
+            padding-right: 90px;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: #f6efe2;
+            border: 1px solid #e6d9be;
+            color: #7a6438;
+            font: inherit;
+            font-size: 0.8em;
+            font-weight: 600;
+            padding: 5px 13px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+        .copy-btn:hover { background: #D4922A; border-color: #D4922A; color: #fff; }
+        .copy-btn.done { background: #2f7d4f; border-color: #2f7d4f; color: #fff; }
+
+        /* ── Assets ────────────────────────── */
+        .asset-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .dl {
+            display: inline-block;
+            background: #D4922A;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95em;
+            padding: 12px 26px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(212,146,42,0.30);
+            transition: transform 0.15s ease;
+        }
+        .dl:hover { transform: translateY(-2px); }
+        .dl.blue { background: #0066cc; box-shadow: 0 6px 18px rgba(0,102,204,0.28); }
+        .dl-note { color: #8a8072; font-size: 0.88em; }
+
+        .shots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+        }
+        .shot {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .shot img, .shot video {
+            width: 100%;
+            border-radius: 14px;
+            border: 1px solid #eadfca;
+            background: #fff;
+            display: block;
+            box-shadow: 0 4px 16px rgba(60,40,10,0.10);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .shot:hover img { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(60,40,10,0.18); }
+        .shot span {
+            display: block;
+            font-size: 0.82em;
+            color: #8a8072;
+            margin-top: 8px;
+        }
+        .icon-cell img { padding: 0; }
+
+        /* ── Bullets ───────────────────────── */
+        ul.points { list-style: none; margin-top: 6px; }
+        ul.points li {
+            color: #4a4438;
+            padding-left: 22px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        ul.points li::before {
+            content: '';
+            position: absolute;
+            left: 4px; top: 11px;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #D4922A;
+        }
+
+        /* ── Contact ───────────────────────── */
+        .contact-card {
+            background: #fff;
+            border: 1px solid #efe6d4;
+            border-radius: 20px;
+            padding: clamp(28px, 4vw, 44px);
+        }
+        .contact-card a { color: #A0722A; font-weight: 600; }
+        .terms { color: #6d675c; font-size: 0.93em; margin-top: 18px; }
+
+        /* ── Footer ────────────────────────── */
+        footer {
+            background: #0d0c0a;
+            color: #8d867a;
+            text-align: center;
+            padding: 48px 20px;
+            font-size: 0.92em;
+        }
+        footer a { color: #b9b3a8; text-decoration: none; margin: 0 12px; }
+        footer a:hover { color: #fff; }
+        .footer-links { margin-bottom: 16px; }
+
+        @media (max-width: 560px) {
+            /* Stack the fact rows — a two-column table can't fit a phone
+               without either truncating labels or overflowing the page. */
+            .facts, .facts tbody, .facts tr, .facts th, .facts td { display: block; width: auto; }
+            .facts tr { border-bottom: 1px solid #f2ead9; padding: 12px 16px; }
+            .facts tr:last-child { border-bottom: 0; }
+            .facts th, .facts td { border: 0; padding: 0; white-space: normal; }
+            .facts th { font-size: 0.85em; margin-bottom: 2px; }
+            /* Copy button drops below the label so it never overlaps the text. */
+            .copyblock { padding-top: 18px; }
+            .copyblock p { padding-right: 0; }
+            .copy-btn { position: static; display: block; margin: 0 0 12px auto; }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body { background: #171512; color: #f5f0e8; }
+            h2, h3 { color: #f5f0e8; }
+            .lede, .app-head p, .muted { color: #b0a894; }
+            .lnk { color: #D4A843; }
+            .rule { background: #2e2a22; }
+            .facts { background: #1e1b17; border-color: #322d25; }
+            .facts th, .facts td, .facts tr { border-color: #2a251e; }
+            .facts th { color: #948b7b; }
+            .facts td { color: #ddd5c6; }
+            .pending { background: #2a2115; border-color: #5a4526; color: #d9b263; }
+            .copyblock { background: #1e1b17; border-color: #322d25; }
+            .copyblock p { color: #ddd5c6; }
+            .copy-btn { background: #2a251e; border-color: #3d362b; color: #cbbfa7; }
+            .shot img, .shot video { background: #1e1b17; border-color: #322d25; }
+            .shot span, .dl-note { color: #948b7b; }
+            ul.points li { color: #c3bbab; }
+            .contact-card { background: #1e1b17; border-color: #322d25; }
+            .contact-card a { color: #D4A843; }
+            .terms { color: #948b7b; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a class="nav-brand" href="/">
+        <img src="/payoffpilot/images/bigbeard-logo.png" alt="">
+        Big Beard Apps
+    </a>
+    <a class="nav-contact" href="/contact.html">Contact</a>
+</nav>
+
+<section class="hero">
+    <div class="hero-eyebrow">Press Kit</div>
+    <h1>Everything you need to write about <em>our apps</em>.</h1>
+    <p>Icons, screenshots, preview videos, and ready-to-paste copy for Feastmark and PayoffPilot. All assets are free to use in coverage of these apps — no permission needed.</p>
+    <div class="hero-meta">
+        <span>Updated 23 July 2026</span>
+        <span>2 apps</span>
+        <span>iOS</span>
+    </div>
+</section>
+
+<!-- ══ Studio ══════════════════════════════ -->
+<section class="block">
+    <div class="wrap">
+        <div class="section-label">The studio</div>
+        <h2>Big Beard Apps</h2>
+        <p class="lede">A one-person iOS studio. No ads, no tracking, no accounts — just useful apps that respect the people using them.</p>
+
+        <div style="margin-top:26px;">
+            <div class="copyblock">
+                <span class="label">Studio boilerplate — short</span>
+                <button class="copy-btn" type="button">Copy</button>
+                <p>Big Beard Apps is an independent one-person iOS studio building privacy-first apps with no ads, no tracking, and no data collection.</p>
+            </div>
+            <div class="copyblock">
+                <span class="label">Studio boilerplate — long</span>
+                <button class="copy-btn" type="button">Copy</button>
+                <p>Big Beard Apps is an independent one-person iOS studio. Its apps are built around a simple position: your data belongs on your device. Nothing requires an account, nothing is sold to third parties, and no app carries ads or trackers. The studio's first two apps are Feastmark, which turns recipe videos into a personal cookbook, and PayoffPilot, a private debt-payoff planner sold as a one-time purchase rather than a subscription.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ Feastmark ═══════════════════════════ -->
+<section class="block" id="feastmark">
+    <div class="wrap">
+        <div class="app-head">
+            <img src="/feastmark/images/app-icon.png" alt="Feastmark app icon">
+            <div>
+                <h2>Feast<span class="accent-amber">mark</span></h2>
+                <p>Turn recipe videos into your personal cookbook.</p>
+            </div>
+        </div>
+
+        <table class="facts">
+            <tr><th>Name</th><td>Feastmark</td></tr>
+            <tr><th>Category</th><td>Food &amp; Drink</td></tr>
+            <tr><th>Platform</th><td>iPhone — requires iOS 26.2 or later</td></tr>
+            <tr><th>Version</th><td>1.0</td></tr>
+            <tr><th>Price</th><td>Free — no ads, no account, nothing in the app is paywalled at launch</td></tr>
+            <!-- LAUNCH DAY: replace with the real App Store URL -->
+            <tr><th>App Store</th><td><span class="pending">Link added on launch day</span></td></tr>
+            <tr><th>Release date</th><td><span class="pending">Pending App Review</span></td></tr>
+            <tr><th>Privacy</th><td>No account required. Recipes stay on the device. No data sold, ever. <a href="/feastmark/privacy.html" class="lnk">Privacy policy</a></td></tr>
+            <tr><th>Website</th><td><a href="/feastmark/" class="lnk">bigbeardapps.com/feastmark</a></td></tr>
+        </table>
+
+        <h3>Descriptions</h3>
+        <div class="copyblock">
+            <span class="label">One line</span>
+            <button class="copy-btn" type="button">Copy</button>
+            <p>Feastmark saves recipes from Instagram, TikTok, and YouTube in one tap — even when the recipe is only spoken in the video.</p>
+        </div>
+        <div class="copyblock">
+            <span class="label">Short — about 50 words</span>
+            <button class="copy-btn" type="button">Copy</button>
+            <p>Feastmark turns recipe videos into a cookbook you'll actually use. Share any post from Instagram, TikTok, or YouTube and the full recipe is extracted automatically — including recipes that are only spoken aloud. A hands-free Cook Mode keeps the screen awake while you cook. Everything stays on your device.</p>
+        </div>
+        <div class="copyblock">
+            <span class="label">Long — about 100 words</span>
+            <button class="copy-btn" type="button">Copy</button>
+            <p>Most people save hundreds of recipe videos and cook almost none of them, because a video is a terrible cookbook. Feastmark fixes that: share any recipe post from Instagram, TikTok, or YouTube and it extracts the full ingredient list and steps automatically — even when the recipe is never written down and exists only in the creator's narration. From there it's yours to edit, annotate, scale to any serving size, sort into collections, and search by ingredient. Cook Mode gives you a checklist and big-type steps with the screen kept awake. No account, no tracking, and recipes never leave your phone.</p>
+        </div>
+
+        <h3 style="margin-top:32px;">What makes it different</h3>
+        <ul class="points">
+            <li><strong>It hears recipes.</strong> When a creator never writes the recipe down, Feastmark works from the video's spoken audio — the feature most recipe savers don't have.</li>
+            <li><strong>One tap from the share sheet.</strong> No copy-pasting links between apps.</li>
+            <li><strong>Cook Mode.</strong> Ingredient checklist, swipeable big-type steps, screen stays awake — built for hands covered in flour.</li>
+            <li><strong>Private by design.</strong> No account, no data collection; your library lives on your device.</li>
+        </ul>
+
+        <h3 style="margin-top:32px;">Assets</h3>
+        <div class="asset-row">
+            <a class="dl" href="/press/feastmark-press-kit.zip" download>Download Feastmark assets (.zip)</a>
+            <span class="dl-note">App icon, 5 screenshots, preview video</span>
+        </div>
+        <div class="shots">
+            <a class="shot icon-cell" href="/feastmark/images/app-icon.png" download>
+                <img src="/feastmark/images/app-icon.png" alt="Feastmark app icon">
+                <span>App icon</span>
+            </a>
+            <a class="shot" href="/feastmark/images/screen-library.png" download>
+                <img src="/feastmark/images/screen-library.png" alt="Feastmark recipe library">
+                <span>Library</span>
+            </a>
+            <a class="shot" href="/feastmark/images/screen-recipe-detail.png" download>
+                <img src="/feastmark/images/screen-recipe-detail.png" alt="Recipe detail with ingredients and Cook button">
+                <span>Recipe detail</span>
+            </a>
+            <a class="shot" href="/feastmark/images/screen-cook-mode.png" download>
+                <img src="/feastmark/images/screen-cook-mode.png" alt="Cook Mode with ingredient checklist">
+                <span>Cook Mode</span>
+            </a>
+            <a class="shot" href="/feastmark/images/screen-collection.png" download>
+                <img src="/feastmark/images/screen-collection.png" alt="Recipe collections">
+                <span>Collections</span>
+            </a>
+            <a class="shot" href="/feastmark/images/screen-search.png" download>
+                <img src="/feastmark/images/screen-search.png" alt="Ingredient search">
+                <span>Ingredient search</span>
+            </a>
+            <a class="shot" href="/feastmark/images/demo.mp4" download>
+                <video muted loop playsinline autoplay poster="/feastmark/images/demo-poster.jpg">
+                    <source src="/feastmark/images/demo.mp4" type="video/mp4">
+                </video>
+                <span>Preview video (MP4)</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ PayoffPilot ═════════════════════════ -->
+<section class="block" id="payoffpilot">
+    <div class="wrap">
+        <div class="app-head">
+            <img src="/payoffpilot/images/app-icon.png" alt="PayoffPilot app icon">
+            <div>
+                <h2>Payoff<span class="accent-blue">Pilot</span></h2>
+                <p>Pay off debt. Pay once. Done.</p>
+            </div>
+        </div>
+
+        <table class="facts">
+            <tr><th>Name</th><td>PayoffPilot</td></tr>
+            <tr><th>Category</th><td>Finance</td></tr>
+            <tr><th>Platform</th><td>iPhone — requires iOS 17.6 or later</td></tr>
+            <tr><th>Version</th><td>1.0</td></tr>
+            <tr><th>Price</th><td>Free; PayoffPilot Pro is a one-time purchase, launch price $6.99 — no subscription</td></tr>
+            <!-- LAUNCH DAY: replace with the real App Store URL -->
+            <tr><th>App Store</th><td><span class="pending">Link added on launch day</span></td></tr>
+            <tr><th>Release date</th><td><span class="pending">Pending App Review</span></td></tr>
+            <tr><th>Privacy</th><td>No account, no bank linking, no data collection — everything stays on the device. <a href="/payoffpilot/privacy.html" class="lnk">Privacy policy</a></td></tr>
+            <tr><th>Website</th><td><a href="/payoffpilot/" class="lnk">bigbeardapps.com/payoffpilot</a></td></tr>
+        </table>
+
+        <h3>Descriptions</h3>
+        <div class="copyblock">
+            <span class="label">One line</span>
+            <button class="copy-btn" type="button">Copy</button>
+            <p>PayoffPilot plans your way out of debt — Snowball vs. Avalanche on your real numbers, with no subscription and no bank linking.</p>
+        </div>
+        <div class="copyblock">
+            <span class="label">Short — about 50 words</span>
+            <button class="copy-btn" type="button">Copy</button>
+            <p>PayoffPilot is a private debt-payoff planner. Compare the Snowball and Avalanche strategies side by side on your real balances, see a calendar date for going debt-free, and simulate what an extra $200 a month would do. No account, no bank linking, and Pro is a one-time purchase.</p>
+        </div>
+        <div class="copyblock">
+            <span class="label">Long — about 100 words</span>
+            <button class="copy-btn" type="button">Copy</button>
+            <p>People paying off debt do not need another monthly bill. PayoffPilot is built on that premise: it is free to use, its Pro tier is a single one-time purchase rather than a subscription, and it never asks to connect to a bank. You enter your debts, and it shows the Snowball and Avalanche strategies side by side — interest saved, time saved, which debt to attack first — plus a real calendar date for being debt-free that updates with every payment you log. A scenario simulator tests extra payments before you commit real money. Everything stays on your device, optionally behind Face ID.</p>
+        </div>
+
+        <h3 style="margin-top:32px;">What makes it different</h3>
+        <ul class="points">
+            <li><strong>One-time purchase, not a subscription.</strong> The people this app serves are trying to cut recurring bills, not add one.</li>
+            <li><strong>No bank linking, ever.</strong> No credentials, no aggregator, no account — the numbers are typed in and stay put.</li>
+            <li><strong>Both strategies, honestly compared.</strong> Snowball and Avalanche side by side on real balances, not a generic explainer.</li>
+            <li><strong>Fully offline and lockable.</strong> Works with no connection; optional Face ID or Touch ID lock.</li>
+        </ul>
+
+        <h3 style="margin-top:32px;">Assets</h3>
+        <div class="asset-row">
+            <a class="dl blue" href="/press/payoffpilot-press-kit.zip" download>Download PayoffPilot assets (.zip)</a>
+            <span class="dl-note">App icon, 5 screenshots, preview video</span>
+        </div>
+        <div class="shots">
+            <a class="shot icon-cell" href="/payoffpilot/images/app-icon.png" download>
+                <img src="/payoffpilot/images/app-icon.png" alt="PayoffPilot app icon">
+                <span>App icon</span>
+            </a>
+            <a class="shot" href="/payoffpilot/images/screen-dashboard.png" download>
+                <img src="/payoffpilot/images/screen-dashboard.png" alt="PayoffPilot dashboard">
+                <span>Dashboard</span>
+            </a>
+            <a class="shot" href="/payoffpilot/images/screen-debts.png" download>
+                <img src="/payoffpilot/images/screen-debts.png" alt="Debt list">
+                <span>Debts</span>
+            </a>
+            <a class="shot" href="/payoffpilot/images/screen-compare.png" download>
+                <img src="/payoffpilot/images/screen-compare.png" alt="Snowball vs Avalanche comparison">
+                <span>Snowball vs. Avalanche</span>
+            </a>
+            <a class="shot" href="/payoffpilot/images/screen-scenarios.png" download>
+                <img src="/payoffpilot/images/screen-scenarios.png" alt="Scenario simulator">
+                <span>Scenario simulator</span>
+            </a>
+            <a class="shot" href="/payoffpilot/images/screen-progress.png" download>
+                <img src="/payoffpilot/images/screen-progress.png" alt="Progress with milestones">
+                <span>Progress &amp; milestones</span>
+            </a>
+            <a class="shot" href="/payoffpilot/images/demo.mp4" download>
+                <video muted loop playsinline autoplay poster="/payoffpilot/images/demo-poster.jpg">
+                    <source src="/payoffpilot/images/demo.mp4" type="video/mp4">
+                </video>
+                <span>Preview video (MP4)</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══ Contact ═════════════════════════════ -->
+<section class="block">
+    <div class="wrap">
+        <div class="section-label">Press enquiries</div>
+        <h2>Get in touch</h2>
+        <p class="lede" style="margin-bottom:26px;">Happy to answer questions, walk through how the extraction pipeline works, or provide review builds and promo codes to writers.</p>
+
+        <div class="contact-card">
+            <h3>Contact</h3>
+            <p class="muted">Use the <a href="/contact.html">contact form</a> and mention "press" in your message — those get answered first.</p>
+
+            <h3 style="margin-top:24px;">Review builds &amp; promo codes</h3>
+            <p class="muted">Available on request for both apps, including PayoffPilot Pro codes.</p>
+
+            <p class="terms"><strong>Usage:</strong> the icons, screenshots, and preview videos on this page may be used freely in articles, videos, reviews, and roundups covering these apps. Please don't alter the app icons or present modified screenshots as the real interface. App names are "Feastmark" and "PayoffPilot" — one word, capital F and capital P, no space.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-links">
+        <a href="/">Big Beard Apps</a>
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <p>&copy; 2026 Big Beard Apps. All rights reserved.</p>
+</footer>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        var text = btn.parentElement.querySelector('p').innerText.trim();
+
+        function flash(label, ok) {
+            btn.textContent = label;
+            if (ok) btn.classList.add('done');
+            setTimeout(function () {
+                btn.textContent = 'Copy';
+                btn.classList.remove('done');
+            }, 1800);
+        }
+
+        // execCommand fallback — the async Clipboard API is unavailable over
+        // plain http and can be permission-blocked even on https.
+        function legacyCopy() {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.cssText = 'position:absolute;left:-9999px;top:0;';
+            document.body.appendChild(ta);
+            ta.select();
+            var ok = false;
+            try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+            document.body.removeChild(ta);
+            return ok;
+        }
+
+        function fallback() {
+            var ok = legacyCopy();
+            flash(ok ? 'Copied' : 'Select & copy', ok);
+        }
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { flash('Copied', true); }, fallback);
+        } else {
+            fallback();
+        }
+    });
+});
+</script>
+
+</body>
+</html>

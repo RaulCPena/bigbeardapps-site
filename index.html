@@ -194,64 +194,6 @@
             display: block;
         }
 
-        /* ── PayoffPilot ───────────────────── */
-        .second {
-            background: #FDF8F2;
-            padding: 0 24px clamp(80px, 11vw, 130px);
-        }
-        .second-card {
-            max-width: 1060px;
-            margin: 0 auto;
-            background: #fff;
-            border: 1px solid #edeae4;
-            border-radius: 28px;
-            padding: clamp(34px, 5vw, 54px);
-            display: flex;
-            align-items: center;
-            gap: clamp(24px, 4vw, 44px);
-            flex-wrap: wrap;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.18s ease, box-shadow 0.18s ease;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.05);
-        }
-        .second-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 44px rgba(0,40,90,0.10);
-        }
-        .second-card img {
-            width: 84px; height: 84px;
-            border-radius: 20px;
-            box-shadow: 0 8px 22px rgba(0,60,140,0.18);
-            flex-shrink: 0;
-        }
-        .second-copy { flex: 1 1 300px; }
-        .second-copy h3 {
-            font-size: 1.5em;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .beta-pill {
-            font-size: 0.55em;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            color: #0059b3;
-            background: #e8f1fc;
-            padding: 4px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
-        }
-        .second-copy p { color: #5f6368; margin-top: 8px; max-width: 56ch; }
-        .second-arrow {
-            font-size: 1.6em;
-            color: #0066cc;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
         /* PayoffPilot showcase — blue accent, mirrored layout, continues the cream block */
         .showcase--pp {
             border-radius: 0;
@@ -276,13 +218,11 @@
         }
 
         @media (prefers-color-scheme: dark) {
-            .showcase, .second { background: #171512; }
-            .showcase h2, .second-copy h3 { color: #f5f0e8; }
+            .showcase { background: #171512; }
+            .showcase h2 { color: #f5f0e8; }
             .showcase-copy > p { color: #b0a894; }
             .chip { background: #221f1a; border-color: #353026; color: #cfc6b4; }
             .showcase-pill { background: #221f1a; border-color: #3a3226; }
-            .second-card { background: #1e1b17; border-color: #322d25; }
-            .second-copy p { color: #a49d90; }
         }
     </style>
 </head>

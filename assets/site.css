@@ -1,0 +1,327 @@
+/* ===================================================================
+   Big Beard Apps — shared design system
+   Single source of truth for tokens, chrome (nav/footer), and content.
+   Grounded in the homepage redesign: warm ink + cream palette,
+   -apple-system type with serif-italic display accents,
+   dark chrome bracketing warm/white content.
+   =================================================================== */
+
+:root {
+    /* — Palette (warm brand) — */
+    --ink:            #0d0c0a;   /* near-black chrome (nav, footer, hero) */
+    --ink-soft:       #171512;   /* dark surface in dark-mode */
+    --cream:          #FDF8F2;   /* warm content background */
+    --surface:        #ffffff;   /* cards / content sheets */
+    --border:         #edeae4;   /* warm hairline */
+    --border-warm:    #efe6d4;   /* warm hairline (chips/pills) */
+
+    --text:           #1d1d1f;   /* primary text on light */
+    --text-2:         #5c564c;   /* secondary text on light */
+    --text-muted:     #8d867a;   /* footer / captions */
+    --on-dark:        #b9b3a8;   /* muted text on dark */
+    --on-dark-strong: #f5f0e8;   /* headings on dark */
+
+    /* — Accents — */
+    --amber:          #D4922A;   /* brand + Feastmark */
+    --amber-light:    #D4A843;
+    --amber-ink:      #A0722A;   /* amber text on light */
+    --amber-tint:     #fbf3e6;   /* amber callout bg */
+    --blue:           #0066cc;   /* PayoffPilot */
+    --blue-dark:      #0059b3;
+
+    /* — Type — */
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: ui-serif, "New York", Georgia, serif;
+    --font-mono: "SF Mono", Monaco, monospace;
+
+    /* — Shape & rhythm — */
+    --radius:    14px;
+    --radius-lg: 24px;
+    --maxw:      1060px;
+    --maxw-read: 760px;
+    --shadow-sm: 0 2px 8px rgba(60,40,10,0.07);
+    --shadow-md: 0 8px 24px rgba(60,40,10,0.12);
+}
+
+/* ── Reset & base ─────────────────────────────────────────────── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--cream);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--amber-ink); }
+
+/* Serif-italic display accent (matches homepage <em>) */
+em, .accent-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--amber);
+}
+
+/* ── Site nav (solid dark, on every sub-page) ─────────────────── */
+.site-nav {
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px clamp(20px, 5vw, 56px);
+    flex-wrap: wrap;
+}
+.site-nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+.site-nav__brand img {
+    height: 30px;
+    border-radius: 8px;
+    background: #fff;
+    padding: 3px;
+    color-scheme: light;
+}
+.site-nav__links {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 3vw, 28px);
+    flex-wrap: wrap;
+}
+.site-nav__links a {
+    color: var(--on-dark);
+    text-decoration: none;
+    font-size: 0.92em;
+    font-weight: 500;
+}
+.site-nav__links a:hover { color: #fff; }
+.site-nav__links a[aria-current="page"] { color: var(--amber-light); }
+
+/* ── Reading / legal content ──────────────────────────────────── */
+.legal {
+    max-width: var(--maxw-read);
+    margin: clamp(28px, 5vw, 56px) auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(32px, 5vw, 60px);
+    box-shadow: var(--shadow-sm);
+}
+.legal h1 {
+    font-size: clamp(2em, 5vw, 2.6em);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+}
+.legal .updated,
+.legal .last-updated,
+.legal .subtitle {
+    color: var(--text-muted);
+    font-size: 0.9em;
+    margin-bottom: 40px;
+}
+.legal .subtitle { font-size: 1.05em; }
+.legal h2 {
+    font-size: 1.35em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 40px 0 12px;
+    color: var(--text);
+}
+.legal h3 {
+    font-size: 1.08em;
+    font-weight: 700;
+    margin: 24px 0 8px;
+    color: var(--text);
+}
+.legal p { color: var(--text-2); margin-bottom: 16px; }
+.legal ul, .legal ol { color: var(--text-2); margin: 0 0 16px 22px; }
+.legal li { margin-bottom: 8px; }
+.legal a { color: var(--amber-ink); text-decoration: none; }
+.legal a:hover { text-decoration: underline; }
+.legal code {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+/* Callouts (privacy highlight, terms disclaimer) */
+.legal .highlight,
+.legal .important,
+.legal .contact {
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin: 26px 0;
+}
+.legal .highlight {                       /* positive / privacy */
+    background: var(--amber-tint);
+    border-left: 4px solid var(--amber);
+}
+.legal .important {                       /* caution / disclaimer */
+    background: #fff6e2;
+    border-left: 4px solid var(--amber-light);
+}
+.legal .contact {                         /* muted contact block */
+    background: var(--cream);
+    border: 1px solid var(--border);
+}
+.legal .highlight p:last-child,
+.legal .important p:last-child,
+.legal .contact p:last-child { margin-bottom: 0; }
+
+/* FAQ (support page) */
+.faq-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: clamp(24px, 4vw, 34px);
+    margin-bottom: 26px;
+    box-shadow: var(--shadow-sm);
+}
+.faq-section > h2 {
+    font-size: 1.3em;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--amber-ink);
+    margin-bottom: 18px;
+}
+.faq-item {
+    margin-bottom: 26px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--border);
+}
+.faq-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.faq-item h3 { font-size: 1.08em; font-weight: 700; margin-bottom: 10px; }
+.faq-item p { color: var(--text-2); margin-bottom: 12px; }
+.faq-item ul, .faq-item ol { color: var(--text-2); margin: 0 0 12px 22px; }
+.faq-item li { margin-bottom: 7px; }
+.faq-item code {
+    background: var(--cream); border: 1px solid var(--border);
+    padding: 2px 6px; border-radius: 5px;
+    font-family: var(--font-mono); font-size: 0.9em;
+}
+
+/* "Still need help" — unified ink box with amber CTA */
+.contact-box {
+    background: var(--ink);
+    color: #fff;
+    text-align: center;
+    padding: clamp(30px, 5vw, 44px);
+    border-radius: var(--radius-lg);
+    margin-top: 40px;
+}
+.contact-box h2 { color: #fff; font-size: 1.6em; font-weight: 800; margin-bottom: 12px; }
+.contact-box p { color: var(--on-dark); margin-bottom: 18px; }
+.contact-box a {
+    display: inline-block;
+    background: var(--amber);
+    color: #fff;
+    padding: 13px 30px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(212,146,42,0.32);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.contact-box a:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(212,146,42,0.42); }
+.contact-box a:last-of-type { margin: 0; }
+
+/* generic page shell for centered content pages */
+.container { max-width: var(--maxw-read); margin: 0 auto; padding: clamp(28px, 5vw, 56px) 20px; }
+
+/* ── CTA button ───────────────────────────────────────────────── */
+.cta {
+    display: inline-block;
+    background: var(--amber);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 15px 32px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(212,146,42,0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.cta:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(212,146,42,0.45); }
+
+/* ── Footer (standard, every page) ────────────────────────────── */
+.site-footer {
+    background: var(--ink);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 56px 20px;
+    font-size: 0.92em;
+}
+.site-footer .footer-links { margin-bottom: 14px; }
+.site-footer .footer-links a {
+    color: var(--on-dark);
+    text-decoration: none;
+    margin: 0 14px;
+    line-height: 2;
+}
+.site-footer .footer-links a:hover { color: #fff; }
+.site-footer .footer-legal { margin-bottom: 16px; font-size: 0.86em; }
+.site-footer .footer-legal a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 10px;
+    line-height: 2;
+}
+.site-footer .footer-legal a:hover { color: var(--on-dark); }
+
+/* Social row — Phase 2 fills the links; slot + styles ready now */
+.site-footer .footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+.site-footer .footer-social a {
+    color: var(--on-dark);
+    display: inline-flex;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+.site-footer .footer-social a:hover { color: #fff; transform: translateY(-2px); }
+.site-footer .footer-social svg { width: 20px; height: 20px; fill: currentColor; }
+
+.site-footer .footer-signoff {
+    color: var(--on-dark);
+    margin-bottom: 6px;
+}
+.site-footer .footer-signoff strong { color: var(--amber-light); font-weight: 600; }
+.site-footer .footer-copy { color: var(--text-muted); }
+
+/* ── Motion / theme preferences ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; scroll-behavior: auto; }
+    .cta:hover, .contact-box a:hover, .footer-social a:hover { transform: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+    body { background: var(--ink-soft); color: var(--on-dark-strong); }
+    .legal, .faq-section {
+        background: #201d18;
+        border-color: #322d25;
+    }
+    .legal h1, .legal h2, .legal h3,
+    .faq-item h3 { color: var(--on-dark-strong); }
+    .legal p, .legal ul, .legal ol,
+    .faq-item p, .faq-item ul, .faq-item ol { color: var(--on-dark); }
+    .legal .updated, .legal .last-updated, .legal .subtitle { color: var(--text-muted); }
+    .legal .contact { background: #1a1712; border-color: #322d25; }
+    .legal .highlight { background: rgba(212,146,42,0.12); }
+    .legal .important { background: rgba(212,168,67,0.12); }
+    .legal code, .faq-item code { background: #1a1712; border-color: #322d25; color: var(--on-dark-strong); }
+    .container { color: var(--on-dark-strong); }
+}

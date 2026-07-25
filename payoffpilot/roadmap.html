@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Where PayoffPilot is headed — a living Now / Next / Later roadmap for the private debt-payoff planner from Big Beard Apps.">
+    <title>Roadmap — PayoffPilot</title>
+    <link rel="icon" type="image/png" href="/assets/bigbeard-logo.png">
+    <link rel="stylesheet" href="/assets/site.css">
+    <style>
+        /* ── Roadmap hero (dark band, PayoffPilot blue glow) ── */
+        .rm-hero {
+            position: relative;
+            background: var(--ink);
+            color: #fff;
+            text-align: center;
+            padding: clamp(70px, 12vh, 118px) 24px clamp(56px, 9vh, 92px);
+            overflow: hidden;
+        }
+        .rm-hero-glow {
+            position: absolute;
+            top: -170px; left: 50%;
+            width: 620px; height: 620px;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(0,102,204,0.34) 0%, rgba(0,102,204,0.08) 45%, transparent 70%);
+            filter: blur(50px);
+            pointer-events: none;
+        }
+        .rm-hero .eyebrow {
+            position: relative;
+            font-size: 0.85em; font-weight: 700; letter-spacing: 0.28em;
+            text-transform: uppercase; color: #5aa2e8; margin-bottom: 20px;
+        }
+        .rm-hero h1 {
+            position: relative;
+            font-size: clamp(2.2em, 5.5vw, 3.3em); font-weight: 800;
+            letter-spacing: -0.03em; line-height: 1.08; margin: 0 auto 18px; max-width: 18ch;
+        }
+        .rm-hero p {
+            position: relative; color: var(--on-dark); font-size: 1.1em; max-width: 56ch; margin: 0 auto;
+        }
+
+        /* ── Now / Next / Later board ── */
+        .board {
+            max-width: var(--maxw);
+            margin: clamp(40px, 7vw, 72px) auto clamp(28px, 5vw, 48px);
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(18px, 2.5vw, 28px);
+            align-items: start;
+        }
+        .col-head {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 16px;
+        }
+        .col-head .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+        .col-head .label {
+            font-size: 0.82em; font-weight: 800; letter-spacing: 0.10em; text-transform: uppercase;
+        }
+        .col-head .sub { font-size: 0.82em; color: var(--text-muted); margin-left: auto; }
+        /* three intensities of PayoffPilot blue */
+        .col-now  .dot { background: #0066cc; }
+        .col-now  .label { color: #0059b3; }
+        .col-next .dot { background: #5aa2e8; }
+        .col-next .label { color: #2f7fce; }
+        .col-later .dot { background: #8a8f98; }
+        .col-later .label { color: #6d727b; }
+
+        .item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+        .item:last-child { margin-bottom: 0; }
+        .item h3 { font-size: 1em; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px; color: var(--text); }
+        .item p { font-size: 0.9em; color: var(--text-2); margin: 0; }
+        .item--todo { border-style: dashed; background: transparent; box-shadow: none; }
+        .item--todo h3 { color: var(--text-muted); }
+
+        .rm-note {
+            max-width: var(--maxw-read);
+            margin: 0 auto clamp(48px, 8vw, 84px);
+            padding: 0 24px;
+            text-align: center;
+        }
+        .rm-note p { color: var(--text-2); font-size: 1.02em; }
+        .rm-note a { color: var(--blue); font-weight: 700; text-decoration: none; }
+        .rm-note a:hover { text-decoration: underline; }
+
+        @media (max-width: 820px) {
+            .board { grid-template-columns: 1fr; gap: 26px; }
+        }
+        @media (prefers-color-scheme: dark) {
+            .item { background: #201d18; border-color: #322d25; }
+            .item h3 { color: var(--on-dark-strong); }
+            .item p { color: var(--on-dark); }
+            .item--todo { background: transparent; }
+            .rm-note p { color: var(--on-dark); }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <a class="site-nav__brand" href="/">
+        <img src="/payoffpilot/images/bigbeard-logo.png" alt="">
+        Big Beard Apps
+    </a>
+    <div class="site-nav__links">
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/" aria-current="page">PayoffPilot</a>
+        <a href="/about.html">About</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+</nav>
+
+<section class="rm-hero">
+    <div class="rm-hero-glow"></div>
+    <div class="eyebrow">PayoffPilot</div>
+    <h1>Where PayoffPilot is headed</h1>
+    <p>A living plan — this is the direction, not a set of promises. Things move between columns as we learn, and nothing here is tied to a date.</p>
+</section>
+
+<div class="board">
+    <!-- NOW = shipping in v1.0 at launch. These are real launch features. -->
+    <div class="col col-now">
+        <div class="col-head"><span class="dot"></span><span class="label">Now</span><span class="sub">at launch</span></div>
+        <div class="item">
+            <h3>Snowball &amp; Avalanche</h3>
+            <p>Compare both payoff strategies side by side with your real numbers.</p>
+        </div>
+        <div class="item">
+            <h3>What-if scenarios</h3>
+            <p>See how an extra payment or a windfall changes your debt-free date.</p>
+        </div>
+        <div class="item">
+            <h3>Payment tracking &amp; reminders</h3>
+            <p>Log payments, watch balances fall, and get reminded before due dates.</p>
+        </div>
+        <div class="item">
+            <h3>Private by design</h3>
+            <p>Everything stays on your device. No account, no ads, no tracking.</p>
+        </div>
+    </div>
+
+    <!-- NEXT = actively building (v1.1). EDIT ME: replace with your real v1.1 ideas. -->
+    <div class="col col-next">
+        <div class="col-head"><span class="dot"></span><span class="label">Next</span><span class="sub">building</span></div>
+        <div class="item item--todo">
+            <h3>EDIT ME — v1.1 feature</h3>
+            <p>Replace with a real thing you're building next. Short title + one line.</p>
+        </div>
+        <div class="item item--todo">
+            <h3>EDIT ME — v1.1 feature</h3>
+            <p>Another v1.1 item. Keep descriptions to a single, plain sentence.</p>
+        </div>
+        <div class="item item--todo">
+            <h3>EDIT ME — v1.1 feature</h3>
+            <p>A third, if you have it — two or three keeps the column balanced.</p>
+        </div>
+    </div>
+
+    <!-- LATER = exploring / directional. EDIT ME: bigger-picture ideas, low commitment. -->
+    <div class="col col-later">
+        <div class="col-head"><span class="dot"></span><span class="label">Later</span><span class="sub">exploring</span></div>
+        <div class="item item--todo">
+            <h3>EDIT ME — exploring</h3>
+            <p>A direction you're considering but haven't committed to.</p>
+        </div>
+        <div class="item item--todo">
+            <h3>EDIT ME — exploring</h3>
+            <p>Another maybe. This column is where big ideas live before they're real.</p>
+        </div>
+    </div>
+</div>
+
+<div class="rm-note">
+    <p>Want something on this list? <a href="/contact.html">Tell me &rarr;</a></p>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="/">Big Beard Apps</a>
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/about.html">About</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <div class="footer-legal">
+        <a href="/feastmark/privacy.html">Feastmark Privacy</a>
+        <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
+        <a href="/payoffpilot/terms.html">PayoffPilot Terms</a>
+        <a href="/payoffpilot/roadmap.html">PayoffPilot Roadmap</a>
+    </div>
+    <div class="footer-social">
+        <a href="https://x.com/BigBeardApps" target="_blank" rel="me noopener" aria-label="Big Beard Apps on X">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://mastodon.social/@BigBeardApps" target="_blank" rel="me noopener" aria-label="Big Beard Apps on Mastodon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+        </a>
+        <a href="https://bsky.app/profile/bigbeardapps.bsky.social" target="_blank" rel="me noopener" aria-label="Big Beard Apps on Bluesky">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.7 3.1C8.6 5.3 11.7 9.7 12 12c.3-2.3 3.4-6.7 6.3-8.9C20.4 1.6 24 .3 24 4.4c0 .8-.5 6.9-.7 7.9-.9 3.4-4.3 4.2-7.4 3.7 5.4.9 6.8 4 3.8 7-5.6 5.8-8.1-1.5-8.7-3.3-.1-.3-.2-.5-.2-.3 0-.2-.1 0-.2.3-.6 1.8-3.1 9.1-8.7 3.3-3-3-1.6-6.1 3.8-7-3.1.5-6.5-.3-7.4-3.7C.5 11.3 0 5.2 0 4.4 0 .3 3.6 1.6 5.7 3.1z"/></svg>
+        </a>
+    </div>
+    <p class="footer-signoff">Built by <strong>Raul Pena</strong>.</p>
+    <p class="footer-copy">&copy; 2025&ndash;2026 Big Beard Apps. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

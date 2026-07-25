@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="About Big Beard Apps — a one-person iOS studio by Raul Peña. Privacy-first apps, and notes from building them.">
+    <meta name="description" content="About Big Beard Apps — a one-person iOS studio by Raul Peña. Air Force veteran, licensed real estate broker, self-taught engineer. Privacy-first apps, and notes from building them.">
     <title>About — Big Beard Apps</title>
     <link rel="icon" type="image/png" href="/assets/bigbeard-logo.png">
     <link rel="stylesheet" href="/assets/site.css">
     <style>
-        /* ── About hero (matches the homepage's ink + amber glow) ── */
+        /* ── About hero (ink + amber glow) ── */
         .about-hero {
             position: relative;
             background: var(--ink);
@@ -34,7 +34,7 @@
         .about-hero h1 {
             position: relative;
             font-size: clamp(2.2em, 5.5vw, 3.4em); font-weight: 800;
-            letter-spacing: -0.03em; line-height: 1.08; margin: 0 auto 18px; max-width: 16ch;
+            letter-spacing: -0.03em; line-height: 1.08; margin: 0 auto 18px; max-width: 18ch;
         }
         .about-hero h1 em {
             font-family: var(--font-serif); font-style: italic; font-weight: 600; color: var(--amber-light);
@@ -43,11 +43,115 @@
             position: relative; color: var(--on-dark); font-size: 1.12em; max-width: 52ch; margin: 0 auto;
         }
 
+        /* ── Shared section shell ── */
+        .about-section {
+            max-width: var(--maxw-read);
+            margin: 0 auto;
+            padding: clamp(34px, 6vw, 60px) 24px 0;
+        }
+        .about-section > h2 {
+            font-size: 1.5em; font-weight: 800; letter-spacing: -0.02em;
+            margin-bottom: 6px; color: var(--text);
+        }
+        .about-section > .section-sub { color: var(--text-2); margin-bottom: 30px; }
+        .about-section p { color: var(--text-2); margin-bottom: 16px; }
+        .about-section p strong { color: var(--text); }
+
+        /* ── Journey timeline ── */
+        .journey { position: relative; }
+        .j-entry {
+            position: relative;
+            border-left: 2px solid var(--border);
+            padding: 0 0 26px 26px;
+            display: grid;
+            grid-template-columns: 122px 1fr;
+            column-gap: 18px;
+            align-items: start;
+        }
+        .j-entry:last-child { padding-bottom: 6px; }
+        .j-entry::before {
+            content: ''; position: absolute; left: -8px; top: 5px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--amber); border: 3px solid var(--cream);
+            box-shadow: 0 0 0 1px var(--border);
+        }
+        .j-entry.j-now::before { background: var(--blue); }
+        .j-year {
+            justify-self: stretch;
+            text-align: center;
+            font-size: 0.78em; font-weight: 800; letter-spacing: 0.04em;
+            color: var(--amber-ink);
+            background: var(--amber-tint);
+            border: 1px solid var(--border-warm);
+            padding: 3px 8px; border-radius: 20px;
+            white-space: nowrap;
+        }
+        .j-entry.j-now .j-year { color: var(--blue-dark); background: #e8f1fc; border-color: #d7e6f7; }
+        .j-body h3 { font-size: 1.05em; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+        .j-body p { font-size: 0.92em; color: var(--text-2); margin: 0; }
+        @media (max-width: 560px) {
+            .j-entry { grid-template-columns: 1fr; row-gap: 6px; }
+            .j-year { justify-self: start; }
+        }
+
+        /* ── Driver cards ── */
+        .drivers {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        @media (max-width: 560px) {
+            .drivers { grid-template-columns: 1fr; }
+        }
+        .driver {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-sm);
+        }
+        .driver .ico { font-size: 1.5em; margin-bottom: 10px; }
+        .driver h3 { font-size: 1em; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+        .driver p { font-size: 0.88em; color: var(--text-2); margin: 0; }
+
+        /* ── App cards ── */
+        .app-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+        }
+        .app-card {
+            display: flex; align-items: center; gap: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            text-decoration: none;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .app-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .app-card img { width: 56px; height: 56px; border-radius: 13px; flex-shrink: 0; }
+        .app-card h3 { font-size: 1.02em; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+        .app-card p { font-size: 0.88em; color: var(--text-2); margin: 0; }
+
+        /* ── Fun-facts chips ── */
+        .facts { display: flex; flex-wrap: wrap; gap: 10px; }
+        .fact {
+            background: var(--surface);
+            border: 1px solid var(--border-warm);
+            border-radius: 12px;
+            padding: 9px 15px;
+            font-size: 0.9em; font-weight: 600;
+            color: var(--text-2);
+            box-shadow: var(--shadow-sm);
+        }
+
         /* ── Build log timeline ── */
         .log {
             max-width: var(--maxw-read);
-            margin: 0 auto clamp(40px, 8vw, 80px);
-            padding: 0 24px;
+            margin: 0 auto clamp(48px, 8vw, 84px);
+            padding: clamp(34px, 6vw, 60px) 24px 0;
         }
         .log h2 {
             font-size: 1.5em; font-weight: 800; letter-spacing: -0.02em;
@@ -63,7 +167,7 @@
         .log-entry::before {
             content: ''; position: absolute; left: -7px; top: 4px;
             width: 12px; height: 12px; border-radius: 50%;
-            background: var(--amber); border: 3px solid var(--surface);
+            background: var(--amber); border: 3px solid var(--cream);
             box-shadow: 0 0 0 1px var(--border);
         }
         .log-date {
@@ -74,10 +178,17 @@
         .log-entry p { color: var(--text-2); margin-bottom: 0; }
 
         @media (prefers-color-scheme: dark) {
-            .log h2, .log-entry h3 { color: var(--on-dark-strong); }
-            .log > p, .log-entry p { color: var(--on-dark); }
-            .log-entry { border-left-color: #322d25; }
-            .log-entry::before { border-color: var(--ink-soft); box-shadow: 0 0 0 1px #322d25; }
+            .about-section > h2, .log h2,
+            .j-body h3, .driver h3, .app-card h3, .log-entry h3 { color: var(--on-dark-strong); }
+            .about-section p, .about-section > .section-sub, .log > p,
+            .j-body p, .driver p, .app-card p, .log-entry p { color: var(--on-dark); }
+            .about-section p strong { color: var(--on-dark-strong); }
+            .driver, .app-card, .fact { background: #201d18; border-color: #322d25; }
+            .fact { color: var(--on-dark); }
+            .j-entry, .log-entry { border-left-color: #322d25; }
+            .j-entry::before, .log-entry::before { border-color: var(--ink-soft); box-shadow: 0 0 0 1px #322d25; }
+            .j-year { background: rgba(212,146,42,0.14); border-color: #3a3226; color: var(--amber-light); }
+            .j-entry.j-now .j-year { background: rgba(0,102,204,0.16); border-color: #1e3a5c; color: #5aa2e8; }
             .log-date { color: var(--amber-light); }
         }
     </style>
@@ -101,29 +212,120 @@
 <section class="about-hero">
     <div class="about-hero-glow"></div>
     <div class="eyebrow">The Studio</div>
-    <h1>Built by one person, with <em>care</em>.</h1>
-    <p>Big Beard Apps is a one-person iOS studio run by Raul Peña — building small, private apps that respect the people using them.</p>
+    <h1>From the Air Force to the <em>App&nbsp;Store</em>.</h1>
+    <p>Big Beard Apps is a one-person iOS studio run by Raul Peña — an Air Force veteran and licensed real estate broker who taught himself to code, building small, private apps that respect the people using them.</p>
 </section>
 
-<main class="legal">
+<section class="about-section">
     <h2>Hi, I'm Raul.</h2>
     <p>I build Big Beard Apps out of Georgetown, Texas — a one-person iOS studio, run around a full-time engineering job and family life, on a stubborn belief that software should work for the people using it, not the other way around.</p>
-    <p>My path here wasn't a straight line. I'm an Air Force veteran; then I spent fifteen-plus years as a real estate broker in San Antonio; then I taught myself to code late at night after the kids were asleep. Today I'm a senior software engineer by day — and Big Beard Apps is where I build the things I wish existed, the way I'd want them built. That reinvention taught me it's never too late to start over.</p>
-    <p>It also shaped how the studio works: <strong>your data belongs on your device.</strong> No accounts, no ads, no trackers, nothing sold to anyone. Where an app genuinely needs a server, it sends the least it can and remembers nothing about you.</p>
+    <p>My path here wasn't a straight line, and that shaped everything: <strong>your data belongs on your device.</strong> No accounts, no ads, no trackers, nothing sold to anyone. Where an app genuinely needs a server, it sends the least it can and remembers nothing about you.</p>
+</section>
 
+<section class="about-section">
+    <h2>The journey</h2>
+    <p class="section-sub">Proof it's never too late to reinvent yourself.</p>
+    <div class="journey">
+        <div class="j-entry">
+            <span class="j-year">1994 &ndash; 1997</span>
+            <div class="j-body">
+                <h3>U.S. Air Force</h3>
+                <p>Honor Guard, then Security Police. Service, discipline, and showing up.</p>
+            </div>
+        </div>
+        <div class="j-entry">
+            <span class="j-year">2004 &ndash; present</span>
+            <div class="j-body">
+                <h3>Real estate broker</h3>
+                <p>Founded a brokerage in San Antonio — and I'm still a licensed broker today.</p>
+            </div>
+        </div>
+        <div class="j-entry">
+            <span class="j-year">2018</span>
+            <div class="j-body">
+                <h3>Taught myself to code</h3>
+                <p>Late nights after the kids went to bed, early mornings, weekends.</p>
+            </div>
+        </div>
+        <div class="j-entry">
+            <span class="j-year">2022</span>
+            <div class="j-body">
+                <h3>Software engineer</h3>
+                <p>Went pro, and now work as a senior engineer building infrastructure by day.</p>
+            </div>
+        </div>
+        <div class="j-entry j-now">
+            <span class="j-year">Today</span>
+            <div class="j-body">
+                <h3>Big Beard Apps</h3>
+                <p>The studio where I build the apps I wish existed — private, useful, and cared for.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-section">
     <h2>How I build</h2>
-    <ul>
-        <li><strong>Privacy</strong> — your data stays on-device whenever it possibly can.</li>
-        <li><strong>Learning</strong> — technology evolves daily, so I stay curious.</li>
-        <li><strong>Action</strong> — build, release, learn, improve. Repeat.</li>
-        <li><strong>Quality</strong> — code is read more than it's written.</li>
-    </ul>
+    <p class="section-sub">Four principles, borrowed from the rest of my life.</p>
+    <div class="drivers">
+        <div class="driver">
+            <div class="ico">🔒</div>
+            <h3>Privacy</h3>
+            <p>Your data stays on-device whenever it possibly can.</p>
+        </div>
+        <div class="driver">
+            <div class="ico">📚</div>
+            <h3>Learning</h3>
+            <p>Technology evolves daily. I stay curious.</p>
+        </div>
+        <div class="driver">
+            <div class="ico">🚢</div>
+            <h3>Action</h3>
+            <p>Build, release, learn, improve. Repeat.</p>
+        </div>
+        <div class="driver">
+            <div class="ico">✨</div>
+            <h3>Quality</h3>
+            <p>Code is read more than it's written.</p>
+        </div>
+    </div>
+</section>
 
+<section class="about-section">
     <h2>The apps</h2>
-    <p><strong><a href="/feastmark/">Feastmark</a></strong> turns recipe videos from Instagram, TikTok, and YouTube into your personal cookbook — even when the recipe is only spoken aloud. <strong><a href="/payoffpilot/">PayoffPilot</a></strong> is a private debt-payoff planner: compare Snowball and Avalanche with your real numbers, run what-ifs, and track your way to debt-free. A one-time purchase, never a subscription.</p>
+    <p class="section-sub">Both coming soon to the App Store.</p>
+    <div class="app-cards">
+        <a class="app-card" href="/feastmark/">
+            <img src="/feastmark/images/app-icon.png" alt="Feastmark app icon">
+            <div>
+                <h3>Feastmark</h3>
+                <p>Turn recipe videos into your personal cookbook.</p>
+            </div>
+        </a>
+        <a class="app-card" href="/payoffpilot/">
+            <img src="/payoffpilot/images/app-icon.png" alt="PayoffPilot app icon">
+            <div>
+                <h3>PayoffPilot</h3>
+                <p>Pay off debt. Pay once. Done.</p>
+            </div>
+        </a>
+    </div>
+</section>
 
-    <p>When I'm not building, I'm usually somewhere in the Texas Hill Country — camping, fishing, or out on the water with family. Want to follow along or say hi? I'm on <a href="https://x.com/BigBeardApps" target="_blank" rel="me noopener">X</a>, <a href="https://mastodon.social/@BigBeardApps" target="_blank" rel="me noopener">Mastodon</a>, and <a href="https://bsky.app/profile/bigbeardapps.bsky.social" target="_blank" rel="me noopener">Bluesky</a>, or just use the <a href="/contact.html">contact form</a>.</p>
-</main>
+<section class="about-section">
+    <h2>Off the clock</h2>
+    <p class="section-sub">Usually somewhere in the Texas Hill Country.</p>
+    <div class="facts">
+        <div class="fact">🇺🇸 Air Force Honor Guard veteran</div>
+        <div class="fact">🤝 Serving the Georgetown community</div>
+        <div class="fact">🏕️ Camping &amp; hunting</div>
+        <div class="fact">🎣 Fishing</div>
+        <div class="fact">🚤 Boating with family</div>
+        <div class="fact">🤠 Proud Texan</div>
+        <div class="fact">🧔 Yes, the beard is real</div>
+    </div>
+    <p style="margin-top:26px;">Want to follow along or say hi? I'm on <a href="https://x.com/BigBeardApps" target="_blank" rel="me noopener">X</a>, <a href="https://mastodon.social/@BigBeardApps" target="_blank" rel="me noopener">Mastodon</a>, and <a href="https://bsky.app/profile/bigbeardapps.bsky.social" target="_blank" rel="me noopener">Bluesky</a>, or just use the <a href="/contact.html">contact form</a>.</p>
+</section>
 
 <section class="log">
     <h2>Build log</h2>

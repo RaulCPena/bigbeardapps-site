@@ -1,0 +1,5 @@
+# Internal design docs (superpowers specs/plans) — not site content, don't deploy
+docs/superpowers/
+
+# macOS
+.DS_Store

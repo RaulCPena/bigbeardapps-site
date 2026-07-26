@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ReelTalk — 30 original fishing-pun stickers for iMessage from Big Beard Apps. Big bass energy for your group chats. Coming soon.">
+    <title>ReelTalk — Fishing Pun Stickers for iMessage</title>
+    <link rel="icon" type="image/png" href="/assets/bigbeard-logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Big Beard Apps">
+    <meta property="og:title" content="ReelTalk — Fishing Pun Stickers for iMessage">
+    <meta property="og:description" content="30 original fishing-pun stickers for iMessage. Big bass energy for your group chats. Coming soon from Big Beard Apps.">
+    <meta property="og:url" content="https://bigbeardapps.com/reeltalk/">
+    <meta property="og:image" content="https://bigbeardapps.com/assets/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Big Beard Apps — Independent iOS apps, built with care.">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="/assets/site.css">
+    <style>
+        /* ── ReelTalk hero (ink + bass-green glow) ── */
+        .rt-hero {
+            position: relative;
+            background: var(--ink);
+            color: #fff;
+            text-align: center;
+            padding: clamp(64px, 11vh, 110px) 24px clamp(56px, 9vh, 90px);
+            overflow: hidden;
+        }
+        .rt-hero-glow {
+            position: absolute;
+            top: -170px; left: 50%;
+            width: 640px; height: 640px;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(122,196,96,0.30) 0%, rgba(122,196,96,0.07) 45%, transparent 70%);
+            filter: blur(50px);
+            pointer-events: none;
+        }
+        .rt-hero img.icon {
+            position: relative;
+            width: 96px; height: 96px;
+            border-radius: 22px;
+            margin: 0 auto 22px;
+            box-shadow: 0 18px 44px rgba(0,0,0,0.45);
+        }
+        .rt-hero h1 {
+            position: relative;
+            font-size: clamp(2.3em, 6vw, 3.6em);
+            font-weight: 800; letter-spacing: -0.03em; line-height: 1.06;
+            margin-bottom: 14px;
+        }
+        .rt-hero h1 span { color: #7CC860; }
+        .rt-hero p.tag {
+            position: relative;
+            color: var(--on-dark); font-size: 1.15em; max-width: 46ch; margin: 0 auto 26px;
+        }
+        .rt-badge {
+            position: relative;
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(122,196,96,0.12);
+            border: 1px solid rgba(122,196,96,0.35);
+            color: #9AD983;
+            font-size: 0.82em; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 8px 18px; border-radius: 30px;
+        }
+        .rt-badge::before {
+            content: ''; width: 8px; height: 8px; border-radius: 50%;
+            background: #7CC860;
+        }
+
+        /* ── Sticker grid ── */
+        .rt-wrap { max-width: var(--maxw); margin: 0 auto; padding: clamp(48px, 8vw, 80px) 24px; }
+        .rt-wrap > .lead { text-align: center; max-width: 60ch; margin: 0 auto clamp(34px, 5vw, 48px); }
+        .rt-wrap > .lead h2 { font-size: clamp(1.6em, 4vw, 2.1em); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+        .rt-wrap > .lead p { color: var(--text-2); font-size: 1.05em; }
+        .sticker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: clamp(16px, 2.5vw, 26px);
+            max-width: 900px; margin: 0 auto;
+        }
+        .sticker {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .sticker:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: var(--shadow-md); }
+        .sticker img { width: 100%; height: auto; display: block; }
+        .rt-more {
+            text-align: center;
+            color: var(--text-2);
+            margin-top: clamp(30px, 5vw, 44px);
+            font-size: 1.02em;
+        }
+        .rt-more strong { color: var(--text); }
+
+        /* ── How it works strip ── */
+        .rt-how {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            max-width: 760px;
+            margin: 0 auto clamp(56px, 9vw, 90px);
+            padding: clamp(26px, 4vw, 36px);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .rt-how h3 { font-size: 1.2em; font-weight: 800; margin-bottom: 8px; }
+        .rt-how p { color: var(--text-2); margin: 0; }
+
+        @media (prefers-color-scheme: dark) {
+            .rt-wrap > .lead h2, .rt-how h3, .rt-more strong { color: var(--on-dark-strong); }
+            .rt-wrap > .lead p, .rt-how p, .rt-more { color: var(--on-dark); }
+            .sticker, .rt-how { background: #201d18; border-color: #322d25; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <a class="site-nav__brand" href="/">
+        <img src="/payoffpilot/images/bigbeard-logo.png" alt="">
+        Big Beard Apps
+    </a>
+    <div class="site-nav__links">
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/about.html">About</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+</nav>
+
+<section class="rt-hero">
+    <div class="rt-hero-glow"></div>
+    <img class="icon" src="/reeltalk/images/app-icon.png" alt="ReelTalk app icon — a flexing bass wearing sunglasses">
+    <h1>Reel<span>Talk</span></h1>
+    <p class="tag">Fishing pun stickers for iMessage. Big bass energy for your group chats.</p>
+    <div class="rt-badge">Coming soon &middot; $0.99 one-time</div>
+</section>
+
+<div class="rt-wrap">
+    <div class="lead">
+        <h2>30 original puns. Zero fish given.</h2>
+        <p>Hand-made stickers starring a bass with sunglasses and the bearded fisherman who loves him. No ads, no tracking — it's a sticker pack, it couldn't spy on you if it tried.</p>
+    </div>
+
+    <div class="sticker-grid">
+        <div class="sticker"><img src="/reeltalk/images/stickers/02_reel_talk.png" alt="Sticker: bass mascot — Reel Talk" loading="lazy"></div>
+        <div class="sticker"><img src="/reeltalk/images/stickers/07_big_bass_energy.png" alt="Sticker: flexing bass — Big Bass Energy" loading="lazy"></div>
+        <div class="sticker"><img src="/reeltalk/images/stickers/06_holy_mackerel.png" alt="Sticker: shocked fisherman — Holy Mackerel" loading="lazy"></div>
+        <div class="sticker"><img src="/reeltalk/images/stickers/05_hey_chum.png" alt="Sticker: waving bass — Hey Chum" loading="lazy"></div>
+        <div class="sticker"><img src="/reeltalk/images/stickers/18_zero_fish_given.png" alt="Sticker: unbothered bass — Zero Fish Given" loading="lazy"></div>
+        <div class="sticker"><img src="/reeltalk/images/stickers/08_one_more_cast.png" alt="Sticker: fisherman at dusk — One More Cast" loading="lazy"></div>
+        <div class="sticker"><img src="/reeltalk/images/stickers/12_livin_the_stream.png" alt="Sticker: happy bass in a stream — Livin' the Stream" loading="lazy"></div>
+        <div class="sticker"><img src="/reeltalk/images/stickers/17_fish_ya_later.png" alt="Sticker: bass waving goodbye — Fish Ya Later" loading="lazy"></div>
+        <div class="sticker"><img src="/reeltalk/images/stickers/30_hooked_on_you.png" alt="Sticker: lovestruck bass — Hooked On You" loading="lazy"></div>
+    </div>
+
+    <p class="rt-more">…and <strong>21 more</strong> in the full pack, from "Worm Regards" to "Trout of Office."</p>
+</div>
+
+<div class="rt-how">
+    <h3>Lives right in Messages</h3>
+    <p>ReelTalk installs as an iMessage sticker pack — open the sticker drawer in any conversation and start slapping fish on things. Peel, stick, done.</p>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-links">
+        <a href="/">Big Beard Apps</a>
+        <a href="/feastmark/">Feastmark</a>
+        <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/reeltalk/">ReelTalk</a>
+        <a href="/about.html">About</a>
+        <a href="/press/">Press</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <div class="footer-legal">
+        <a href="/feastmark/privacy.html">Feastmark Privacy</a>
+        <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
+        <a href="/payoffpilot/terms.html">PayoffPilot Terms</a>
+        <a href="/payoffpilot/roadmap.html">PayoffPilot Roadmap</a>
+        <a href="/reeltalk/privacy.html">ReelTalk Privacy</a>
+    </div>
+    <div class="footer-social">
+        <a href="https://x.com/BigBeardApps" target="_blank" rel="me noopener" aria-label="Big Beard Apps on X">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://mastodon.social/@BigBeardApps" target="_blank" rel="me noopener" aria-label="Big Beard Apps on Mastodon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+        </a>
+        <a href="https://bsky.app/profile/bigbeardapps.bsky.social" target="_blank" rel="me noopener" aria-label="Big Beard Apps on Bluesky">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.7 3.1C8.6 5.3 11.7 9.7 12 12c.3-2.3 3.4-6.7 6.3-8.9C20.4 1.6 24 .3 24 4.4c0 .8-.5 6.9-.7 7.9-.9 3.4-4.3 4.2-7.4 3.7 5.4.9 6.8 4 3.8 7-5.6 5.8-8.1-1.5-8.7-3.3-.1-.3-.2-.5-.2-.3 0-.2-.1 0-.2.3-.6 1.8-3.1 9.1-8.7 3.3-3-3-1.6-6.1 3.8-7-3.1.5-6.5-.3-7.4-3.7C.5 11.3 0 5.2 0 4.4 0 .3 3.6 1.6 5.7 3.1z"/></svg>
+        </a>
+    </div>
+    <p class="footer-signoff">Built by <strong>Raul Peña</strong>.</p>
+    <p class="footer-copy">&copy; 2025&ndash;2026 Big Beard Apps. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

@@ -222,6 +222,50 @@
             box-shadow: 0 40px 90px rgba(0,40,90,0.30), 0 14px 34px rgba(0,40,90,0.18);
         }
 
+        /* ── ReelTalk mini-card (sticker pack — smaller weight than the app showcases) ── */
+        .also {
+            background: #FDF8F2;
+            padding: 0 24px clamp(80px, 11vw, 130px);
+        }
+        .also-card {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #edeae4;
+            border-radius: 24px;
+            padding: clamp(24px, 4vw, 34px);
+            display: flex;
+            align-items: center;
+            gap: clamp(18px, 3vw, 28px);
+            flex-wrap: wrap;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+        }
+        .also-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 44px rgba(60,110,40,0.12);
+        }
+        .also-card img {
+            width: 76px; height: 76px;
+            border-radius: 18px;
+            box-shadow: 0 8px 22px rgba(40,90,30,0.22);
+            flex-shrink: 0;
+        }
+        .also-copy { flex: 1 1 280px; }
+        .also-copy h3 {
+            font-size: 1.35em; font-weight: 800; letter-spacing: -0.02em;
+            display: flex; align-items: center; gap: 12px;
+        }
+        .sticker-pill {
+            font-size: 0.55em; font-weight: 700; letter-spacing: 0.08em;
+            color: #3f7d32; background: #e9f5e2;
+            padding: 4px 12px; border-radius: 20px; text-transform: uppercase;
+        }
+        .also-copy p { color: #5f6368; margin-top: 6px; max-width: 52ch; }
+        .also-arrow { font-size: 1.6em; color: #4E9F3D; font-weight: 700; flex-shrink: 0; }
+
         @media (prefers-reduced-motion: reduce) {
             .hero-glow, .showcase-phone-wrap, .showcase-pill::before,
             .hero-eyebrow, .hero h1, .hero p { animation: none; }
@@ -233,6 +277,11 @@
             .showcase-copy > p { color: #b0a894; }
             .chip { background: #221f1a; border-color: #353026; color: #cfc6b4; }
             .showcase-pill { background: #221f1a; border-color: #3a3226; }
+            .also { background: #171512; }
+            .also-card { background: #1e1b17; border-color: #322d25; }
+            .also-copy h3 { color: #f5f0e8; }
+            .also-copy p { color: #a49d90; }
+            .sticker-pill { background: #24301e; color: #9ad983; }
         }
     </style>
 </head>
@@ -305,11 +354,23 @@
     </div>
 </section>
 
+<section class="also">
+    <a class="also-card" href="/reeltalk/">
+        <img src="/reeltalk/images/app-icon.png" alt="ReelTalk sticker pack icon — a flexing bass wearing sunglasses">
+        <div class="also-copy">
+            <h3>ReelTalk <span class="sticker-pill">Stickers &middot; Coming Soon</span></h3>
+            <p>30 original fishing-pun stickers for iMessage. Big bass energy for your group chats — $0.99, one time.</p>
+        </div>
+        <div class="also-arrow">→</div>
+    </a>
+</section>
+
 <footer class="site-footer">
     <div class="footer-links">
         <a href="/">Big Beard Apps</a>
         <a href="/feastmark/">Feastmark</a>
         <a href="/payoffpilot/">PayoffPilot</a>
+        <a href="/reeltalk/">ReelTalk</a>
         <a href="/about.html">About</a>
         <a href="/press/">Press</a>
         <a href="/contact.html">Contact</a>
@@ -319,6 +380,7 @@
         <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
         <a href="/payoffpilot/terms.html">PayoffPilot Terms</a>
         <a href="/payoffpilot/roadmap.html">PayoffPilot Roadmap</a>
+        <a href="/reeltalk/privacy.html">ReelTalk Privacy</a>
     </div>
     <div class="footer-social">
         <a href="https://x.com/BigBeardApps" target="_blank" rel="me noopener" aria-label="Big Beard Apps on X">

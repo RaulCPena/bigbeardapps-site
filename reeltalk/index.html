@@ -98,19 +98,38 @@
         }
         .rt-more strong { color: var(--text); }
 
-        /* ── How it works strip ── */
+        /* ── How it works strip (copy + demo video) ── */
         .rt-how {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            max-width: 760px;
+            max-width: 860px;
             margin: 0 auto clamp(56px, 9vw, 90px);
-            padding: clamp(26px, 4vw, 36px);
-            text-align: center;
+            padding: clamp(28px, 4vw, 44px);
             box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: clamp(26px, 5vw, 52px);
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        .rt-how h3 { font-size: 1.2em; font-weight: 800; margin-bottom: 8px; }
-        .rt-how p { color: var(--text-2); margin: 0; }
+        .rt-how-copy { flex: 1 1 300px; max-width: 420px; }
+        .rt-how h3 { font-size: 1.35em; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 10px; }
+        .rt-how p { color: var(--text-2); margin: 0 0 14px; }
+        .rt-how p:last-child { margin-bottom: 0; }
+        .rt-phone-wrap { position: relative; flex-shrink: 0; }
+        .rt-phone-glow {
+            position: absolute; inset: -50px;
+            background: radial-gradient(circle, rgba(122,196,96,0.26) 0%, transparent 66%);
+            filter: blur(38px); pointer-events: none;
+        }
+        .rt-phone {
+            position: relative;
+            width: clamp(200px, 24vw, 244px);
+            border-radius: 30px;
+            box-shadow: 0 30px 70px rgba(30,60,20,0.28), 0 12px 28px rgba(30,60,20,0.18);
+            display: block;
+        }
 
         @media (prefers-color-scheme: dark) {
             .rt-wrap > .lead h2, .rt-how h3, .rt-more strong { color: var(--on-dark-strong); }
@@ -165,8 +184,17 @@
 </div>
 
 <div class="rt-how">
-    <h3>Lives right in Messages</h3>
-    <p>ReelTalk installs as an iMessage sticker pack — open the sticker drawer in any conversation and start slapping fish on things. Peel, stick, done.</p>
+    <div class="rt-how-copy">
+        <h3>Lives right in Messages</h3>
+        <p>ReelTalk installs as an iMessage sticker pack — open the sticker drawer in any conversation and start slapping fish on things. Peel, stick, done.</p>
+        <p>The app also includes a gallery so you can browse the whole pack in one place.</p>
+    </div>
+    <div class="rt-phone-wrap">
+        <div class="rt-phone-glow"></div>
+        <video class="rt-phone" autoplay muted loop playsinline poster="/reeltalk/images/demo-poster.jpg">
+            <source src="/reeltalk/images/demo.mp4" type="video/mp4">
+        </video>
+    </div>
 </div>
 
 <footer class="site-footer">

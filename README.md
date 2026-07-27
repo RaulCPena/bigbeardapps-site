@@ -50,6 +50,13 @@ The nav and footer on every page update themselves. Before this system, adding
 an app meant ~30 hand edits across 13 files and things got missed — which is
 exactly why it exists.
 
+## Launch day
+
+An app got approved? See **[LAUNCH.md](LAUNCH.md)** — set `status`,
+`app_store_url` and `release_date` in `data/apps.json`, run sync, done. Badges,
+press-kit rows and the About sentence all update together, and apps can go live
+independently.
+
 ## Checks
 
 ```bash

@@ -20,16 +20,16 @@ if ! python3 tools/sync.py --check; then
   exit 1
 fi
 
-# SOFT GATE: the site audit. Still reports known-outstanding work
-# (missing canonicals/descriptions until those are generated), so it warns
-# rather than blocks. Flip this to a hard gate once `audit.py` is green.
+# HARD GATE: the site audit — green as of Phase 4, so a regression blocks.
 if ! python3 tools/audit.py --quiet; then
   echo >&2
-  echo "warning: audit reported problems (not blocking yet)." >&2
+  echo "push blocked: fix the audit failures above." >&2
+  echo "(Deliberately shipping a known-incomplete state? git push --no-verify)" >&2
+  exit 1
 fi
 HOOK_EOF
 
 chmod +x "$HOOK"
 echo "installed: .git/hooks/pre-push"
 echo "  hard gate: tools/sync.py --check"
-echo "  soft gate: tools/audit.py  (make it blocking once green)"
+echo "  hard gate: tools/audit.py"

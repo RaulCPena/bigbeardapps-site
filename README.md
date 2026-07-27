@@ -20,8 +20,9 @@ Edit the HTML directly — it's the real source. **Except** inside these blocks:
 <!-- bba:nav end -->
 ```
 
-Those regions (currently the nav and the footer, on all 13 pages) are generated
-from `data/`. To change them, edit the data and re-run sync:
+Those regions — the `<head>` meta block, the nav and the footer, on all 13
+pages — are generated from `data/`. Sync also writes `sitemap.xml` and
+`robots.txt`. To change any of it, edit the data and re-run sync:
 
 ```bash
 python3 tools/sync.py          # rewrite generated regions
@@ -34,7 +35,8 @@ tells you which file to fix. Nothing is silently reverted.
 ## Adding an app
 
 1. Add an entry to `data/apps.json` (slug, name, order, accent, `pages[]`).
-2. Add `data/pages.json` entries for its new pages.
+2. Add `data/pages.json` entries for its new pages (`url`, `title`,
+   `description`, `og_*`). `description` is required — sync fails without it.
 3. Write its landing page and privacy page. These stay hand-written on purpose —
    the marketing *is* the page, and each app's is deliberately different.
 4. Drop assets into `<slug>/images/` (`app-icon.png`, `og-card.png`, `demo.mp4`,
@@ -58,7 +60,14 @@ python3 tools/snapshot.py save    # accept the current markup as the new baselin
 
 `audit.py` includes a prose count check: if the site says "both apps" while
 three apps exist, it fails. That class of bug shipped twice before the check
-existed.
+existed. Both `sync --check` and `audit` are hard gates in the pre-push hook.
+
+**One `url` per page** in `pages.json` feeds `<link rel="canonical">`, `og:url`
+*and* the sitemap entry — they cannot drift apart. Never change a `url` without
+adding a 301; the site is indexed.
+
+`og_image_alt: "@auto"` renders the studio tagline plus the current app list,
+so it can't go stale when an app is added.
 
 ## Layout
 
@@ -66,7 +75,10 @@ existed.
 data/          apps.json, site.json, pages.json  ← edit these
 templates/     nav.html, footer.html             ← markup for generated regions
 tools/         sync.py, audit.py, snapshot.py, install-hooks.sh
-assets/        site.css, shared images, og-card.png
+assets/        site.css, shared images, og-card.png, favicon-96, apple-touch-icon
+favicon.ico    root favicon (Google looks here first)
+sitemap.xml    generated
+robots.txt     generated
 <app>/         one directory per app (index.html, privacy.html, images/)
 press/         press kit + per-app asset zips
 ```

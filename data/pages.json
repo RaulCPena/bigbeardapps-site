@@ -1,55 +1,146 @@
 {
-  "_comment": "Per-page chrome settings. nav_current = href of the nav link to mark aria-current. Phase 4 adds title/description/og fields here.",
+  "_comment": "Per-page head + chrome. 'url' feeds canonical, og:url AND sitemap.xml so they cannot disagree. og_image_alt '@auto' renders the studio tagline plus the current app list.",
   "pages": {
     "about.html": {
+      "url": "https://bigbeardapps.com/about.html",
+      "title": "About — Big Beard Apps",
+      "description": "About Big Beard Apps — a one-person iOS studio by Raul Peña. Air Force veteran, licensed real estate broker, self-taught engineer. Privacy-first apps, and notes from building them.",
+      "og_title": "About — Big Beard Apps",
+      "og_description": "About Big Beard Apps — a one-person iOS studio by Raul Peña. Air Force veteran, licensed real estate broker, self-taught engineer. Privacy-first apps, and notes from building them.",
+      "og_image": "https://bigbeardapps.com/assets/og-card.png",
+      "og_image_alt": "@auto",
       "nav_current": "/about.html",
       "nav_variant": "solid"
     },
     "contact.html": {
+      "url": "https://bigbeardapps.com/contact.html",
+      "title": "Contact — Big Beard Apps",
+      "description": "Contact Big Beard Apps — questions, feedback, and support for Feastmark, PayoffPilot, and ReelTalk.",
+      "og_title": "Contact — Big Beard Apps",
+      "og_description": "Contact Big Beard Apps — questions, feedback, and support for Feastmark, PayoffPilot, and ReelTalk.",
+      "og_image": "https://bigbeardapps.com/assets/og-card.png",
+      "og_image_alt": "@auto",
       "nav_current": "/contact.html",
       "nav_variant": "solid"
     },
     "feastmark/index.html": {
+      "url": "https://bigbeardapps.com/feastmark/",
+      "title": "Feastmark — Save Recipes from Anywhere",
+      "description": "Feastmark — Turn recipe videos from Instagram, TikTok, and YouTube into your personal cookbook. One-tap saving, hands-free Cook Mode, private by design.",
+      "og_title": "Feastmark — Save Recipes from Anywhere",
+      "og_description": "Feastmark — Turn recipe videos from Instagram, TikTok, and YouTube into your personal cookbook. One-tap saving, hands-free Cook Mode, private by design.",
+      "og_image": "https://bigbeardapps.com/feastmark/images/og-card.png",
+      "og_image_alt": "Feastmark — turn recipe videos into your personal cookbook.",
       "nav_current": "/feastmark/",
       "nav_variant": "solid"
     },
     "feastmark/privacy.html": {
+      "url": "https://bigbeardapps.com/feastmark/privacy.html",
+      "title": "Feastmark — Privacy Policy",
+      "description": "Feastmark's privacy policy — no account required, no analytics, and your recipes stay on your device.",
+      "og_title": "Feastmark — Privacy Policy",
+      "og_description": "Feastmark's privacy policy — no accounts, no analytics, your recipes stay on your device.",
+      "og_image": "https://bigbeardapps.com/feastmark/images/og-card.png",
+      "og_image_alt": "Feastmark — turn recipe videos into your personal cookbook.",
       "nav_current": "/feastmark/",
       "nav_variant": "solid"
     },
     "index.html": {
+      "url": "https://bigbeardapps.com/",
+      "title": "Big Beard Apps",
+      "description": "Big Beard Apps — Independent iOS apps built with care.",
+      "og_title": "Big Beard Apps",
+      "og_description": "Big Beard Apps — Independent iOS apps built with care.",
+      "og_image": "https://bigbeardapps.com/assets/og-card.png",
+      "og_image_alt": "@auto",
       "nav_current": null,
       "nav_variant": "overlay"
     },
     "payoffpilot/index.html": {
+      "url": "https://bigbeardapps.com/payoffpilot/",
+      "title": "PayoffPilot — Pay Off Debt. Pay Once. Done.",
+      "description": "PayoffPilot — Plan your debt payoff, compare Snowball vs. Avalanche, and track your way to debt-free. No subscription, no account, no ads.",
+      "og_title": "PayoffPilot — Pay Off Debt. Pay Once. Done.",
+      "og_description": "PayoffPilot — Plan your debt payoff, compare Snowball vs. Avalanche, and track your way to debt-free. No subscription, no account, no ads.",
+      "og_image": "https://bigbeardapps.com/payoffpilot/images/og-card.png",
+      "og_image_alt": "PayoffPilot — plan your way out of debt.",
       "nav_current": "/payoffpilot/",
       "nav_variant": "solid"
     },
     "payoffpilot/privacy.html": {
+      "url": "https://bigbeardapps.com/payoffpilot/privacy.html",
+      "title": "Privacy Policy — PayoffPilot",
+      "description": "PayoffPilot's privacy policy — no account, no bank linking, no data collection. Everything stays on your device.",
+      "og_title": "Privacy Policy — PayoffPilot",
+      "og_description": "PayoffPilot's privacy policy — no data collection, everything stays on your device.",
+      "og_image": "https://bigbeardapps.com/payoffpilot/images/og-card.png",
+      "og_image_alt": "PayoffPilot — plan your way out of debt.",
       "nav_current": "/payoffpilot/",
       "nav_variant": "solid"
     },
     "payoffpilot/roadmap.html": {
+      "url": "https://bigbeardapps.com/payoffpilot/roadmap.html",
+      "title": "Roadmap — PayoffPilot",
+      "description": "Where PayoffPilot is headed — a living Now / Next / Later roadmap for the private debt-payoff planner from Big Beard Apps.",
+      "og_title": "Roadmap — PayoffPilot",
+      "og_description": "Where PayoffPilot is headed — a living Now / Next / Later roadmap for the private debt-payoff planner from Big Beard Apps.",
+      "og_image": "https://bigbeardapps.com/payoffpilot/images/og-card.png",
+      "og_image_alt": "PayoffPilot — plan your way out of debt.",
       "nav_current": "/payoffpilot/",
       "nav_variant": "solid"
     },
     "payoffpilot/support.html": {
+      "url": "https://bigbeardapps.com/payoffpilot/support.html",
+      "title": "Support — PayoffPilot",
+      "description": "PayoffPilot support — FAQs on adding debts, logging payments, Snowball vs. Avalanche, reminders, and PDF export.",
+      "og_title": "Support — PayoffPilot",
+      "og_description": "PayoffPilot support — FAQs and help for the private debt-payoff planner.",
+      "og_image": "https://bigbeardapps.com/payoffpilot/images/og-card.png",
+      "og_image_alt": "PayoffPilot — plan your way out of debt.",
       "nav_current": "/payoffpilot/",
       "nav_variant": "solid"
     },
     "payoffpilot/terms.html": {
+      "url": "https://bigbeardapps.com/payoffpilot/terms.html",
+      "title": "Terms of Service — PayoffPilot",
+      "description": "PayoffPilot's terms of service — licence, financial disclaimer, purchases, and contact information.",
+      "og_title": "Terms of Service — PayoffPilot",
+      "og_description": "PayoffPilot's terms of service.",
+      "og_image": "https://bigbeardapps.com/payoffpilot/images/og-card.png",
+      "og_image_alt": "PayoffPilot — plan your way out of debt.",
       "nav_current": "/payoffpilot/",
       "nav_variant": "solid"
     },
     "press/index.html": {
+      "url": "https://bigbeardapps.com/press/",
+      "title": "Press Kit — Big Beard Apps",
+      "description": "Press kit for Big Beard Apps — app icons, screenshots, preview videos, boilerplate copy, and contact for Feastmark, PayoffPilot, and ReelTalk.",
+      "og_title": "Press Kit — Big Beard Apps",
+      "og_description": "Press kit for Big Beard Apps — app icons, screenshots, preview videos, boilerplate copy, and contact for Feastmark, PayoffPilot, and ReelTalk.",
+      "og_image": "https://bigbeardapps.com/assets/og-card.png",
+      "og_image_alt": "@auto",
       "nav_current": "/press/",
       "nav_variant": "solid"
     },
     "reeltalk/index.html": {
+      "url": "https://bigbeardapps.com/reeltalk/",
+      "title": "ReelTalk — Fishing Pun Stickers for iMessage",
+      "description": "ReelTalk — 30 original fishing-pun stickers for iMessage from Big Beard Apps. Big bass energy for your group chats. Coming soon.",
+      "og_title": "ReelTalk — Fishing Pun Stickers for iMessage",
+      "og_description": "30 original fishing-pun stickers for iMessage. Big bass energy for your group chats. Coming soon from Big Beard Apps.",
+      "og_image": "https://bigbeardapps.com/reeltalk/images/og-card.png",
+      "og_image_alt": "ReelTalk — fishing pun stickers for iMessage.",
       "nav_current": "/reeltalk/",
       "nav_variant": "solid"
     },
     "reeltalk/privacy.html": {
+      "url": "https://bigbeardapps.com/reeltalk/privacy.html",
+      "title": "Privacy Policy — ReelTalk",
+      "description": "ReelTalk's privacy policy — a sticker pack with a small on-device gallery. It has no network access, collects nothing, and tracks nothing.",
+      "og_title": "Privacy Policy — ReelTalk",
+      "og_description": "ReelTalk's privacy policy — a sticker pack with a small on-device gallery. It has no network access, collects nothing, and tracks nothing.",
+      "og_image": "https://bigbeardapps.com/reeltalk/images/og-card.png",
+      "og_image_alt": "ReelTalk — fishing pun stickers for iMessage.",
       "nav_current": "/reeltalk/",
       "nav_variant": "solid"
     }

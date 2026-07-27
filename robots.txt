@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Tooling and data are committed (the host serves everything) but
+# are not content — keep them out of the index.
+Disallow: /data/
+Disallow: /tools/
+Disallow: /templates/
+
+Sitemap: https://bigbeardapps.com/sitemap.xml

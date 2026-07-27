@@ -76,6 +76,22 @@ adding a 301; the site is indexed.
 `og_image_alt: "@auto"` renders the studio tagline plus the current app list,
 so it can't go stale when an app is added.
 
+## Analytics
+
+`data/site.json` has an `analytics` slot. With `provider: null` (the default)
+**nothing is emitted** — no script, no cookies, no third party.
+
+Cloudflare already fronts this site, so its dashboard reports server-side
+traffic with no script at all. Prefer that. Only set a provider here if you want
+page-level detail:
+
+```jsonc
+"analytics": { "provider": "cloudflare", "token": "<beacon token>" }
+```
+
+`goatcounter` is also supported (`token` = your subdomain). **Never add Google
+Analytics** — it contradicts the studio's no-tracking promise.
+
 ## Layout
 
 ```

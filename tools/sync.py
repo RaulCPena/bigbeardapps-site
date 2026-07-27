@@ -197,20 +197,19 @@ def render_badge(app, badge):
     return '<div class="%s">%s</div>' % (cls, text)
 
 
-def render_press_store(app):
+def _press_store_cell(app):
+    """Cell contents only — render_press_facts owns the row."""
     if app["status"] == "live" and app.get("app_store_url"):
         url = app["app_store_url"]
-        return ('<tr><th>App Store</th><td><a href="%s" class="lnk" target="_blank" '
-                'rel="noopener">%s</a></td></tr>' % (url, url))
-    return ('<tr><th>App Store</th><td><span class="pending">'
-            'Link added on launch day</span></td></tr>')
+        return ('<a href="%s" class="lnk" target="_blank" rel="noopener">%s</a>'
+                % (url, url))
+    return '<span class="pending">Link added on launch day</span>'
 
 
-def render_press_release(app):
+def _press_release_cell(app):
     if app["status"] == "live" and app.get("release_date"):
-        return "<tr><th>Release date</th><td>%s</td></tr>" % app["release_date"]
-    return ('<tr><th>Release date</th><td><span class="pending">'
-            'Pending App Review</span></td></tr>')
+        return app["release_date"]
+    return '<span class="pending">Pending App Review</span>' 
 
 
 WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
@@ -243,7 +242,7 @@ def _status_sentence(apps):
         oxford([a["name"] for a in apps if a["status"] != "live"]))
 
 
-def render_app_region(name, apps, rel):
+def render_app_region(name, apps, rel, site):
     """Dispatch a 'bba:<kind>:<slug>' region."""
     kind, _, slug = name.partition(":")
     by_slug = {a["slug"]: a for a in apps}
@@ -266,10 +265,8 @@ def render_app_region(name, apps, rel):
                 return render_badge(app, b)
         raise SystemExit("ERROR: %s has a badge region for '%s' but apps.json "
                          "declares no badge for this page." % (rel, slug))
-    if kind == "pressstore":
-        return render_press_store(app)
-    if kind == "pressrelease":
-        return render_press_release(app)
+    if kind == "pressfacts":
+        return render_press_facts(app, site)
     raise SystemExit("ERROR: %s has unknown region kind '%s'" % (rel, kind))
 
 
@@ -340,6 +337,41 @@ def render_crosspromo(apps, self_slug):
             '%s\n'
             '    </div>\n'
             '</section>' % "\n".join(cards))
+
+
+def render_press_facts(app, site):
+    """
+    The whole press facts table. Owns the App Store and Release date rows
+    itself (they used to be their own regions) so nothing nests, and derives
+    the Privacy and Website links from pages[]/paths so they cannot drift
+    from the rest of the site.
+    """
+    pr = app.get("press") or {}
+    rows = [
+        ("Name", pr.get("store_name") or app["name"]),
+        ("Category", pr.get("category", "")),
+        ("Platform", pr.get("platform", "")),
+        ("Version", pr.get("version", "")),
+        ("Price", pr.get("price", "")),
+        ("App Store", _press_store_cell(app)),
+        ("Release date", _press_release_cell(app)),
+    ]
+
+    privacy = ""
+    for page in app.get("pages") or []:
+        if page.get("type") == "privacy":
+            privacy = ' <a href="%s" class="lnk">Privacy policy</a>' % page["href"]
+            break
+    rows.append(("Privacy", (pr.get("privacy_note", "") + privacy).strip()))
+
+    site_path = app.get("paths", {}).get("site", "/%s/" % app["slug"])
+    host = re.sub(r"^https?://", "", site["origin"]).rstrip("/")
+    rows.append(("Website", '<a href="%s" class="lnk">%s%s</a>'
+                 % (site_path, host, site_path.rstrip("/"))))
+
+    body = "\n".join('            <tr><th>%s</th><td>%s</td></tr>' % (k, v)
+                      for k, v in rows)
+    return '        <table class="facts">\n%s\n        </table>' % body
 
 
 def render_showcase(app):
@@ -489,13 +521,13 @@ def main():
 
         # per-app regions: bba:badge:<slug>, bba:pressstore:<slug>, …
         for extra in sorted(set(re.findall(
-                r"<!-- bba:((?:badge|pressstore|pressrelease|statusline|contacttopics"
+                r"<!-- bba:((?:badge|pressfacts|statusline|contacttopics"
                 r"|appcards|crosspromo|showcase)"
                 r"(?::[a-z0-9-]+)?) start", html))):
             span = region_span(html, extra, rel)
             if span:
                 spans[extra] = span
-                new[extra] = wrap(extra, render_app_region(extra, apps, rel))
+                new[extra] = wrap(extra, render_app_region(extra, apps, rel, site))
 
         # replace from the bottom up so earlier offsets stay valid
         for name in sorted(spans, key=lambda n: spans[n][0], reverse=True):

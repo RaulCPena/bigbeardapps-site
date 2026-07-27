@@ -203,6 +203,22 @@ COUNT_ALLOWLIST = [
 ]
 
 
+def check_press(apps, fail):
+    """Every app needs a press-kit section and an asset zip. ReelTalk shipped
+    without either and nobody noticed until it was pointed out."""
+    press = os.path.join(ROOT, "press", "index.html")
+    if not os.path.exists(press):
+        return "skipped (no press page)"
+    html = read("press/index.html")
+    for slug in apps:
+        if ('id="%s"' % slug) not in html:
+            fail("press", "no press section for '%s' (add <section id=\"%s\">)" % (slug, slug))
+        zip_ = os.path.join(ROOT, "press", "%s-press-kit.zip" % slug)
+        if not os.path.exists(zip_):
+            fail("press", "missing press/%s-press-kit.zip" % slug)
+    return None
+
+
 def check_counts(pages, apps, fail):
     """
     Prose that counts apps must agree with reality.
@@ -272,6 +288,8 @@ def main():
          lambda: check_canonical_matches(pages, fail)),
         ("media", "declared app media exists",
          lambda: check_media(apps, fail)),
+        ("press", "every app has a press section + asset zip",
+         lambda: check_press(apps, fail)),
         ("counts", "prose app-counts match reality",
          lambda: check_counts(pages, apps, fail)),
         ("sync", "generated regions are up to date",

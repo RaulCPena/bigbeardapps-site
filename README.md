@@ -57,6 +57,17 @@ An app got approved? See **[LAUNCH.md](LAUNCH.md)** — set `status`,
 press-kit rows and the About sentence all update together, and apps can go live
 independently.
 
+The press page is deliberately **half generated**. The facts table comes from
+`apps[].press` — so the Website and Privacy links, and the launch-day App Store
+and Release date rows, cannot drift from the rest of the site. The copyblocks,
+differentiator points and asset grid stay hand-written: that is editorial work
+that has to be written per app anyway, and putting prose in JSON only makes it
+harder to edit.
+
+`audit.py` fails if an app in `apps.json` has no press section or no
+`press/<slug>-press-kit.zip`. That is the check that would have caught ReelTalk
+shipping without either.
+
 ## Checks
 
 ```bash

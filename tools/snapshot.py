@@ -74,9 +74,15 @@ def sha(s):
     return hashlib.sha256(s.encode("utf-8")).hexdigest()[:16]
 
 
-def region(html, start_pat, end_tag):
+def region(html, start_pat, end_tag, path="?", required=True):
+    """Extract a block. A missing region is an ERROR, not an empty hash — a
+    silent miss here would make the whole snapshot a false negative (it did:
+    the homepage's overlay nav went unchecked until this was fixed)."""
     m = re.search(start_pat, html)
     if not m:
+        if required:
+            raise SystemExit("ERROR: %s has no region matching %s"
+                             % (path, start_pat))
         return ""
     end = html.find(end_tag, m.start())
     return html[m.start():end + len(end_tag)] if end > 0 else html[m.start():]
@@ -102,13 +108,13 @@ def capture():
             html = fh.read()
         v = Visible()
         v.feed(html)
-        head = region(html, r"<head\b", "</head>")
+        head = region(html, r"<head\b", "</head>", rel)
         # strip the <style> block: CSS churn is Phase 5's business, not markup's
         head_nostyle = re.sub(r"<style\b.*?</style>", "", head, flags=re.S)
         snap[rel] = {
             "head": sha(norm(head_nostyle)),
-            "nav": sha(norm(region(html, r'<nav class="site-nav"', "</nav>"))),
-            "footer": sha(norm(region(html, r'<footer class="site-footer"', "</footer>"))),
+            "nav": sha(norm(region(html, r'<nav class="site-nav', "</nav>", rel))),
+            "footer": sha(norm(region(html, r'<footer class="site-footer"', "</footer>", rel))),
             "text": sha(" ".join(v.text)),
             "links": sha("|".join(v.links)),
             "n_links": len(v.links),
@@ -122,11 +128,11 @@ def detail(rel, field):
     with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
         html = fh.read()
     if field == "nav":
-        return norm(region(html, r'<nav class="site-nav"', "</nav>"))
+        return norm(region(html, r'<nav class="site-nav', "</nav>"))
     if field == "footer":
         return norm(region(html, r'<footer class="site-footer"', "</footer>"))
     if field == "head":
-        head = region(html, r"<head\b", "</head>")
+        head = region(html, r"<head\b", "</head>", rel)
         return norm(re.sub(r"<style\b.*?</style>", "", head, flags=re.S))
     if field == "links":
         v = Visible(); v.feed(html)

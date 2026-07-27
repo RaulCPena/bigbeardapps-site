@@ -6,3 +6,7 @@ docs/superpowers/
 
 # local snapshot artifacts
 _snap/
+
+# python
+__pycache__/
+*.pyc

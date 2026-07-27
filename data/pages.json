@@ -1,0 +1,57 @@
+{
+  "_comment": "Per-page chrome settings. nav_current = href of the nav link to mark aria-current. Phase 4 adds title/description/og fields here.",
+  "pages": {
+    "about.html": {
+      "nav_current": "/about.html",
+      "nav_variant": "solid"
+    },
+    "contact.html": {
+      "nav_current": "/contact.html",
+      "nav_variant": "solid"
+    },
+    "feastmark/index.html": {
+      "nav_current": "/feastmark/",
+      "nav_variant": "solid"
+    },
+    "feastmark/privacy.html": {
+      "nav_current": "/feastmark/",
+      "nav_variant": "solid"
+    },
+    "index.html": {
+      "nav_current": null,
+      "nav_variant": "overlay"
+    },
+    "payoffpilot/index.html": {
+      "nav_current": "/payoffpilot/",
+      "nav_variant": "solid"
+    },
+    "payoffpilot/privacy.html": {
+      "nav_current": "/payoffpilot/",
+      "nav_variant": "solid"
+    },
+    "payoffpilot/roadmap.html": {
+      "nav_current": "/payoffpilot/",
+      "nav_variant": "solid"
+    },
+    "payoffpilot/support.html": {
+      "nav_current": "/payoffpilot/",
+      "nav_variant": "solid"
+    },
+    "payoffpilot/terms.html": {
+      "nav_current": "/payoffpilot/",
+      "nav_variant": "solid"
+    },
+    "press/index.html": {
+      "nav_current": "/press/",
+      "nav_variant": "solid"
+    },
+    "reeltalk/index.html": {
+      "nav_current": "/reeltalk/",
+      "nav_variant": "solid"
+    },
+    "reeltalk/privacy.html": {
+      "nav_current": "/reeltalk/",
+      "nav_variant": "solid"
+    }
+  }
+}

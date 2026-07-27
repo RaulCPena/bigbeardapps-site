@@ -1,0 +1,92 @@
+{
+  "_comment": "Single source of truth for the app list. Adding an app here plus running tools/sync.py updates the nav and footer on every page. See README.md.",
+  "apps": [
+    {
+      "slug": "feastmark",
+      "name": "Feastmark",
+      "name_split": ["Feast", "mark"],
+      "order": 1,
+      "status": "review",
+      "tagline": "Turn recipe videos into your personal cookbook.",
+      "accent": {
+        "base": "#D4922A",
+        "ink": "#A0722A",
+        "light": "#D4A843",
+        "rgb": "212,146,42"
+      },
+      "paths": {
+        "site": "/feastmark/",
+        "images": "/feastmark/images/"
+      },
+      "media": {
+        "icon": "app-icon.png",
+        "og_card": "og-card.png",
+        "demo": "demo.mp4",
+        "demo_poster": "demo-poster.jpg"
+      },
+      "pages": [
+        { "type": "index",   "href": "/feastmark/",             "footer_label": null },
+        { "type": "privacy", "href": "/feastmark/privacy.html", "footer_label": "Feastmark Privacy" }
+      ]
+    },
+    {
+      "slug": "payoffpilot",
+      "name": "PayoffPilot",
+      "name_split": ["Payoff", "Pilot"],
+      "order": 2,
+      "status": "review",
+      "tagline": "Pay off debt. Pay once. Done.",
+      "accent": {
+        "base": "#0066cc",
+        "ink": "#0059b3",
+        "light": "#5aa2e8",
+        "rgb": "0,102,204"
+      },
+      "paths": {
+        "site": "/payoffpilot/",
+        "images": "/payoffpilot/images/"
+      },
+      "media": {
+        "icon": "app-icon.png",
+        "og_card": "og-card.png",
+        "demo": "demo.mp4",
+        "demo_poster": "demo-poster.jpg"
+      },
+      "pages": [
+        { "type": "index",   "href": "/payoffpilot/",             "footer_label": null },
+        { "type": "privacy", "href": "/payoffpilot/privacy.html", "footer_label": "PayoffPilot Privacy" },
+        { "type": "terms",   "href": "/payoffpilot/terms.html",   "footer_label": "PayoffPilot Terms" },
+        { "type": "roadmap", "href": "/payoffpilot/roadmap.html", "footer_label": "PayoffPilot Roadmap" },
+        { "type": "support", "href": "/payoffpilot/support.html", "footer_label": "PayoffPilot Support" }
+      ]
+    },
+    {
+      "slug": "reeltalk",
+      "name": "ReelTalk",
+      "name_split": ["Reel", "Talk"],
+      "order": 3,
+      "status": "review",
+      "tagline": "Fishing pun stickers for iMessage.",
+      "accent": {
+        "base": "#4E9F3D",
+        "ink": "#3f7d32",
+        "light": "#7CC860",
+        "rgb": "122,196,96"
+      },
+      "paths": {
+        "site": "/reeltalk/",
+        "images": "/reeltalk/images/"
+      },
+      "media": {
+        "icon": "app-icon.png",
+        "og_card": "og-card.png",
+        "demo": "demo.mp4",
+        "demo_poster": "demo-poster.jpg"
+      },
+      "pages": [
+        { "type": "index",   "href": "/reeltalk/",             "footer_label": null },
+        { "type": "privacy", "href": "/reeltalk/privacy.html", "footer_label": "ReelTalk Privacy" }
+      ]
+    }
+  ]
+}

@@ -334,3 +334,15 @@ em, .accent-serif {
     .legal .important { background: rgba(212,168,67,0.12); }
     .legal code, .faq-item code { background: #1a1712; border-color: #322d25; color: var(--on-dark-strong); }
 }
+
+/* ── Launch-day status badges ─────────────────────────────────────────
+   tools/sync.py turns these pills into <a> links once an app goes live.
+   Scoped to a.* so they have zero effect while they are still <div>s. */
+a.showcase-pill, a.badge, a.rt-badge {
+    text-decoration: none;
+    transition: transform 0.18s ease, filter 0.18s ease;
+}
+a.showcase-pill:hover, a.badge:hover, a.rt-badge:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}

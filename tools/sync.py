@@ -178,6 +178,82 @@ def write_robots(site):
     return False
 
 
+# ── launch status ────────────────────────────────────────────────────────
+
+REVIEW_TEXT = "Coming soon to the App Store"
+LIVE_TEXT = "Download on the App Store"
+
+
+def render_badge(app, badge):
+    """The status pill for one app on one page. When the app goes live this
+    becomes a real link to the App Store — set status + app_store_url in
+    data/apps.json and re-run sync."""
+    cls = badge["class"]
+    if app["status"] == "live" and app.get("app_store_url"):
+        text = badge.get("live_text", LIVE_TEXT)
+        return ('<a class="%s" href="%s" target="_blank" rel="noopener">%s</a>'
+                % (cls, app["app_store_url"], text))
+    text = badge.get("review_text", REVIEW_TEXT)
+    return '<div class="%s">%s</div>' % (cls, text)
+
+
+def render_press_store(app):
+    if app["status"] == "live" and app.get("app_store_url"):
+        url = app["app_store_url"]
+        return ('<tr><th>App Store</th><td><a href="%s" class="lnk" target="_blank" '
+                'rel="noopener">%s</a></td></tr>' % (url, url))
+    return ('<tr><th>App Store</th><td><span class="pending">'
+            'Link added on launch day</span></td></tr>')
+
+
+def render_press_release(app):
+    if app["status"] == "live" and app.get("release_date"):
+        return "<tr><th>Release date</th><td>%s</td></tr>" % app["release_date"]
+    return ('<tr><th>Release date</th><td><span class="pending">'
+            'Pending App Review</span></td></tr>')
+
+
+def render_status_line(apps):
+    """The About page's aggregate sentence, as a full <p> element — never
+    hand-count apps again."""
+    return '<p class="section-sub">%s</p>' % _status_sentence(apps)
+
+
+def _status_sentence(apps):
+    live = [a for a in apps if a["status"] == "live"]
+    if not live:
+        n = {1: "It's", 2: "Both", 3: "All three"}.get(len(apps), "All %d" % len(apps))
+        return "%s coming soon to the App Store." % n
+    if len(live) == len(apps):
+        n = {1: "It's", 2: "Both", 3: "All three"}.get(len(apps), "All %d" % len(apps))
+        return "%s on the App Store now." % n
+    return "%s on the App Store now, %s coming soon." % (
+        oxford([a["name"] for a in live]),
+        oxford([a["name"] for a in apps if a["status"] != "live"]))
+
+
+def render_app_region(name, apps, rel):
+    """Dispatch a 'bba:<kind>:<slug>' region."""
+    kind, _, slug = name.partition(":")
+    by_slug = {a["slug"]: a for a in apps}
+    if kind == "statusline":
+        return render_status_line(apps)
+    app = by_slug.get(slug)
+    if app is None:
+        raise SystemExit("ERROR: %s references unknown app '%s'" % (rel, slug))
+    if kind == "badge":
+        for b in app.get("badges", []):
+            if b["page"] == rel:
+                return render_badge(app, b)
+        raise SystemExit("ERROR: %s has a badge region for '%s' but apps.json "
+                         "declares no badge for this page." % (rel, slug))
+    if kind == "pressstore":
+        return render_press_store(app)
+    if kind == "pressrelease":
+        return render_press_release(app)
+    raise SystemExit("ERROR: %s has unknown region kind '%s'" % (rel, kind))
+
+
 # ── region surgery ───────────────────────────────────────────────────────
 
 def region_span(html, name, path):
@@ -262,8 +338,37 @@ def main():
                "nav": wrap("nav", render_nav(site, apps, pages_cfg[rel])),
                "footer": wrap("footer", footer_html)}
 
+        # A nested or overlapping region would silently eat surrounding markup
+        # when spans are spliced. Refuse to proceed.
+        marks = [(m.start(), m.group(1), m.group(2)) for m in
+                 re.finditer(r"<!-- bba:([a-z0-9:-]+) (start|end)", html)]
+        depth, stack = 0, []
+        for pos, nm, kind in marks:
+            if kind == "start":
+                if depth:
+                    raise SystemExit(
+                        "ERROR: %s has a nested region: 'bba:%s' opens inside "
+                        "'bba:%s'. Regions must not overlap." % (rel, nm, stack[-1]))
+                stack.append(nm); depth += 1
+            else:
+                if not stack or stack[-1] != nm:
+                    raise SystemExit("ERROR: %s has mismatched region markers "
+                                     "near 'bba:%s end'." % (rel, nm))
+                stack.pop(); depth -= 1
+        if stack:
+            raise SystemExit("ERROR: %s has unclosed region 'bba:%s'." % (rel, stack[-1]))
+
+        # per-app regions: bba:badge:<slug>, bba:pressstore:<slug>, …
+        for extra in sorted(set(re.findall(
+                r"<!-- bba:((?:badge|pressstore|pressrelease|statusline)"
+                r"(?::[a-z0-9-]+)?) start", html))):
+            span = region_span(html, extra, rel)
+            if span:
+                spans[extra] = span
+                new[extra] = wrap(extra, render_app_region(extra, apps, rel))
+
         # replace from the bottom up so earlier offsets stay valid
-        for name in sorted(REGIONS, key=lambda n: spans[n][0], reverse=True):
+        for name in sorted(spans, key=lambda n: spans[n][0], reverse=True):
             s, e = spans[name]
             html = html[:s] + new[name] + html[e:]
 

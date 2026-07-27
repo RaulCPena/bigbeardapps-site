@@ -1,12 +1,17 @@
 {
-  "_comment": "Single source of truth for the app list. Adding an app here plus running tools/sync.py updates the nav and footer on every page. See README.md.",
+  "_comment": "Single source of truth for the app list. LAUNCH DAY: set an app's status to 'live' and fill app_store_url + release_date, then run tools/sync.py — every badge, press-kit row and the About line update themselves. Apps can go live independently.",
   "apps": [
     {
       "slug": "feastmark",
       "name": "Feastmark",
-      "name_split": ["Feast", "mark"],
+      "name_split": [
+        "Feast",
+        "mark"
+      ],
       "order": 1,
       "status": "review",
+      "app_store_url": null,
+      "release_date": null,
       "tagline": "Turn recipe videos into your personal cookbook.",
       "accent": {
         "base": "#D4922A",
@@ -25,16 +30,39 @@
         "demo_poster": "demo-poster.jpg"
       },
       "pages": [
-        { "type": "index",   "href": "/feastmark/",             "footer_label": null },
-        { "type": "privacy", "href": "/feastmark/privacy.html", "footer_label": "Feastmark Privacy" }
+        {
+          "type": "index",
+          "href": "/feastmark/",
+          "footer_label": null
+        },
+        {
+          "type": "privacy",
+          "href": "/feastmark/privacy.html",
+          "footer_label": "Feastmark Privacy"
+        }
+      ],
+      "badges": [
+        {
+          "page": "index.html",
+          "class": "showcase-pill"
+        },
+        {
+          "page": "feastmark/index.html",
+          "class": "badge"
+        }
       ]
     },
     {
       "slug": "payoffpilot",
       "name": "PayoffPilot",
-      "name_split": ["Payoff", "Pilot"],
+      "name_split": [
+        "Payoff",
+        "Pilot"
+      ],
       "order": 2,
       "status": "review",
+      "app_store_url": null,
+      "release_date": null,
       "tagline": "Pay off debt. Pay once. Done.",
       "accent": {
         "base": "#0066cc",
@@ -53,19 +81,54 @@
         "demo_poster": "demo-poster.jpg"
       },
       "pages": [
-        { "type": "index",   "href": "/payoffpilot/",             "footer_label": null },
-        { "type": "privacy", "href": "/payoffpilot/privacy.html", "footer_label": "PayoffPilot Privacy" },
-        { "type": "terms",   "href": "/payoffpilot/terms.html",   "footer_label": "PayoffPilot Terms" },
-        { "type": "roadmap", "href": "/payoffpilot/roadmap.html", "footer_label": "PayoffPilot Roadmap" },
-        { "type": "support", "href": "/payoffpilot/support.html", "footer_label": "PayoffPilot Support" }
+        {
+          "type": "index",
+          "href": "/payoffpilot/",
+          "footer_label": null
+        },
+        {
+          "type": "privacy",
+          "href": "/payoffpilot/privacy.html",
+          "footer_label": "PayoffPilot Privacy"
+        },
+        {
+          "type": "terms",
+          "href": "/payoffpilot/terms.html",
+          "footer_label": "PayoffPilot Terms"
+        },
+        {
+          "type": "roadmap",
+          "href": "/payoffpilot/roadmap.html",
+          "footer_label": "PayoffPilot Roadmap"
+        },
+        {
+          "type": "support",
+          "href": "/payoffpilot/support.html",
+          "footer_label": "PayoffPilot Support"
+        }
+      ],
+      "badges": [
+        {
+          "page": "index.html",
+          "class": "showcase-pill"
+        },
+        {
+          "page": "payoffpilot/index.html",
+          "class": "badge"
+        }
       ]
     },
     {
       "slug": "reeltalk",
       "name": "ReelTalk",
-      "name_split": ["Reel", "Talk"],
+      "name_split": [
+        "Reel",
+        "Talk"
+      ],
       "order": 3,
       "status": "review",
+      "app_store_url": null,
+      "release_date": null,
       "tagline": "Fishing pun stickers for iMessage.",
       "accent": {
         "base": "#4E9F3D",
@@ -84,8 +147,28 @@
         "demo_poster": "demo-poster.jpg"
       },
       "pages": [
-        { "type": "index",   "href": "/reeltalk/",             "footer_label": null },
-        { "type": "privacy", "href": "/reeltalk/privacy.html", "footer_label": "ReelTalk Privacy" }
+        {
+          "type": "index",
+          "href": "/reeltalk/",
+          "footer_label": null
+        },
+        {
+          "type": "privacy",
+          "href": "/reeltalk/privacy.html",
+          "footer_label": "ReelTalk Privacy"
+        }
+      ],
+      "badges": [
+        {
+          "page": "index.html",
+          "class": "showcase-pill"
+        },
+        {
+          "page": "reeltalk/index.html",
+          "class": "rt-badge",
+          "review_text": "Coming soon &middot; $0.99 one-time",
+          "live_text": "On the App Store &middot; $0.99 one-time"
+        }
       ]
     }
   ]

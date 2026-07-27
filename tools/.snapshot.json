@@ -1,0 +1,119 @@
+{
+  "about.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "3dfa7403ffb9c040",
+    "links": "03fa3448b4051b16",
+    "n_links": 36,
+    "n_words": 531,
+    "nav": "c10e81b8fca9cbe3",
+    "text": "fb78ac8146b1bcdd"
+  },
+  "contact.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "74a4d15d3d99f8eb",
+    "links": "d10d2d2730a03f2d",
+    "n_links": 26,
+    "n_words": 79,
+    "nav": "ded67b45f0b62f89",
+    "text": "b0d60b4c93f8e802"
+  },
+  "feastmark/index.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "f30c687fb9062b9b",
+    "links": "0197a90e63355589",
+    "n_links": 36,
+    "n_words": 319,
+    "nav": "b3b86837d75a3f22",
+    "text": "7885b2ae29ab25a8"
+  },
+  "feastmark/privacy.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "cb48449597d5bcb0",
+    "links": "8e92096fc9d15ed8",
+    "n_links": 27,
+    "n_words": 559,
+    "nav": "b3b86837d75a3f22",
+    "text": "1e09360bacf99675"
+  },
+  "index.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "610f7c455766187c",
+    "links": "6235db0b59c5f050",
+    "n_links": 35,
+    "n_words": 231,
+    "nav": "e3b0c44298fc1c14",
+    "text": "0354d7810e607f89"
+  },
+  "payoffpilot/index.html": {
+    "footer": "a68024b6fed25db9",
+    "head": "3faec165b3d995d6",
+    "links": "a927f548e0a719a4",
+    "n_links": 39,
+    "n_words": 363,
+    "nav": "3f172c830d9bdd84",
+    "text": "8adbd58f6915a340"
+  },
+  "payoffpilot/privacy.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "42bf1a3e9dafe644",
+    "links": "8e92096fc9d15ed8",
+    "n_links": 27,
+    "n_words": 619,
+    "nav": "3f172c830d9bdd84",
+    "text": "2c0cd05742489533"
+  },
+  "payoffpilot/roadmap.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "763d4596a174f512",
+    "links": "8e92096fc9d15ed8",
+    "n_links": 27,
+    "n_words": 234,
+    "nav": "3f172c830d9bdd84",
+    "text": "cf29d1c21f153cc5"
+  },
+  "payoffpilot/support.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "3361682321d75b37",
+    "links": "897250ddc074d2da",
+    "n_links": 28,
+    "n_words": 826,
+    "nav": "3f172c830d9bdd84",
+    "text": "df35a9488c823713"
+  },
+  "payoffpilot/terms.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "14af360661352992",
+    "links": "897250ddc074d2da",
+    "n_links": 28,
+    "n_words": 1020,
+    "nav": "3f172c830d9bdd84",
+    "text": "c17162fd4022da71"
+  },
+  "press/index.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "f7fa9a2adef1fb47",
+    "links": "2f6eaf2bf6c1f7fa",
+    "n_links": 77,
+    "n_words": 1378,
+    "nav": "a8a9a2f1265ada00",
+    "text": "95003535e73ca609"
+  },
+  "reeltalk/index.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "11f170cc0d635f63",
+    "links": "b143edef6e888593",
+    "n_links": 41,
+    "n_words": 184,
+    "nav": "afd4cd3021dfc20b",
+    "text": "b1162cf6a365abee"
+  },
+  "reeltalk/privacy.html": {
+    "footer": "0499919f561e1ef2",
+    "head": "cae58a88471bbed0",
+    "links": "8e92096fc9d15ed8",
+    "n_links": 27,
+    "n_words": 314,
+    "nav": "afd4cd3021dfc20b",
+    "text": "20cf8c6fbb63ff19"
+  }
+}

@@ -3,3 +3,6 @@ docs/superpowers/
 
 # macOS
 .DS_Store
+
+# local snapshot artifacts
+_snap/

@@ -213,6 +213,19 @@ def render_press_release(app):
             'Pending App Review</span></td></tr>')
 
 
+WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
+         7: "seven", 8: "eight", 9: "nine", 10: "ten"}
+
+
+def _all_phrase(n):
+    """'Both' / 'All three' / 'All four' … — spelled out, never a bare digit."""
+    if n == 1:
+        return "It's"
+    if n == 2:
+        return "Both"
+    return "All %s" % WORDS.get(n, str(n))
+
+
 def render_status_line(apps):
     """The About page's aggregate sentence, as a full <p> element — never
     hand-count apps again."""
@@ -222,11 +235,9 @@ def render_status_line(apps):
 def _status_sentence(apps):
     live = [a for a in apps if a["status"] == "live"]
     if not live:
-        n = {1: "It's", 2: "Both", 3: "All three"}.get(len(apps), "All %d" % len(apps))
-        return "%s coming soon to the App Store." % n
+        return "%s coming soon to the App Store." % _all_phrase(len(apps))
     if len(live) == len(apps):
-        n = {1: "It's", 2: "Both", 3: "All three"}.get(len(apps), "All %d" % len(apps))
-        return "%s on the App Store now." % n
+        return "%s on the App Store now." % _all_phrase(len(apps))
     return "%s on the App Store now, %s coming soon." % (
         oxford([a["name"] for a in live]),
         oxford([a["name"] for a in apps if a["status"] != "live"]))
@@ -238,9 +249,17 @@ def render_app_region(name, apps, rel):
     by_slug = {a["slug"]: a for a in apps}
     if kind == "statusline":
         return render_status_line(apps)
+    if kind == "contacttopics":
+        return render_contact_topics(apps)
+    if kind == "appcards":
+        return render_app_cards(apps)
+    if kind == "crosspromo":
+        return render_crosspromo(apps, slug)
     app = by_slug.get(slug)
     if app is None:
         raise SystemExit("ERROR: %s references unknown app '%s'" % (rel, slug))
+    if kind == "showcase":
+        return render_showcase(app)
     if kind == "badge":
         for b in app.get("badges", []):
             if b["page"] == rel:
@@ -271,6 +290,88 @@ def render_analytics(site):
         return ('<script data-goatcounter="https://%s.goatcounter.com/count" '
                 'async src="//gc.zgo.at/count.js"></script>' % token)
     raise SystemExit("ERROR: unknown analytics provider %r in data/site.json" % provider)
+
+
+def render_contact_topics(apps):
+    """The contact form's topic dropdown."""
+    opts = ["                <option>%s</option>" % a["name"] for a in apps]
+    opts.append("                <option>Something else</option>")
+    return ('<select id="topic" name="topic">\n%s\n            </select>'
+            % "\n".join(opts))
+
+
+def render_app_cards(apps):
+    """The About page's app grid."""
+    cards = []
+    for a in apps:
+        cards.append(
+            '        <a class="app-card" href="%s">\n'
+            '            <img src="%s%s" alt="%s app icon">\n'
+            '            <div>\n'
+            '                <h3>%s</h3>\n'
+            '                <p>%s</p>\n'
+            '            </div>\n'
+            '        </a>'
+            % (a["paths"]["site"], a["paths"]["images"], a["media"]["icon"],
+               a["name"], a["name"], a["tagline"]))
+    return '<div class="app-cards">\n%s\n    </div>' % "\n".join(cards)
+
+
+def render_crosspromo(apps, self_slug):
+    """'More from Big Beard Apps' — every OTHER app, in order. Deterministic,
+    so it can never drift out of sync the way the hand-kept N-1 lists did."""
+    others = [a for a in apps if a["slug"] != self_slug]
+    cards = []
+    for a in others:
+        cards.append(
+            '        <a class="promo-card" href="%s">\n'
+            '            <img src="%s%s" alt="%s app icon">\n'
+            '            <div class="promo-copy">\n'
+            '                <h3>%s</h3>\n'
+            '                <p>%s</p>\n'
+            '            </div>\n'
+            '            <span class="promo-arrow" aria-hidden="true">&rarr;</span>\n'
+            '        </a>'
+            % (a["paths"]["site"], a["paths"]["images"], a["media"]["icon"],
+               a["name"], a["name"], a["tagline"]))
+    return ('<section class="crosspromo">\n'
+            '    <div class="crosspromo-inner">\n'
+            '        <p class="crosspromo-label">More from Big Beard Apps</p>\n'
+            '%s\n'
+            '    </div>\n'
+            '</section>' % "\n".join(cards))
+
+
+def render_showcase(app):
+    """A full homepage app showcase. Owns its own status badge, so the badge
+    is NOT a separate region here (nested regions are rejected)."""
+    sc = app["showcase"]
+    cls = "showcase %s" % ("showcase" + sc["modifier"]) if sc.get("modifier") else "showcase"
+    badge = render_badge(app, {"class": "showcase-pill"})
+    n1, n2 = app["name_split"]
+    chips = "\n".join('                <div class="chip">%s</div>' % c
+                       for c in sc["chips"])
+    img = app["paths"]["images"]
+    return (
+'<section class="%s">\n'
+'    <div class="showcase-inner">\n'
+'        <div class="showcase-copy">\n'
+'            %s\n'
+'            <h2><img src="%s%s" alt=""><div>%s<span>%s</span></div></h2>\n'
+'            <p>%s</p>\n'
+'            <div class="chips">\n%s\n            </div>\n'
+'            <a class="cta" href="%s">%s</a>\n'
+'        </div>\n'
+'        <div class="showcase-phone-wrap">\n'
+'            <div class="phone-glow"></div>\n'
+'            <video class="showcase-phone" autoplay muted loop playsinline poster="%s%s">\n'
+'                <source src="%s%s" type="video/mp4">\n'
+'            </video>\n'
+'        </div>\n'
+'    </div>\n'
+'</section>' % (cls, badge, img, app["media"]["icon"], n1, n2, sc["blurb"], chips,
+                app["paths"]["site"], sc["cta"],
+                img, app["media"]["demo_poster"], img, app["media"]["demo"]))
 
 
 # ── region surgery ───────────────────────────────────────────────────────
@@ -388,7 +489,8 @@ def main():
 
         # per-app regions: bba:badge:<slug>, bba:pressstore:<slug>, …
         for extra in sorted(set(re.findall(
-                r"<!-- bba:((?:badge|pressstore|pressrelease|statusline)"
+                r"<!-- bba:((?:badge|pressstore|pressrelease|statusline|contacttopics"
+                r"|appcards|crosspromo|showcase)"
                 r"(?::[a-z0-9-]+)?) start", html))):
             span = region_span(html, extra, rel)
             if span:

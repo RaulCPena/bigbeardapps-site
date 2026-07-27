@@ -43,14 +43,21 @@
       ],
       "badges": [
         {
-          "page": "index.html",
-          "class": "showcase-pill"
-        },
-        {
           "page": "feastmark/index.html",
           "class": "badge"
         }
-      ]
+      ],
+      "showcase": {
+        "modifier": null,
+        "blurb": "Turn recipe videos into your personal cookbook. One tap from Instagram, TikTok, or YouTube — even when the recipe is only spoken in the video.",
+        "chips": [
+          "🎙 Hears spoken recipes",
+          "👨‍🍳 Hands-free Cook Mode",
+          "✏️ Edit anything",
+          "🔒 Private by design"
+        ],
+        "cta": "Explore Feastmark →"
+      }
     },
     {
       "slug": "payoffpilot",
@@ -109,14 +116,21 @@
       ],
       "badges": [
         {
-          "page": "index.html",
-          "class": "showcase-pill"
-        },
-        {
           "page": "payoffpilot/index.html",
           "class": "badge"
         }
-      ]
+      ],
+      "showcase": {
+        "modifier": "--pp",
+        "blurb": "Plan your way out of debt. Compare Snowball and Avalanche with your real numbers, simulate what-ifs, and track every payment to debt-free — all private, all on your phone.",
+        "chips": [
+          "📊 Snowball vs Avalanche",
+          "🔮 What-if scenarios",
+          "🔔 Payment reminders",
+          "🔒 No account, pay once"
+        ],
+        "cta": "Explore PayoffPilot →"
+      }
     },
     {
       "slug": "reeltalk",
@@ -160,16 +174,23 @@
       ],
       "badges": [
         {
-          "page": "index.html",
-          "class": "showcase-pill"
-        },
-        {
           "page": "reeltalk/index.html",
           "class": "rt-badge",
           "review_text": "Coming soon &middot; $0.99 one-time",
           "live_text": "On the App Store &middot; $0.99 one-time"
         }
-      ]
+      ],
+      "showcase": {
+        "modifier": "--rt",
+        "blurb": "Fishing pun stickers for iMessage. Thirty hand-made originals starring a bass with sunglasses — big bass energy for your group chats, $0.99 one time.",
+        "chips": [
+          "🎣 30 original puns",
+          "💬 Right in Messages",
+          "🖼 Browse the whole pack",
+          "🔒 No ads, no tracking"
+        ],
+        "cta": "Explore ReelTalk →"
+      }
     }
   ]
 }

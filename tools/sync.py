@@ -427,6 +427,7 @@ def render_launch_list(site, apps):
         '%s'
         '                <button type="submit">%s</button>\n'
         '            </form>\n'
+        '            <script src="/assets/launch-list.js" defer></script>\n'
         '        </section>'
         % (esc_text(cfg.get("heading", "Know when they launch")),
            esc_text(sub), endpoint, extra, esc_text(cfg.get("button", "Notify me")))

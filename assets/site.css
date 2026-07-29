@@ -396,3 +396,10 @@ a.showcase-pill:hover, a.badge:hover, a.rt-badge:hover {
 @media (prefers-reduced-motion: reduce) {
     .launch-list__form button { transition: none; }
 }
+.launch-list__done {
+    margin: 0 auto; max-width: 46ch; padding: 14px 18px;
+    color: var(--on-dark-strong);
+    background: rgba(212, 146, 42, 0.12);
+    border: 1px solid rgba(212, 146, 42, 0.35);
+    border-radius: 10px;
+}

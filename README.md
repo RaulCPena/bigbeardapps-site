@@ -89,6 +89,20 @@ pointed at Formspree is a commitment the tooling cannot keep — and for commerc
 a working opt-out is a CAN-SPAM requirement, not a courtesy. Tying the promise to the
 provider makes it impossible to leave the wrong one behind after a migration.
 
+The form is progressively enhanced by `assets/launch-list.js`, which sync.py emits
+alongside it (so it never ships when the block is dark). Without JS the form posts
+normally and the browser leaves for the provider's page. With it, the POST is
+retargeted at a hidden iframe and a confirmation message replaces the form.
+
+Two things in that file are load-bearing and must not be "simplified":
+
+- Success is shown on the **iframe's load event**, not on submit. Showing it on
+  submit claims success before the server has said anything.
+- The form is **hidden, never removed**, and only after the response. Calling
+  `replaceWith()` inside the submit handler detaches the form mid-flight and the
+  browser cancels the POST — message shown, nobody subscribed. This shipped once
+  and was caught only by checking whether the iframe had gone cross-origin.
+
 **Switching to Buttondown:** create the account (that part needs a human), copy the
 action URL out of its embed snippet, then set `provider` to `buttondown` and `endpoint`
 to that URL and run `python3 tools/sync.py`. Verify the current free tier at signup

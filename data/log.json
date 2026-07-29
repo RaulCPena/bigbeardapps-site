@@ -1,0 +1,27 @@
+{
+  "_comment": "Build log on about.html — newest first, and NOT derived from apps.json on purpose. These are dated journal entries: 'three apps in App Review, July 2026' stays true after they ship, so regenerating it from current status would rewrite history. Add an entry at the top and run tools/sync.py.",
+  "heading": "Build log",
+  "blurb": "Notes from building in the open. Newest first.",
+  "entries": [
+    {
+      "date": "July 2026",
+      "title": "Gunmark joins the lineup",
+      "body": "Gunmark — a private firearm collection catalog with zero network calls — opened beta signups and joined the site alongside Feastmark, PayoffPilot, and ReelTalk."
+    },
+    {
+      "date": "July 2026",
+      "title": "Feastmark, PayoffPilot &amp; ReelTalk in App Review",
+      "body": "Feastmark, PayoffPilot, and ReelTalk are in Apple's review queue — coming soon to the App Store."
+    },
+    {
+      "date": "July 2026",
+      "title": "Rebuilt the site as one design system",
+      "body": "Pulled every page onto a shared stylesheet so the whole studio reads as one thing — and gave PayoffPilot a public Now / Next / Later roadmap."
+    },
+    {
+      "date": "2018 &ndash; today",
+      "title": "From late-night code to a studio",
+      "body": "Started learning to code after the kids went to bed, became a software engineer, and turned that into Big Beard Apps — building the private, useful apps I wanted for myself."
+    }
+  ]
+}

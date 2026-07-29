@@ -112,6 +112,22 @@ The sub-heading counts apps in review from `apps.json`, so it can never claim th
 number. Colours are scoped to `.launch-list` and assume the dark homepage surface — if it
 moves to a light page it needs a modifier, not a global rule.
 
+## Build log
+
+About's build log renders from `data/log.json`. Add an entry at the top of `entries`
+and run `tools/sync.py`.
+
+Entries are **data, not derivation**. A dated entry is a historical claim — "three apps
+in App Review, July 2026" stays true after a fourth ships — so generating it from
+current app status would quietly rewrite history. For the same reason `audit.py`'s
+count check skips the log region: counting it would flag the past as a bug and push
+someone to falsify an old entry to silence the check. Current-tense claims everywhere
+else on the page are still checked.
+
+This is the studio changelog: short, factual, what shipped. Long-form narrative — the
+career story, the technical write-ups — belongs on raulcpena.com/blog, which links here
+and is linked back to. Two genres, two audiences, one system.
+
 ## Checks
 
 ```bash

@@ -44,7 +44,8 @@ def load():
     site = j("site.json")
     apps = sorted(j("apps.json")["apps"], key=lambda a: a["order"])
     pages = j("pages.json")["pages"]
-    return site, apps, pages
+    log = j("log.json")
+    return site, apps, pages, log
 
 
 def tpl(name):
@@ -242,12 +243,14 @@ def _status_sentence(apps):
         oxford([a["name"] for a in apps if a["status"] != "live"]))
 
 
-def render_app_region(name, apps, rel, site):
+def render_app_region(name, apps, rel, site, log):
     """Dispatch a 'bba:<kind>:<slug>' region."""
     kind, _, slug = name.partition(":")
     by_slug = {a["slug"]: a for a in apps}
     if kind == "statusline":
         return render_status_line(apps)
+    if kind == "log":
+        return render_log(log)
     if kind == "launchlist":
         return render_launch_list(site, apps)
     if kind == "contacttopics":
@@ -439,6 +442,32 @@ def esc_text(s):
     return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+def render_log(log):
+    """
+    The About page build log.
+
+    Entries are data, not derivation. A dated entry is a historical claim —
+    "three apps in App Review, July 2026" stays true after they ship — so
+    regenerating it from current app status would quietly rewrite history.
+    Adding an entry is a data edit; the markup stays consistent.
+
+    Values are trusted as authored HTML (they carry &amp;, &ndash; and the odd
+    <a>), which is the same contract as the showcase blurbs.
+    """
+    out = ['<section class="log">',
+           '    <h2>%s</h2>' % log.get("heading", "Build log"),
+           '    <p>%s</p>' % log.get("blurb", ""),
+           '']
+    for e in log.get("entries", []):
+        out += ['    <div class="log-entry">',
+                '        <div class="log-date">%s</div>' % e["date"],
+                '        <h3>%s</h3>' % e["title"],
+                '        <p>%s</p>' % e["body"],
+                '    </div>']
+    out.append('</section>')
+    return "\n".join(out)
+
+
 def render_showcase(app):
     """A full homepage app showcase. Owns its own status badge, so the badge
     is NOT a separate region here (nested regions are rejected)."""
@@ -526,7 +555,7 @@ def main():
     do_init = "--init" in args
     check = "--check" in args
 
-    site, apps, pages_cfg = load()
+    site, apps, pages_cfg, log = load()
     files = pages_on_disk()
 
     missing_cfg = [f for f in files if f not in pages_cfg]
@@ -586,13 +615,13 @@ def main():
 
         # per-app regions: bba:badge:<slug>, bba:pressstore:<slug>, …
         for extra in sorted(set(re.findall(
-                r"<!-- bba:((?:badge|pressfacts|statusline|contacttopics|launchlist"
+                r"<!-- bba:((?:badge|pressfacts|statusline|contacttopics|launchlist|log"
                 r"|appcards|crosspromo|showcase)"
                 r"(?::[a-z0-9-]+)?) start", html))):
             span = region_span(html, extra, rel)
             if span:
                 spans[extra] = span
-                new[extra] = wrap(extra, render_app_region(extra, apps, rel, site))
+                new[extra] = wrap(extra, render_app_region(extra, apps, rel, site, log))
 
         # replace from the bottom up so earlier offsets stay valid
         for name in sorted(spans, key=lambda n: spans[n][0], reverse=True):

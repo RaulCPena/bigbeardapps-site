@@ -237,8 +237,13 @@ def check_counts(pages, apps, fail):
     allof = re.compile(r"\ball\s+(both|two|three|four|five|six)\b", re.I)
 
     for rel in pages:
+        html = read(rel)
+        # The build log is a dated journal: "three apps in App Review, July 2026"
+        # stays true after a fourth ships. Counting it would flag history as a bug
+        # and push someone to falsify a past entry to silence the check.
+        html = re.sub(r"<!-- bba:log start.*?<!-- bba:log end -->", " ", html, flags=re.S)
         ex = TextExtractor()
-        ex.feed(read(rel))
+        ex.feed(html)
         text = ex.text()
         for pat in (claim, allof):
             for m in pat.finditer(text):

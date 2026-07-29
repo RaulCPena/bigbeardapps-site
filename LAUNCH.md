@@ -71,7 +71,7 @@ Feastmark is live on the App Store 🍽️
 
 Save a recipe video from Instagram, TikTok, or YouTube and it becomes a real recipe in your cookbook — even when the recipe is only spoken out loud.
 
-No account. No ads. Everything stays on your device.
+No account. No ads. Your recipes stay on your device.
 
 https://bigbeardapps.com/feastmark/
 ```

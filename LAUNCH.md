@@ -36,7 +36,7 @@ That single data edit updates, everywhere at once:
 | App page badge | same | same link |
 | Press kit — App Store row | "Link added on launch day" | the real URL |
 | Press kit — Release date | "Pending App Review" | the date |
-| About aggregate line | "All three coming soon…" | handles partial launches automatically |
+| About aggregate line | "All four coming soon…" | handles partial launches automatically |
 
 ## 2. Things sync does NOT do
 
@@ -55,7 +55,7 @@ grep -rn -i "coming soon\|in review\|pending" --include=*.html . | grep -v bba:
 
 ## 3. Announce
 
-Post per app, not all at once — three launch posts across a week beats one.
+Post per app, not all at once — four launch posts across a week beats one.
 Attach the demo video every time (`~/Downloads/<app>-preview-886x1920.mov`,
 `~/Desktop/ReelTalk-Demo.mp4`).
 
@@ -98,7 +98,19 @@ ReelTalk is live on the App Store 🎣
 https://bigbeardapps.com/reeltalk/
 ```
 
-### When all three are out
+### Gunmark
+
+**Not on this runbook's path yet.** Gunmark is the fourth app in `apps.json`,
+but it is at `status: "review"` with beta signups on gunmark.app rather than an
+App Store listing — its badge reads "Coming soon · Beta signups open". Step 1
+still works when it is approved (same three fields, same sync), but there is no
+approval to announce yet, so there is no post here.
+
+Write the announce copy when it has a real App Store URL, not before. Until
+then the roll-up below stays at three, because that is what "all out" means for
+the apps that are actually in the queue.
+
+### When all three App Store apps are out
 ```
 Three apps. One bearded guy. All live on the App Store 🧔
 

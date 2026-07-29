@@ -248,6 +248,8 @@ def render_app_region(name, apps, rel, site):
     by_slug = {a["slug"]: a for a in apps}
     if kind == "statusline":
         return render_status_line(apps)
+    if kind == "launchlist":
+        return render_launch_list(site, apps)
     if kind == "contacttopics":
         return render_contact_topics(apps)
     if kind == "appcards":
@@ -372,6 +374,52 @@ def render_press_facts(app, site):
     body = "\n".join('            <tr><th>%s</th><td>%s</td></tr>' % (k, v)
                       for k, v in rows)
     return '        <table class="facts">\n%s\n        </table>' % body
+
+
+def render_launch_list(site, apps):
+    """
+    Launch-notification signup. Renders nothing at all until site.json carries a
+    real endpoint, so the block can ship dark and be switched on in one edit —
+    same contract as the analytics slot.
+
+    The count sentence comes from the app list, so it can never claim the wrong
+    number of apps.
+    """
+    cfg = site.get("launch_list") or {}
+    endpoint = cfg.get("endpoint")
+    if not endpoint:
+        return "<!-- launch list: no endpoint configured -->"
+
+    pending = [a for a in apps if a["status"] != "live"]
+    blurb = cfg.get("blurb", "")
+    if pending:
+        n = WORDS.get(len(pending), str(len(pending)))
+        lead = ("%s app is" if len(pending) == 1 else "%s apps are") % n
+        sub = "%s in App Review right now. %s" % (lead[0].upper() + lead[1:], blurb)
+    else:
+        sub = blurb
+    sub = re.sub(r"\s+", " ", sub).strip()
+
+    return (
+        '<section class="launch-list">\n'
+        '            <h2>%s</h2>\n'
+        '            <p>%s</p>\n'
+        '            <form class="launch-list__form" action="%s" method="POST">\n'
+        '                <label class="visually-hidden" for="launch-email">Email address</label>\n'
+        '                <input id="launch-email" type="email" name="email" required\n'
+        '                       autocomplete="email" placeholder="you@example.com">\n'
+        '                <input type="hidden" name="_subject" value="Launch list signup">\n'
+        '                <button type="submit">%s</button>\n'
+        '            </form>\n'
+        '        </section>'
+        % (esc_text(cfg.get("heading", "Know when they launch")),
+           esc_text(sub), endpoint, esc_text(cfg.get("button", "Notify me")))
+    )
+
+
+def esc_text(s):
+    """Escape text destined for element content."""
+    return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
 def render_showcase(app):
@@ -521,7 +569,7 @@ def main():
 
         # per-app regions: bba:badge:<slug>, bba:pressstore:<slug>, …
         for extra in sorted(set(re.findall(
-                r"<!-- bba:((?:badge|pressfacts|statusline|contacttopics"
+                r"<!-- bba:((?:badge|pressfacts|statusline|contacttopics|launchlist"
                 r"|appcards|crosspromo|showcase)"
                 r"(?::[a-z0-9-]+)?) start", html))):
             span = region_span(html, extra, rel)

@@ -68,6 +68,22 @@ harder to edit.
 `press/<slug>-press-kit.zip`. That is the check that would have caught ReelTalk
 shipping without either.
 
+## Launch list
+
+A launch-notification signup on the homepage. It renders **nothing at all** until
+`data/site.json` → `launch_list.endpoint` holds a Formspree form ID, so it ships dark
+and switches on in one edit — same contract as the analytics slot.
+
+Turning it on:
+
+1. Create a new form at formspree.io (a *separate* one from the contact form — mixing
+   list signups with support mail makes the list impossible to export cleanly).
+2. Put its ID in `launch_list.endpoint`, run `python3 tools/sync.py`.
+
+The sub-heading counts apps in review from `apps.json`, so it can never claim the wrong
+number. Its colours are scoped to `.launch-list` and assume the dark homepage surface —
+if it ever moves to a light page it needs a modifier, not a global rule.
+
 ## Checks
 
 ```bash

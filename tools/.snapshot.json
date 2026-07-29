@@ -1,119 +1,137 @@
 {
   "about.html": {
-    "footer": "24135abc8f6b94bc",
-    "head": "04af0a4837258795",
-    "links": "779c86c00ebf7c76",
-    "n_links": 40,
-    "n_words": 533,
-    "nav": "694b090d4a45f2f4",
-    "text": "4cbc24417efd1985"
+    "footer": "1fcc42baf376fb50",
+    "head": "02282dbba8c22a3e",
+    "links": "2a7c3e54a4dbf2cd",
+    "n_links": 45,
+    "n_words": 572,
+    "nav": "c1e77f094cd9fb3c",
+    "text": "295890de7fe334fa"
   },
   "contact.html": {
-    "footer": "24135abc8f6b94bc",
-    "head": "f56c21c08f3ad6db",
-    "links": "9ead34223df7a088",
-    "n_links": 30,
-    "n_words": 81,
-    "nav": "c7f01fd5ad2f56be",
-    "text": "ee64242e25d76662"
+    "footer": "1fcc42baf376fb50",
+    "head": "316fb1c3d1dbe2b0",
+    "links": "98c0b77ebd294206",
+    "n_links": 33,
+    "n_words": 86,
+    "nav": "7c9528ccb9009c44",
+    "text": "48c011f45fbd68d0"
   },
   "feastmark/index.html": {
-    "footer": "24135abc8f6b94bc",
+    "footer": "1fcc42baf376fb50",
     "head": "9488fa12177a8347",
-    "links": "294bdf15c7358693",
-    "n_links": 40,
-    "n_words": 321,
-    "nav": "b47b6710041fc55b",
-    "text": "81f9c37cb7f86971"
+    "links": "be70240baa630cb6",
+    "n_links": 45,
+    "n_words": 330,
+    "nav": "c69634ce412fc3a2",
+    "text": "b82347f29143775e"
   },
   "feastmark/privacy.html": {
-    "footer": "24135abc8f6b94bc",
+    "footer": "1fcc42baf376fb50",
     "head": "b2b5e3430a175643",
-    "links": "12156e08ea8e3d1e",
-    "n_links": 31,
-    "n_words": 561,
-    "nav": "b47b6710041fc55b",
-    "text": "84ab6631a80e8f7d"
+    "links": "7976e9088f55c823",
+    "n_links": 34,
+    "n_words": 565,
+    "nav": "c69634ce412fc3a2",
+    "text": "f03e2dec315df5a8"
+  },
+  "gunmark/index.html": {
+    "footer": "1fcc42baf376fb50",
+    "head": "cfad02556dbdace9",
+    "links": "d56d69f9d1ee1906",
+    "n_links": 42,
+    "n_words": 396,
+    "nav": "b8b2656572127778",
+    "text": "05e2a4a0ce4bbec7"
+  },
+  "gunmark/privacy.html": {
+    "footer": "1fcc42baf376fb50",
+    "head": "cc69dc14a06be5d5",
+    "links": "ed8d415b73bca54e",
+    "n_links": 35,
+    "n_words": 578,
+    "nav": "b8b2656572127778",
+    "text": "6972c5dd567f7cbb"
   },
   "index.html": {
-    "footer": "24135abc8f6b94bc",
-    "head": "7b7e4fb5df9a920c",
-    "links": "481f75113a4d7779",
-    "n_links": 39,
-    "n_words": 233,
-    "nav": "ae8b83e2817b3a7c",
-    "text": "86305de3b3c03cd4"
+    "footer": "1fcc42baf376fb50",
+    "head": "ea23ebf3a6d872b1",
+    "links": "91988120fed206f7",
+    "n_links": 45,
+    "n_words": 290,
+    "nav": "6963962cd37ef6f8",
+    "text": "2195f3a34ed7bec2"
   },
   "payoffpilot/index.html": {
-    "footer": "24135abc8f6b94bc",
+    "footer": "1fcc42baf376fb50",
     "head": "2f81892a74db110b",
-    "links": "fb32b35de1a352f3",
-    "n_links": 42,
-    "n_words": 363,
-    "nav": "21b4b66725e62777",
-    "text": "8dc75b91c2223d3a"
+    "links": "5749a23acbe1c85f",
+    "n_links": 47,
+    "n_words": 372,
+    "nav": "9881639d73d2d1a4",
+    "text": "0bbe9d1173f53af3"
   },
   "payoffpilot/privacy.html": {
-    "footer": "24135abc8f6b94bc",
+    "footer": "1fcc42baf376fb50",
     "head": "0a06f3fee8170202",
-    "links": "5f1dedc90dc26487",
-    "n_links": 31,
-    "n_words": 621,
-    "nav": "21b4b66725e62777",
-    "text": "f02655654394e47f"
+    "links": "63674d59cd498407",
+    "n_links": 34,
+    "n_words": 625,
+    "nav": "9881639d73d2d1a4",
+    "text": "0260dec29aa8844a"
   },
   "payoffpilot/roadmap.html": {
-    "footer": "24135abc8f6b94bc",
+    "footer": "1fcc42baf376fb50",
     "head": "7dde11bc9436365c",
-    "links": "5e42539a822ce3e2",
-    "n_links": 31,
-    "n_words": 236,
-    "nav": "21b4b66725e62777",
-    "text": "4c3d8cd84cd88cd8"
+    "links": "beb1aa14d36270b8",
+    "n_links": 34,
+    "n_words": 240,
+    "nav": "9881639d73d2d1a4",
+    "text": "84837016a63aa76f"
   },
   "payoffpilot/support.html": {
-    "footer": "24135abc8f6b94bc",
+    "footer": "1fcc42baf376fb50",
     "head": "416c095959c2812f",
-    "links": "bc34e934969fc4d4",
-    "n_links": 32,
-    "n_words": 828,
-    "nav": "21b4b66725e62777",
-    "text": "14d3359323139034"
+    "links": "620657d61bb33851",
+    "n_links": 35,
+    "n_words": 832,
+    "nav": "9881639d73d2d1a4",
+    "text": "235e2334e944892e"
   },
   "payoffpilot/terms.html": {
-    "footer": "24135abc8f6b94bc",
+    "footer": "1fcc42baf376fb50",
     "head": "f45ac216b471b2bb",
-    "links": "c062a7a0c8f37106",
-    "n_links": 32,
-    "n_words": 1022,
-    "nav": "21b4b66725e62777",
-    "text": "385c30cbf62ee5aa"
+    "links": "7aff2abf6fdc4a9d",
+    "n_links": 35,
+    "n_words": 1026,
+    "nav": "9881639d73d2d1a4",
+    "text": "fa36d7bcbda043cb"
   },
   "press/index.html": {
-    "footer": "24135abc8f6b94bc",
-    "head": "6d7eab0bda7a0f79",
-    "links": "047e79feacad55ba",
-    "n_links": 81,
-    "n_words": 1380,
-    "nav": "fb1ca7b4425a32fd",
-    "text": "4277f4c00f1a61f9"
+    "footer": "1fcc42baf376fb50",
+    "head": "ca95b65326d03db4",
+    "links": "289db57018df2755",
+    "n_links": 92,
+    "n_words": 1762,
+    "nav": "9fc651ea94d760cc",
+    "text": "a23ecabb4d9d2c39"
   },
   "reeltalk/index.html": {
-    "footer": "24135abc8f6b94bc",
+    "footer": "1fcc42baf376fb50",
     "head": "0567815ac1ef6b21",
-    "links": "cbcb10fcba47932d",
-    "n_links": 45,
-    "n_words": 186,
-    "nav": "10a2d0fff1c3afdd",
-    "text": "3595026ccf02214f"
+    "links": "a88145dc0ecf5e99",
+    "n_links": 50,
+    "n_words": 195,
+    "nav": "ced2659068da654c",
+    "text": "9fa0e8aa6285d3d2"
   },
   "reeltalk/privacy.html": {
-    "footer": "24135abc8f6b94bc",
+    "footer": "1fcc42baf376fb50",
     "head": "859be64aff840c0e",
-    "links": "dde91fd75935404d",
-    "n_links": 31,
-    "n_words": 316,
-    "nav": "10a2d0fff1c3afdd",
-    "text": "a741335379c81a9d"
+    "links": "2aab638a9b75b62e",
+    "n_links": 34,
+    "n_words": 320,
+    "nav": "ced2659068da654c",
+    "text": "5caac35b8052780e"
   }
 }

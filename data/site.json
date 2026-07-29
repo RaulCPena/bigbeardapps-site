@@ -53,5 +53,12 @@
     "_comment": "Cookieless analytics. provider: null | 'cloudflare' | 'goatcounter'. null renders nothing at all. Cloudflare's dashboard already gives server-side stats with no script — only set this if you want page-level detail. Never add Google Analytics: it contradicts the studio's no-tracking promise.",
     "provider": null,
     "token": null
+  },
+  "launch_list": {
+    "_comment": "Launch-notification email capture. endpoint: a Formspree form ID (https://formspree.io/f/XXXX) or null. null renders nothing at all, so the block stays invisible until a real endpoint exists. Deliberately NOT the contact form's endpoint — mixing list signups with support mail makes the list impossible to export cleanly later.",
+    "endpoint": null,
+    "heading": "Know when they launch",
+    "blurb": "One email when an app goes live. That's the whole list — no newsletter, no tracking, no sharing, unsubscribe any time.",
+    "button": "Notify me"
   }
 }

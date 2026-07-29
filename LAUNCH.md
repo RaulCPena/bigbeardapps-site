@@ -135,6 +135,13 @@ for Feastmark, `#PersonalFinance` for PayoffPilot, `#Fishing` for ReelTalk).
 
 ## 4. After
 
+- **Unverified: Feastmark's minimum iOS.** `apps.json` says `iOS 26.2 or later`,
+  against 17.6 and 18 for the others, and the press page states it as fact under
+  a Copy button. It may just be the Xcode deployment target left at whatever the
+  test device ran. Check `IPHONEOS_DEPLOYMENT_TARGET` in the Feastmark project
+  and correct `apps[].press.platform` if it is lower — an inflated minimum turns
+  readers away for nothing, and the press page is the one place a journalist
+  will quote it verbatim.
 - Check the App Store link actually resolves before announcing.
 - Re-share the link once the preview card looks right; caches are per-URL and
   effectively unpurgeable, so get it right the first time.

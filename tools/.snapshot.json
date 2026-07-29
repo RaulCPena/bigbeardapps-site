@@ -1,8 +1,8 @@
 {
   "about.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "78b09607ed326fda",
-    "links": "b3c774809f4c3295",
+    "head": "c3d3c05cac0f1157",
+    "links": "a0152e60ae04eaf2",
     "n_links": 45,
     "n_words": 572,
     "nav": "c1e77f094cd9fb3c",
@@ -10,8 +10,8 @@
   },
   "contact.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "3b1450ff6c6b7d97",
-    "links": "915acc8262f61521",
+    "head": "49d3fc663e495f89",
+    "links": "d838f9cd9ef94e77",
     "n_links": 33,
     "n_words": 86,
     "nav": "7c9528ccb9009c44",
@@ -19,17 +19,17 @@
   },
   "feastmark/index.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "a23bb1acaaf1ff19",
-    "links": "e71573457ee029ba",
-    "n_links": 45,
-    "n_words": 330,
+    "head": "68ff26af8ad57810",
+    "links": "9129b29f1072d260",
+    "n_links": 46,
+    "n_words": 367,
     "nav": "c69634ce412fc3a2",
-    "text": "b82347f29143775e"
+    "text": "85e434cbceb2162a"
   },
   "feastmark/privacy.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "99ada02417dd4647",
-    "links": "067c64ca568290cf",
+    "head": "7c1c4653e20e2c2b",
+    "links": "23bd76c6fc3a684b",
     "n_links": 34,
     "n_words": 565,
     "nav": "c69634ce412fc3a2",
@@ -37,17 +37,17 @@
   },
   "gunmark/index.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "d3756dd9dd3831d6",
-    "links": "ada5415577ee7112",
-    "n_links": 42,
-    "n_words": 396,
+    "head": "44bc5df6f430662e",
+    "links": "2f9c7bec8b12d60e",
+    "n_links": 43,
+    "n_words": 433,
     "nav": "b8b2656572127778",
-    "text": "05e2a4a0ce4bbec7"
+    "text": "0aab8492afeb3ca8"
   },
   "gunmark/privacy.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "de7f7b132230867f",
-    "links": "0a277c93b62d4cf8",
+    "head": "23dcb9a98f7c23f6",
+    "links": "299d12fbcabdde1f",
     "n_links": 35,
     "n_words": 578,
     "nav": "b8b2656572127778",
@@ -55,8 +55,8 @@
   },
   "index.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "37f0b131a727d679",
-    "links": "9edc7b25f528695e",
+    "head": "c120e1d4afbae1c6",
+    "links": "b05303187add8979",
     "n_links": 46,
     "n_words": 327,
     "nav": "6963962cd37ef6f8",
@@ -64,17 +64,17 @@
   },
   "payoffpilot/index.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "3de178286821d56e",
-    "links": "26f7698896b352c5",
-    "n_links": 47,
-    "n_words": 372,
+    "head": "320c36f95d9e3897",
+    "links": "40657f2a90b39d91",
+    "n_links": 48,
+    "n_words": 409,
     "nav": "9881639d73d2d1a4",
-    "text": "0bbe9d1173f53af3"
+    "text": "fa49872045e6c159"
   },
   "payoffpilot/privacy.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "54fb8e558d3c1bfe",
-    "links": "2e838d9ced937edc",
+    "head": "a3047122eebea1b1",
+    "links": "1e04df9dc257f4d8",
     "n_links": 34,
     "n_words": 625,
     "nav": "9881639d73d2d1a4",
@@ -82,8 +82,8 @@
   },
   "payoffpilot/roadmap.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "a85f5a5ab0af6b1c",
-    "links": "86612fd4f3476e52",
+    "head": "d5820c41742e11d2",
+    "links": "505cb6803785c89e",
     "n_links": 34,
     "n_words": 240,
     "nav": "9881639d73d2d1a4",
@@ -91,8 +91,8 @@
   },
   "payoffpilot/support.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "6bbcfcfe52f81fd0",
-    "links": "2048642f57730539",
+    "head": "24ce764173732eff",
+    "links": "66bc656d8f1b8b2e",
     "n_links": 35,
     "n_words": 832,
     "nav": "9881639d73d2d1a4",
@@ -100,8 +100,8 @@
   },
   "payoffpilot/terms.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "4edeb1e629383ef3",
-    "links": "d85000f8d5b27944",
+    "head": "6ee7001eb7130a8a",
+    "links": "4ba2230b72b35409",
     "n_links": 35,
     "n_words": 1026,
     "nav": "9881639d73d2d1a4",
@@ -109,8 +109,8 @@
   },
   "press/index.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "b4a511af21051fe4",
-    "links": "59e6267cf2f20516",
+    "head": "f2fbc4e07936ab01",
+    "links": "98d4cddbed91b22f",
     "n_links": 92,
     "n_words": 1762,
     "nav": "9fc651ea94d760cc",
@@ -118,17 +118,17 @@
   },
   "reeltalk/index.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "316ce9ace5a3fb47",
-    "links": "ca4ba1a2e8ece624",
-    "n_links": 50,
-    "n_words": 195,
+    "head": "c3a7dde031c00a7c",
+    "links": "dcedb13f5308487b",
+    "n_links": 51,
+    "n_words": 232,
     "nav": "ced2659068da654c",
-    "text": "9fa0e8aa6285d3d2"
+    "text": "ef35cefe3bd46872"
   },
   "reeltalk/privacy.html": {
     "footer": "1fcc42baf376fb50",
-    "head": "f0650668b3fe1916",
-    "links": "11ceed5badf9ae4c",
+    "head": "e592c37c8df95945",
+    "links": "7b72a978f7d133c6",
     "n_links": 34,
     "n_words": 320,
     "nav": "ced2659068da654c",

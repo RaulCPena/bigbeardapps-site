@@ -109,8 +109,24 @@ to that URL and run `python3 tools/sync.py`. Verify the current free tier at sig
 rather than trusting this table.
 
 The sub-heading counts apps in review from `apps.json`, so it can never claim the wrong
-number. Colours are scoped to `.launch-list` and assume the dark homepage surface — if it
-moves to a light page it needs a modifier, not a global rule.
+number.
+
+**Placing it.** The block lives wherever a `bba:launchlist` marker pair does — currently
+the homepage and all four app pages, each time immediately before the footer. To add
+another, paste the marker pair into the page and run sync; to remove one, delete the pair.
+Nothing in `data/` lists the locations, because the markers already are the list.
+
+It paints its own dark band instead of inheriting the page. That matters: the app pages
+are light (white, cream on ReelTalk) with only the crosspromo strip dark, so a block that
+assumed a dark surface would have needed a light modifier per page — a second thing to
+keep in sync, and the kind of drift this repo generates tooling to avoid. Carrying its own
+surface means one block that drops anywhere. This is not the same as a global rule
+reaching out to recolour a page; that is the move that made the pricing text vanish, and
+it is still the wrong one.
+
+One block per page. `launch-list.js` binds a single `.launch-list__form` via
+`querySelector`, and the email input has a fixed `id`, so two on one page would collide on
+both counts.
 
 ## Build log
 

@@ -50,7 +50,7 @@
     }
   ],
   "analytics": {
-    "_comment": "Cookieless analytics. provider: null | 'cloudflare' | 'goatcounter'. null renders nothing at all. Cloudflare's dashboard already gives server-side stats with no script — only set this if you want page-level detail. Never add Google Analytics: it contradicts the studio's no-tracking promise.",
+    "_comment": "DECIDED 2026-07-28: stays null. Cloudflare proxies this site (cf-ray present), so the zone dashboard already gives requests, unique visitors, top paths, referrers and countries server-side — everything the marketing work needs, with no code. The beacon would add only client-side page views and Core Web Vitals, and the site currently loads ZERO external scripts while promising 'no ads, no tracking, no nonsense' on the homepage. A third-party beacon is a visible contradiction to anyone who opens devtools, and that costs more than the data is worth. Revisit only if page-level detail becomes genuinely blocking. Never add Google Analytics. Related: www and apex both served 200 as of this date, which splits Cloudflare's per-hostname stats — fix with a 301 Redirect Rule (www -> apex) before trusting numbers.",
     "provider": null,
     "token": null
   },

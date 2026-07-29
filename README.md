@@ -163,6 +163,18 @@ page-level detail:
 `goatcounter` is also supported (`token` = your subdomain). **Never add Google
 Analytics** — it contradicts the studio's no-tracking promise.
 
+**Decision, 2026-07-28: no analytics script.** Cloudflare proxies the site, so its zone
+dashboard already reports requests, visitors, top paths and referrers server-side. The
+beacon would add only client-side page views and Core Web Vitals, against a homepage
+that promises "no ads, no tracking, no nonsense" on a page with zero external scripts.
+Not worth the contradiction. Revisit only if page-level detail becomes blocking.
+
+Before trusting any of those numbers: `www` and the apex both served 200 with no
+redirect, and Cloudflare counts per hostname, so traffic is split across two entries.
+Fix with a Cloudflare Redirect Rule — hostname equals `www.bigbeardapps.com`, dynamic
+301 to `concat("https://bigbeardapps.com", http.request.uri.path)`, preserve query
+string. Dashboard config, not in this repo.
+
 ## Layout
 
 ```

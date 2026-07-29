@@ -15,9 +15,9 @@
     "contact.html": {
       "url": "https://bigbeardapps.com/contact.html",
       "title": "Contact — Big Beard Apps",
-      "description": "Contact Big Beard Apps — questions, feedback, and support for Feastmark, PayoffPilot, and ReelTalk.",
+      "description": "Contact Big Beard Apps — questions, feedback, and support for Feastmark, PayoffPilot, ReelTalk, and Gunmark.",
       "og_title": "Contact — Big Beard Apps",
-      "og_description": "Contact Big Beard Apps — questions, feedback, and support for Feastmark, PayoffPilot, and ReelTalk.",
+      "og_description": "Contact Big Beard Apps — questions, feedback, and support for Feastmark, PayoffPilot, ReelTalk, and Gunmark.",
       "og_image": "https://bigbeardapps.com/assets/og-card.png",
       "og_image_alt": "@auto",
       "nav_current": "/contact.html",
@@ -43,6 +43,28 @@
       "og_image": "https://bigbeardapps.com/feastmark/images/og-card.png",
       "og_image_alt": "Feastmark — turn recipe videos into your personal cookbook.",
       "nav_current": "/feastmark/",
+      "nav_variant": "solid"
+    },
+    "gunmark/index.html": {
+      "url": "https://bigbeardapps.com/gunmark/",
+      "title": "Gunmark — Your Armory, Documented",
+      "description": "Gunmark — a private firearm collection catalog for iOS. Every gun, every angle, every mod, every receipt and tax stamp. No accounts, no servers, zero network calls.",
+      "og_title": "Gunmark — Your Armory, Documented",
+      "og_description": "Gunmark — a private firearm collection catalog for iOS. Every gun, every angle, every mod, every receipt and tax stamp. No accounts, no servers, zero network calls.",
+      "og_image": "https://bigbeardapps.com/gunmark/images/og-card.png",
+      "og_image_alt": "Gunmark — your armory, documented.",
+      "nav_current": "/gunmark/",
+      "nav_variant": "solid"
+    },
+    "gunmark/privacy.html": {
+      "url": "https://bigbeardapps.com/gunmark/privacy.html",
+      "title": "Gunmark — Privacy Policy",
+      "description": "Gunmark's privacy policy — no accounts, no servers, no analytics. The app makes zero network calls; your collection never leaves your device.",
+      "og_title": "Gunmark — Privacy Policy",
+      "og_description": "Gunmark's privacy policy — no accounts, no servers, zero network calls. Your collection never leaves your device.",
+      "og_image": "https://bigbeardapps.com/gunmark/images/og-card.png",
+      "og_image_alt": "Gunmark — your armory, documented.",
+      "nav_current": "/gunmark/",
       "nav_variant": "solid"
     },
     "index.html": {
@@ -114,9 +136,9 @@
     "press/index.html": {
       "url": "https://bigbeardapps.com/press/",
       "title": "Press Kit — Big Beard Apps",
-      "description": "Press kit for Big Beard Apps — app icons, screenshots, preview videos, boilerplate copy, and contact for Feastmark, PayoffPilot, and ReelTalk.",
+      "description": "Press kit for Big Beard Apps — app icons, screenshots, preview videos, boilerplate copy, and contact for Feastmark, PayoffPilot, ReelTalk, and Gunmark.",
       "og_title": "Press Kit — Big Beard Apps",
-      "og_description": "Press kit for Big Beard Apps — app icons, screenshots, preview videos, boilerplate copy, and contact for Feastmark, PayoffPilot, and ReelTalk.",
+      "og_description": "Press kit for Big Beard Apps — app icons, screenshots, preview videos, boilerplate copy, and contact for Feastmark, PayoffPilot, ReelTalk, and Gunmark.",
       "og_image": "https://bigbeardapps.com/assets/og-card.png",
       "og_image_alt": "@auto",
       "nav_current": "/press/",

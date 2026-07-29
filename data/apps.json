@@ -215,6 +215,73 @@
         "price": "$0.99 — one-time purchase, no subscription",
         "privacy_note": "No network access, no accounts, no tracking — everything runs on the device."
       }
+    },
+    {
+      "slug": "gunmark",
+      "name": "Gunmark",
+      "name_split": [
+        "Gun",
+        "mark"
+      ],
+      "order": 4,
+      "status": "review",
+      "app_store_url": null,
+      "release_date": null,
+      "tagline": "Your armory, documented.",
+      "accent": {
+        "base": "#c8872b",
+        "ink": "#a86a14",
+        "light": "#d9a24a",
+        "rgb": "200,135,43"
+      },
+      "paths": {
+        "site": "/gunmark/",
+        "images": "/gunmark/images/"
+      },
+      "media": {
+        "icon": "app-icon.png",
+        "og_card": "og-card.png",
+        "demo": "demo.mp4",
+        "demo_poster": "demo-poster.jpg"
+      },
+      "pages": [
+        {
+          "type": "index",
+          "href": "/gunmark/",
+          "footer_label": null
+        },
+        {
+          "type": "privacy",
+          "href": "/gunmark/privacy.html",
+          "footer_label": "Gunmark Privacy"
+        }
+      ],
+      "badges": [
+        {
+          "page": "gunmark/index.html",
+          "class": "badge",
+          "review_text": "Coming soon &middot; Beta signups open"
+        }
+      ],
+      "showcase": {
+        "modifier": "--gm",
+        "blurb": "Your armory, documented. Every gun, every angle, every mod, every receipt and tax stamp — on your device, nowhere else. Beta signups open now.",
+        "chips": [
+          "📸 Guided photo checklists",
+          "🔧 Per-gun build history",
+          "🧾 Receipts & tax stamps",
+          "🔒 No accounts, no servers"
+        ],
+        "cta": "Explore Gunmark →"
+      },
+      "press": {
+        "store_name": "Gunmark",
+        "category": "Utilities",
+        "platform": "iPhone — requires iOS 18 or later",
+        "version": "1.0",
+        "price": "Free for your first 3 firearms with every feature; Gunmark Pro is a one-time purchase — no subscription",
+        "privacy_note": "No accounts, no servers, no tracking. The app makes zero network calls — collection, photos, and documents never leave the device."
+      }
     }
   ]
 }

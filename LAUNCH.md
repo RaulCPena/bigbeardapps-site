@@ -100,11 +100,18 @@ https://bigbeardapps.com/reeltalk/
 
 ### Gunmark
 
-**Not on this runbook's path yet.** Gunmark is the fourth app in `apps.json`,
-but it is at `status: "review"` with beta signups on gunmark.app rather than an
-App Store listing — its badge reads "Coming soon · Beta signups open". Step 1
-still works when it is approved (same three fields, same sync), but there is no
-approval to announce yet, so there is no post here.
+**Not on this runbook's path yet.** Gunmark is at `status: "beta"` — in
+TestFlight, not submitted — with signups on gunmark.app. Step 1 still works
+when it is approved (same three fields, same sync), but there is no approval to
+announce yet, so there is no post here.
+
+**When it goes from beta to submitted, set `status` to `"review"`.** That one
+edit is what makes the site say four apps are in App Review instead of three,
+and swaps its pills from "Beta signups open" back to "Coming soon to the App
+Store" and its press release-date row from "In TestFlight beta" to "Pending App
+Review". Leaving it on `beta` after submitting understates the queue; moving it
+early overstates it, which is the bug that existed until it was caught on
+Gunmark's own page.
 
 Write the announce copy when it has a real App Store URL, not before. Until
 then the roll-up below stays at three, because that is what "all out" means for

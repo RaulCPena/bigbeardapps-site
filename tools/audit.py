@@ -90,6 +90,19 @@ def discover_apps():
     return apps
 
 
+def app_statuses():
+    """{status: count} from apps.json, or {} if it is not there (the
+    directory-scan fallback in discover_apps cannot know statuses)."""
+    data = os.path.join(ROOT, "data", "apps.json")
+    if not os.path.exists(data):
+        return {}
+    out = {}
+    with open(data, encoding="utf-8") as fh:
+        for a in json.load(fh)["apps"]:
+            out[a["status"]] = out.get(a["status"], 0) + 1
+    return out
+
+
 def read(rel):
     with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
         return fh.read()
@@ -222,7 +235,17 @@ def check_press(apps, fail):
     return None
 
 
-def check_counts(pages, apps, fail):
+# A number word can also head a SUBSET claim: "Three apps are in App Review"
+# is true while a fourth sits in TestFlight. Compared against the total it
+# looks like a bug, and the honest fix is not to allowlist the sentence — the
+# number moves every time an app ships — but to check it against the subset it
+# actually names. Each entry matches the text FOLLOWING "<number> apps".
+SUBSET_CLAIMS = (
+    (re.compile(r"\s*(?:is|are)\s+in\s+App\s+Review", re.I), "review"),
+)
+
+
+def check_counts(pages, apps, fail, statuses=None):
     """
     Prose that counts apps must agree with reality.
     This is the check that would have caught "Both coming soon to the App Store."
@@ -232,6 +255,7 @@ def check_counts(pages, apps, fail):
     like "Both strategies, honestly compared" trip it.
     """
     n = len(apps)
+    statuses = statuses or {}
     claim = re.compile(
         r"\b(both|two|three|four|five|six)\b"      # the number word
         r"((?:\s+[\w'’-]+){0,6}?\s+"               # a few words of slack
@@ -253,10 +277,23 @@ def check_counts(pages, apps, fail):
                 whole = m.group(0)
                 if any(a.lower() in whole.lower() for a in COUNT_ALLOWLIST):
                     continue
-                if NUMBER_WORDS.get(m.group(1).lower()) != n:
+                expected, label = n, "apps"
+                tail = text[m.end():m.end() + 40]
+                for tail_pat, status in SUBSET_CLAIMS:
+                    if tail_pat.match(tail):
+                        # Unknown status count means apps.json is absent; a
+                        # subset claim is unverifiable, so do not guess.
+                        if status not in statuses:
+                            expected = None
+                        else:
+                            expected, label = statuses[status], "apps in %s" % status
+                        break
+                if expected is None:
+                    continue
+                if NUMBER_WORDS.get(m.group(1).lower()) != expected:
                     ctx = text[max(0, m.start() - 40):m.end() + 40].strip()
-                    fail("counts", '%s: "%s" but there are %d apps — …%s…'
-                         % (rel, whole.strip(), n, ctx))
+                    fail("counts", '%s: "%s" but there are %d %s — …%s…'
+                         % (rel, whole.strip(), expected, label, ctx))
 
 
 def check_sync(fail):
@@ -299,7 +336,7 @@ def main():
         ("press", "every app has a press section + asset zip",
          lambda: check_press(apps, fail)),
         ("counts", "prose app-counts match reality",
-         lambda: check_counts(pages, apps, fail)),
+         lambda: check_counts(pages, apps, fail, app_statuses())),
         ("sync", "generated regions are up to date",
          lambda: check_sync(fail)),
     ]

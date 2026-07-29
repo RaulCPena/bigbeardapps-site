@@ -44,6 +44,13 @@ def load():
             return json.load(fh)
     site = j("site.json")
     apps = sorted(j("apps.json")["apps"], key=lambda a: a["order"])
+    # Most status branches ask "is it live?", so a typo would not raise — it
+    # would quietly render the app as unreleased and be found by reading the
+    # site. Three valid values is enough to be worth failing on.
+    for a in apps:
+        if a["status"] not in STATUSES:
+            raise SystemExit("ERROR: app '%s' has status %r; expected one of %s"
+                             % (a["slug"], a["status"], ", ".join(STATUSES)))
     pages = j("pages.json")["pages"]
     log = j("log.json")
     return site, apps, pages, log
@@ -200,6 +207,14 @@ def write_robots(site):
 
 REVIEW_TEXT = "Coming soon to the App Store"
 LIVE_TEXT = "Download on the App Store"
+BETA_TEXT = "Coming soon &middot; Beta signups open"
+
+# An app is in exactly one of these. "beta" exists because Gunmark is in
+# TestFlight and has NOT been submitted — folding it in with "review" made the
+# site claim four apps were in App Review when three were, on every page
+# carrying the launch list. Anything that only asks "is it live?" still works;
+# only the copy that names the current step has to tell review and beta apart.
+STATUSES = ("live", "review", "beta")
 
 
 def render_badge(app, badge):
@@ -211,7 +226,8 @@ def render_badge(app, badge):
         text = badge.get("live_text", LIVE_TEXT)
         return ('<a class="%s" href="%s" target="_blank" rel="noopener">%s</a>'
                 % (cls, app["app_store_url"], text))
-    text = badge.get("review_text", REVIEW_TEXT)
+    default = BETA_TEXT if app["status"] == "beta" else REVIEW_TEXT
+    text = badge.get("review_text", default)
     return '<div class="%s">%s</div>' % (cls, text)
 
 
@@ -227,7 +243,9 @@ def _press_store_cell(app):
 def _press_release_cell(app):
     if app["status"] == "live" and app.get("release_date"):
         return app["release_date"]
-    return '<span class="pending">Pending App Review</span>' 
+    if app["status"] == "beta":
+        return '<span class="pending">In TestFlight beta</span>'
+    return '<span class="pending">Pending App Review</span>'
 
 
 WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
@@ -421,10 +439,14 @@ def render_launch_list(site, apps):
     blurb = cfg.get("blurb_unsubscribe" if provider == "buttondown"
                     else "blurb_no_unsubscribe", "")
 
-    pending = [a for a in apps if a["status"] != "live"]
-    if pending:
-        n = WORDS.get(len(pending), str(len(pending)))
-        lead = ("%s app is" if len(pending) == 1 else "%s apps are") % n
+    # Counts apps actually in App Review, not everything unreleased. A beta app
+    # is unreleased too, but saying it is in review is simply false — and it
+    # was, on Gunmark's own page, directly under "Beta testers wanted". The
+    # list still covers every app; only this sentence names the current step.
+    in_review = [a for a in apps if a["status"] == "review"]
+    if in_review:
+        n = WORDS.get(len(in_review), str(len(in_review)))
+        lead = ("%s app is" if len(in_review) == 1 else "%s apps are") % n
         sub = "%s in App Review right now. %s" % (lead[0].upper() + lead[1:], blurb)
     else:
         sub = blurb

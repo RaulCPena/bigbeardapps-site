@@ -57,6 +57,13 @@ An app got approved? See **[LAUNCH.md](LAUNCH.md)** — set `status`,
 press-kit rows and the About sentence all update together, and apps can go live
 independently.
 
+`status` is one of **`beta`**, **`review`** or **`live`**, and `sync.py` refuses
+to run on anything else — most branches only ask "is it live?", so a typo would
+not raise, it would quietly render the app as unreleased. `beta` means
+TestFlight, not submitted; it exists because folding Gunmark in with `review`
+made the site claim four apps were in App Review when three were, on every page
+carrying the launch list. Move an app to `review` when you actually submit it.
+
 The press page is deliberately **half generated**. The facts table comes from
 `apps[].press` — so the Website and Privacy links, and the launch-day App Store
 and Release date rows, cannot drift from the rest of the site. The copyblocks,

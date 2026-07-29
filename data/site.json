@@ -56,7 +56,7 @@
   },
   "launch_list": {
     "_comment": "Launch-notification email capture. endpoint: a Formspree form ID (https://formspree.io/f/XXXX) or null. null renders nothing at all, so the block stays invisible until a real endpoint exists. Deliberately NOT the contact form's endpoint — mixing list signups with support mail makes the list impossible to export cleanly later.",
-    "endpoint": null,
+    "endpoint": "https://formspree.io/f/xzdnolky",
     "heading": "Know when they launch",
     "blurb": "One email when an app goes live. That's the whole list — no newsletter, no tracking, no sharing, unsubscribe any time.",
     "button": "Notify me"

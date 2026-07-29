@@ -24,6 +24,7 @@ import os
 import re
 import sys
 import json
+import hashlib
 from string import Template
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,6 +52,21 @@ def load():
 def tpl(name):
     with open(os.path.join(ROOT, "templates", name), encoding="utf-8") as fh:
         return Template(fh.read())
+
+
+def asset_version(rel_path):
+    """Short content hash, stamped onto static assets as ?v=.
+
+    This is a static site with no build step and no fingerprinted filenames,
+    so an edit to site.css is invisible to any browser still holding a cached
+    copy — a phone can render today's HTML against last night's stylesheet,
+    which is exactly how a shipped footer fix stayed hidden. The stamp is
+    derived from the file's bytes, so it is stable across runs and moves only
+    when the asset actually changes: no version to bump by hand, and no
+    needless cache churn on every sync.
+    """
+    with open(os.path.join(ROOT, rel_path), "rb") as fh:
+        return hashlib.sha256(fh.read()).hexdigest()[:8]
 
 
 def pages_on_disk():
@@ -139,6 +155,7 @@ def render_head(site, apps, rel, cfg):
         og_description=cfg.get("og_description") or cfg["description"],
         og_image=cfg["og_image"],
         og_image_alt=alt,
+        css_version=asset_version("assets/site.css"),
     ).rstrip("\n")
 
 
@@ -430,10 +447,11 @@ def render_launch_list(site, apps):
         '%s'
         '                <button type="submit">%s</button>\n'
         '            </form>\n'
-        '            <script src="/assets/launch-list.js" defer></script>\n'
+        '            <script src="/assets/launch-list.js?v=%s" defer></script>\n'
         '        </section>'
         % (esc_text(cfg.get("heading", "Know when they launch")),
-           esc_text(sub), endpoint, extra, esc_text(cfg.get("button", "Notify me")))
+           esc_text(sub), endpoint, extra, esc_text(cfg.get("button", "Notify me")),
+           asset_version("assets/launch-list.js"))
     )
 
 
@@ -524,19 +542,21 @@ def wrap(name, body):
 def init_file(path, html):
     """Wrap the existing nav/footer blocks in markers (one-time migration)."""
     changed = False
+    # The head closes on the stylesheet link, matched as a pattern rather than
+    # a literal so it still anchors once the href carries a ?v= cache stamp.
     for name, pat, close in (
-            ("head", r'<meta charset=', '<link rel="stylesheet" href="/assets/site.css">'),
-            ("nav", r'<nav class="site-nav[^"]*">', "</nav>"),
-            ("footer", r'<footer class="site-footer">', "</footer>")):
+            ("head", r'<meta charset=', r'<link rel="stylesheet" href="/assets/site\.css[^"]*">'),
+            ("nav", r'<nav class="site-nav[^"]*">', r"</nav>"),
+            ("footer", r'<footer class="site-footer">', r"</footer>")):
         if region_span(html, name, path):
             continue
         m = re.search(pat, html)
         if not m:
             raise SystemExit("ERROR: %s has no <%s> block to wrap." % (path, name))
-        end = html.find(close, m.start())
-        if end < 0:
-            raise SystemExit("ERROR: %s has an unclosed %s." % (path, close))
-        end += len(close)
+        c = re.search(close, html[m.start():])
+        if not c:
+            raise SystemExit("ERROR: %s has an unclosed %s." % (path, name))
+        end = m.start() + c.end()
         html = html[:m.start()] + wrap(name, html[m.start():end]) + html[end:]
         changed = True
 

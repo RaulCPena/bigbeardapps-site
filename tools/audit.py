@@ -132,7 +132,10 @@ def check_app_coverage(pages, apps, fail):
 
 def check_links(pages, fail):
     """Every root-relative href/src/source must resolve on disk."""
-    pat = re.compile(r'(?:href|src)="(/[^"#?]*)"')
+    # The capture stops at ? or #, but the pattern still consumes them, so a
+    # cache-busted asset (site.css?v=…) is checked by path instead of silently
+    # falling out of the match and losing its coverage.
+    pat = re.compile(r'(?:href|src)="(/[^"#?]*)[^"]*"')
     for rel in pages:
         for url in set(pat.findall(read(rel))):
             target = os.path.join(ROOT, url.lstrip("/"))

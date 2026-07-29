@@ -189,6 +189,21 @@ robots.txt     generated
 press/         press kit + per-app asset zips
 ```
 
+## Asset caching
+
+`site.css` and `launch-list.js` are linked with a `?v=<hash>` stamp that
+`sync.py` derives from the file's own bytes. Nothing to bump by hand: edit the
+asset, run sync, and every page picks up the new stamp. Leave an asset alone and
+the stamp does not move, so caches are not churned for nothing.
+
+This exists because the site is static with no build step and no fingerprinted
+filenames. Without the stamp a browser holding yesterday's `site.css` renders
+today's HTML against it — which is how a shipped mobile footer fix stayed
+invisible on a phone while looking fine everywhere else. If you add another
+shared asset, stamp it the same way and give `check_links` in `audit.py` a
+glance: its pattern captures the path and discards the query, so a stamped URL
+is still checked rather than silently skipped.
+
 ## Gotchas
 
 - **`$` in a template file must be written `$$`** — templates use Python's

@@ -71,18 +71,32 @@ shipping without either.
 ## Launch list
 
 A launch-notification signup on the homepage. It renders **nothing at all** until
-`data/site.json` → `launch_list.endpoint` holds a Formspree form ID, so it ships dark
-and switches on in one edit — same contract as the analytics slot.
+`data/site.json` → `launch_list.endpoint` is set, so it ships dark and switches on in
+one edit — same contract as the analytics slot.
 
-Turning it on:
+`launch_list.provider` is `formspree` or `buttondown`, and it changes the copy, not just
+the markup:
 
-1. Create a new form at formspree.io (a *separate* one from the contact form — mixing
-   list signups with support mail makes the list impossible to export cleanly).
-2. Put its ID in `launch_list.endpoint`, run `python3 tools/sync.py`.
+| | Formspree | Buttondown |
+|---|---|---|
+| What it is | form backend | real mailing list |
+| Unsubscribe | none | built in |
+| Free-tier ceiling | ~50 submissions/month, then **silently dropped** | subscriber-based |
+| Blurb used | `blurb_no_unsubscribe` | `blurb_unsubscribe` |
+
+The blurb is picked by provider on purpose. Promising "unsubscribe any time" while
+pointed at Formspree is a commitment the tooling cannot keep — and for commercial email
+a working opt-out is a CAN-SPAM requirement, not a courtesy. Tying the promise to the
+provider makes it impossible to leave the wrong one behind after a migration.
+
+**Switching to Buttondown:** create the account (that part needs a human), copy the
+action URL out of its embed snippet, then set `provider` to `buttondown` and `endpoint`
+to that URL and run `python3 tools/sync.py`. Verify the current free tier at signup
+rather than trusting this table.
 
 The sub-heading counts apps in review from `apps.json`, so it can never claim the wrong
-number. Its colours are scoped to `.launch-list` and assume the dark homepage surface —
-if it ever moves to a light page it needs a modifier, not a global rule.
+number. Colours are scoped to `.launch-list` and assume the dark homepage surface — if it
+moves to a light page it needs a modifier, not a global rule.
 
 ## Checks
 

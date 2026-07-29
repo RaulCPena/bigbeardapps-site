@@ -378,20 +378,30 @@ def render_press_facts(app, site):
 
 def render_launch_list(site, apps):
     """
-    Launch-notification signup. Renders nothing at all until site.json carries a
-    real endpoint, so the block can ship dark and be switched on in one edit —
-    same contract as the analytics slot.
+    Launch-notification signup. Renders nothing until an endpoint exists, so it
+    can ship dark — same contract as the analytics slot.
 
-    The count sentence comes from the app list, so it can never claim the wrong
-    number of apps.
+    Provider-aware on purpose. Formspree is a form backend with no unsubscribe
+    mechanism, so promising "unsubscribe any time" while pointed at it is a
+    commitment the tooling cannot keep. The blurb is therefore chosen by
+    provider rather than hand-written, which makes the promise impossible to
+    leave behind after a migration.
     """
     cfg = site.get("launch_list") or {}
     endpoint = cfg.get("endpoint")
     if not endpoint:
         return "<!-- launch list: no endpoint configured -->"
 
+    provider = (cfg.get("provider") or "formspree").lower()
+    if provider not in ("formspree", "buttondown"):
+        raise SystemExit("ERROR: launch_list.provider must be 'formspree' or "
+                         "'buttondown', got %r" % provider)
+
+    # Only a real list tool may promise an opt-out.
+    blurb = cfg.get("blurb_unsubscribe" if provider == "buttondown"
+                    else "blurb_no_unsubscribe", "")
+
     pending = [a for a in apps if a["status"] != "live"]
-    blurb = cfg.get("blurb", "")
     if pending:
         n = WORDS.get(len(pending), str(len(pending)))
         lead = ("%s app is" if len(pending) == 1 else "%s apps are") % n
@@ -399,6 +409,12 @@ def render_launch_list(site, apps):
     else:
         sub = blurb
     sub = re.sub(r"\s+", " ", sub).strip()
+
+    if provider == "buttondown":
+        extra = '                <input type="hidden" name="embed" value="1">\n'
+    else:
+        extra = ('                <input type="hidden" name="_subject" '
+                 'value="Launch list signup">\n')
 
     return (
         '<section class="launch-list">\n'
@@ -408,12 +424,12 @@ def render_launch_list(site, apps):
         '                <label class="visually-hidden" for="launch-email">Email address</label>\n'
         '                <input id="launch-email" type="email" name="email" required\n'
         '                       autocomplete="email" placeholder="you@example.com">\n'
-        '                <input type="hidden" name="_subject" value="Launch list signup">\n'
+        '%s'
         '                <button type="submit">%s</button>\n'
         '            </form>\n'
         '        </section>'
         % (esc_text(cfg.get("heading", "Know when they launch")),
-           esc_text(sub), endpoint, esc_text(cfg.get("button", "Notify me")))
+           esc_text(sub), endpoint, extra, esc_text(cfg.get("button", "Notify me")))
     )
 
 

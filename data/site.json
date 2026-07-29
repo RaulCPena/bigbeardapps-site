@@ -55,10 +55,12 @@
     "token": null
   },
   "launch_list": {
-    "_comment": "Launch-notification email capture. endpoint: a Formspree form ID (https://formspree.io/f/XXXX) or null. null renders nothing at all, so the block stays invisible until a real endpoint exists. Deliberately NOT the contact form's endpoint — mixing list signups with support mail makes the list impossible to export cleanly later.",
+    "_comment": "Launch-notification email capture. provider: 'formspree' | 'buttondown'. endpoint: the form's POST URL, or null to render nothing at all. Formspree is a FORM BACKEND, not a mailing list — it has no unsubscribe mechanism and the free tier drops submissions past 50/month, silently, which is worst exactly when a launch post lands. Buttondown is a real list: it owns unsubscribe and the compliance footer. If provider is 'formspree', the blurb must NOT promise unsubscribe — the tooling cannot honour it.",
+    "provider": "formspree",
     "endpoint": "https://formspree.io/f/xzdnolky",
     "heading": "Know when they launch",
-    "blurb": "One email when an app goes live. That's the whole list — no newsletter, no tracking, no sharing, unsubscribe any time.",
+    "blurb_unsubscribe": "One email when an app goes live. That's the whole list — no newsletter, no tracking, no sharing, unsubscribe any time.",
+    "blurb_no_unsubscribe": "One email when an app goes live. That's the whole list — no newsletter, no tracking, nothing shared with anyone.",
     "button": "Notify me"
   }
 }

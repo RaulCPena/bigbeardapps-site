@@ -245,6 +245,44 @@ SUBSET_CLAIMS = (
 )
 
 
+# Region kinds sync.py knows how to render, and whether each MUST appear on at
+# least one page. A kind that is optional-by-design (badge, showcase) is listed
+# as False.
+WIRED_REQUIRED = {
+    "log": True,            # data/log.json exists only to feed this
+    "statusline": True,
+    "appcards": True,
+    "contacttopics": True,
+    "launchlist": False,    # legitimately absent while the endpoint is null
+    "pressfacts": False,    # optional per app
+    "crosspromo": False,
+    "showcase": False,
+    "badge": False,
+}
+
+
+def check_regions_wired(pages, fail):
+    """
+    Every renderer that must be live has a marker on some page.
+
+    This exists because a renderer, its data file, its dispatch case and its
+    regex once all landed WITHOUT the marker that invokes them: an errant
+    'git checkout -- about.html' discarded the wrap before it was committed.
+    Nothing failed. sync --check had no region to compare, the audit had no
+    opinion, and the snapshot saw unchanged bytes — three green gates over a
+    feature wired to nothing, while data/log.json quietly drove no output.
+    """
+    seen = set()
+    for rel in pages:
+        for m in re.finditer(r"<!-- bba:([a-z0-9]+)(?::[a-z0-9-]+)? start", read(rel)):
+            seen.add(m.group(1))
+    for kind, required in sorted(WIRED_REQUIRED.items()):
+        if required and kind not in seen:
+            fail("wired", "no page carries a 'bba:%s' region, but sync.py renders "
+                          "one and it is required — the renderer is dead code" % kind)
+    return None
+
+
 def check_counts(pages, apps, fail, statuses=None):
     """
     Prose that counts apps must agree with reality.
@@ -335,6 +373,8 @@ def main():
          lambda: check_media(apps, fail)),
         ("press", "every app has a press section + asset zip",
          lambda: check_press(apps, fail)),
+        ("wired", "required generated regions are actually present",
+         lambda: check_regions_wired(pages, fail)),
         ("counts", "prose app-counts match reality",
          lambda: check_counts(pages, apps, fail, app_statuses())),
         ("sync", "generated regions are up to date",

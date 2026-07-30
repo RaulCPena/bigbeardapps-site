@@ -5,6 +5,11 @@
   "entries": [
     {
       "date": "July 2026",
+      "title": "Four apps at Apple at once",
+      "body": "Feastmark, PayoffPilot and ReelTalk went into App Review and Gunmark opened a TestFlight beta. I wrote up what shipping them together actually cost &mdash; including a signup form that told people to check their inbox while subscribing nobody: <a href=\"https://raulcpena.com/blog/four-apps-at-apple-at-once/\">Four Apps at Apple at Once</a>."
+    },
+    {
+      "date": "July 2026",
       "title": "Gunmark joins the lineup",
       "body": "Gunmark — a private firearm collection catalog with zero network calls — opened beta signups and joined the site alongside Feastmark, PayoffPilot, and ReelTalk."
     },

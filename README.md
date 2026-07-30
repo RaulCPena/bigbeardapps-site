@@ -153,6 +153,16 @@ and is linked back to. Two genres, two audiences, one system.
 
 ## Checks
 
+The pre-push hook runs **two hard gates**: `tools/sync.py --check` and `tools/audit.py`
+(nine checks inside it). `tools/snapshot.py` is deliberately **not** a gate — it needs a
+human to say whether a rendering change was intended, so as a blocker it would cry wolf
+on every legitimate edit. Run it by hand before pushing anything that touches markup.
+
+Note what that means: a green push proves regions are in sync and the audit passes. It
+does not prove the page renders correctly. The launch-list form once shipped telling
+people to check their inbox while subscribing nobody, with every gate green, because the
+markup was valid. Open a browser.
+
 ```bash
 python3 tools/audit.py       # link resolution, required meta, app coverage, prose counts
 python3 tools/snapshot.py check   # did any page's markup change unintentionally?

@@ -20,7 +20,7 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Feastmark — turn recipe videos into your personal cookbook.">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="/assets/site.css?v=1f265216">
+    <link rel="stylesheet" href="/assets/site.css?v=c48a019b">
 <!-- bba:head end -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -91,7 +91,7 @@
             font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #A0722A;
+            color: #986C28;
             margin-bottom: 12px;
         }
         .section-title {
@@ -173,11 +173,9 @@
             color: #555;
             font-size: 1em;
         }
-        /* Two percent darker than the site amber (#A0722A), same hue: that one
-           sits at 4.26:1 on white and misses WCAG AA, and this is the link a
-           reviewer has to read to contact support. Indistinguishable by eye,
-           4.66:1. The sitewide link colour has the same shortfall — a separate
-           call, since it is a design-system token. */
+        /* Matches --amber-ink in site.css (4.66:1 on white). This page carries
+           its own styles rather than the token, so the value is repeated here —
+           if the token moves again, move it here too. */
         .support-line a {
             color: #986C28;
             font-weight: 600;
@@ -263,8 +261,8 @@
 <div class="badge">Coming soon to the App Store</div>
 <!-- bba:badge:feastmark end -->
         </div>
-        <video class="hero-phone" autoplay muted loop playsinline poster="images/demo-poster.jpg">
-            <source src="images/demo.mp4" type="video/mp4">
+        <video class="hero-phone" autoplay muted loop playsinline poster="images/demo-poster.jpg?v=acd34afe">
+            <source src="images/demo.mp4?v=749eff25" type="video/mp4">
         </video>
     </div>
 </section>
@@ -333,11 +331,12 @@
     </div>
 
     <div class="screens">
-        <img src="images/screen-library.png" alt="Feastmark recipe library">
-        <img src="images/screen-recipe-detail.png" alt="Recipe detail with ingredients and Cook button">
-        <img src="images/screen-cook-mode.png" alt="Cook Mode with ingredient checklist">
-        <img src="images/screen-collection.png" alt="Recipe collections">
-        <img src="images/screen-search.png" alt="Ingredient search">
+        <img src="images/screen-library.png?v=dfc2f561" alt="The Feastmark library, with collections across the top and recipe cards below">
+        <img src="images/screen-recipe-detail.png?v=2e5859da" alt="A recipe, with the cook log's note for next time sitting above the ingredients">
+        <img src="images/screen-cook-mode.png?v=c01fa29b" alt="Cook Mode, with the current step filling the screen in large type">
+        <img src="images/screen-cook-timer.png?v=061d795d" alt="Cook Mode offering a 35 minute timer it read out of the step">
+        <img src="images/screen-ingredients.png?v=c805bbe1" alt="The ingredients sheet in Cook Mode, with the first item checked off">
+        <img src="images/screen-search.png?v=e53bf7e6" alt="Searching the library for an ingredient">
     </div>
 
     <div class="platforms">
@@ -363,7 +362,7 @@
     <div class="crosspromo-inner">
         <p class="crosspromo-label">More from Big Beard Apps</p>
         <a class="promo-card" href="/payoffpilot/">
-            <img src="/payoffpilot/images/app-icon.png" alt="PayoffPilot app icon">
+            <img src="/payoffpilot/images/app-icon.png?v=5e4a769d" alt="PayoffPilot app icon">
             <div class="promo-copy">
                 <h3>PayoffPilot</h3>
                 <p>Pay off debt. Pay once. Done.</p>
@@ -371,7 +370,7 @@
             <span class="promo-arrow" aria-hidden="true">&rarr;</span>
         </a>
         <a class="promo-card" href="/reeltalk/">
-            <img src="/reeltalk/images/app-icon.png" alt="ReelTalk app icon">
+            <img src="/reeltalk/images/app-icon.png?v=4c54a09a" alt="ReelTalk app icon">
             <div class="promo-copy">
                 <h3>ReelTalk</h3>
                 <p>Fishing pun stickers for iMessage.</p>
@@ -379,7 +378,7 @@
             <span class="promo-arrow" aria-hidden="true">&rarr;</span>
         </a>
         <a class="promo-card" href="/gunmark/">
-            <img src="/gunmark/images/app-icon.png" alt="Gunmark app icon">
+            <img src="/gunmark/images/app-icon.png?v=06134620" alt="Gunmark app icon">
             <div class="promo-copy">
                 <h3>Gunmark</h3>
                 <p>Your armory, documented.</p>

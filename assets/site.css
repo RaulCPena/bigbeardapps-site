@@ -24,7 +24,11 @@
     /* — Accents — */
     --amber:          #D4922A;   /* brand + Feastmark */
     --amber-light:    #D4A843;
-    --amber-ink:      #A0722A;   /* amber text on light */
+    --amber-ink:      #986C28;   /* amber text on light — 4.66:1, clears WCAG AA.
+                                    Was #A0722A, which is 4.26:1 and misses it;
+                                    this is the same hue two percent darker, and
+                                    it is the colour of every body link on the
+                                    site, so the shortfall was sitewide. */
     --amber-tint:     #fbf3e6;   /* amber callout bg */
     --blue:           #0066cc;   /* PayoffPilot */
     --blue-dark:      #0059b3;

@@ -257,6 +257,23 @@ press/         press kit + per-app asset zips
 asset, run sync, and every page picks up the new stamp. Leave an asset alone and
 the stamp does not move, so caches are not churned for nothing.
 
+**Per-app media is stamped too** — icons, preview videos and their posters, via
+`media_url()` in sync.py. App media is replaced *in place*: a new build's
+screenshots and video land on the existing filenames, so without a stamp the URL
+never changes and a cache is free to keep serving the old capture. That is not
+hypothetical — Feastmark's demo video showed a Pinterest source link and the
+superseded Cook Mode, and a browser kept playing the old copy after the file on
+disk had already been replaced.
+
+Screenshots referenced from hand-written markup (the `.screens` strip on an app
+page, the press asset grid) are outside any managed region, so their stamps are
+written by hand. **When you replace one of those, update its `?v=` too** — the
+value is the first 8 characters of the file's SHA-256:
+
+```bash
+shasum -a 256 feastmark/images/screen-cook-mode.png | cut -c1-8
+```
+
 This exists because the site is static with no build step and no fingerprinted
 filenames. Without the stamp a browser holding yesterday's `site.css` renders
 today's HTML against it — which is how a shipped mobile footer fix stayed

@@ -77,6 +77,24 @@ def asset_version(rel_path):
         return hashlib.sha256(fh.read()).hexdigest()[:8]
 
 
+def media_url(app, key):
+    """A per-app media URL carrying the same content stamp as site.css.
+
+    App media is replaced in place — a new build's screenshots and preview
+    video land on the existing filenames — so without this the URL never
+    changes and a cache is free to keep serving the old capture. That is not
+    hypothetical: Feastmark's demo video showed a Pinterest source link and the
+    superseded Cook Mode, and a browser holding the old copy kept playing it
+    after the file on disk had already been replaced.
+
+    Stable by construction: the hash moves only when the bytes move, so this
+    costs one refresh per real change and nothing on every other sync.
+    """
+    base = app["paths"]["images"]
+    name = app["media"][key]
+    return "%s%s?v=%s" % (base, name, asset_version((base + name).lstrip("/")))
+
+
 def pages_on_disk():
     out = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
@@ -453,13 +471,13 @@ def render_app_cards(apps):
     for a in apps:
         cards.append(
             '        <a class="app-card" href="%s">\n'
-            '            <img src="%s%s" alt="%s app icon">\n'
+            '            <img src="%s" alt="%s app icon">\n'
             '            <div>\n'
             '                <h3>%s</h3>\n'
             '                <p>%s</p>\n'
             '            </div>\n'
             '        </a>'
-            % (a["paths"]["site"], a["paths"]["images"], a["media"]["icon"],
+            % (a["paths"]["site"], media_url(a, "icon"),
                a["name"], a["name"], a["tagline"]))
     return '<div class="app-cards">\n%s\n    </div>' % "\n".join(cards)
 
@@ -472,14 +490,14 @@ def render_crosspromo(apps, self_slug):
     for a in others:
         cards.append(
             '        <a class="promo-card" href="%s">\n'
-            '            <img src="%s%s" alt="%s app icon">\n'
+            '            <img src="%s" alt="%s app icon">\n'
             '            <div class="promo-copy">\n'
             '                <h3>%s</h3>\n'
             '                <p>%s</p>\n'
             '            </div>\n'
             '            <span class="promo-arrow" aria-hidden="true">&rarr;</span>\n'
             '        </a>'
-            % (a["paths"]["site"], a["paths"]["images"], a["media"]["icon"],
+            % (a["paths"]["site"], media_url(a, "icon"),
                a["name"], a["name"], a["tagline"]))
     return ('<section class="crosspromo">\n'
             '    <div class="crosspromo-inner">\n'
@@ -627,27 +645,26 @@ def render_showcase(app):
     n1, n2 = app["name_split"]
     chips = "\n".join('                <div class="chip">%s</div>' % c
                        for c in sc["chips"])
-    img = app["paths"]["images"]
     return (
 '<section class="%s">\n'
 '    <div class="showcase-inner">\n'
 '        <div class="showcase-copy">\n'
 '            %s\n'
-'            <h2><img src="%s%s" alt=""><div>%s<span>%s</span></div></h2>\n'
+'            <h2><img src="%s" alt=""><div>%s<span>%s</span></div></h2>\n'
 '            <p>%s</p>\n'
 '            <div class="chips">\n%s\n            </div>\n'
 '            <a class="cta" href="%s">%s</a>\n'
 '        </div>\n'
 '        <div class="showcase-phone-wrap">\n'
 '            <div class="phone-glow"></div>\n'
-'            <video class="showcase-phone" autoplay muted loop playsinline poster="%s%s">\n'
-'                <source src="%s%s" type="video/mp4">\n'
+'            <video class="showcase-phone" autoplay muted loop playsinline poster="%s">\n'
+'                <source src="%s" type="video/mp4">\n'
 '            </video>\n'
 '        </div>\n'
 '    </div>\n'
-'</section>' % (cls, badge, img, app["media"]["icon"], n1, n2, sc["blurb"], chips,
+'</section>' % (cls, badge, media_url(app, "icon"), n1, n2, sc["blurb"], chips,
                 app["paths"]["site"], sc["cta"],
-                img, app["media"]["demo_poster"], img, app["media"]["demo"]))
+                media_url(app, "demo_poster"), media_url(app, "demo")))
 
 
 # ── region surgery ───────────────────────────────────────────────────────

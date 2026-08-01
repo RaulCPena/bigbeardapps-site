@@ -173,13 +173,18 @@
             color: #555;
             font-size: 1em;
         }
+        /* Two percent darker than the site amber (#A0722A), same hue: that one
+           sits at 4.26:1 on white and misses WCAG AA, and this is the link a
+           reviewer has to read to contact support. Indistinguishable by eye,
+           4.66:1. The sitewide link colour has the same shortfall — a separate
+           call, since it is a design-system token. */
         .support-line a {
-            color: #A0722A;
+            color: #986C28;
             font-weight: 600;
             text-decoration: none;
-            border-bottom: 1px solid rgba(160,114,42,0.4);
+            border-bottom: 1px solid rgba(152,108,40,0.45);
         }
-        .support-line a:hover { border-bottom-color: #A0722A; }
+        .support-line a:hover { border-bottom-color: #986C28; }
 
         .crosspromo {
             background: #111;

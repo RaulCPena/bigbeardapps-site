@@ -135,6 +135,21 @@
         .status.ok { display: block; background: #17251a; color: #7fd191; border: 1px solid #26492f; }
         .status.err { display: block; background: #2b1a17; color: #e09a8d; border: 1px solid #4d2b24; }
 
+        /* Email fallback under the form. This page is an App Store Support URL,
+           and the form posts to a third party — if that ever fails, or a
+           reviewer would rather not fill in a form, there has to be an address
+           on the page to read. */
+        .card-alt {
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid #2b271f;
+            text-align: center;
+            font-size: 0.92em;
+            color: #b9b3a8;
+        }
+        .card-alt a { color: #D4A843; font-weight: 600; text-decoration: none; }
+        .card-alt a:hover { text-decoration: underline; }
+
         /* honeypot */
         .hp { position: absolute; left: -9999px; opacity: 0; }
     </style>
@@ -192,6 +207,12 @@
             <button type="submit" id="submit-btn">Send message</button>
             <div class="status" id="form-status"></div>
         </form>
+
+        <p class="card-alt">
+            Prefer email? Write to
+            <a href="mailto:support@bigbeardapps.com">support@bigbeardapps.com</a>
+            &mdash; or see the <a href="/support.html">support page</a> for common questions.
+        </p>
     </div>
 </main>
 

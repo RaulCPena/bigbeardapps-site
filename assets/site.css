@@ -245,8 +245,67 @@ em, .accent-serif {
     box-shadow: 0 8px 24px rgba(212,146,42,0.32);
     transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
+.contact-box h3 { color: #fff; font-size: 1.35em; font-weight: 800; margin-bottom: 12px; }
 .contact-box a:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(212,146,42,0.42); }
 .contact-box a:last-of-type { margin: 0; }
+/* The address in readable text, not only behind the button. App Review, and
+   anyone whose device has no mail client wired up, has to be able to read it. */
+.contact-box__addr { margin: 18px 0 0; font-size: 0.9em; }
+
+/* ── Support picker (/support.html) ───────────────────────────────
+   Without JS this is a row of in-page links and every panel is visible —
+   a working page, not a broken one. support.html's inline script turns it
+   into a tab set and adds the ARIA roles itself, so the roles never
+   advertise behaviour the page does not have. */
+.support-title { font-size: clamp(2em, 5vw, 2.6em); font-weight: 800; letter-spacing: -0.03em; }
+.support-lede { color: var(--text-2); margin: 10px 0 34px; max-width: 54ch; }
+
+.support-picker { margin-bottom: 30px; }
+.support-picker__label {
+    font-size: 0.8em; font-weight: 700; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px;
+}
+.support-picker__list { display: flex; flex-wrap: wrap; gap: 10px; }
+.support-tab {
+    display: inline-flex; align-items: center; gap: 9px;
+    min-height: 44px;                       /* touch target, phones included */
+    padding: 7px 18px 7px 8px;
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 999px;
+    font: inherit; font-weight: 600; font-size: 0.95em;
+    text-decoration: none; cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+.support-tab img { width: 28px; height: 28px; border-radius: 8px; }
+.support-tab:hover { border-color: var(--app-accent, var(--amber)); }
+.support-tab:focus-visible {
+    outline: 2px solid var(--app-accent, var(--amber));
+    outline-offset: 2px;
+}
+/* Selected inverts against the page and wears its app's accent as a border
+   and ring — the accent is never the surface under the label. The four
+   accents run from a light amber to a dark blue, so no single label colour
+   clears WCAG AA on all of them (white on Feastmark's amber is 2.6:1, and a
+   fifth app could be worse). Inverting is 19:1 in light and 17:1 in dark
+   whatever accent arrives next. */
+.support-tab[aria-selected="true"] {
+    background: var(--ink);
+    border-color: var(--app-accent, var(--amber));
+    color: #fff;
+    box-shadow: 0 0 0 3px rgba(var(--app-accent-rgb, 212,146,42), 0.28);
+}
+
+.support-panel[hidden] { display: none; }
+/* Panels stack in the no-JS view, so they need to read as separate things.
+   In tab mode only one is ever shown and the rule costs nothing. */
+.support-panel + .support-panel { margin-top: 44px; }
+.support-panel__title {
+    font-size: 1.5em; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px;
+}
+.support-panel__intro { color: var(--text-2); margin-bottom: 22px; }
+.support-panel:focus-visible { outline: 2px solid var(--amber); outline-offset: 6px; }
+.support-more { margin-top: -8px; }
+.support-more a { color: var(--amber-ink); font-weight: 600; }
 
 /* generic page shell for centered content pages */
 .container { max-width: var(--maxw-read); margin: 0 auto; padding: clamp(28px, 5vw, 56px) 20px; }
@@ -360,6 +419,11 @@ em, .accent-serif {
     .faq-item p, .faq-item ul, .faq-item ol { color: var(--on-dark); }
     .legal .updated, .legal .last-updated, .legal .subtitle { color: var(--text-muted); }
     .legal .contact { background: #1a1712; border-color: #322d25; }
+    .support-lede, .support-panel__intro { color: var(--on-dark); }
+    .support-tab { background: #201d18; border-color: #322d25; color: var(--on-dark-strong); }
+    /* Inverting again — the ink fill that reads as "selected" on a cream page
+       would sit darker than the unselected pills here and read as disabled. */
+    .support-tab[aria-selected="true"] { background: var(--on-dark-strong); color: var(--ink); }
     .legal .highlight { background: rgba(212,146,42,0.12); }
     .legal .important { background: rgba(212,168,67,0.12); }
     .legal code, .faq-item code { background: #1a1712; border-color: #322d25; color: var(--on-dark-strong); }

@@ -26,6 +26,7 @@ import sys
 import json
 import hashlib
 from string import Template
+from urllib.parse import quote
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP_DIRS = {"assets", "tools", "templates", "data", ".git", "docs", "_snap"}
@@ -292,6 +293,8 @@ def render_app_region(name, apps, rel, site, log):
         return render_contact_topics(apps)
     if kind == "appcards":
         return render_app_cards(apps)
+    if kind == "support":
+        return render_support(apps)
     if kind == "crosspromo":
         return render_crosspromo(apps, slug)
     app = by_slug.get(slug)
@@ -335,6 +338,113 @@ def render_contact_topics(apps):
     opts.append("                <option>Something else</option>")
     return ('<select id="topic" name="topic">\n%s\n            </select>'
             % "\n".join(opts))
+
+
+SUPPORT_EMAIL = "support@bigbeardapps.com"
+
+
+def hex_to_rgb(value, fallback="212,146,42"):
+    """'#D4922A' -> '212,146,42', for use inside rgba().
+
+    Derived rather than read from accent.rgb: that field is not kept in step
+    with accent.base — ReelTalk's holds its *light* shade — so trusting it
+    would tint one app's ring a different green from its own border."""
+    value = (value or "").lstrip("#")
+    if len(value) != 6:
+        return fallback
+    try:
+        return "%d,%d,%d" % tuple(int(value[i:i + 2], 16) for i in (0, 2, 4))
+    except ValueError:
+        return fallback
+
+
+def support_mailto(app):
+    """One inbox for every app. The subject carries the app name, so a message
+    arriving cold says which app it is about without a round trip to ask."""
+    return "mailto:%s?subject=%s" % (SUPPORT_EMAIL, quote("%s Support" % app["name"]))
+
+
+def render_support(apps):
+    """
+    The whole body of /support.html — the app picker and one panel per app,
+    both from apps.json.
+
+    Generated rather than hand-written because the alternative is a page that
+    has to be restructured for the fifth app: a picker entry, a panel, an
+    anchor and a mailto subject, four places to miss one. Here an app that is
+    in apps.json is on this page, with a panel the picker can actually reach.
+
+    The picker's no-JS form is a row of in-page links with every panel shown;
+    support.html's inline script upgrades it to a tab set and adds the ARIA
+    roles itself, so the roles never describe behaviour that is not there.
+
+    Values under 'support' are trusted as authored HTML — the same contract as
+    the showcase blurbs and the build log.
+    """
+    tabs, panels = [], []
+    for app in apps:
+        sup = app.get("support") or {}
+        slug, name = app["slug"], app["name"]
+        # The accent rides in as custom properties rather than a per-app CSS
+        # rule, so a fifth app needs no stylesheet edit. It colours the border
+        # and the ring, never a text background: these accents run from a light
+        # amber to a dark blue, and no single text colour clears WCAG AA
+        # against all of them (white on the amber is 2.6:1). The selected pill
+        # inverts against the page instead, which is contrast-safe whatever
+        # colour the next app brings.
+        accent = app.get("accent", {})
+        tabs.append(
+            '            <a class="support-tab" data-support-tab href="#support-%s"\n'
+            '               style="--app-accent: %s; --app-accent-rgb: %s">\n'
+            '                <img src="%s%s" alt="">%s\n'
+            '            </a>'
+            % (slug, accent.get("base", "var(--amber)"),
+               hex_to_rgb(accent.get("base")),
+               app["paths"]["images"], app["media"]["icon"], name))
+
+        body = ['    <section class="support-panel" id="support-%s">' % slug,
+                '        <h2 class="support-panel__title">%s support</h2>' % name]
+        if sup.get("intro"):
+            body.append('        <p class="support-panel__intro">%s</p>' % sup["intro"])
+
+        faqs = sup.get("faqs") or []
+        if faqs:
+            body.append('        <div class="faq-section">')
+            for faq in faqs:
+                body += ['            <div class="faq-item">',
+                         '                <h3>%s</h3>' % faq["q"],
+                         '                <p>%s</p>' % faq["a"],
+                         '            </div>']
+            body.append('        </div>')
+
+        more = sup.get("more")
+        if more:
+            body.append('        <p class="support-more"><a href="%s">%s</a></p>'
+                        % (more["href"], more["label"]))
+
+        # The address is printed as text as well as wrapped in the mailto:
+        # App Review and anyone without a mail client configured needs to be
+        # able to read it, not just click it.
+        body += ['        <div class="contact-box">',
+                 '            <h3>Still need help?</h3>',
+                 '            <p>%s</p>' % sup.get(
+                     "contact_blurb",
+                     "Send me a message and I&rsquo;ll get back to you."),
+                 '            <a href="%s">Email about %s</a>' % (support_mailto(app), name),
+                 '            <p class="contact-box__addr">%s</p>' % SUPPORT_EMAIL,
+                 '        </div>',
+                 '    </section>']
+        panels.append("\n".join(body))
+
+    return ('<div class="support-picker">\n'
+            '        <h2 class="support-picker__label" id="support-picker-label">'
+            'Which app do you need help with?</h2>\n'
+            '        <div class="support-picker__list" data-support-picker\n'
+            '             aria-labelledby="support-picker-label">\n'
+            '%s\n'
+            '        </div>\n'
+            '    </div>\n\n'
+            '%s' % ("\n".join(tabs), "\n\n".join(panels)))
 
 
 def render_app_cards(apps):
@@ -658,7 +768,7 @@ def main():
         # per-app regions: bba:badge:<slug>, bba:pressstore:<slug>, …
         for extra in sorted(set(re.findall(
                 r"<!-- bba:((?:badge|pressfacts|statusline|contacttopics|launchlist|log"
-                r"|appcards|crosspromo|showcase)"
+                r"|appcards|crosspromo|showcase|support)"
                 r"(?::[a-z0-9-]+)?) start", html))):
             span = region_span(html, extra, rel)
             if span:

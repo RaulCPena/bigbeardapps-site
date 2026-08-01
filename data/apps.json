@@ -39,8 +39,34 @@
           "type": "privacy",
           "href": "/feastmark/privacy.html",
           "footer_label": "Feastmark Privacy"
+        },
+        {
+          "type": "support",
+          "href": "/support.html#support-feastmark",
+          "footer_label": "Feastmark Support"
         }
       ],
+      "support": {
+        "intro": "iPhone, iOS 18 or later. No account, no ads, no trackers &mdash; your recipes live on the device.",
+        "faqs": [
+          {
+            "q": "What can I save recipes from?",
+            "a": "Instagram, TikTok, YouTube, and ordinary recipe sites. When a post&rsquo;s caption has no recipe in it, Feastmark falls back to the spoken audio in the video."
+          },
+          {
+            "q": "A link didn&rsquo;t come through &mdash; now what?",
+            "a": "Save it as a draft and finish it by hand: every field is editable, and you can write a recipe from scratch. One thing that will not work is a page holding a whole collection of recipes &mdash; save the individual recipe&rsquo;s page instead."
+          },
+          {
+            "q": "Does Feastmark work offline?",
+            "a": "Your library, Cook Mode and the cook log all work with no connection. Importing a new recipe needs the network, because the link has to be fetched and read."
+          },
+          {
+            "q": "How do I get my recipes onto another device?",
+            "a": "You can&rsquo;t yet. There is no account and no sync &mdash; recipes live on the iPhone that saved them. Worth knowing before you build up a big library."
+          }
+        ]
+      },
       "badges": [
         {
           "page": "feastmark/index.html",
@@ -122,6 +148,27 @@
           "footer_label": "PayoffPilot Support"
         }
       ],
+      "support": {
+        "intro": "iPhone. No account, no bank linking &mdash; every figure stays on the device.",
+        "faqs": [
+          {
+            "q": "Snowball or Avalanche &mdash; which should I pick?",
+            "a": "Snowball clears your smallest balances first, so the wins come quickly. Avalanche targets the highest interest rate first and costs less overall. The Compare tab runs both against your real numbers side by side."
+          },
+          {
+            "q": "How do I log a payment?",
+            "a": "Swipe left on any debt in the Debts tab and tap Log Payment, or open the debt and tap Log Payment there. The new balance is worked out for you."
+          },
+          {
+            "q": "I&rsquo;m not getting payment reminders.",
+            "a": "A reminder needs a due date on the debt, and notifications turned on in iPhone Settings &rsaquo; PayoffPilot &rsaquo; Notifications. A due date already in the past will not schedule one."
+          }
+        ],
+        "more": {
+          "href": "/payoffpilot/support.html",
+          "label": "Full PayoffPilot support guide &mdash; adding debts, scenarios, PDF export &rarr;"
+        }
+      },
       "badges": [
         {
           "page": "payoffpilot/index.html",
@@ -188,6 +235,19 @@
           "footer_label": "ReelTalk Privacy"
         }
       ],
+      "support": {
+        "intro": "An iMessage sticker pack &mdash; 30 stickers, $0.99 one time. It has no network access at all.",
+        "faqs": [
+          {
+            "q": "How do I use the stickers?",
+            "a": "Open any conversation in Messages, open the sticker drawer, and pick ReelTalk. The app also includes a gallery, so you can browse the whole pack in one place."
+          },
+          {
+            "q": "Does it collect anything?",
+            "a": "No. No account, no tracking, and no network access &mdash; it is a sticker pack, it could not phone home if it tried."
+          }
+        ]
+      },
       "badges": [
         {
           "page": "reeltalk/index.html",
@@ -256,6 +316,19 @@
           "footer_label": "Gunmark Privacy"
         }
       ],
+      "support": {
+        "intro": "In TestFlight beta right now. iPhone, iOS 18 or later.",
+        "faqs": [
+          {
+            "q": "How do I join the beta?",
+            "a": "Signups are handled on <a href=\"https://gunmark.app\">gunmark.app</a>. You will need an iPhone on iOS 18 or later and Apple&rsquo;s TestFlight app."
+          },
+          {
+            "q": "Where is my collection stored?",
+            "a": "On the device, and only there. Gunmark makes zero network calls &mdash; there is no account to create and no server holding your photos or paperwork."
+          }
+        ]
+      },
       "badges": [
         {
           "page": "gunmark/index.html",

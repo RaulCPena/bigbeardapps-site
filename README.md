@@ -34,7 +34,8 @@ tells you which file to fix. Nothing is silently reverted.
 
 ## Adding an app
 
-1. Add an entry to `data/apps.json` (slug, name, order, accent, `pages[]`).
+1. Add an entry to `data/apps.json` (slug, name, order, accent, `pages[]`,
+   `support`).
 2. Add `data/pages.json` entries for its new pages (`url`, `title`,
    `description`, `og_*`). `description` is required — sync fails without it.
 3. Write its landing page and privacy page. These stay hand-written on purpose —
@@ -74,6 +75,43 @@ harder to edit.
 `audit.py` fails if an app in `apps.json` has no press section or no
 `press/<slug>-press-kit.zip`. That is the check that would have caught ReelTalk
 shipping without either.
+
+## Support page
+
+`/support.html` serves every app from one page: a picker, and one panel per app.
+Both come from `apps[].support` in `apps.json`, so an app that is in the data is
+on the page — there is no per-app markup to write and none to forget. Adding the
+fifth app's support content is one `support` block; leave it out and the app
+still gets a panel with its name and the email, just nothing above it.
+
+App Review clicks the Support URL, so the address is printed as readable text as
+well as wrapped in the `mailto:`. The subject line carries the app name
+(`?subject=Feastmark%20Support`) — one inbox, sorted on arrival.
+
+Two things in the page's inline script are load-bearing:
+
+- **The ARIA roles are set by the script, not written into the markup.** Without
+  JS the picker is a row of in-page links with every panel visible — a working
+  page. A static `role="tab"` would tell a screen reader it is driving a tab set
+  that, with JS off, does not exist.
+- **The `hashchange` listener is not redundant.** The footer carries per-app
+  support links and the footer is on this page too, so following one is a
+  same-document hash change with no reload. Without the listener the URL would
+  name an app whose panel stayed hidden.
+
+The picker's accents come in as inline custom properties from `accent.base`, so
+a new app needs no stylesheet edit. The accent colours the border and the ring
+and never sits under the label: they run from a light amber to a dark blue, and
+no single label colour clears WCAG AA on all of them — white on Feastmark's
+amber is 2.6:1. The selected pill inverts against the page instead (19:1 light,
+17:1 dark), which stays safe whatever colour the next app brings. The `rgb`
+field in `accent` is **not** the source for this — ReelTalk's holds its *light*
+shade, not its base, which would tint one app's ring a different green from its
+own border.
+
+`payoffpilot/support.html` still exists and is still linked: it is a much deeper
+guide than a shared panel should hold, its URL is indexed and may already be in
+App Store Connect. The studio panel links out to it rather than duplicating it.
 
 ## Launch list
 
@@ -218,6 +256,23 @@ press/         press kit + per-app asset zips
 `sync.py` derives from the file's own bytes. Nothing to bump by hand: edit the
 asset, run sync, and every page picks up the new stamp. Leave an asset alone and
 the stamp does not move, so caches are not churned for nothing.
+
+**Per-app media is stamped too** — icons, preview videos and their posters, via
+`media_url()` in sync.py. App media is replaced *in place*: a new build's
+screenshots and video land on the existing filenames, so without a stamp the URL
+never changes and a cache is free to keep serving the old capture. That is not
+hypothetical — Feastmark's demo video showed a Pinterest source link and the
+superseded Cook Mode, and a browser kept playing the old copy after the file on
+disk had already been replaced.
+
+Screenshots referenced from hand-written markup (the `.screens` strip on an app
+page, the press asset grid) are outside any managed region, so their stamps are
+written by hand. **When you replace one of those, update its `?v=` too** — the
+value is the first 8 characters of the file's SHA-256:
+
+```bash
+shasum -a 256 feastmark/images/screen-cook-mode.png | cut -c1-8
+```
 
 This exists because the site is static with no build step and no fingerprinted
 filenames. Without the stamp a browser holding yesterday's `site.css` renders

@@ -1,137 +1,146 @@
 {
   "about.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "c3d3c05cac0f1157",
-    "links": "a0152e60ae04eaf2",
-    "n_links": 45,
-    "n_words": 572,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "08c08396849950b8",
+    "links": "bec3f9d69a1904ed",
+    "n_links": 48,
+    "n_words": 578,
     "nav": "c1e77f094cd9fb3c",
-    "text": "295890de7fe334fa"
+    "text": "f82e4b0a3d41f2ad"
   },
   "contact.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "49d3fc663e495f89",
-    "links": "d838f9cd9ef94e77",
-    "n_links": 33,
-    "n_words": 86,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "71f463887eb04d7c",
+    "links": "2bfe37c5bb23e051",
+    "n_links": 38,
+    "n_words": 106,
     "nav": "7c9528ccb9009c44",
-    "text": "48c011f45fbd68d0"
+    "text": "3fdd1efd2d7dcf73"
   },
   "feastmark/index.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "68ff26af8ad57810",
-    "links": "9129b29f1072d260",
-    "n_links": 46,
-    "n_words": 367,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "c8d6c1c2c5c899ea",
+    "links": "f3d18728faeb3ff3",
+    "n_links": 51,
+    "n_words": 489,
     "nav": "c69634ce412fc3a2",
-    "text": "f74cc42e8a9059b9"
+    "text": "343921ace78c9f3c"
   },
   "feastmark/privacy.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "7c1c4653e20e2c2b",
-    "links": "23bd76c6fc3a684b",
-    "n_links": 34,
-    "n_words": 565,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "d3bf6c717189e6f5",
+    "links": "fe95ab84cf329b79",
+    "n_links": 37,
+    "n_words": 571,
     "nav": "c69634ce412fc3a2",
-    "text": "f03e2dec315df5a8"
+    "text": "5d1584e895e1cbae"
   },
   "gunmark/index.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "44bc5df6f430662e",
-    "links": "2f9c7bec8b12d60e",
-    "n_links": 43,
-    "n_words": 433,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "09d20fdb8a4812c8",
+    "links": "68f4e0e7e84bf61a",
+    "n_links": 46,
+    "n_words": 439,
     "nav": "b8b2656572127778",
-    "text": "b72e753a9bb196b6"
+    "text": "081626cf3a2cb4ab"
   },
   "gunmark/privacy.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "23dcb9a98f7c23f6",
-    "links": "299d12fbcabdde1f",
-    "n_links": 35,
-    "n_words": 578,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "b8dfa2a6abb99d8c",
+    "links": "2fe09cc9ba398e42",
+    "n_links": 38,
+    "n_words": 584,
     "nav": "b8b2656572127778",
-    "text": "6972c5dd567f7cbb"
+    "text": "91b4c7d897ae868d"
   },
   "index.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "c120e1d4afbae1c6",
-    "links": "b05303187add8979",
-    "n_links": 46,
-    "n_words": 327,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "dfd4bfe345cd1e60",
+    "links": "eb27b58ffc04e24e",
+    "n_links": 49,
+    "n_words": 333,
     "nav": "6963962cd37ef6f8",
-    "text": "d034c6f618d9fae8"
+    "text": "2ace2ee9e7b6cd7d"
   },
   "payoffpilot/index.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "320c36f95d9e3897",
-    "links": "40657f2a90b39d91",
-    "n_links": 48,
-    "n_words": 409,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "e0df0863a5c67110",
+    "links": "a5aa2292efe49755",
+    "n_links": 53,
+    "n_words": 427,
     "nav": "9881639d73d2d1a4",
-    "text": "dc5df42ab230393d"
+    "text": "03576ae601fa83eb"
   },
   "payoffpilot/privacy.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "a3047122eebea1b1",
-    "links": "1e04df9dc257f4d8",
-    "n_links": 34,
-    "n_words": 625,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "0ca1850e088c66bf",
+    "links": "2371bcb3a2156618",
+    "n_links": 37,
+    "n_words": 631,
     "nav": "9881639d73d2d1a4",
-    "text": "0260dec29aa8844a"
+    "text": "18d9c68ce34810d2"
   },
   "payoffpilot/roadmap.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "d5820c41742e11d2",
-    "links": "505cb6803785c89e",
-    "n_links": 34,
-    "n_words": 240,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "f1cc68f57d38f99f",
+    "links": "81496e76fa3b0b9e",
+    "n_links": 37,
+    "n_words": 246,
     "nav": "9881639d73d2d1a4",
-    "text": "84837016a63aa76f"
+    "text": "ff3460bf8b410c70"
   },
   "payoffpilot/support.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "24ce764173732eff",
-    "links": "66bc656d8f1b8b2e",
-    "n_links": 35,
-    "n_words": 834,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "373c59b69c1ce7ca",
+    "links": "79918a890e66ba21",
+    "n_links": 38,
+    "n_words": 840,
     "nav": "9881639d73d2d1a4",
-    "text": "96b9ec399e9dc3e5"
+    "text": "5f661ed8a4612695"
   },
   "payoffpilot/terms.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "6ee7001eb7130a8a",
-    "links": "4ba2230b72b35409",
-    "n_links": 35,
-    "n_words": 1026,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "d7440a24e9b94eb3",
+    "links": "4a2cab5379fd245c",
+    "n_links": 38,
+    "n_words": 1032,
     "nav": "9881639d73d2d1a4",
-    "text": "fa36d7bcbda043cb"
+    "text": "44f452d938d08c81"
   },
   "press/index.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "f2fbc4e07936ab01",
-    "links": "98d4cddbed91b22f",
-    "n_links": 92,
-    "n_words": 1775,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "c501c09039f8f19b",
+    "links": "1f577fba4dd2a3d8",
+    "n_links": 97,
+    "n_words": 1784,
     "nav": "9fc651ea94d760cc",
-    "text": "50fbcda8d1adacca"
+    "text": "b56f15533bce419f"
   },
   "reeltalk/index.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "c3a7dde031c00a7c",
-    "links": "dcedb13f5308487b",
-    "n_links": 51,
-    "n_words": 232,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "2499fba6f8b9965c",
+    "links": "1d11c95f9cb9e69d",
+    "n_links": 54,
+    "n_words": 238,
     "nav": "ced2659068da654c",
-    "text": "e743096d632dfeb7"
+    "text": "a6a52cd17240e890"
   },
   "reeltalk/privacy.html": {
-    "footer": "1fcc42baf376fb50",
-    "head": "e592c37c8df95945",
-    "links": "7b72a978f7d133c6",
-    "n_links": 34,
-    "n_words": 320,
+    "footer": "7ef5f2e1a021fb13",
+    "head": "6fe840fbebbd0fa7",
+    "links": "7d7f5ed7fc3b4c20",
+    "n_links": 37,
+    "n_words": 326,
     "nav": "ced2659068da654c",
-    "text": "5caac35b8052780e"
+    "text": "e69c8e97149590c2"
+  },
+  "support.html": {
+    "footer": "7ef5f2e1a021fb13",
+    "head": "79fff0318ea9b03d",
+    "links": "94cd8bd4dccaad65",
+    "n_links": 50,
+    "n_words": 647,
+    "nav": "91fc5563ee6eab7d",
+    "text": "00213b018e0334c1"
   }
 }

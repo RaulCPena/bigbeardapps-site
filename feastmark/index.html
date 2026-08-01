@@ -20,7 +20,7 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Feastmark — turn recipe videos into your personal cookbook.">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="stylesheet" href="/assets/site.css?v=cdaac424">
+    <link rel="stylesheet" href="/assets/site.css?v=c48a019b">
 <!-- bba:head end -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -91,7 +91,7 @@
             font-weight: 600;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #A0722A;
+            color: #986C28;
             margin-bottom: 12px;
         }
         .section-title {
@@ -164,6 +164,25 @@
             gap: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.07);
         }
+
+        /* Support line — App Review clicks the Support URL and has to find a
+           way to reach a human without leaving the page. Keep it visible. */
+        .support-line {
+            margin-top: 56px;
+            text-align: center;
+            color: #555;
+            font-size: 1em;
+        }
+        /* Matches --amber-ink in site.css (4.66:1 on white). This page carries
+           its own styles rather than the token, so the value is repeated here —
+           if the token moves again, move it here too. */
+        .support-line a {
+            color: #986C28;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(152,108,40,0.45);
+        }
+        .support-line a:hover { border-bottom-color: #986C28; }
 
         .crosspromo {
             background: #111;
@@ -242,8 +261,8 @@
 <div class="badge">Coming soon to the App Store</div>
 <!-- bba:badge:feastmark end -->
         </div>
-        <video class="hero-phone" autoplay muted loop playsinline poster="images/demo-poster.jpg">
-            <source src="images/demo.mp4" type="video/mp4">
+        <video class="hero-phone" autoplay muted loop playsinline poster="images/demo-poster.jpg?v=acd34afe">
+            <source src="images/demo.mp4?v=749eff25" type="video/mp4">
         </video>
     </div>
 </section>
@@ -262,7 +281,17 @@
         <div class="feature">
             <div class="feature-icon">👨‍🍳</div>
             <h3>Cook Mode</h3>
-            <p>A hands-free cooking view: check off ingredients, swipe through steps in big type, and the screen stays awake until you're done.</p>
+            <p>The step you're on fills the screen in big type. Ingredients stay one tap away in a sheet, still checked off where you left them, and the screen never sleeps mid-recipe.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">📓</div>
+            <h3>Cook Log</h3>
+            <p>Cook it again, better. Rate what you made, add a photo, and note what you'd change — that note is the first thing waiting for you the next time you open the recipe.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">⏱</div>
+            <h3>Step Timers</h3>
+            <p>Cook Mode reads the time out of the step — "simmer for 20 minutes" — and offers it as a one-tap countdown. No time in the text? Start one yourself.</p>
         </div>
         <div class="feature">
             <div class="feature-icon">✏️</div>
@@ -278,6 +307,11 @@
             <div class="feature-icon">⚖️</div>
             <h3>Ingredient Scaling</h3>
             <p>Cooking for two or twelve? Adjust serving size and every ingredient scales automatically.</p>
+        </div>
+        <div class="feature">
+            <div class="feature-icon">🍸</div>
+            <h3>Drinks, Too</h3>
+            <p>Save a cocktail and Feastmark says Make, not Cook — and keeps a Pour Log in place of the Cook Log.</p>
         </div>
         <div class="feature">
             <div class="feature-icon">📎</div>
@@ -297,11 +331,12 @@
     </div>
 
     <div class="screens">
-        <img src="images/screen-library.png" alt="Feastmark recipe library">
-        <img src="images/screen-recipe-detail.png" alt="Recipe detail with ingredients and Cook button">
-        <img src="images/screen-cook-mode.png" alt="Cook Mode with ingredient checklist">
-        <img src="images/screen-collection.png" alt="Recipe collections">
-        <img src="images/screen-search.png" alt="Ingredient search">
+        <img src="images/screen-library.png?v=dfc2f561" alt="The Feastmark library, with collections across the top and recipe cards below">
+        <img src="images/screen-recipe-detail.png?v=2e5859da" alt="A recipe, with the cook log's note for next time sitting above the ingredients">
+        <img src="images/screen-cook-mode.png?v=c01fa29b" alt="Cook Mode, with the current step filling the screen in large type">
+        <img src="images/screen-cook-timer.png?v=061d795d" alt="Cook Mode offering a 35 minute timer it read out of the step">
+        <img src="images/screen-ingredients.png?v=c805bbe1" alt="The ingredients sheet in Cook Mode, with the first item checked off">
+        <img src="images/screen-search.png?v=e53bf7e6" alt="Searching the library for an ingredient">
     </div>
 
     <div class="platforms">
@@ -311,9 +346,15 @@
             <div class="platform">📸 Instagram</div>
             <div class="platform">🎵 TikTok</div>
             <div class="platform">▶️ YouTube</div>
-            <div class="platform">📌 Pinterest</div>
+            <div class="platform">🌐 Recipe blogs</div>
         </div>
     </div>
+
+    <p class="support-line">
+        Need help with Feastmark? Email
+        <a href="mailto:support@bigbeardapps.com?subject=Feastmark%20Support">support@bigbeardapps.com</a>
+        and I'll get back to you.
+    </p>
 </div>
 
 <!-- bba:crosspromo:feastmark start — generated by tools/sync.py from data/ · do not edit by hand -->
@@ -321,7 +362,7 @@
     <div class="crosspromo-inner">
         <p class="crosspromo-label">More from Big Beard Apps</p>
         <a class="promo-card" href="/payoffpilot/">
-            <img src="/payoffpilot/images/app-icon.png" alt="PayoffPilot app icon">
+            <img src="/payoffpilot/images/app-icon.png?v=5e4a769d" alt="PayoffPilot app icon">
             <div class="promo-copy">
                 <h3>PayoffPilot</h3>
                 <p>Pay off debt. Pay once. Done.</p>
@@ -329,7 +370,7 @@
             <span class="promo-arrow" aria-hidden="true">&rarr;</span>
         </a>
         <a class="promo-card" href="/reeltalk/">
-            <img src="/reeltalk/images/app-icon.png" alt="ReelTalk app icon">
+            <img src="/reeltalk/images/app-icon.png?v=4c54a09a" alt="ReelTalk app icon">
             <div class="promo-copy">
                 <h3>ReelTalk</h3>
                 <p>Fishing pun stickers for iMessage.</p>
@@ -337,7 +378,7 @@
             <span class="promo-arrow" aria-hidden="true">&rarr;</span>
         </a>
         <a class="promo-card" href="/gunmark/">
-            <img src="/gunmark/images/app-icon.png" alt="Gunmark app icon">
+            <img src="/gunmark/images/app-icon.png?v=06134620" alt="Gunmark app icon">
             <div class="promo-copy">
                 <h3>Gunmark</h3>
                 <p>Your armory, documented.</p>
@@ -377,12 +418,15 @@
     </div>
     <div class="footer-legal">
         <a href="/feastmark/privacy.html">Feastmark Privacy</a>
+        <a href="/support.html#support-feastmark">Feastmark Support</a>
         <a href="/payoffpilot/privacy.html">PayoffPilot Privacy</a>
         <a href="/payoffpilot/terms.html">PayoffPilot Terms</a>
         <a href="/payoffpilot/roadmap.html">PayoffPilot Roadmap</a>
         <a href="/payoffpilot/support.html">PayoffPilot Support</a>
         <a href="/reeltalk/privacy.html">ReelTalk Privacy</a>
+        <a href="/support.html#support-reeltalk">ReelTalk Support</a>
         <a href="/gunmark/privacy.html">Gunmark Privacy</a>
+        <a href="/support.html#support-gunmark">Gunmark Support</a>
     </div>
     <div class="footer-social">
         <a href="https://x.com/BigBeardApps" target="_blank" rel="me noopener" aria-label="Big Beard Apps on X">

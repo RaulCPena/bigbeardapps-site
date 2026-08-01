@@ -144,6 +144,17 @@
       "nav_current": "/press/",
       "nav_variant": "solid"
     },
+    "support.html": {
+      "url": "https://bigbeardapps.com/support.html",
+      "title": "Support — Big Beard Apps",
+      "description": "Support for Feastmark, PayoffPilot, ReelTalk, and Gunmark — common questions per app, and a direct line to the person who built them.",
+      "og_title": "Support — Big Beard Apps",
+      "og_description": "Support for Feastmark, PayoffPilot, ReelTalk, and Gunmark — common questions per app, and a direct line to the person who built them.",
+      "og_image": "https://bigbeardapps.com/assets/og-card.png",
+      "og_image_alt": "@auto",
+      "nav_current": null,
+      "nav_variant": "solid"
+    },
     "reeltalk/index.html": {
       "url": "https://bigbeardapps.com/reeltalk/",
       "title": "ReelTalk — Fishing Pun Stickers for iMessage",

@@ -51,7 +51,7 @@
         "faqs": [
           {
             "q": "What can I save recipes from?",
-            "a": "Instagram, TikTok, YouTube, and ordinary recipe sites. When a post&rsquo;s caption has no recipe in it, Feastmark falls back to the spoken audio in the video."
+            "a": "Instagram, TikTok, YouTube, and recipe blogs. When a post&rsquo;s caption has no recipe in it, Feastmark falls back to the spoken audio in the video. Some of the largest recipe sites sit behind bot protection that blocks the import &mdash; if a link will not come through, that is usually why."
           },
           {
             "q": "A link didn&rsquo;t come through &mdash; now what?",

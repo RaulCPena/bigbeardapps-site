@@ -425,7 +425,14 @@ def render_support(apps):
         if sup.get("intro"):
             body.append('        <p class="support-panel__intro">%s</p>' % sup["intro"])
 
-        faqs = sup.get("faqs") or []
+        # A FAQ may carry "status": it renders only while the app is in that
+        # state. "How do I join the beta?" is a real question right up until
+        # the app is submitted, and a lie immediately after — and this panel
+        # is the one place on the site that stated a release status in prose
+        # instead of deriving it, so it was the one place that could not
+        # correct itself on launch day.
+        faqs = [f for f in (sup.get("faqs") or [])
+                if f.get("status") in (None, app["status"])]
         if faqs:
             body.append('        <div class="faq-section">')
             for faq in faqs:

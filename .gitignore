@@ -1,6 +1,11 @@
 # Internal design docs (superpowers specs/plans) — not site content, don't deploy
 docs/superpowers/
 
+# Internal planning notes. The repo root IS the web root, so anything committed here
+# is served at bigbeardapps.com/<file> as well as being public on GitHub. TODO.md holds
+# host paths, unreleased app status and identity/employer notes — keep it local.
+TODO.md
+
 # macOS
 .DS_Store
 

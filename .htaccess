@@ -1,0 +1,29 @@
+# Origin response headers for bigbeardapps.com.
+#
+# Hostinger serves this repo with LiteSpeed, and the deploy Install Path is "/",
+# so the repo root IS the web root and this file ships with every push. Setting
+# the header here rather than in the Cloudflare dashboard keeps it in version
+# control, visible in a diff, and impossible to forget about.
+#
+# WHY: the origin sends no Cache-Control on HTML, so browsers fall back to
+# HEURISTIC caching — roughly 10% of the document's age since Last-Modified.
+# On a page that has not changed in two days that is several hours during which
+# a visitor is never told to check for a newer copy, which is why the site
+# appeared to "take a while to update" on an already-visited machine.
+#
+# "no-cache" does NOT mean "do not store". It means revalidate before use, so
+# the browser still keeps the copy and still gets a cheap 304 when nothing has
+# changed — it just can never show a stale page.
+#
+# Assets are deliberately NOT included. site.css, launch-list.js and every
+# per-app icon, poster and preview video carry a ?v=<content-hash> stamp, so
+# their URL changes whenever their bytes do. Long caching is correct for them,
+# and shortening it here would churn caches for nothing.
+#
+# Guarded by IfModule so a host without mod_headers degrades to today's
+# behaviour instead of returning 500.
+<IfModule mod_headers.c>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>

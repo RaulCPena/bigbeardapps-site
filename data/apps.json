@@ -327,9 +327,11 @@
         }
       ],
       "support": {
-        "intro": "In TestFlight beta right now. iPhone, iOS 18 or later.",
+        "_comment": "intro must not name a release state — status is derived everywhere else on the site, and prose here cannot follow it. Use a faq with \"status\" for anything that is only true in one state.",
+        "intro": "iPhone, iOS 18 or later. No accounts, no servers &mdash; your collection never leaves the device.",
         "faqs": [
           {
+            "status": "beta",
             "q": "How do I join the beta?",
             "a": "Signups are handled on <a href=\"https://gunmark.app\">gunmark.app</a>. You will need an iPhone on iOS 18 or later and Apple&rsquo;s TestFlight app."
           },

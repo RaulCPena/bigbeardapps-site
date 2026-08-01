@@ -233,6 +233,11 @@
           "type": "privacy",
           "href": "/reeltalk/privacy.html",
           "footer_label": "ReelTalk Privacy"
+        },
+        {
+          "type": "support",
+          "href": "/support.html#support-reeltalk",
+          "footer_label": "ReelTalk Support"
         }
       ],
       "support": {
@@ -314,6 +319,11 @@
           "type": "privacy",
           "href": "/gunmark/privacy.html",
           "footer_label": "Gunmark Privacy"
+        },
+        {
+          "type": "support",
+          "href": "/support.html#support-gunmark",
+          "footer_label": "Gunmark Support"
         }
       ],
       "support": {

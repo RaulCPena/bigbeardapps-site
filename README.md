@@ -4,6 +4,21 @@ Static marketing site for Big Beard Apps. Plain HTML — no framework, no build
 step, no dependencies. **A push to `main` is a deploy**: the host serves the
 committed files directly.
 
+**Never force-push.** The deploy is a GitHub push webhook to Hostinger; a
+force-push desynchronises Hostinger's clone, after which every later deploy
+does nothing while the webhook still returns 200 OK to GitHub — that endpoint
+only acknowledges receipt. This froze the live site for two days in July 2026
+with every gate green. The only real evidence a deploy worked is the file
+timestamp:
+
+```bash
+curl -sI https://bigbeardapps.com/feastmark/ | grep -i last-modified
+```
+
+Recovery: SSH in and run `git fetch origin && git reset --hard origin/main`
+in `~/domains/bigbeardapps.com/public_html`. Not `git pull` — that merges two
+unrelated histories into the web root.
+
 ## First time on a new machine
 
 ```bash

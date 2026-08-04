@@ -344,8 +344,7 @@
       "badges": [
         {
           "page": "gunmark/index.html",
-          "class": "badge",
-          "review_text": "Coming soon &middot; Beta signups open"
+          "class": "badge"
         }
       ],
       "showcase": {

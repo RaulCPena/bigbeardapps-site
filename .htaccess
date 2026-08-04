@@ -27,3 +27,11 @@
         Header set Cache-Control "no-cache"
     </FilesMatch>
 </IfModule>
+
+# Tooling and data are committed (the repo root is the web root, so the host
+# serves everything) but are not content. robots.txt already asks bots not to
+# index /data/, /tools/ and /templates/; this actually denies them — before
+# 2026-08-01 data/apps.json and tools/sync.py were publicly fetchable.
+# RedirectMatch needs no module guard: mod_alias is compiled into LiteSpeed
+# and Apache alike, and 404 keeps the paths indistinguishable from absent.
+RedirectMatch 404 ^/(data|tools|templates)(/|$)

@@ -101,9 +101,9 @@
         "Pilot"
       ],
       "order": 2,
-      "status": "review",
-      "app_store_url": null,
-      "release_date": null,
+      "status": "live",
+      "app_store_url": "https://apps.apple.com/app/payoffpilot/id6753783449",
+      "release_date": "August 2026",
       "tagline": "Pay off debt. Pay once. Done.",
       "accent": {
         "base": "#0066cc",

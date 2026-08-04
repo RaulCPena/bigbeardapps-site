@@ -4,6 +4,11 @@
   "blurb": "Notes from building in the open. Newest first.",
   "entries": [
     {
+      "date": "August 2026",
+      "title": "Feastmark reads recipes properly now",
+      "body": "Rewrote how Feastmark imports from the web. It reads a page's own structured recipe data instead of guessing from the article text, so ingredients keep their quantities and the oven temperature survives the trip — and it does that without calling an AI model at all."
+    },
+    {
       "date": "July 2026",
       "title": "Gunmark joins the lineup",
       "body": "Gunmark — a private firearm collection catalog with zero network calls — opened beta signups and joined the site alongside Feastmark, PayoffPilot, and ReelTalk."

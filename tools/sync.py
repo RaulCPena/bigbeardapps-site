@@ -231,9 +231,20 @@ BETA_TEXT = "Coming soon &middot; Beta signups open"
 # An app is in exactly one of these. "beta" exists because Gunmark is in
 # TestFlight and has NOT been submitted — folding it in with "review" made the
 # site claim four apps were in App Review when three were, on every page
-# carrying the launch list. Anything that only asks "is it live?" still works;
-# only the copy that names the current step has to tell review and beta apart.
-STATUSES = ("live", "review", "beta")
+# carrying the launch list. "approved" is the same problem one step later:
+# ReelTalk cleared review on 2026-08-05 and is held at Pending Developer
+# Release for a scheduled launch, so "in App Review" is false and "live" is
+# not true yet. Anything that only asks "is it live?" still works; only the
+# copy that names the current step has to tell the unreleased statuses apart.
+STATUSES = ("live", "review", "approved", "beta")
+
+
+def _approved_text(app):
+    """Approved and waiting on a scheduled release. Name the date once we have
+    one — "coming soon" understates a date we can actually promise."""
+    if app.get("release_date"):
+        return "Coming to the App Store %s" % app["release_date"]
+    return REVIEW_TEXT
 
 
 def render_badge(app, badge):
@@ -245,8 +256,11 @@ def render_badge(app, badge):
         text = badge.get("live_text", LIVE_TEXT)
         return ('<a class="%s" href="%s" target="_blank" rel="noopener">%s</a>'
                 % (cls, app["app_store_url"], text))
-    default = BETA_TEXT if app["status"] == "beta" else REVIEW_TEXT
-    text = badge.get("review_text", default)
+    if app["status"] == "approved":
+        text = badge.get("approved_text", _approved_text(app))
+    else:
+        default = BETA_TEXT if app["status"] == "beta" else REVIEW_TEXT
+        text = badge.get("review_text", default)
     return '<div class="%s">%s</div>' % (cls, text)
 
 
@@ -262,6 +276,8 @@ def _press_store_cell(app):
 def _press_release_cell(app):
     if app["status"] == "live" and app.get("release_date"):
         return app["release_date"]
+    if app["status"] == "approved" and app.get("release_date"):
+        return '<span class="pending">%s (scheduled)</span>' % app["release_date"]
     if app["status"] == "beta":
         return '<span class="pending">In TestFlight beta</span>'
     return '<span class="pending">Pending App Review</span>'

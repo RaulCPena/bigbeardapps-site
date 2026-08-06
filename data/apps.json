@@ -203,9 +203,9 @@
         "Talk"
       ],
       "order": 3,
-      "status": "review",
+      "status": "approved",
       "app_store_url": null,
-      "release_date": null,
+      "release_date": "September 1, 2026",
       "tagline": "Fishing pun stickers for iMessage.",
       "accent": {
         "base": "#4E9F3D",
@@ -258,6 +258,7 @@
           "page": "reeltalk/index.html",
           "class": "rt-badge",
           "review_text": "Coming soon &middot; $0.99 one-time",
+          "approved_text": "Coming September 1 &middot; $0.99 one-time",
           "live_text": "On the App Store &middot; $0.99 one-time"
         }
       ],

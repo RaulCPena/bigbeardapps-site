@@ -5,6 +5,11 @@
   "entries": [
     {
       "date": "August 2026",
+      "title": "ReelTalk cleared App Review",
+      "body": "ReelTalk is approved and scheduled to reach the App Store on September 1, 2026 — thirty original fishing-pun stickers for iMessage, 99 cents once. Getting there took a long detour through an upload check that demanded an icon size the sticker-pack format has no slot for."
+    },
+    {
+      "date": "August 2026",
       "title": "Feastmark reads recipes properly now",
       "body": "Rewrote how Feastmark imports from the web. It reads a page's own structured recipe data instead of guessing from the article text, so ingredients keep their quantities and the oven temperature survives the trip — and it does that without calling an AI model at all."
     },

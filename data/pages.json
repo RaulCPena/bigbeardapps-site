@@ -45,6 +45,17 @@
       "nav_current": "/feastmark/",
       "nav_variant": "solid"
     },
+    "feastmark/roadmap.html": {
+      "url": "https://bigbeardapps.com/feastmark/roadmap.html",
+      "title": "Roadmap — Feastmark",
+      "description": "Where Feastmark is headed — a living Now / Next / Later roadmap for the private recipe keeper from Big Beard Apps.",
+      "og_title": "Roadmap — Feastmark",
+      "og_description": "Where Feastmark is headed — a living Now / Next / Later roadmap for the private recipe keeper from Big Beard Apps.",
+      "og_image": "https://bigbeardapps.com/feastmark/images/og-card.png",
+      "og_image_alt": "Feastmark — turn recipe videos into your personal cookbook.",
+      "nav_current": "/feastmark/",
+      "nav_variant": "solid"
+    },
     "gunmark/index.html": {
       "url": "https://bigbeardapps.com/gunmark/",
       "title": "Gunmark — Your Armory, Documented",

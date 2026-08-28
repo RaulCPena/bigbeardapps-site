@@ -41,6 +41,11 @@
           "footer_label": "Feastmark Privacy"
         },
         {
+          "type": "roadmap",
+          "href": "/feastmark/roadmap.html",
+          "footer_label": "Feastmark Roadmap"
+        },
+        {
           "type": "support",
           "href": "/support.html#support-feastmark",
           "footer_label": "Feastmark Support"

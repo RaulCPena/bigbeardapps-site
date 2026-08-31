@@ -241,10 +241,11 @@ STATUSES = ("live", "review", "approved", "beta")
 
 def _approved_text(app):
     """Approved and waiting on a scheduled release. Name the date once we have
-    one — "coming soon" understates a date we can actually promise."""
+    one — "coming soon" understates a date we can actually promise. Without a
+    date, still name the step: "Pending App Review" would be a lie."""
     if app.get("release_date"):
         return "Coming to the App Store %s" % app["release_date"]
-    return REVIEW_TEXT
+    return "Approved — coming to the App Store"
 
 
 def render_badge(app, badge):
@@ -278,6 +279,8 @@ def _press_release_cell(app):
         return app["release_date"]
     if app["status"] == "approved" and app.get("release_date"):
         return '<span class="pending">%s (scheduled)</span>' % app["release_date"]
+    if app["status"] == "approved":
+        return '<span class="pending">Approved — pending release</span>'
     if app["status"] == "beta":
         return '<span class="pending">In TestFlight beta</span>'
     return '<span class="pending">Pending App Review</span>'

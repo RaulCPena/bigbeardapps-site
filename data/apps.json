@@ -9,9 +9,9 @@
         "mark"
       ],
       "order": 1,
-      "status": "review",
-      "app_store_url": null,
-      "release_date": null,
+      "status": "live",
+      "app_store_url": "https://apps.apple.com/app/feastmark-save-any-recipe/id6762322193",
+      "release_date": "August 31, 2026",
       "tagline": "Turn recipe videos into your personal cookbook.",
       "accent": {
         "base": "#D4922A",

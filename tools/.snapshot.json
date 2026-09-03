@@ -2,11 +2,11 @@
   "about.html": {
     "footer": "9b4b6363125f5849",
     "head": "bcec81aa39e8f423",
-    "links": "f64cc7087f856cd6",
-    "n_links": 59,
-    "n_words": 805,
+    "links": "d545da7f3917c057",
+    "n_links": 60,
+    "n_words": 842,
     "nav": "736b5afbfe96e7f2",
-    "text": "9539b6af90e71f33"
+    "text": "a03a27e6a6a4b618"
   },
   "contact.html": {
     "footer": "9b4b6363125f5849",
@@ -83,11 +83,11 @@
   "index.html": {
     "footer": "9b4b6363125f5849",
     "head": "acd3c70bc372e87c",
-    "links": "564d361ef3dc0576",
-    "n_links": 59,
-    "n_words": 413,
+    "links": "f552d39a923ef9eb",
+    "n_links": 60,
+    "n_words": 410,
     "nav": "b74a9cfb60315621",
-    "text": "ac7271546f535e3e"
+    "text": "d29d210666ed531b"
   },
   "payoffpilot/index.html": {
     "footer": "9b4b6363125f5849",
@@ -137,20 +137,20 @@
   "press/index.html": {
     "footer": "9b4b6363125f5849",
     "head": "de3bc879f0514970",
-    "links": "1436c147424f0b1e",
-    "n_links": 109,
-    "n_words": 2139,
+    "links": "9e1b61f7a0310774",
+    "n_links": 110,
+    "n_words": 2136,
     "nav": "01909fbb99265233",
-    "text": "eba3e42e21eae524"
+    "text": "e8d18164afdb5899"
   },
   "reeltalk/index.html": {
     "footer": "9b4b6363125f5849",
-    "head": "2499fba6f8b9965c",
-    "links": "c92e7d871f857eb4",
-    "n_links": 61,
-    "n_words": 246,
+    "head": "e30bb0e410923582",
+    "links": "f1e1145e019c8611",
+    "n_links": 62,
+    "n_words": 247,
     "nav": "9fd6ecb8c8bd9d7e",
-    "text": "c5edc4efa58f3cc2"
+    "text": "1f39654d9522f75b"
   },
   "reeltalk/privacy.html": {
     "footer": "9b4b6363125f5849",

@@ -47,20 +47,20 @@
   "gunmark/index.html": {
     "footer": "9b4b6363125f5849",
     "head": "09d20fdb8a4812c8",
-    "links": "f85596161e4b4883",
+    "links": "a2c0c40d020e76ff",
     "n_links": 53,
-    "n_words": 446,
+    "n_words": 448,
     "nav": "a1919e32ac006947",
-    "text": "1b4788fb87c1c6fe"
+    "text": "3fee7261bfbf1515"
   },
   "gunmark/privacy.html": {
     "footer": "9b4b6363125f5849",
     "head": "b8dfa2a6abb99d8c",
     "links": "4dc2dae71436f39a",
     "n_links": 43,
-    "n_words": 592,
+    "n_words": 546,
     "nav": "a1919e32ac006947",
-    "text": "cdc9b0f6b1a5adb3"
+    "text": "224aa3acff234488"
   },
   "huntmark/index.html": {
     "footer": "9b4b6363125f5849",
@@ -164,10 +164,10 @@
   "support.html": {
     "footer": "9b4b6363125f5849",
     "head": "753bf7da60b54196",
-    "links": "46e9bca79ab76b1a",
+    "links": "121024d750cbc1cc",
     "n_links": 58,
-    "n_words": 780,
+    "n_words": 782,
     "nav": "68dd4e49c671f8db",
-    "text": "262eda39e3935801"
+    "text": "613d3d0a636932f4"
   }
 }

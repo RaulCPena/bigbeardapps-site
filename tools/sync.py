@@ -227,6 +227,7 @@ def write_robots(site):
 REVIEW_TEXT = "Coming soon to the App Store"
 LIVE_TEXT = "Download on the App Store"
 BETA_TEXT = "Coming soon &middot; Beta signups open"
+DEVELOPMENT_TEXT = "In development &middot; no release date yet"
 
 # An app is in exactly one of these. "beta" exists because Gunmark is in
 # TestFlight and has NOT been submitted — folding it in with "review" made the
@@ -234,9 +235,12 @@ BETA_TEXT = "Coming soon &middot; Beta signups open"
 # carrying the launch list. "approved" is the same problem one step later:
 # ReelTalk cleared review on 2026-08-05 and is held at Pending Developer
 # Release for a scheduled launch, so "in App Review" is false and "live" is
-# not true yet. Anything that only asks "is it live?" still works; only the
-# copy that names the current step has to tell the unreleased statuses apart.
-STATUSES = ("live", "review", "approved", "beta")
+# not true yet. "development" is earlier still — HuntMark has no beta and no
+# submission, so "coming soon to the App Store" (the default for anything
+# unreleased) would claim a step that hasn't happened. Anything that only
+# asks "is it live?" still works; only the copy that names the current step
+# has to tell the unreleased statuses apart.
+STATUSES = ("live", "review", "approved", "beta", "development")
 
 
 def _approved_text(app):
@@ -260,7 +264,12 @@ def render_badge(app, badge):
     if app["status"] == "approved":
         text = badge.get("approved_text", _approved_text(app))
     else:
-        default = BETA_TEXT if app["status"] == "beta" else REVIEW_TEXT
+        if app["status"] == "beta":
+            default = BETA_TEXT
+        elif app["status"] == "development":
+            default = DEVELOPMENT_TEXT
+        else:
+            default = REVIEW_TEXT
         text = badge.get("review_text", default)
     return '<div class="%s">%s</div>' % (cls, text)
 
@@ -283,6 +292,8 @@ def _press_release_cell(app):
         return '<span class="pending">Approved — pending release</span>'
     if app["status"] == "beta":
         return '<span class="pending">In TestFlight beta</span>'
+    if app["status"] == "development":
+        return '<span class="pending">In development</span>'
     return '<span class="pending">Pending App Review</span>'
 
 
@@ -664,13 +675,29 @@ def render_log(log):
 
 def render_showcase(app):
     """A full homepage app showcase. Owns its own status badge, so the badge
-    is NOT a separate region here (nested regions are rejected)."""
+    is NOT a separate region here (nested regions are rejected).
+
+    An app with no captured screens yet (no "demo" in its media block) gets
+    the icon on a plain gradient card instead of a <video> pointed at a file
+    that doesn't exist — real media replaces this the moment it's captured,
+    no code change required."""
     sc = app["showcase"]
     cls = "showcase %s" % ("showcase" + sc["modifier"]) if sc.get("modifier") else "showcase"
     badge = render_badge(app, {"class": "showcase-pill"})
     n1, n2 = app["name_split"]
     chips = "\n".join('                <div class="chip">%s</div>' % c
                        for c in sc["chips"])
+    if "demo" in app["media"]:
+        media_html = (
+'            <video class="showcase-phone" autoplay muted loop playsinline poster="%s">\n'
+'                <source src="%s" type="video/mp4">\n'
+'            </video>' % (media_url(app, "demo_poster"), media_url(app, "demo")))
+    else:
+        media_html = (
+'            <div class="showcase-phone-placeholder">\n'
+'                <img src="%s" alt="%s app icon" class="placeholder-icon">\n'
+'                <div class="placeholder-label">Screens coming soon</div>\n'
+'            </div>' % (media_url(app, "icon"), app["name"]))
     return (
 '<section class="%s">\n'
 '    <div class="showcase-inner">\n'
@@ -683,14 +710,11 @@ def render_showcase(app):
 '        </div>\n'
 '        <div class="showcase-phone-wrap">\n'
 '            <div class="phone-glow"></div>\n'
-'            <video class="showcase-phone" autoplay muted loop playsinline poster="%s">\n'
-'                <source src="%s" type="video/mp4">\n'
-'            </video>\n'
+'%s\n'
 '        </div>\n'
 '    </div>\n'
 '</section>' % (cls, badge, media_url(app, "icon"), n1, n2, sc["blurb"], chips,
-                app["paths"]["site"], sc["cta"],
-                media_url(app, "demo_poster"), media_url(app, "demo")))
+                app["paths"]["site"], sc["cta"], media_html))
 
 
 # ── region surgery ───────────────────────────────────────────────────────

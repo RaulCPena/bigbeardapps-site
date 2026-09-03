@@ -327,6 +327,11 @@
           "footer_label": "Gunmark Privacy"
         },
         {
+          "type": "roadmap",
+          "href": "/gunmark/roadmap.html",
+          "footer_label": "Gunmark Roadmap"
+        },
+        {
           "type": "support",
           "href": "/support.html#support-gunmark",
           "footer_label": "Gunmark Support"

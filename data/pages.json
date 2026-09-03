@@ -187,6 +187,28 @@
       "og_image_alt": "ReelTalk — fishing pun stickers for iMessage.",
       "nav_current": "/reeltalk/",
       "nav_variant": "solid"
+    },
+    "huntmark/index.html": {
+      "url": "https://bigbeardapps.com/huntmark/",
+      "title": "HuntMark — Public Land Hunting, by Species",
+      "description": "HuntMark — public land hunting by species. Browse WMAs, State Parks, National Forests and Army Corps land, filter by species, and save your spots. No accounts, no servers.",
+      "og_title": "HuntMark — Public Land Hunting, by Species",
+      "og_description": "HuntMark — public land hunting by species. Browse WMAs, State Parks, National Forests and Army Corps land, filter by species, and save your spots. No accounts, no servers.",
+      "og_image": "https://bigbeardapps.com/huntmark/images/og-card.png",
+      "og_image_alt": "HuntMark — public land hunting, by species.",
+      "nav_current": "/huntmark/",
+      "nav_variant": "solid"
+    },
+    "huntmark/roadmap.html": {
+      "url": "https://bigbeardapps.com/huntmark/roadmap.html",
+      "title": "Roadmap — HuntMark",
+      "description": "Where HuntMark is headed — a living Now / Next / Later roadmap for the public-land hunting app from Big Beard Apps.",
+      "og_title": "Roadmap — HuntMark",
+      "og_description": "Where HuntMark is headed — a living Now / Next / Later roadmap for the public-land hunting app from Big Beard Apps.",
+      "og_image": "https://bigbeardapps.com/huntmark/images/og-card.png",
+      "og_image_alt": "HuntMark — public land hunting, by species.",
+      "nav_current": "/huntmark/",
+      "nav_variant": "solid"
     }
   }
 }

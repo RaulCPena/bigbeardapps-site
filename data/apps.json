@@ -372,6 +372,90 @@
         "price": "Free for your first 3 firearms with every feature; Gunmark Pro is a one-time purchase — no subscription",
         "privacy_note": "No accounts, no servers, no tracking. The app makes zero network calls — collection, photos, and documents never leave the device."
       }
+    },
+    {
+      "slug": "huntmark",
+      "name": "HuntMark",
+      "name_split": [
+        "Hunt",
+        "Mark"
+      ],
+      "order": 5,
+      "status": "development",
+      "app_store_url": null,
+      "release_date": null,
+      "tagline": "Public land hunting, by species.",
+      "accent": {
+        "base": "#2E4F17",
+        "ink": "#1C3A2E",
+        "light": "#5c9438",
+        "rgb": "46,79,23"
+      },
+      "paths": {
+        "site": "/huntmark/",
+        "images": "/huntmark/images/"
+      },
+      "media": {
+        "icon": "app-icon.png",
+        "og_card": "og-card.png"
+      },
+      "pages": [
+        {
+          "type": "index",
+          "href": "/huntmark/",
+          "footer_label": null
+        },
+        {
+          "type": "roadmap",
+          "href": "/huntmark/roadmap.html",
+          "footer_label": "HuntMark Roadmap"
+        },
+        {
+          "type": "support",
+          "href": "/support.html#support-huntmark",
+          "footer_label": "HuntMark Support"
+        }
+      ],
+      "support": {
+        "intro": "HuntMark is early in development — there is no beta yet. iPhone, iOS 17 or later (planned). No accounts, no servers — your saved spots never leave the device.",
+        "faqs": [
+          {
+            "status": "development",
+            "q": "When does it launch?",
+            "a": "There is no release date yet. The &ldquo;Know when they launch&rdquo; signup on the homepage is the only list, and it is the same one every other app on this site uses."
+          },
+          {
+            "q": "Where is my data stored?",
+            "a": "On the device, and only there. HuntMark ships with the location catalog built in and makes no network calls — there is nothing to sync and nothing to leak."
+          }
+        ]
+      },
+      "badges": [
+        {
+          "page": "huntmark/index.html",
+          "class": "badge"
+        }
+      ],
+      "showcase": {
+        "modifier": "--hm",
+        "blurb": "Public land hunting, by species. Browse hunting locations by land type — WMAs, State Parks, National Forests, Army Corps and more — filter by the species you're after, and save your favorite spots. No account, no server, nothing leaves the device.",
+        "chips": [
+          "🦌 Search by species",
+          "🗺️ Real parcel boundaries, not just pins",
+          "⭐ Save your favorite spots",
+          "🔒 No accounts, no servers",
+          "🇺🇸 Veteran owned"
+        ],
+        "cta": "Explore HuntMark →"
+      },
+      "press": {
+        "store_name": "HuntMark",
+        "category": "Navigation",
+        "platform": "iPhone — requires iOS 17 or later (planned)",
+        "version": "—",
+        "price": "$19.99/year subscription (Founding Member rate: $14.99/year for the first 1,000 subscribers)",
+        "privacy_note": "No accounts, no servers, no tracking. The app makes zero network calls — saved spots never leave the device."
+      }
     }
   ]
 }

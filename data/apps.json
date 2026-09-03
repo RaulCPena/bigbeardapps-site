@@ -344,7 +344,7 @@
           {
             "status": "beta",
             "q": "How do I join the beta?",
-            "a": "Signups are handled on <a href=\"https://gunmark.app\">gunmark.app</a>. You will need an iPhone on iOS 18 or later and Apple&rsquo;s TestFlight app."
+            "a": "Join via the public TestFlight link: <a href=\"https://testflight.apple.com/join/AMJF9pAk\">testflight.apple.com/join/AMJF9pAk</a>. You will need an iPhone on iOS 18 or later and Apple&rsquo;s TestFlight app."
           },
           {
             "q": "Where is my collection stored?",

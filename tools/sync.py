@@ -714,7 +714,7 @@ def render_showcase(app):
 '        </div>\n'
 '    </div>\n'
 '</section>' % (cls, badge, media_url(app, "icon"), n1, n2, sc["blurb"], chips,
-                app["paths"]["site"], sc["cta"], media_html))
+                sc.get("cta_href") or app["paths"]["site"], sc["cta"], media_html))
 
 
 # ── region surgery ───────────────────────────────────────────────────────

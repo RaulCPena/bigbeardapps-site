@@ -402,7 +402,9 @@
       },
       "media": {
         "icon": "app-icon.png",
-        "og_card": "og-card.png"
+        "og_card": "og-card.png",
+        "demo": "demo.mp4",
+        "demo_poster": "demo-poster.jpg"
       },
       "pages": [
         {
@@ -451,7 +453,8 @@
           "🔒 No accounts, no servers",
           "🇺🇸 Veteran owned"
         ],
-        "cta": "Explore HuntMark →"
+        "cta": "Try HuntMark →",
+        "cta_href": "https://huntmark.app"
       },
       "press": {
         "store_name": "HuntMark",

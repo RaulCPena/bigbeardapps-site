@@ -78,6 +78,17 @@
       "nav_current": "/gunmark/",
       "nav_variant": "solid"
     },
+    "gunmark/roadmap.html": {
+      "url": "https://bigbeardapps.com/gunmark/roadmap.html",
+      "title": "Roadmap — Gunmark",
+      "description": "Where Gunmark is headed — a living Now / Next / Later roadmap for the private firearm collection catalog from Big Beard Apps.",
+      "og_title": "Roadmap — Gunmark",
+      "og_description": "Where Gunmark is headed — a living Now / Next / Later roadmap for the private firearm collection catalog from Big Beard Apps.",
+      "og_image": "https://bigbeardapps.com/gunmark/images/og-card.png",
+      "og_image_alt": "Gunmark — your armory, documented.",
+      "nav_current": "/gunmark/",
+      "nav_variant": "solid"
+    },
     "index.html": {
       "url": "https://bigbeardapps.com/",
       "title": "Big Beard Apps",

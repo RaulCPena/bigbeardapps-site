@@ -38,17 +38,17 @@
         {
           "type": "privacy",
           "href": "/feastmark/privacy.html",
-          "footer_label": "Feastmark Privacy"
+          "footer_label": null
         },
         {
           "type": "roadmap",
           "href": "/feastmark/roadmap.html",
-          "footer_label": "Feastmark Roadmap"
+          "footer_label": null
         },
         {
           "type": "support",
           "href": "/support.html#support-feastmark",
-          "footer_label": "Feastmark Support"
+          "footer_label": null
         }
       ],
       "support": {
@@ -135,22 +135,22 @@
         {
           "type": "privacy",
           "href": "/payoffpilot/privacy.html",
-          "footer_label": "PayoffPilot Privacy"
+          "footer_label": null
         },
         {
           "type": "terms",
           "href": "/payoffpilot/terms.html",
-          "footer_label": "PayoffPilot Terms"
+          "footer_label": null
         },
         {
           "type": "roadmap",
           "href": "/payoffpilot/roadmap.html",
-          "footer_label": "PayoffPilot Roadmap"
+          "footer_label": null
         },
         {
           "type": "support",
           "href": "/payoffpilot/support.html",
-          "footer_label": "PayoffPilot Support"
+          "footer_label": null
         }
       ],
       "support": {
@@ -237,12 +237,12 @@
         {
           "type": "privacy",
           "href": "/reeltalk/privacy.html",
-          "footer_label": "ReelTalk Privacy"
+          "footer_label": null
         },
         {
           "type": "support",
           "href": "/support.html#support-reeltalk",
-          "footer_label": "ReelTalk Support"
+          "footer_label": null
         }
       ],
       "support": {
@@ -324,17 +324,17 @@
         {
           "type": "privacy",
           "href": "/gunmark/privacy.html",
-          "footer_label": "Gunmark Privacy"
+          "footer_label": null
         },
         {
           "type": "roadmap",
           "href": "/gunmark/roadmap.html",
-          "footer_label": "Gunmark Roadmap"
+          "footer_label": null
         },
         {
           "type": "support",
           "href": "/support.html#support-gunmark",
-          "footer_label": "Gunmark Support"
+          "footer_label": null
         }
       ],
       "support": {
@@ -415,12 +415,12 @@
         {
           "type": "roadmap",
           "href": "/huntmark/roadmap.html",
-          "footer_label": "HuntMark Roadmap"
+          "footer_label": null
         },
         {
           "type": "support",
           "href": "/support.html#support-huntmark",
-          "footer_label": "HuntMark Support"
+          "footer_label": null
         }
       ],
       "support": {

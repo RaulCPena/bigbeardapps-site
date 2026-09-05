@@ -341,8 +341,7 @@ em, .accent-serif {
    a two-word label like "PayoffPilot Terms" splits across lines and reads as
    two separate links. Flex + gap keeps the gutters even on every row, and
    nowrap keeps each label whole. */
-.site-footer .footer-links,
-.site-footer .footer-legal {
+.site-footer .footer-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -355,14 +354,6 @@ em, .accent-serif {
     padding: 6px 0;
 }
 .site-footer .footer-links a:hover { color: #fff; }
-.site-footer .footer-legal { gap: 2px 20px; margin-bottom: 16px; font-size: 0.86em; }
-.site-footer .footer-legal a {
-    color: var(--text-muted);
-    text-decoration: none;
-    white-space: nowrap;
-    padding: 6px 0;
-}
-.site-footer .footer-legal a:hover { color: var(--on-dark); }
 
 /* Social row — Phase 2 fills the links; slot + styles ready now */
 .site-footer .footer-social {
@@ -393,9 +384,7 @@ em, .accent-serif {
 @media (max-width: 600px) {
     .site-footer { padding: 44px 18px; }
     .site-footer .footer-links { gap: 0 20px; }
-    .site-footer .footer-legal { gap: 0 16px; }
-    .site-footer .footer-links a,
-    .site-footer .footer-legal a {
+    .site-footer .footer-links a {
         display: inline-flex;
         align-items: center;
         min-height: 44px;

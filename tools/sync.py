@@ -131,15 +131,11 @@ def render_nav(site, apps, page_cfg):
 
 
 def render_footer(site, apps):
+    # Global footer stays brand + apps + studio links only. Privacy / roadmap /
+    # support live on each app page (and App Store / press), so they don't grow
+    # into a second legal row every time an app ships.
     links = ['        <a href="%s">%s</a>' % (a["paths"]["site"], a["name"]) for a in apps]
     links += ['        <a href="%s">%s</a>' % (s["href"], s["label"]) for s in site["nav_sections"]]
-
-    legal = []
-    for app in apps:
-        for page in app.get("pages", []):
-            if page.get("footer_label"):
-                legal.append('        <a href="%s">%s</a>'
-                             % (page["href"], page["footer_label"]))
 
     social = []
     for s in site["socials"]:
@@ -151,7 +147,6 @@ def render_footer(site, apps):
     return tpl("footer.html").substitute(
         site_name=site["name"],
         footer_links="\n".join(links),
-        footer_legal="\n".join(legal),
         footer_social="\n".join(social),
         signoff=site["signoff"],
         copyright=site["copyright"],

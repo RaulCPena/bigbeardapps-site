@@ -162,20 +162,69 @@ def oxford(names):
     return "%s, and %s" % (", ".join(names[:-1]), names[-1])
 
 
+def render_json_ld(site, apps, rel, cfg):
+    """Organization on every page; SoftwareApplication on each app landing page.
+
+    Dollar signs are doubled so string.Template does not eat JSON."""
+    origin = site["origin"].rstrip("/")
+    org_id = origin + "/#organization"
+    org = {
+        "@type": "Organization",
+        "@id": org_id,
+        "name": site["name"],
+        "url": origin,
+        "logo": origin + site.get("logo", "/assets/bigbeard-logo.png"),
+        "email": "support@bigbeardapps.com",
+        "founder": {"@type": "Person", "name": site.get("author", "Raul Peña")},
+    }
+    graph = [org]
+    slug = None
+    if rel.endswith("/index.html"):
+        slug = rel.split("/")[0]
+    elif rel == "index.html":
+        graph.insert(0, {
+            "@type": "WebSite",
+            "name": site["name"],
+            "url": origin + "/",
+            "publisher": {"@id": org_id},
+        })
+    by_slug = {a["slug"]: a for a in apps}
+    if slug in by_slug:
+        app = by_slug[slug]
+        sa = {
+            "@type": "SoftwareApplication",
+            "name": app["name"],
+            "applicationCategory": "MobileApplication",
+            "operatingSystem": "iOS",
+            "url": cfg["url"],
+            "description": app.get("tagline") or cfg.get("description", ""),
+            "author": {"@id": org_id},
+        }
+        if app["status"] == "live" and app.get("app_store_url"):
+            sa["installUrl"] = app["app_store_url"]
+        graph.append(sa)
+    payload = {"@context": "https://schema.org", "@graph": graph}
+    dumped = json.dumps(payload, ensure_ascii=True, separators=(",", ":"))
+    return dumped.replace("$", "$$")
+
+
 def render_head(site, apps, rel, cfg):
     alt = cfg.get("og_image_alt")
     if alt == "@auto":
         alt = ("%s — Independent iOS apps, built with care. %s."
                % (site["name"], oxford([a["name"] for a in apps])))
+    og_title = cfg.get("og_title") or cfg["title"]
+    og_description = cfg.get("og_description") or cfg["description"]
     return tpl("head.html").substitute(
         site_name=site["name"],
         title=cfg["title"],
         description=cfg["description"],
         url=cfg["url"],
-        og_title=cfg.get("og_title") or cfg["title"],
-        og_description=cfg.get("og_description") or cfg["description"],
+        og_title=og_title,
+        og_description=og_description,
         og_image=cfg["og_image"],
         og_image_alt=alt,
+        json_ld=render_json_ld(site, apps, rel, cfg),
         css_version=asset_version("assets/site.css"),
     ).rstrip("\n")
 
@@ -604,10 +653,14 @@ def render_launch_list(site, apps):
     # was, on Gunmark's own page, directly under "Beta testers wanted". The
     # list still covers every app; only this sentence names the current step.
     in_review = [a for a in apps if a["status"] == "review"]
+    live = [a["name"] for a in apps if a["status"] == "live"]
     if in_review:
         n = WORDS.get(len(in_review), str(len(in_review)))
         lead = ("%s app is" if len(in_review) == 1 else "%s apps are") % n
         sub = "%s in App Review right now. %s" % (lead[0].upper() + lead[1:], blurb)
+    elif live:
+        verb = "is" if len(live) == 1 else "are"
+        sub = "%s %s on the App Store. %s" % (oxford(live), verb, blurb)
     else:
         sub = blurb
     sub = re.sub(r"\s+", " ", sub).strip()

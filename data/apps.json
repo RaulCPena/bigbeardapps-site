@@ -429,7 +429,7 @@
           {
             "status": "development",
             "q": "When does it launch?",
-            "a": "There is no release date yet. The &ldquo;Know when they launch&rdquo; signup on the homepage is the only list, and it is the same one every other app on this site uses."
+            "a": "There is no release date yet. The &ldquo;Know when the next app launches&rdquo; signup on the homepage is the only list, and it is the same one every other app on this site uses."
           },
           {
             "q": "Where is my data stored?",

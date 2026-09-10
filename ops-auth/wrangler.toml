@@ -3,6 +3,10 @@ main = "src/index.ts"
 compatibility_date = "2026-09-10"
 account_id = "043c813f753abea6e92ba52b229685cc"
 
+# Public config for Cloudflare Analytics (GraphQL)
+[vars]
+CF_ZONE_ID = "96b8066d3f9c5a79927c3620fd6e6b39"
+
 # D1 database binding
 [[d1_databases]]
 binding = "DB"
@@ -12,3 +16,4 @@ database_id = "9e9c7904-307c-4997-9938-a4a3416317f6"
 # Production secrets (set via wrangler secret put)
 # - SESSION_SECRET
 # - ADMIN_PASSWORD
+# - CF_API_TOKEN   (Analytics:Read — powers live traffic charts)

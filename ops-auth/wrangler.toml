@@ -1,0 +1,14 @@
+name = "ops-auth"
+main = "src/index.ts"
+compatibility_date = "2026-09-10"
+account_id = "043c813f753abea6e92ba52b229685cc"
+
+# D1 database binding (will be updated after creation)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "ops-auth-db"
+# database_id = "REPLACE_WITH_DATABASE_ID"
+
+# Production secrets (set via wrangler secret put)
+# - SESSION_SECRET
+# - ADMIN_PASSWORD

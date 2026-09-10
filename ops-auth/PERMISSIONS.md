@@ -1,13 +1,17 @@
 # Cloudflare API Token Permissions
 
-The current API token (`CLOUDFARE_API_TOKEN` - note the typo in the secret name) lacks permissions to create D1 databases and deploy Workers.
+The current API token (`CLOUDFARE_API_TOKEN` - note the typo in the secret name) is **read-only** and lacks the **edit permissions** needed to create D1 databases and deploy Workers.
 
 ## Current Issue
+
+The token is **read-only** - it can verify account access but cannot create resources or deploy.
 
 ```
 ✘ [ERROR] A request to the Cloudflare API (/accounts/.../d1/database) failed.
 Authentication error [code: 10000]
 ```
+
+**Root cause:** Token has Read permissions but needs Edit permissions.
 
 ## Required Permissions
 
@@ -33,19 +37,24 @@ To complete the deployment, the Cloudflare API token needs these permissions:
    - Update the `CLOUDFARE_API_TOKEN` secret (or better: fix the typo and rename to `CLOUDFLARE_API_TOKEN`)
    - The new token value
 
-## Recommended: Use Edit Cloudflare Workers Template
+## RECOMMENDED SOLUTION: Use Edit Cloudflare Workers Template
 
-Alternatively, create a new token using Cloudflare's pre-made "Edit Cloudflare Workers" template:
+**This is the easiest way** - Cloudflare has a pre-made template with the right permissions:
 
-1. [Create API Token](https://dash.cloudflare.com/profile/api-tokens)
-2. Use template: **"Edit Cloudflare Workers"**
-3. This includes:
-   - Account → Workers Scripts → Edit
-   - Account → Account Settings → Read
-   - Zone → Workers Routes → Edit
-4. Additionally add: **Account → D1 → Edit**
-5. Save and copy the token
-6. Update in Cursor Dashboard
+1. Go to: https://dash.cloudflare.com/profile/api-tokens
+2. Click **"Create Token"**
+3. Find template: **"Edit Cloudflare Workers"** → Click **"Use template"**
+4. This includes:
+   - ✓ Account → Workers Scripts → Edit
+   - ✓ Account → Account Settings → Read
+   - ✓ Zone → Workers Routes → Edit
+5. **Important:** Click **"+ Add more"** and add: **Account → D1 → Edit**
+6. Set Account Resources to your account
+7. Click **"Continue to summary"** → **"Create Token"**
+8. **Copy the token** (shown only once!)
+9. Update in Cursor Dashboard → Cloud Agents → Secrets
+
+**See TOKEN_SETUP.md for detailed step-by-step with screenshots.**
 
 ## Alternative: Create via Cloudflare Dashboard
 

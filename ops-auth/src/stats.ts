@@ -176,9 +176,148 @@ export async function deleteManualMetric(env: StatsEnv, id: string): Promise<voi
   await env.DB.prepare('DELETE FROM metrics WHERE id = ?').bind(id).run();
 }
 
+const APP_PATHS: Array<{ key: string; label: string; match: (path: string, host: string) => boolean }> = [
+  { key: 'home', label: 'bigbeardapps.com /', match: (p, h) => (h === 'bigbeardapps.com' || h === 'www.bigbeardapps.com') && (p === '/' || p === '/index.html') },
+  { key: 'feastmark', label: '/feastmark', match: (p) => p.startsWith('/feastmark') },
+  { key: 'payoffpilot', label: '/payoffpilot', match: (p) => p.startsWith('/payoffpilot') },
+  { key: 'reeltalk', label: '/reeltalk', match: (p) => p.startsWith('/reeltalk') },
+  { key: 'gunmark', label: '/gunmark', match: (p) => p.startsWith('/gunmark') },
+  { key: 'huntmark', label: '/huntmark', match: (p) => p.startsWith('/huntmark') },
+  { key: 'ops', label: 'ops.bigbeardapps.com', match: (_p, h) => h.startsWith('ops.') },
+  { key: 'dash', label: 'dash.bigbeardapps.com', match: (_p, h) => h.startsWith('dash.') }
+];
+
+/** Free-plan path/host breakdown is limited to ~1 day windows. */
+export async function fetchUrlBreakdown(env: StatsEnv): Promise<{
+  available: boolean;
+  reason?: string;
+  window_hours: number;
+  hosts: Array<{ host: string; requests: number }>;
+  paths: Array<{ key: string; label: string; requests: number }>;
+}> {
+  if (!env.CF_API_TOKEN || !env.CF_ZONE_ID) {
+    return {
+      available: false,
+      reason: 'Set CF_API_TOKEN and CF_ZONE_ID to enable URL breakdown.',
+      window_hours: 24,
+      hosts: [],
+      paths: []
+    };
+  }
+
+  const end = new Date();
+  const start = new Date(end.getTime() - 23 * 60 * 60 * 1000);
+  const query = `
+    query($zoneTag: string, $start: Time, $end: Time) {
+      viewer {
+        zones(filter: { zoneTag: $zoneTag }) {
+          httpRequestsAdaptiveGroups(
+            limit: 100
+            orderBy: [count_DESC]
+            filter: { datetime_geq: $start, datetime_lt: $end }
+          ) {
+            count
+            dimensions { clientRequestPath clientRequestHTTPHost }
+          }
+        }
+      }
+    }
+  `;
+
+  const res = await fetch('https://api.cloudflare.com/client/v4/graphql', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.CF_API_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        zoneTag: env.CF_ZONE_ID,
+        start: start.toISOString().replace(/\.\d{3}Z$/, 'Z'),
+        end: end.toISOString().replace(/\.\d{3}Z$/, 'Z')
+      }
+    })
+  });
+
+  if (!res.ok) {
+    return {
+      available: false,
+      reason: `Cloudflare API HTTP ${res.status}`,
+      window_hours: 24,
+      hosts: [],
+      paths: []
+    };
+  }
+
+  const payload = await res.json() as {
+    errors?: Array<{ message: string }>;
+    data?: {
+      viewer?: {
+        zones?: Array<{
+          httpRequestsAdaptiveGroups?: Array<{
+            count: number;
+            dimensions: { clientRequestPath: string; clientRequestHTTPHost: string };
+          }>;
+        }>;
+      };
+    };
+  };
+
+  if (payload.errors?.length) {
+    return {
+      available: false,
+      reason: payload.errors.map(e => e.message).join('; '),
+      window_hours: 24,
+      hosts: [],
+      paths: []
+    };
+  }
+
+  const groups = payload.data?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups || [];
+  const hostMap = new Map<string, number>();
+  const pathMap = new Map<string, number>();
+  for (const def of APP_PATHS) pathMap.set(def.key, 0);
+
+  for (const g of groups) {
+    const rawHost = (g.dimensions.clientRequestHTTPHost || '').toLowerCase();
+    const host = rawHost.split(':')[0];
+    const path = g.dimensions.clientRequestPath || '/';
+    const count = g.count || 0;
+    if (!host || host.endsWith('.')) continue;
+    // skip obvious scanner noise ports already stripped; keep main hosts
+    hostMap.set(host, (hostMap.get(host) || 0) + count);
+    for (const def of APP_PATHS) {
+      if (def.match(path, host)) {
+        pathMap.set(def.key, (pathMap.get(def.key) || 0) + count);
+        break;
+      }
+    }
+  }
+
+  const hosts = [...hostMap.entries()]
+    .map(([host, requests]) => ({ host, requests }))
+    .sort((a, b) => b.requests - a.requests)
+    .slice(0, 12);
+
+  const paths = APP_PATHS.map(def => ({
+    key: def.key,
+    label: def.label,
+    requests: pathMap.get(def.key) || 0
+  })).sort((a, b) => b.requests - a.requests);
+
+  return {
+    available: true,
+    window_hours: 24,
+    hosts,
+    paths
+  };
+}
+
 export async function buildStatsPayload(env: StatsEnv) {
-  const [traffic, metrics, apps] = await Promise.all([
+  const [traffic, breakdown, metrics, apps] = await Promise.all([
     fetchCloudflareTraffic(env, 14),
+    fetchUrlBreakdown(env),
     listManualMetrics(env),
     env.DB.prepare('SELECT id, slug, name FROM apps ORDER BY sort_order ASC').all<{
       id: string;
@@ -201,6 +340,7 @@ export async function buildStatsPayload(env: StatsEnv) {
 
   return {
     traffic,
+    breakdown,
     totals,
     metrics,
     apps: apps.results || [],

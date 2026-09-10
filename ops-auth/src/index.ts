@@ -439,6 +439,11 @@ function serveDashboard(): Response {
     .chart-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: .8rem; color: var(--muted); margin-top: 8px; }
     .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; }
     .hint { font-size: .85rem; color: var(--muted); margin-bottom: 12px; }
+    .hbar { display: grid; grid-template-columns: minmax(120px, 40%) 1fr auto; gap: 8px; align-items: center; margin: 6px 0; font-size: .9rem; }
+    .hbar .track { background: #e2e8f0; border-radius: 999px; height: 10px; overflow: hidden; }
+    .hbar .fill { background: #2563eb; height: 100%; border-radius: 999px; }
+    .hbar .fill.path { background: #0f766e; }
+    .hbar .count { color: var(--muted); font-variant-numeric: tabular-nums; font-size: .8rem; }
     @media (max-width: 640px) {
       header { flex-direction: column; align-items: stretch; gap: 10px; }
     }
@@ -488,6 +493,15 @@ function serveDashboard(): Response {
           <span><i class="swatch" style="background:#16a34a"></i>Page views</span>
           <span><i class="swatch" style="background:#a16207"></i>Uniques</span>
         </div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <h2>URLs today</h2>
+        <div id="urlBreakdownStatus" class="meta"></div>
+        <div class="field"><label>By hostname</label></div>
+        <div id="hostBars"></div>
+        <div class="field" style="margin-top:14px"><label>By app path</label></div>
+        <div id="pathBars"></div>
+        <p class="hint" style="margin-top:10px">Free Cloudflare plan: URL breakdown is last ~24 hours. Separate domains like feastmark.app need Analytics:Read on those zones in your API token.</p>
       </div>
       <div class="card" style="margin-bottom:14px">
         <h2>Log an App Store metric</h2>
@@ -724,11 +738,35 @@ function serveDashboard(): Response {
 
       var status = document.getElementById('trafficStatus');
       if (data.traffic && data.traffic.available) {
-        status.textContent = 'Live from Cloudflare Analytics · bigbeardapps.com';
+        status.textContent = 'Zone total (14d) · bigbeardapps.com — see URLs today below for hosts/paths';
         document.getElementById('trafficChart').innerHTML = barChart(data.traffic.days || []);
       } else {
         status.textContent = (data.traffic && data.traffic.reason) || 'Traffic unavailable';
         document.getElementById('trafficChart').innerHTML = '<p class="empty">Connect CF_API_TOKEN to unlock live charts.</p>';
+      }
+
+      var bd = data.breakdown || {};
+      var bdStatus = document.getElementById('urlBreakdownStatus');
+      if (bd.available) {
+        bdStatus.textContent = 'Last ~' + (bd.window_hours || 24) + ' hours · live from Cloudflare';
+        var maxHost = 1;
+        (bd.hosts || []).forEach(function(h){ maxHost = Math.max(maxHost, h.requests); });
+        document.getElementById('hostBars').innerHTML = (bd.hosts || []).length
+          ? bd.hosts.map(function(h){
+              var pct = Math.max(4, Math.round(100 * h.requests / maxHost));
+              return '<div class="hbar"><div>' + esc(h.host) + '</div><div class="track"><div class="fill" style="width:' + pct + '%"></div></div><div class="count">' + fmtNum(h.requests) + '</div></div>';
+            }).join('')
+          : '<p class="empty">No host data yet.</p>';
+        var maxPath = 1;
+        (bd.paths || []).forEach(function(p){ maxPath = Math.max(maxPath, p.requests); });
+        document.getElementById('pathBars').innerHTML = (bd.paths || []).map(function(p){
+          var pct = p.requests ? Math.max(4, Math.round(100 * p.requests / maxPath)) : 0;
+          return '<div class="hbar"><div>' + esc(p.label) + '</div><div class="track"><div class="fill path" style="width:' + pct + '%"></div></div><div class="count">' + fmtNum(p.requests) + '</div></div>';
+        }).join('');
+      } else {
+        bdStatus.textContent = bd.reason || 'URL breakdown unavailable';
+        document.getElementById('hostBars').innerHTML = '';
+        document.getElementById('pathBars').innerHTML = '';
       }
 
       var sel = document.getElementById('metricApp');

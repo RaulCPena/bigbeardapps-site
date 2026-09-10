@@ -1,12 +1,21 @@
 /**
  * Big Beard Ops — auth + lean solo-dev dashboard
- * Cloudflare Worker: sessions, apps, checklists, notes, links
+ * Cloudflare Worker: sessions, apps, checklists, notes, links, stats
  */
 
-export interface Env {
+import {
+  buildStatsPayload,
+  createManualMetric,
+  deleteManualMetric,
+  type StatsEnv
+} from './stats';
+
+export interface Env extends StatsEnv {
   DB: D1Database;
   SESSION_SECRET: string;
   ADMIN_PASSWORD: string;
+  CF_API_TOKEN?: string;
+  CF_ZONE_ID?: string;
 }
 
 const SESSION_DURATION = 30 * 24 * 60 * 60 * 1000;
@@ -421,6 +430,15 @@ function serveDashboard(): Response {
     .link-item a:hover { color: var(--accent); }
     .empty { color: var(--muted); padding: 24px 0; }
     .next { font-size: .95rem; margin: 8px 0 4px; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .stat-tile { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+    .stat-tile .label { font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+    .stat-tile .value { font-size: 1.45rem; font-weight: 700; margin-top: 4px; }
+    .chart-wrap { overflow-x: auto; }
+    .chart-wrap svg { width: 100%; min-width: 480px; height: 220px; display: block; }
+    .chart-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: .8rem; color: var(--muted); margin-top: 8px; }
+    .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; }
+    .hint { font-size: .85rem; color: var(--muted); margin-bottom: 12px; }
     @media (max-width: 640px) {
       header { flex-direction: column; align-items: stretch; gap: 10px; }
     }
@@ -433,6 +451,7 @@ function serveDashboard(): Response {
       <button class="tab active" data-tab="apps">Apps</button>
       <button class="tab" data-tab="notes">Notes</button>
       <button class="tab" data-tab="links">Links</button>
+      <button class="tab" data-tab="stats">Stats</button>
       <button id="logoutBtn">Sign out</button>
     </nav>
   </header>
@@ -456,6 +475,42 @@ function serveDashboard(): Response {
         <button class="btn btn-primary" id="addLinkBtn">Add link</button>
       </div>
       <div id="linksList"></div>
+    </section>
+    <section id="stats" class="panel">
+      <p class="hint">Site traffic comes from Cloudflare Analytics (free). App Store numbers are logged manually until Connect API is worth the complexity.</p>
+      <div class="stat-grid" id="statTiles"></div>
+      <div class="card" style="margin-bottom:14px">
+        <h2>Site traffic — last 14 days</h2>
+        <div id="trafficStatus" class="meta"></div>
+        <div class="chart-wrap" id="trafficChart"></div>
+        <div class="chart-legend">
+          <span><i class="swatch" style="background:#2563eb"></i>Requests</span>
+          <span><i class="swatch" style="background:#16a34a"></i>Page views</span>
+          <span><i class="swatch" style="background:#a16207"></i>Uniques</span>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <h2>Log an App Store metric</h2>
+        <div class="field"><label>App</label><select id="metricApp"></select></div>
+        <div class="field"><label>Metric</label>
+          <select id="metricName">
+            <option value="downloads">Downloads</option>
+            <option value="proceeds_usd">Proceeds (USD)</option>
+            <option value="impressions">Impressions</option>
+            <option value="sessions">Sessions</option>
+            <option value="crashes">Crashes</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Value</label><input id="metricValue" type="text" placeholder="120"></div>
+        <div class="field"><label>Date</label><input id="metricDate" type="text" placeholder="YYYY-MM-DD"></div>
+        <div class="field"><label>Note</label><input id="metricNote" type="text" placeholder="Optional"></div>
+        <button class="btn btn-primary" id="addMetricBtn">Save metric</button>
+      </div>
+      <div class="card">
+        <h2>Logged metrics</h2>
+        <div id="metricsList"></div>
+      </div>
     </section>
   </main>
   <script>
@@ -619,6 +674,122 @@ function serveDashboard(): Response {
       await load();
     });
 
+    function fmtNum(n) {
+      n = Number(n) || 0;
+      if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+      if (n >= 1000) return (n/1000).toFixed(1) + 'k';
+      return String(Math.round(n));
+    }
+
+    function barChart(days) {
+      if (!days.length) return '<p class="empty">No traffic data yet.</p>';
+      var w = Math.max(480, days.length * 36);
+      var h = 220, pad = 28, chartH = h - pad * 1.5;
+      var max = 1;
+      days.forEach(function(d) {
+        max = Math.max(max, d.requests, d.pageViews, d.uniques);
+      });
+      var bw = (w - pad * 2) / days.length;
+      var bars = '';
+      days.forEach(function(d, i) {
+        var x = pad + i * bw;
+        var series = [
+          { v: d.requests, c: '#2563eb', o: 0.15 },
+          { v: d.pageViews, c: '#16a34a', o: 0.42 },
+          { v: d.uniques, c: '#a16207', o: 0.68 }
+        ];
+        series.forEach(function(s) {
+          var bh = (s.v / max) * chartH;
+          var bx = x + bw * s.o;
+          var by = pad + chartH - bh;
+          bars += '<rect x="' + bx.toFixed(1) + '" y="' + by.toFixed(1) + '" width="' + (bw * 0.22).toFixed(1) +
+            '" height="' + Math.max(bh, 1).toFixed(1) + '" fill="' + s.c + '" rx="2"></rect>';
+        });
+        var label = d.date.slice(5);
+        bars += '<text x="' + (x + bw / 2).toFixed(1) + '" y="' + (h - 6) +
+          '" text-anchor="middle" font-size="10" fill="#64748b">' + label + '</text>';
+      });
+      return '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Traffic chart">' + bars + '</svg>';
+    }
+
+    async function loadStats() {
+      var data = await api('/api/stats');
+      if (!data) return;
+      var t = data.totals || {};
+      document.getElementById('statTiles').innerHTML =
+        '<div class="stat-tile"><div class="label">Requests (14d)</div><div class="value">' + fmtNum(t.requests) + '</div></div>' +
+        '<div class="stat-tile"><div class="label">Page views</div><div class="value">' + fmtNum(t.pageViews) + '</div></div>' +
+        '<div class="stat-tile"><div class="label">Uniques</div><div class="value">' + fmtNum(t.uniques) + '</div></div>' +
+        '<div class="stat-tile"><div class="label">Threats blocked</div><div class="value">' + fmtNum(t.threats) + '</div></div>';
+
+      var status = document.getElementById('trafficStatus');
+      if (data.traffic && data.traffic.available) {
+        status.textContent = 'Live from Cloudflare Analytics · bigbeardapps.com';
+        document.getElementById('trafficChart').innerHTML = barChart(data.traffic.days || []);
+      } else {
+        status.textContent = (data.traffic && data.traffic.reason) || 'Traffic unavailable';
+        document.getElementById('trafficChart').innerHTML = '<p class="empty">Connect CF_API_TOKEN to unlock live charts.</p>';
+      }
+
+      var sel = document.getElementById('metricApp');
+      sel.innerHTML = '<option value="">Site / overall</option>' + (data.apps || []).map(function(a) {
+        return '<option value="' + esc(a.id) + '">' + esc(a.name) + '</option>';
+      }).join('');
+      if (!document.getElementById('metricDate').value) {
+        document.getElementById('metricDate').value = new Date().toISOString().slice(0, 10);
+      }
+
+      var list = document.getElementById('metricsList');
+      var metrics = data.metrics || [];
+      if (!metrics.length) {
+        list.innerHTML = '<p class="empty">No App Store metrics logged yet. Paste weekly numbers from App Store Connect.</p>';
+      } else {
+        var appName = {};
+        (data.apps || []).forEach(function(a) { appName[a.id] = a.name; });
+        list.innerHTML = metrics.map(function(m) {
+          return '<div class="link-item"><div><strong>' + esc(m.metric) + '</strong> · ' +
+            esc(fmtNum(m.value)) + '<div class="meta">' + esc(m.period_date) +
+            (m.app_id ? ' · ' + esc(appName[m.app_id] || m.app_id) : ' · overall') +
+            (m.note ? ' · ' + esc(m.note) : '') + '</div></div>' +
+            '<button class="btn btn-danger" data-del-metric="' + esc(m.id) + '">Remove</button></div>';
+        }).join('');
+      }
+    }
+
+    document.getElementById('addMetricBtn').addEventListener('click', async function() {
+      var value = Number(document.getElementById('metricValue').value);
+      var period_date = document.getElementById('metricDate').value.trim();
+      var metric = document.getElementById('metricName').value;
+      if (!period_date || Number.isNaN(value)) return alert('Date and numeric value required');
+      await api('/api/stats/metrics', {
+        method: 'POST',
+        body: JSON.stringify({
+          app_id: document.getElementById('metricApp').value || null,
+          metric: metric,
+          value: value,
+          period_date: period_date,
+          note: document.getElementById('metricNote').value.trim() || undefined
+        })
+      });
+      document.getElementById('metricValue').value = '';
+      document.getElementById('metricNote').value = '';
+      await loadStats();
+    });
+
+    document.getElementById('metricsList').addEventListener('click', async function(e) {
+      var del = e.target.closest('[data-del-metric]');
+      if (!del) return;
+      await api('/api/stats/metrics/' + del.dataset.delMetric, { method: 'DELETE' });
+      await loadStats();
+    });
+
+    // Load stats when Stats tab opens
+    document.querySelectorAll('.tab').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        if (btn.dataset.tab === 'stats') loadStats().catch(console.error);
+      });
+    });
+
     load().catch(function(err) {
       console.error(err);
       alert('Failed to load dashboard');
@@ -670,6 +841,38 @@ export default {
         if (path === '/api/links' && request.method === 'POST') return handleCreateLink(request, env);
         const linkMatch = path.match(/^\/api\/links\/([^/]+)$/);
         if (linkMatch && request.method === 'DELETE') return handleDeleteLink(env, linkMatch[1]);
+
+        if (path === '/api/stats' && request.method === 'GET') {
+          return json(await buildStatsPayload(env));
+        }
+        if (path === '/api/stats/metrics' && request.method === 'POST') {
+          const body = await request.json() as {
+            app_id?: string | null;
+            metric?: string;
+            value?: number;
+            period_date?: string;
+            note?: string;
+          };
+          const metric = (body.metric || '').trim();
+          const period_date = (body.period_date || '').trim();
+          const value = Number(body.value);
+          if (!metric || !period_date || Number.isNaN(value)) {
+            return json({ error: 'metric, value, and period_date required' }, 400);
+          }
+          const row = await createManualMetric(env, {
+            app_id: body.app_id || null,
+            metric,
+            value,
+            period_date,
+            note: body.note
+          });
+          return json({ metric: row }, 201);
+        }
+        const metricMatch = path.match(/^\/api\/stats\/metrics\/([^/]+)$/);
+        if (metricMatch && request.method === 'DELETE') {
+          await deleteManualMetric(env, metricMatch[1]);
+          return json({ success: true });
+        }
 
         return json({ error: 'Not found' }, 404);
       }

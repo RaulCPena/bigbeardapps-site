@@ -69,3 +69,19 @@ CREATE TABLE IF NOT EXISTS links (
 );
 
 CREATE INDEX IF NOT EXISTS idx_links_sort ON links(sort_order);
+
+-- Manual / pasted metrics (App Store downloads, revenue, etc.)
+CREATE TABLE IF NOT EXISTS metrics (
+    id TEXT PRIMARY KEY,
+    app_id TEXT,
+    metric TEXT NOT NULL,
+    value REAL NOT NULL,
+    period_date TEXT NOT NULL,
+    source TEXT NOT NULL DEFAULT 'manual',
+    note TEXT,
+    created_at INTEGER NOT NULL,
+    FOREIGN KEY (app_id) REFERENCES apps(id) ON DELETE SET NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_metrics_date ON metrics(period_date);
+CREATE INDEX IF NOT EXISTS idx_metrics_app ON metrics(app_id);

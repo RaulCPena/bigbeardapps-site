@@ -7,12 +7,13 @@ Lean solo-dev ops board on Cloudflare Workers (free tier).
 
 ## What it is (v1)
 
-Three jobs only — no fluff:
+Four jobs only — no fluff:
 
 1. **Apps** — command center for Feastmark, PayoffPilot, ReelTalk, Gunmark, HuntMark  
    Status, next action, App Store/site links, per-app checklist
 2. **Notes** — private scratchpad for decisions and reminders
 3. **Links** — one board for App Store Connect, Cloudflare, GitHub, etc.
+4. **Stats** — live site traffic charts from Cloudflare Analytics (free) + manual App Store metrics you paste in
 
 ## Stack (all free-tier friendly)
 
@@ -35,6 +36,15 @@ npx wrangler deploy
 ```bash
 npx wrangler secret put ADMIN_PASSWORD
 npx wrangler secret put SESSION_SECRET
+npx wrangler secret put CF_API_TOKEN   # needs Analytics:Read for live traffic charts
 ```
+
+`CF_ZONE_ID` is set in `wrangler.toml` (bigbeardapps.com).
+
+### Stats notes
+
+- **Site traffic:** pulled live via Cloudflare GraphQL (`httpRequests1dGroups`) — works on the Free plan.
+- **App Store numbers:** log manually in the Stats tab (downloads / proceeds / etc.). Full App Store Connect API sync is intentionally out of v1.
+- No third-party analytics scripts on the marketing site.
 
 See [CREDENTIALS.md](CREDENTIALS.md) for login details.

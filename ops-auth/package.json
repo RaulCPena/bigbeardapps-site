@@ -1,0 +1,23 @@
+{
+  "name": "ops-auth",
+  "version": "1.0.0",
+  "description": "Big Beard Ops - Authentication Service",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate": "wrangler d1 migrations apply ops-auth-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply ops-auth-db --remote"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250101.0",
+    "typescript": "^7.0.0",
+    "wrangler": "^4.130.0"
+  },
+  "dependencies": {
+    "hono": "^4.13.7"
+  }
+}

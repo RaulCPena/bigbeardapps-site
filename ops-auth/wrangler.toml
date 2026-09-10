@@ -1,0 +1,14 @@
+name = "ops-auth"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ops-auth-db"
+database_id = "00000000-0000-4000-8000-000000000001"  # PLACEHOLDER - will be replaced on create
+migrations_dir = "migrations"
+
+[vars]
+APP_NAME = "Big Beard Ops"
+APP_URL = "https://ops.bigbeardapps.com"

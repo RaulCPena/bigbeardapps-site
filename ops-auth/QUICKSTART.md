@@ -74,15 +74,43 @@ npx wrangler deploy
 
 The worker will be deployed to `ops-auth.raul-c-pena-gmail-com.workers.dev` (or similar).
 
-### 7. Attach Custom Domain
+### 7. Test Login End-to-End (on workers.dev domain)
 
-In Cloudflare dashboard or via CLI:
+After deployment, the worker will be available at:
+`https://ops-auth.<your-subdomain>.workers.dev`
+
+The exact URL is shown in the deployment output.
+
+1. Visit the workers.dev URL from the deployment output
+2. Enter the admin password you set in step 5
+3. Click "Sign In"
+4. Should redirect to `/dashboard` with success message
+5. Click "Sign Out"
+6. Should redirect back to login page
+
+Test the API endpoints (replace with your actual workers.dev URL):
 
 ```bash
-npx wrangler domains add ops.bigbeardapps.com --environment production
+# Test login
+curl -X POST https://ops-auth.<your-subdomain>.workers.dev/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"password":"YOUR_ADMIN_PASSWORD"}' \
+  -v
+
+# Verify session (use session cookie from login response)
+curl https://ops-auth.<your-subdomain>.workers.dev/api/verify \
+  -H "Cookie: session=YOUR_SESSION_ID"
+
+# Test logout
+curl -X POST https://ops-auth.<your-subdomain>.workers.dev/api/logout \
+  -H "Cookie: session=YOUR_SESSION_ID"
 ```
 
-Alternatively, via Cloudflare dashboard:
+### 8. (Optional) Attach Custom Domain Later
+
+Once testing is complete and everything works, you can add the custom domain:
+
+**Via Cloudflare dashboard:**
 1. Go to Workers & Pages
 2. Select `ops-auth`
 3. Go to Settings → Domains & Routes
@@ -90,32 +118,14 @@ Alternatively, via Cloudflare dashboard:
 5. Enter `ops.bigbeardapps.com`
 6. Save
 
-### 8. Test Login End-to-End
-
-1. Visit `https://ops.bigbeardapps.com/`
-2. Enter the admin password you set in step 5
-3. Click "Sign In"
-4. Should redirect to `/dashboard` with success message
-5. Click "Sign Out"
-6. Should redirect back to login page
-
-Test the API endpoints:
-
+**Or via CLI:**
 ```bash
-# Test login
-curl -X POST https://ops.bigbeardapps.com/api/login \
-  -H "Content-Type: application/json" \
-  -d '{"password":"YOUR_ADMIN_PASSWORD"}' \
-  -v
-
-# Verify session (use session cookie from login response)
-curl https://ops.bigbeardapps.com/api/verify \
-  -H "Cookie: session=YOUR_SESSION_ID"
-
-# Test logout
-curl -X POST https://ops.bigbeardapps.com/api/logout \
-  -H "Cookie: session=YOUR_SESSION_ID"
+npx wrangler domains add ops.bigbeardapps.com
 ```
+
+The service will then be available at both:
+- `https://ops.bigbeardapps.com/` (custom domain)
+- `https://ops-auth.<your-subdomain>.workers.dev/` (workers.dev domain)
 
 ## Architecture
 

@@ -38,13 +38,13 @@ npx wrangler d1 create ops-auth-db
 # Token needs: Account → D1 → Edit permission
 ```
 
-**Steps 3-8:** (waiting for step 2)
+**Steps 3-7:** (waiting for step 2)
 - Step 3: Update wrangler.toml with database ID
 - Step 4: Run migrations
 - Step 5: Set production secrets
 - Step 6: Deploy worker
-- Step 7: Attach custom domain `ops.bigbeardapps.com`
-- Step 8: Test login end-to-end
+- Step 7: Test login end-to-end (on workers.dev domain)
+- Step 8: (Optional) Attach custom domain `ops.bigbeardapps.com` after testing
 
 ## The Problem
 

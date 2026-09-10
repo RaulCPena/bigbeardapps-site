@@ -12,8 +12,8 @@ Internal authentication service for Big Beard Apps operations tools. Deployed on
 
 ## Live URL (after deployment)
 
-- Production: `https://ops.bigbeardapps.com/`
-- Worker default: `https://ops-auth.raul-c-pena-gmail-com.workers.dev/`
+- **Testing:** `https://ops-auth.<your-subdomain>.workers.dev/` (default Worker URL)
+- **Production (future):** `https://ops.bigbeardapps.com/` (custom domain, after testing)
 
 ## Quick Links
 

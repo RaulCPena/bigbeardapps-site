@@ -485,6 +485,10 @@ function serveDashboard(): Response {
       <p class="hint">Site traffic comes from Cloudflare Analytics (free). App Store numbers are logged manually until Connect API is worth the complexity.</p>
       <div class="stat-grid" id="statTiles"></div>
       <div class="card" style="margin-bottom:14px">
+        <h2>Domains — last 14 days</h2>
+        <div id="domainCards" class="stat-grid"></div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
         <h2>Site traffic — last 14 days</h2>
         <div id="trafficStatus" class="meta"></div>
         <div class="chart-wrap" id="trafficChart"></div>
@@ -736,9 +740,20 @@ function serveDashboard(): Response {
         '<div class="stat-tile"><div class="label">Uniques</div><div class="value">' + fmtNum(t.uniques) + '</div></div>' +
         '<div class="stat-tile"><div class="label">Threats blocked</div><div class="value">' + fmtNum(t.threats) + '</div></div>';
 
+      var domains = data.zones || [];
+      document.getElementById('domainCards').innerHTML = domains.length
+        ? domains.map(function(z) {
+            if (!z.available) {
+              return '<div class="stat-tile"><div class="label">' + esc(z.name) + '</div><div class="value" style="font-size:0.95rem;color:#b91c1c">Unavailable</div><div class="meta">' + esc(z.reason || '') + '</div></div>';
+            }
+            var tot = z.totals || {};
+            return '<div class="stat-tile"><div class="label">' + esc(z.name) + '</div><div class="value">' + fmtNum(tot.requests) + '</div><div class="meta">' + fmtNum(tot.pageViews) + ' views · ' + fmtNum(tot.uniques) + ' uniques</div></div>';
+          }).join('')
+        : '<p class="empty">No domains configured.</p>';
+
       var status = document.getElementById('trafficStatus');
       if (data.traffic && data.traffic.available) {
-        status.textContent = 'Zone total (14d) · bigbeardapps.com — see URLs today below for hosts/paths';
+        status.textContent = 'Primary chart: bigbeardapps.com (14d). Domain cards above cover all zones.';
         document.getElementById('trafficChart').innerHTML = barChart(data.traffic.days || []);
       } else {
         status.textContent = (data.traffic && data.traffic.reason) || 'Traffic unavailable';

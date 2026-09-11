@@ -13,7 +13,7 @@ Four jobs only — no fluff:
    Status, next action, App Store/site links, per-app checklist
 2. **Notes** — private scratchpad for decisions and reminders
 3. **Links** — one board for App Store Connect, Cloudflare, GitHub, etc.
-4. **Stats** — live site traffic charts from Cloudflare Analytics (free) + manual App Store metrics you paste in
+4. **Stats** — live site traffic charts from Cloudflare Analytics (free) + App Store units from local `asc-metrics` JSON import (or manual paste)
 
 ## Stack (all free-tier friendly)
 
@@ -39,12 +39,15 @@ npx wrangler secret put SESSION_SECRET
 npx wrangler secret put CF_API_TOKEN   # needs Analytics:Read for live traffic charts
 ```
 
-`CF_ZONE_ID` is set in `wrangler.toml` (bigbeardapps.com).
+`CF_ZONE_ID` / `CF_ZONES` are set in `wrangler.toml`.
 
 ### Stats notes
 
 - **Site traffic:** pulled live via Cloudflare GraphQL (`httpRequests1dGroups`) — works on the Free plan.
-- **App Store numbers:** log manually in the Stats tab (downloads / proceeds / etc.). Full App Store Connect API sync is intentionally out of v1.
+- **App Store numbers:** run `asc-metrics` on your Mac (keys stay local), then either:
+  - Paste `uv run asc-metrics report --json` into the Stats tab, or
+  - `OPS_COOKIE='session=…' ./scripts/push-asc-report.sh`
+- Import hits `POST /api/stats/asc-import` and replaces the previous `source=asc` snapshot in D1.
 - No third-party analytics scripts on the marketing site.
 
 See [CREDENTIALS.md](CREDENTIALS.md) for login details.

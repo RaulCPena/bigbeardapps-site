@@ -7,6 +7,8 @@ import {
   buildStatsPayload,
   createManualMetric,
   deleteManualMetric,
+  importAscReport,
+  type AscReportJson,
   type StatsEnv
 } from './stats';
 
@@ -508,6 +510,15 @@ function serveDashboard(): Response {
         <p class="hint" style="margin-top:10px">Free Cloudflare plan: URL breakdown is last ~24 hours. Separate domains like feastmark.app need Analytics:Read on those zones in your API token.</p>
       </div>
       <div class="card" style="margin-bottom:14px">
+        <h2>App Store Connect (asc-metrics)</h2>
+        <div id="ascSummary" class="meta" style="margin-bottom:10px"></div>
+        <div class="field"><label>Paste <code>asc-metrics report --json</code></label>
+          <textarea id="ascJson" rows="8" placeholder='{"schema_version":1,"period_start":"...","period_end":"...","total_units":"..."}'></textarea>
+        </div>
+        <button class="btn btn-primary" id="importAscBtn">Import ASC report</button>
+        <p class="hint" style="margin-top:10px">Keys stay on your Mac. Sync locally, then paste JSON here (or use <code>scripts/push-asc-report.sh</code>). Each import replaces the previous ASC snapshot.</p>
+      </div>
+      <div class="card" style="margin-bottom:14px">
         <h2>Log an App Store metric</h2>
         <div class="field"><label>App</label><select id="metricApp"></select></div>
         <div class="field"><label>Metric</label>
@@ -792,15 +803,27 @@ function serveDashboard(): Response {
         document.getElementById('metricDate').value = new Date().toISOString().slice(0, 10);
       }
 
+      var ascEl = document.getElementById('ascSummary');
+      var asc = data.asc || {};
+      if (asc.available) {
+        ascEl.innerHTML = '<strong>' + esc(fmtNum(asc.total_units)) + '</strong> units' +
+          (asc.previous_units != null ? ' <span class="meta">(prev ' + esc(fmtNum(asc.previous_units)) + ')</span>' : '') +
+          '<div class="meta">' + esc(asc.period_start || '?') + ' → ' + esc(asc.period_end || '?') +
+          (asc.imported_at ? ' · imported ' + new Date(asc.imported_at).toLocaleString() : '') + '</div>';
+      } else {
+        ascEl.textContent = 'No ASC snapshot yet.';
+      }
+
       var list = document.getElementById('metricsList');
       var metrics = data.metrics || [];
       if (!metrics.length) {
-        list.innerHTML = '<p class="empty">No App Store metrics logged yet. Paste weekly numbers from App Store Connect.</p>';
+        list.innerHTML = '<p class="empty">No App Store metrics yet. Import asc-metrics JSON or log a number below.</p>';
       } else {
         var appName = {};
         (data.apps || []).forEach(function(a) { appName[a.id] = a.name; });
         list.innerHTML = metrics.map(function(m) {
-          return '<div class="link-item"><div><strong>' + esc(m.metric) + '</strong> · ' +
+          var src = m.source === 'asc' ? '<span class="badge live">asc</span> ' : '';
+          return '<div class="link-item"><div>' + src + '<strong>' + esc(m.metric) + '</strong> · ' +
             esc(fmtNum(m.value)) + '<div class="meta">' + esc(m.period_date) +
             (m.app_id ? ' · ' + esc(appName[m.app_id] || m.app_id) : ' · overall') +
             (m.note ? ' · ' + esc(m.note) : '') + '</div></div>' +
@@ -808,6 +831,29 @@ function serveDashboard(): Response {
         }).join('');
       }
     }
+
+    document.getElementById('importAscBtn').addEventListener('click', async function() {
+      var raw = document.getElementById('ascJson').value.trim();
+      if (!raw) return alert('Paste asc-metrics report --json first');
+      var payload;
+      try { payload = JSON.parse(raw); }
+      catch (err) { return alert('Invalid JSON'); }
+      try {
+        var result = await api('/api/stats/asc-import', {
+          method: 'POST',
+          body: JSON.stringify(payload)
+        });
+        document.getElementById('ascJson').value = '';
+        var msg = 'Imported ' + result.imported + ' rows';
+        if (result.unmatched && result.unmatched.length) {
+          msg += '\\nUnmatched SKUs: ' + result.unmatched.map(function(u) { return u.key; }).join(', ');
+        }
+        alert(msg);
+        await loadStats();
+      } catch (err) {
+        alert(err.message || 'Import failed');
+      }
+    });
 
     document.getElementById('addMetricBtn').addEventListener('click', async function() {
       var value = Number(document.getElementById('metricValue').value);
@@ -920,6 +966,16 @@ export default {
             note: body.note
           });
           return json({ metric: row }, 201);
+        }
+        if (path === '/api/stats/asc-import' && request.method === 'POST') {
+          const body = await request.json() as AscReportJson;
+          try {
+            const result = await importAscReport(env, body);
+            return json(result, 201);
+          } catch (err) {
+            const message = err instanceof Error ? err.message : 'Import failed';
+            return json({ error: message }, 400);
+          }
         }
         const metricMatch = path.match(/^\/api\/stats\/metrics\/([^/]+)$/);
         if (metricMatch && request.method === 'DELETE') {

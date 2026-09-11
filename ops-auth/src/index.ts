@@ -484,11 +484,23 @@ function serveDashboard(): Response {
       <div id="linksList"></div>
     </section>
     <section id="stats" class="panel">
-      <p class="hint">Site traffic comes from Cloudflare Analytics (free). App Store numbers are logged manually until Connect API is worth the complexity.</p>
+      <p class="hint">Site traffic from Cloudflare Analytics (free). App Store units from local <code>asc-metrics</code> JSON import.</p>
       <div class="stat-grid" id="statTiles"></div>
       <div class="card" style="margin-bottom:14px">
         <h2>Domains — last 14 days</h2>
         <div id="domainCards" class="stat-grid"></div>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <h2>Where traffic comes from</h2>
+        <div id="countryStatus" class="meta"></div>
+        <div id="countryBars"></div>
+        <p class="hint" style="margin-top:10px">Top countries across all domains (14 days). Tor shows as “Tor”.</p>
+      </div>
+      <div class="card" style="margin-bottom:14px">
+        <h2>Threats blocked</h2>
+        <div id="threatStatus" class="meta"></div>
+        <div id="threatBars"></div>
+        <p class="hint" style="margin-top:10px">Cloudflare threat categories (free Analytics). Rule-level WAF detail needs a paid Security plan.</p>
       </div>
       <div class="card" style="margin-bottom:14px">
         <h2>Site traffic — last 14 days</h2>
@@ -766,6 +778,47 @@ uv run asc-metrics report --json</pre>
             return '<div class="stat-tile"><div class="label">' + esc(z.name) + '</div><div class="value">' + fmtNum(tot.requests) + '</div><div class="meta">' + fmtNum(tot.pageViews) + ' views · ' + fmtNum(tot.uniques) + ' uniques</div></div>';
           }).join('')
         : '<p class="empty">No domains configured.</p>';
+
+      var countries = data.countries || [];
+      var countryStatus = document.getElementById('countryStatus');
+      var countryBars = document.getElementById('countryBars');
+      if (countries.length) {
+        countryStatus.textContent = 'Top ' + countries.length + ' countries · all domains · 14 days';
+        var maxC = 1;
+        countries.forEach(function(c){ maxC = Math.max(maxC, c.requests); });
+        countryBars.innerHTML = countries.map(function(c){
+          var pct = Math.max(4, Math.round(100 * c.requests / maxC));
+          return '<div class="hbar"><div>' + esc(c.label || c.code) +
+            ' <span class="meta">' + esc(c.code) + '</span></div>' +
+            '<div class="track"><div class="fill" style="width:' + pct + '%"></div></div>' +
+            '<div class="count">' + fmtNum(c.requests) +
+            (c.threats ? '<div class="meta">' + fmtNum(c.threats) + ' threats</div>' : '') +
+            '</div></div>';
+        }).join('');
+      } else {
+        countryStatus.textContent = 'No country data yet (needs live Cloudflare traffic).';
+        countryBars.innerHTML = '';
+      }
+
+      var threats = data.threat_paths || [];
+      var threatStatus = document.getElementById('threatStatus');
+      var threatBars = document.getElementById('threatBars');
+      if (threats.length) {
+        threatStatus.textContent = threats.length + ' categor' + (threats.length === 1 ? 'y' : 'ies') +
+          ' · ' + fmtNum(t.threats) + ' blocked total';
+        var maxT = 1;
+        threats.forEach(function(x){ maxT = Math.max(maxT, x.requests); });
+        threatBars.innerHTML = threats.map(function(x){
+          var pct = Math.max(4, Math.round(100 * x.requests / maxT));
+          return '<div class="hbar"><div>' + esc(x.label || x.key) +
+            '<div class="meta">' + esc(x.key) + '</div></div>' +
+            '<div class="track"><div class="fill path" style="width:' + pct + '%"></div></div>' +
+            '<div class="count">' + fmtNum(x.requests) + '</div></div>';
+        }).join('');
+      } else {
+        threatStatus.textContent = (t.threats ? fmtNum(t.threats) + ' blocked, but no category breakdown returned.' : 'No threats recorded in this window.');
+        threatBars.innerHTML = '';
+      }
 
       var status = document.getElementById('trafficStatus');
       if (data.traffic && data.traffic.available) {

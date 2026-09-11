@@ -26,6 +26,8 @@ export type ZoneTraffic = {
     threats: number;
     bytes: number;
   };
+  countries: Array<{ code: string; requests: number; threats: number }>;
+  threatPaths: Array<{ key: string; requests: number }>;
 };
 
 export type TrafficDay = {
@@ -80,6 +82,49 @@ function emptyTotals() {
   return { requests: 0, pageViews: 0, uniques: 0, threats: 0, bytes: 0 };
 }
 
+const THREAT_PATH_LABELS: Record<string, string> = {
+  'user.ban.ip': 'IP ban',
+  'user.ban.ctry': 'Country ban',
+  'bic.ban.unknown': 'Browser integrity check',
+  'ua.browser': 'Bad user-agent',
+  'hot.ban': 'Hotlink protection',
+  'rate.limit': 'Rate limit',
+  'waf.challenge': 'WAF challenge',
+  'waf.block': 'WAF block',
+  'security.level': 'Security level',
+  'bot.fight': 'Bot Fight Mode',
+  'l7ddos': 'L7 DDoS mitigation'
+};
+
+export function threatPathLabel(key: string): string {
+  return THREAT_PATH_LABELS[key] || key;
+}
+
+export function countryLabel(code: string): string {
+  const c = (code || '').toUpperCase();
+  if (!c) return 'Unknown';
+  if (c === 'T1') return 'Tor';
+  if (c === 'XX') return 'Unknown';
+  try {
+    return new Intl.DisplayNames(['en'], { type: 'region' }).of(c) || c;
+  } catch {
+    return c;
+  }
+}
+
+function mergeCountMaps(
+  into: Map<string, { requests: number; threats?: number }>,
+  rows: Array<{ key: string; requests: number; threats?: number }>,
+  withThreats: boolean
+) {
+  for (const row of rows) {
+    const cur = into.get(row.key) || { requests: 0, threats: withThreats ? 0 : undefined };
+    cur.requests += row.requests || 0;
+    if (withThreats) cur.threats = (cur.threats || 0) + (row.threats || 0);
+    into.set(row.key, cur);
+  }
+}
+
 function sumDays(days: TrafficDay[]) {
   return days.reduce(
     (acc, d) => {
@@ -99,15 +144,19 @@ export async function fetchZoneTraffic(
   zone: ZoneRef,
   days = 14
 ): Promise<ZoneTraffic> {
+  const emptyZone = (reason: string): ZoneTraffic => ({
+    name: zone.name,
+    id: zone.id,
+    available: false,
+    reason,
+    days: [],
+    totals: emptyTotals(),
+    countries: [],
+    threatPaths: []
+  });
+
   if (!env.CF_API_TOKEN) {
-    return {
-      name: zone.name,
-      id: zone.id,
-      available: false,
-      reason: 'Set CF_API_TOKEN secret to enable live traffic.',
-      days: [],
-      totals: emptyTotals()
-    };
+    return emptyZone('Set CF_API_TOKEN secret to enable live traffic.');
   }
 
   const { start, end } = lastNDates(days);
@@ -121,7 +170,15 @@ export async function fetchZoneTraffic(
             filter: { date_geq: $start, date_leq: $end }
           ) {
             dimensions { date }
-            sum { requests pageViews cachedRequests threats bytes }
+            sum {
+              requests
+              pageViews
+              cachedRequests
+              threats
+              bytes
+              countryMap { clientCountryName requests threats }
+              threatPathingMap { threatPathingName requests }
+            }
             uniq { uniques }
           }
         }
@@ -142,14 +199,7 @@ export async function fetchZoneTraffic(
   });
 
   if (!res.ok) {
-    return {
-      name: zone.name,
-      id: zone.id,
-      available: false,
-      reason: `Cloudflare API HTTP ${res.status}`,
-      days: [],
-      totals: emptyTotals()
-    };
+    return emptyZone(`Cloudflare API HTTP ${res.status}`);
   }
 
   const payload = await res.json() as {
@@ -165,6 +215,15 @@ export async function fetchZoneTraffic(
               cachedRequests: number;
               threats: number;
               bytes: number;
+              countryMap?: Array<{
+                clientCountryName: string;
+                requests: number;
+                threats: number;
+              }>;
+              threatPathingMap?: Array<{
+                threatPathingName: string;
+                requests: number;
+              }>;
             };
             uniq: { uniques: number };
           }>;
@@ -174,14 +233,7 @@ export async function fetchZoneTraffic(
   };
 
   if (payload.errors?.length) {
-    return {
-      name: zone.name,
-      id: zone.id,
-      available: false,
-      reason: payload.errors.map(e => e.message).join('; '),
-      days: [],
-      totals: emptyTotals()
-    };
+    return emptyZone(payload.errors.map(e => e.message).join('; '));
   }
 
   const groups = payload.data?.viewer?.zones?.[0]?.httpRequests1dGroups || [];
@@ -195,12 +247,44 @@ export async function fetchZoneTraffic(
     cachedRequests: g.sum.cachedRequests || 0
   }));
 
+  const countryMap = new Map<string, { requests: number; threats?: number }>();
+  const threatMap = new Map<string, { requests: number; threats?: number }>();
+  for (const g of groups) {
+    mergeCountMaps(
+      countryMap,
+      (g.sum.countryMap || []).map(c => ({
+        key: c.clientCountryName || 'XX',
+        requests: c.requests || 0,
+        threats: c.threats || 0
+      })),
+      true
+    );
+    mergeCountMaps(
+      threatMap,
+      (g.sum.threatPathingMap || []).map(t => ({
+        key: t.threatPathingName || 'unknown',
+        requests: t.requests || 0
+      })),
+      false
+    );
+  }
+
+  const countries = [...countryMap.entries()]
+    .map(([code, v]) => ({ code, requests: v.requests, threats: v.threats || 0 }))
+    .sort((a, b) => b.requests - a.requests);
+
+  const threatPaths = [...threatMap.entries()]
+    .map(([key, v]) => ({ key, requests: v.requests }))
+    .sort((a, b) => b.requests - a.requests);
+
   return {
     name: zone.name,
     id: zone.id,
     available: true,
     days: daysData,
-    totals: sumDays(daysData)
+    totals: sumDays(daysData),
+    countries,
+    threatPaths
   };
 }
 
@@ -669,11 +753,48 @@ export async function buildStatsPayload(env: StatsEnv) {
       emptyTotals()
     );
 
+  const countryRollup = new Map<string, { requests: number; threats?: number }>();
+  const threatRollup = new Map<string, { requests: number; threats?: number }>();
+  for (const z of zones) {
+    if (!z.available) continue;
+    mergeCountMaps(
+      countryRollup,
+      z.countries.map(c => ({ key: c.code, requests: c.requests, threats: c.threats })),
+      true
+    );
+    mergeCountMaps(
+      threatRollup,
+      z.threatPaths.map(t => ({ key: t.key, requests: t.requests })),
+      false
+    );
+  }
+
+  const countries = [...countryRollup.entries()]
+    .map(([code, v]) => ({
+      code,
+      label: countryLabel(code),
+      requests: v.requests,
+      threats: v.threats || 0
+    }))
+    .sort((a, b) => b.requests - a.requests)
+    .slice(0, 15);
+
+  const threat_paths = [...threatRollup.entries()]
+    .map(([key, v]) => ({
+      key,
+      label: threatPathLabel(key),
+      requests: v.requests
+    }))
+    .sort((a, b) => b.requests - a.requests)
+    .slice(0, 15);
+
   return {
     traffic,
     zones,
     breakdown,
     totals,
+    countries,
+    threat_paths,
     metrics,
     asc: summarizeAscMetrics(metrics),
     apps: apps.results || [],

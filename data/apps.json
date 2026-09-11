@@ -418,6 +418,16 @@
           "footer_label": null
         },
         {
+          "type": "privacy",
+          "href": "/huntmark/privacy.html",
+          "footer_label": "Privacy"
+        },
+        {
+          "type": "terms",
+          "href": "/huntmark/terms.html",
+          "footer_label": "Terms"
+        },
+        {
           "type": "support",
           "href": "/support.html#support-huntmark",
           "footer_label": null

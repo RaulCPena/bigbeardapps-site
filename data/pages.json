@@ -210,12 +210,34 @@
       "nav_current": "/huntmark/",
       "nav_variant": "solid"
     },
+    "huntmark/privacy.html": {
+      "url": "https://bigbeardapps.com/huntmark/privacy.html",
+      "title": "HuntMark — Privacy Policy",
+      "description": "HuntMark's privacy policy — no accounts, no analytics. Saved spots stay on your device; location is used on-device for distance only.",
+      "og_title": "HuntMark — Privacy Policy",
+      "og_description": "HuntMark's privacy policy — no accounts, no analytics. Saved spots stay on your device.",
+      "og_image": "https://bigbeardapps.com/huntmark/images/og-card.png",
+      "og_image_alt": "HuntMark — public land hunting, by species.",
+      "nav_current": "/huntmark/",
+      "nav_variant": "solid"
+    },
     "huntmark/roadmap.html": {
       "url": "https://bigbeardapps.com/huntmark/roadmap.html",
       "title": "Roadmap — HuntMark",
       "description": "Where HuntMark is headed — a living Now / Next / Later roadmap for the public-land hunting app from Big Beard Apps.",
       "og_title": "Roadmap — HuntMark",
       "og_description": "Where HuntMark is headed — a living Now / Next / Later roadmap for the public-land hunting app from Big Beard Apps.",
+      "og_image": "https://bigbeardapps.com/huntmark/images/og-card.png",
+      "og_image_alt": "HuntMark — public land hunting, by species.",
+      "nav_current": "/huntmark/",
+      "nav_variant": "solid"
+    },
+    "huntmark/terms.html": {
+      "url": "https://bigbeardapps.com/huntmark/terms.html",
+      "title": "Terms of Service — HuntMark",
+      "description": "HuntMark's terms of service — licence, hunting-data disclaimer, subscriptions, and contact.",
+      "og_title": "Terms of Service — HuntMark",
+      "og_description": "HuntMark's terms of service.",
       "og_image": "https://bigbeardapps.com/huntmark/images/og-card.png",
       "og_image_alt": "HuntMark — public land hunting, by species.",
       "nav_current": "/huntmark/",

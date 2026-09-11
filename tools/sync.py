@@ -130,12 +130,54 @@ def render_nav(site, apps, page_cfg):
     ).rstrip("\n")
 
 
+def app_page_href(app, ptype):
+    for page in app.get("pages") or []:
+        if page.get("type") == ptype:
+            return page.get("href")
+    return None
+
+
+def render_legal_index(apps, rel):
+    """Per-app legal links on the studio hub pages. Driven by apps[].pages."""
+    want_terms = rel.endswith("terms.html")
+    items = []
+    for app in apps:
+        priv = app_page_href(app, "privacy")
+        terms = app_page_href(app, "terms")
+        name = app["name"]
+        if want_terms:
+            if terms:
+                items.append(
+                    "        <li><a href=\"%s\">%s</a> — Terms of Service</li>"
+                    % (terms, name))
+            elif priv:
+                items.append(
+                    "        <li>%s — no separate terms page. See the "
+                    "<a href=\"%s\">privacy policy</a>.</li>" % (name, priv))
+            else:
+                items.append("        <li>%s — no legal pages yet.</li>" % name)
+        else:
+            note = (app.get("press") or {}).get("privacy_note", "").strip()
+            bits = []
+            if priv:
+                bits.append('<a href="%s">Privacy policy</a>' % priv)
+            if terms:
+                bits.append('<a href="%s">Terms</a>' % terms)
+            links = " · ".join(bits)
+            body = note
+            if links:
+                body = (body + " " if body else "") + links
+            items.append("        <li><strong>%s.</strong> %s</li>" % (name, body))
+    return "<ul>\n%s\n    </ul>" % "\n".join(items)
+
+
 def render_footer(site, apps):
-    # Global footer stays brand + apps + studio links only. Privacy / roadmap /
-    # support live on each app page (and App Store / press), so they don't grow
-    # into a second legal row every time an app ships.
+    # Header nav stays apps + About/Press/Contact. Footer adds two studio
+    # hubs so /privacy and /terms exist without a legal row per app.
     links = ['        <a href="%s">%s</a>' % (a["paths"]["site"], a["name"]) for a in apps]
     links += ['        <a href="%s">%s</a>' % (s["href"], s["label"]) for s in site["nav_sections"]]
+    links += ['        <a href="%s">%s</a>' % (s["href"], s["label"])
+              for s in site.get("footer_extra") or []]
 
     social = []
     for s in site["socials"]:
@@ -387,6 +429,8 @@ def render_app_region(name, apps, rel, site, log):
         return render_app_cards(apps)
     if kind == "support":
         return render_support(apps)
+    if kind == "legalindex":
+        return render_legal_index(apps, rel)
     if kind == "crosspromo":
         return render_crosspromo(apps, slug)
     app = by_slug.get(slug)
@@ -883,7 +927,7 @@ def main():
         # per-app regions: bba:badge:<slug>, bba:pressstore:<slug>, …
         for extra in sorted(set(re.findall(
                 r"<!-- bba:((?:badge|pressfacts|statusline|contacttopics|launchlist|log"
-                r"|appcards|crosspromo|showcase|support)"
+                r"|appcards|crosspromo|showcase|support|legalindex)"
                 r"(?::[a-z0-9-]+)?) start", html))):
             span = region_span(html, extra, rel)
             if span:

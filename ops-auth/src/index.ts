@@ -512,11 +512,16 @@ function serveDashboard(): Response {
       <div class="card" style="margin-bottom:14px">
         <h2>App Store Connect (asc-metrics)</h2>
         <div id="ascSummary" class="meta" style="margin-bottom:10px"></div>
-        <div class="field"><label>Paste <code>asc-metrics report --json</code></label>
+        <div class="field"><label>On your Mac (keys stay local)</label>
+          <pre style="margin:0;padding:12px 14px;background:rgba(0,0,0,.04);border-radius:8px;font-size:12px;line-height:1.55;overflow:auto;white-space:pre-wrap">cd ~/Projects/big-beard-apps/asc-metrics
+uv run asc-metrics sync
+uv run asc-metrics report --json</pre>
+        </div>
+        <div class="field"><label>Paste the JSON output here</label>
           <textarea id="ascJson" rows="8" placeholder='{"schema_version":1,"period_start":"...","period_end":"...","total_units":"..."}'></textarea>
         </div>
         <button class="btn btn-primary" id="importAscBtn">Import ASC report</button>
-        <p class="hint" style="margin-top:10px">Keys stay on your Mac. Sync locally, then paste JSON here (or use <code>scripts/push-asc-report.sh</code>). Each import replaces the previous ASC snapshot.</p>
+        <p class="hint" style="margin-top:10px">Each import replaces the previous ASC snapshot. Optional: <code>OPS_COOKIE='session=…' ./ops-auth/scripts/push-asc-report.sh</code></p>
       </div>
       <div class="card" style="margin-bottom:14px">
         <h2>Log an App Store metric</h2>

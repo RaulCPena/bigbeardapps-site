@@ -388,6 +388,11 @@ export async function importAscReport(
 
   const matched: AscImportResult['matched'] = [];
   const unmatched: AscImportResult['unmatched'] = [];
+  // Aggregate SKUs that resolve to the same ops app (e.g. PayoffPilot + .pro IAP)
+  const perApp = new Map<
+    string,
+    { app: OpsApp; units: number; keys: string[] }
+  >();
 
   for (const entry of payload.by_app || []) {
     const key = String(entry.key || '').trim();
@@ -396,13 +401,13 @@ export async function importAscReport(
     const app = matchAscKeyToApp(apps, key);
     if (app) {
       matched.push({ key, app_id: app.id, units });
-      rows.push({
-        id: `asc-downloads-${app.slug}-${period_end}`,
-        app_id: app.id,
-        metric: 'downloads',
-        value: units,
-        note: `${noteBase} · sku ${key}`
-      });
+      const cur = perApp.get(app.id);
+      if (cur) {
+        cur.units += units;
+        cur.keys.push(key);
+      } else {
+        perApp.set(app.id, { app, units, keys: [key] });
+      }
     } else {
       unmatched.push({ key, units });
       rows.push({
@@ -415,10 +420,21 @@ export async function importAscReport(
     }
   }
 
+  for (const { app, units, keys } of perApp.values()) {
+    rows.push({
+      id: `asc-downloads-${app.slug}-${period_end}`,
+      app_id: app.id,
+      metric: 'downloads',
+      value: units,
+      note: `${noteBase} · sku ${keys.join(', ')}`
+    });
+  }
+
   for (const m of payload.money || []) {
     const currency = String(m.currency || '').trim().toUpperCase();
     const proceeds = parseNum(m.proceeds);
     if (!currency || proceeds === null) continue;
+    if (proceeds === 0 && currency !== 'USD') continue;
     const metric = currency === 'USD' ? 'proceeds_usd' : `proceeds_${currency}`;
     rows.push({
       id: `asc-${metric}-overall-${period_end}`,

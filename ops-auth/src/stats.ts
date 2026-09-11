@@ -7,7 +7,26 @@ export interface StatsEnv {
   DB: D1Database;
   CF_API_TOKEN?: string;
   CF_ZONE_ID?: string;
+  /** JSON array: [{ "name": "example.com", "id": "zone-id" }] */
+  CF_ZONES?: string;
 }
+
+export type ZoneRef = { name: string; id: string };
+
+export type ZoneTraffic = {
+  name: string;
+  id: string;
+  available: boolean;
+  reason?: string;
+  days: TrafficDay[];
+  totals: {
+    requests: number;
+    pageViews: number;
+    uniques: number;
+    threats: number;
+    bytes: number;
+  };
+};
 
 export type TrafficDay = {
   date: string;
@@ -40,16 +59,54 @@ function lastNDates(n: number): { start: string; end: string } {
   };
 }
 
-export async function fetchCloudflareTraffic(env: StatsEnv, days = 14): Promise<{
-  available: boolean;
-  reason?: string;
-  days: TrafficDay[];
-}> {
-  if (!env.CF_API_TOKEN || !env.CF_ZONE_ID) {
+function parseZones(env: StatsEnv): ZoneRef[] {
+  if (env.CF_ZONES) {
+    try {
+      const parsed = JSON.parse(env.CF_ZONES) as ZoneRef[];
+      if (Array.isArray(parsed) && parsed.length) {
+        return parsed.filter(z => z && z.name && z.id);
+      }
+    } catch {
+      // fall through
+    }
+  }
+  if (env.CF_ZONE_ID) {
+    return [{ name: 'bigbeardapps.com', id: env.CF_ZONE_ID }];
+  }
+  return [];
+}
+
+function emptyTotals() {
+  return { requests: 0, pageViews: 0, uniques: 0, threats: 0, bytes: 0 };
+}
+
+function sumDays(days: TrafficDay[]) {
+  return days.reduce(
+    (acc, d) => {
+      acc.requests += d.requests;
+      acc.pageViews += d.pageViews;
+      acc.uniques += d.uniques;
+      acc.threats += d.threats;
+      acc.bytes += d.bytes;
+      return acc;
+    },
+    emptyTotals()
+  );
+}
+
+export async function fetchZoneTraffic(
+  env: StatsEnv,
+  zone: ZoneRef,
+  days = 14
+): Promise<ZoneTraffic> {
+  if (!env.CF_API_TOKEN) {
     return {
+      name: zone.name,
+      id: zone.id,
       available: false,
-      reason: 'Set CF_API_TOKEN secret and CF_ZONE_ID var to enable live traffic.',
-      days: []
+      reason: 'Set CF_API_TOKEN secret to enable live traffic.',
+      days: [],
+      totals: emptyTotals()
     };
   }
 
@@ -80,15 +137,18 @@ export async function fetchCloudflareTraffic(env: StatsEnv, days = 14): Promise<
     },
     body: JSON.stringify({
       query,
-      variables: { zoneTag: env.CF_ZONE_ID, start, end }
+      variables: { zoneTag: zone.id, start, end }
     })
   });
 
   if (!res.ok) {
     return {
+      name: zone.name,
+      id: zone.id,
       available: false,
       reason: `Cloudflare API HTTP ${res.status}`,
-      days: []
+      days: [],
+      totals: emptyTotals()
     };
   }
 
@@ -115,25 +175,61 @@ export async function fetchCloudflareTraffic(env: StatsEnv, days = 14): Promise<
 
   if (payload.errors?.length) {
     return {
+      name: zone.name,
+      id: zone.id,
       available: false,
       reason: payload.errors.map(e => e.message).join('; '),
-      days: []
+      days: [],
+      totals: emptyTotals()
     };
   }
 
   const groups = payload.data?.viewer?.zones?.[0]?.httpRequests1dGroups || [];
+  const daysData = groups.map(g => ({
+    date: g.dimensions.date,
+    requests: g.sum.requests || 0,
+    pageViews: g.sum.pageViews || 0,
+    uniques: g.uniq.uniques || 0,
+    threats: g.sum.threats || 0,
+    bytes: g.sum.bytes || 0,
+    cachedRequests: g.sum.cachedRequests || 0
+  }));
+
   return {
+    name: zone.name,
+    id: zone.id,
     available: true,
-    days: groups.map(g => ({
-      date: g.dimensions.date,
-      requests: g.sum.requests || 0,
-      pageViews: g.sum.pageViews || 0,
-      uniques: g.uniq.uniques || 0,
-      threats: g.sum.threats || 0,
-      bytes: g.sum.bytes || 0,
-      cachedRequests: g.sum.cachedRequests || 0
-    }))
+    days: daysData,
+    totals: sumDays(daysData)
   };
+}
+
+export async function fetchCloudflareTraffic(env: StatsEnv, days = 14): Promise<{
+  available: boolean;
+  reason?: string;
+  days: TrafficDay[];
+}> {
+  const zones = parseZones(env);
+  const primary = zones[0] || (env.CF_ZONE_ID ? { name: 'bigbeardapps.com', id: env.CF_ZONE_ID } : null);
+  if (!primary) {
+    return {
+      available: false,
+      reason: 'Set CF_ZONE_ID or CF_ZONES to enable live traffic.',
+      days: []
+    };
+  }
+  const result = await fetchZoneTraffic(env, primary, days);
+  return {
+    available: result.available,
+    reason: result.reason,
+    days: result.days
+  };
+}
+
+export async function fetchAllZonesTraffic(env: StatsEnv, days = 14): Promise<ZoneTraffic[]> {
+  const zones = parseZones(env);
+  if (!zones.length) return [];
+  return Promise.all(zones.map(z => fetchZoneTraffic(env, z, days)));
 }
 
 export async function listManualMetrics(env: StatsEnv): Promise<ManualMetric[]> {
@@ -315,8 +411,8 @@ export async function fetchUrlBreakdown(env: StatsEnv): Promise<{
 }
 
 export async function buildStatsPayload(env: StatsEnv) {
-  const [traffic, breakdown, metrics, apps] = await Promise.all([
-    fetchCloudflareTraffic(env, 14),
+  const [zones, breakdown, metrics, apps] = await Promise.all([
+    fetchAllZonesTraffic(env, 14),
     fetchUrlBreakdown(env),
     listManualMetrics(env),
     env.DB.prepare('SELECT id, slug, name FROM apps ORDER BY sort_order ASC').all<{
@@ -326,20 +422,28 @@ export async function buildStatsPayload(env: StatsEnv) {
     }>()
   ]);
 
-  const totals = traffic.days.reduce(
-    (acc, d) => {
-      acc.requests += d.requests;
-      acc.pageViews += d.pageViews;
-      acc.uniques += d.uniques;
-      acc.threats += d.threats;
-      acc.bytes += d.bytes;
-      return acc;
-    },
-    { requests: 0, pageViews: 0, uniques: 0, threats: 0, bytes: 0 }
-  );
+  const primary = zones.find(z => z.name === 'bigbeardapps.com') || zones[0];
+  const traffic = primary
+    ? { available: primary.available, reason: primary.reason, days: primary.days }
+    : { available: false, reason: 'No zones configured', days: [] as TrafficDay[] };
+
+  const totals = zones
+    .filter(z => z.available)
+    .reduce(
+      (acc, z) => {
+        acc.requests += z.totals.requests;
+        acc.pageViews += z.totals.pageViews;
+        acc.uniques += z.totals.uniques;
+        acc.threats += z.totals.threats;
+        acc.bytes += z.totals.bytes;
+        return acc;
+      },
+      emptyTotals()
+    );
 
   return {
     traffic,
+    zones,
     breakdown,
     totals,
     metrics,

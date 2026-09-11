@@ -5,6 +5,7 @@ docs/superpowers/
 # is served at bigbeardapps.com/<file> as well as being public on GitHub. TODO.md holds
 # host paths, unreleased app status and identity/employer notes — keep it local.
 TODO.md
+docs/legal/
 
 # macOS
 .DS_Store

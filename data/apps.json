@@ -41,6 +41,11 @@
           "footer_label": null
         },
         {
+          "type": "terms",
+          "href": "/feastmark/terms.html",
+          "footer_label": null
+        },
+        {
           "type": "roadmap",
           "href": "/feastmark/roadmap.html",
           "footer_label": null
@@ -240,6 +245,11 @@
           "footer_label": null
         },
         {
+          "type": "terms",
+          "href": "/reeltalk/terms.html",
+          "footer_label": null
+        },
+        {
           "type": "support",
           "href": "/support.html#support-reeltalk",
           "footer_label": null
@@ -324,6 +334,11 @@
         {
           "type": "privacy",
           "href": "/gunmark/privacy.html",
+          "footer_label": null
+        },
+        {
+          "type": "terms",
+          "href": "/gunmark/terms.html",
           "footer_label": null
         },
         {

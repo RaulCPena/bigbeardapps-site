@@ -19,6 +19,16 @@
       "href": "/contact.html"
     }
   ],
+  "footer_extra": [
+    {
+      "label": "Privacy",
+      "href": "/privacy.html"
+    },
+    {
+      "label": "Terms",
+      "href": "/terms.html"
+    }
+  ],
   "socials": [
     {
       "label": "Big Beard Apps on X",

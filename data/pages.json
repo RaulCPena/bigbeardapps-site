@@ -12,6 +12,28 @@
       "nav_current": "/about.html",
       "nav_variant": "solid"
     },
+    "privacy.html": {
+      "url": "https://bigbeardapps.com/privacy.html",
+      "title": "Privacy — Big Beard Apps",
+      "description": "Privacy policies for Big Beard Apps — per-app pages for Feastmark, PayoffPilot, ReelTalk, Gunmark, and HuntMark. No accounts, no ads, no trackers.",
+      "og_title": "Privacy — Big Beard Apps",
+      "og_description": "Privacy policies for each Big Beard Apps product. No studio-wide data collection.",
+      "og_image": "https://bigbeardapps.com/assets/og-card.png",
+      "og_image_alt": "@auto",
+      "nav_current": "/privacy.html",
+      "nav_variant": "solid"
+    },
+    "terms.html": {
+      "url": "https://bigbeardapps.com/terms.html",
+      "title": "Terms — Big Beard Apps",
+      "description": "Terms of service for Big Beard Apps products. Each app has its own terms or privacy page — they are not the same product.",
+      "og_title": "Terms — Big Beard Apps",
+      "og_description": "Terms of service indexed by app. Not a single studio EULA.",
+      "og_image": "https://bigbeardapps.com/assets/og-card.png",
+      "og_image_alt": "@auto",
+      "nav_current": "/terms.html",
+      "nav_variant": "solid"
+    },
     "contact.html": {
       "url": "https://bigbeardapps.com/contact.html",
       "title": "Contact — Big Beard Apps",

@@ -272,6 +272,218 @@ export async function deleteManualMetric(env: StatsEnv, id: string): Promise<voi
   await env.DB.prepare('DELETE FROM metrics WHERE id = ?').bind(id).run();
 }
 
+/** asc-metrics `report --json` contract (schema_version 1). */
+export type AscReportJson = {
+  schema_version: number;
+  period_start: string;
+  period_end: string;
+  total_units: string | number;
+  previous_units?: string | number;
+  money?: Array<{ currency: string; proceeds: string | number }>;
+  by_app?: Array<{ key: string; units: string | number }>;
+};
+
+export type AscImportResult = {
+  imported: number;
+  period_start: string;
+  period_end: string;
+  total_units: number;
+  previous_units: number | null;
+  matched: Array<{ key: string; app_id: string; units: number }>;
+  unmatched: Array<{ key: string; units: number }>;
+};
+
+type OpsApp = { id: string; slug: string; name: string };
+
+function parseNum(v: string | number | undefined | null): number | null {
+  if (v === undefined || v === null || v === '') return null;
+  const n = typeof v === 'number' ? v : Number(String(v).replace(/,/g, ''));
+  return Number.isFinite(n) ? n : null;
+}
+
+function slugifyKey(key: string): string {
+  return key
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 48) || 'unknown';
+}
+
+/** Map ASC sku / bundle key onto an ops app (slug/name heuristics). */
+export function matchAscKeyToApp(apps: OpsApp[], key: string): OpsApp | null {
+  const k = key.toLowerCase().trim();
+  if (!k || !apps.length) return null;
+
+  const exactSlug = apps.find(a => a.slug.toLowerCase() === k);
+  if (exactSlug) return exactSlug;
+
+  const exactName = apps.find(a => a.name.toLowerCase() === k);
+  if (exactName) return exactName;
+
+  // Prefer longer slug matches (reeltalk before reel)
+  const bySlugLen = [...apps].sort((a, b) => b.slug.length - a.slug.length);
+  for (const a of bySlugLen) {
+    const slug = a.slug.toLowerCase();
+    if (k.includes(slug) || slug.includes(k)) return a;
+  }
+
+  for (const a of apps) {
+    const compact = a.name.toLowerCase().replace(/[\s–—-]+/g, '');
+    if (compact && (k.includes(compact) || compact.includes(k.replace(/[\s.–—-]+/g, '')))) {
+      return a;
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Replace all source=asc metrics with a fresh snapshot from asc-metrics JSON.
+ * ASC keys stay on the Mac — Ops only stores the report payload you push.
+ */
+export async function importAscReport(
+  env: StatsEnv,
+  payload: AscReportJson
+): Promise<AscImportResult> {
+  if (!payload || typeof payload !== 'object') {
+    throw new Error('Invalid ASC report body');
+  }
+  if (payload.schema_version !== 1) {
+    throw new Error(`Unsupported schema_version (want 1, got ${payload.schema_version})`);
+  }
+  const period_start = String(payload.period_start || '').trim();
+  const period_end = String(payload.period_end || '').trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(period_start) || !/^\d{4}-\d{2}-\d{2}$/.test(period_end)) {
+    throw new Error('period_start and period_end must be YYYY-MM-DD');
+  }
+  const total_units = parseNum(payload.total_units);
+  if (total_units === null) throw new Error('total_units required');
+  const previous_units = parseNum(payload.previous_units ?? null);
+
+  const appsResult = await env.DB.prepare(
+    'SELECT id, slug, name FROM apps ORDER BY sort_order ASC'
+  ).all<OpsApp>();
+  const apps = appsResult.results || [];
+
+  const created_at = Date.now();
+  const noteBase = `ASC ${period_start}→${period_end}`;
+  const rows: Array<{
+    id: string;
+    app_id: string | null;
+    metric: string;
+    value: number;
+    note: string;
+  }> = [];
+
+  rows.push({
+    id: `asc-downloads-overall-${period_end}`,
+    app_id: null,
+    metric: 'downloads',
+    value: total_units,
+    note:
+      previous_units !== null
+        ? `${noteBase} · prev ${previous_units}`
+        : noteBase
+  });
+
+  const matched: AscImportResult['matched'] = [];
+  const unmatched: AscImportResult['unmatched'] = [];
+
+  for (const entry of payload.by_app || []) {
+    const key = String(entry.key || '').trim();
+    const units = parseNum(entry.units);
+    if (!key || units === null) continue;
+    const app = matchAscKeyToApp(apps, key);
+    if (app) {
+      matched.push({ key, app_id: app.id, units });
+      rows.push({
+        id: `asc-downloads-${app.slug}-${period_end}`,
+        app_id: app.id,
+        metric: 'downloads',
+        value: units,
+        note: `${noteBase} · sku ${key}`
+      });
+    } else {
+      unmatched.push({ key, units });
+      rows.push({
+        id: `asc-downloads-${slugifyKey(key)}-${period_end}`,
+        app_id: null,
+        metric: 'downloads',
+        value: units,
+        note: `${noteBase} · unmatched sku ${key}`
+      });
+    }
+  }
+
+  for (const m of payload.money || []) {
+    const currency = String(m.currency || '').trim().toUpperCase();
+    const proceeds = parseNum(m.proceeds);
+    if (!currency || proceeds === null) continue;
+    const metric = currency === 'USD' ? 'proceeds_usd' : `proceeds_${currency}`;
+    rows.push({
+      id: `asc-${metric}-overall-${period_end}`,
+      app_id: null,
+      metric,
+      value: proceeds,
+      note: noteBase
+    });
+  }
+
+  await env.DB.prepare(`DELETE FROM metrics WHERE source = 'asc'`).run();
+
+  // D1 batch (chunk if large — ASC by_app is small)
+  const stmts = rows.map(r =>
+    env.DB.prepare(
+      `INSERT INTO metrics (id, app_id, metric, value, period_date, source, note, created_at)
+       VALUES (?, ?, ?, ?, ?, 'asc', ?, ?)`
+    ).bind(r.id, r.app_id, r.metric, r.value, period_end, r.note, created_at)
+  );
+  if (stmts.length) await env.DB.batch(stmts);
+
+  return {
+    imported: rows.length,
+    period_start,
+    period_end,
+    total_units,
+    previous_units,
+    matched,
+    unmatched
+  };
+}
+
+export function summarizeAscMetrics(metrics: ManualMetric[]): {
+  available: boolean;
+  period_end: string | null;
+  period_start: string | null;
+  total_units: number | null;
+  previous_units: number | null;
+  imported_at: number | null;
+} {
+  const asc = metrics.filter(m => m.source === 'asc');
+  const overall = asc.find(m => m.metric === 'downloads' && !m.app_id && m.id.includes('overall'));
+  if (!overall) {
+    return {
+      available: false,
+      period_end: null,
+      period_start: null,
+      total_units: null,
+      previous_units: null,
+      imported_at: null
+    };
+  }
+  const note = overall.note || '';
+  const range = note.match(/ASC (\d{4}-\d{2}-\d{2})→(\d{4}-\d{2}-\d{2})/);
+  const prev = note.match(/prev\s+([\d.]+)/);
+  return {
+    available: true,
+    period_end: overall.period_date,
+    period_start: range ? range[1] : null,
+    total_units: overall.value,
+    previous_units: prev ? Number(prev[1]) : null,
+    imported_at: overall.created_at
+  };
+}
+
 const APP_PATHS: Array<{ key: string; label: string; match: (path: string, host: string) => boolean }> = [
   { key: 'home', label: 'bigbeardapps.com /', match: (p, h) => (h === 'bigbeardapps.com' || h === 'www.bigbeardapps.com') && (p === '/' || p === '/index.html') },
   { key: 'feastmark', label: '/feastmark', match: (p) => p.startsWith('/feastmark') },
@@ -447,6 +659,7 @@ export async function buildStatsPayload(env: StatsEnv) {
     breakdown,
     totals,
     metrics,
+    asc: summarizeAscMetrics(metrics),
     apps: apps.results || [],
     generated_at: Date.now()
   };

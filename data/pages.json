@@ -67,6 +67,17 @@
       "nav_current": "/feastmark/",
       "nav_variant": "solid"
     },
+    "feastmark/terms.html": {
+      "url": "https://bigbeardapps.com/feastmark/terms.html",
+      "title": "Terms of Service — Feastmark",
+      "description": "Feastmark's terms of service — licence, intellectual property of Big Beard Apps LLC, and contact.",
+      "og_title": "Terms of Service — Feastmark",
+      "og_description": "Feastmark's terms of service.",
+      "og_image": "https://bigbeardapps.com/feastmark/images/og-card.png",
+      "og_image_alt": "Feastmark — turn recipe videos into your personal cookbook.",
+      "nav_current": "/feastmark/",
+      "nav_variant": "solid"
+    },
     "feastmark/roadmap.html": {
       "url": "https://bigbeardapps.com/feastmark/roadmap.html",
       "title": "Roadmap — Feastmark",
@@ -95,6 +106,17 @@
       "description": "Gunmark's privacy policy — no accounts, no servers, no analytics. The app makes zero network calls; your collection never leaves your device.",
       "og_title": "Gunmark — Privacy Policy",
       "og_description": "Gunmark's privacy policy — no accounts, no servers, zero network calls. Your collection never leaves your device.",
+      "og_image": "https://bigbeardapps.com/gunmark/images/og-card.png",
+      "og_image_alt": "Gunmark — your armory, documented.",
+      "nav_current": "/gunmark/",
+      "nav_variant": "solid"
+    },
+    "gunmark/terms.html": {
+      "url": "https://bigbeardapps.com/gunmark/terms.html",
+      "title": "Terms of Service — Gunmark",
+      "description": "Gunmark's terms of service — licence, intellectual property of Big Beard Apps LLC, and contact.",
+      "og_title": "Terms of Service — Gunmark",
+      "og_description": "Gunmark's terms of service.",
       "og_image": "https://bigbeardapps.com/gunmark/images/og-card.png",
       "og_image_alt": "Gunmark — your armory, documented.",
       "nav_current": "/gunmark/",
@@ -216,6 +238,17 @@
       "description": "ReelTalk's privacy policy — a sticker pack with a small on-device gallery. It has no network access, collects nothing, and tracks nothing.",
       "og_title": "Privacy Policy — ReelTalk",
       "og_description": "ReelTalk's privacy policy — a sticker pack with a small on-device gallery. It has no network access, collects nothing, and tracks nothing.",
+      "og_image": "https://bigbeardapps.com/reeltalk/images/og-card.png",
+      "og_image_alt": "ReelTalk — fishing pun stickers for iMessage.",
+      "nav_current": "/reeltalk/",
+      "nav_variant": "solid"
+    },
+    "reeltalk/terms.html": {
+      "url": "https://bigbeardapps.com/reeltalk/terms.html",
+      "title": "Terms of Service — ReelTalk",
+      "description": "ReelTalk's terms of service — licence, sticker artwork owned by Big Beard Apps LLC, and contact.",
+      "og_title": "Terms of Service — ReelTalk",
+      "og_description": "ReelTalk's terms of service.",
       "og_image": "https://bigbeardapps.com/reeltalk/images/og-card.png",
       "og_image_alt": "ReelTalk — fishing pun stickers for iMessage.",
       "nav_current": "/reeltalk/",

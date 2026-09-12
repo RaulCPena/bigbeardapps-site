@@ -61,11 +61,11 @@
         "faqs": [
           {
             "q": "What can I save recipes from?",
-            "a": "Instagram, TikTok, YouTube, and recipe blogs. When a post&rsquo;s caption has no recipe in it, Feastmark falls back to the spoken audio in the video. Some of the largest recipe sites sit behind bot protection that blocks the import &mdash; if a link will not come through, that is usually why."
+            "a": "Instagram, TikTok, YouTube, and recipe blogs. When a post&rsquo;s caption has no recipe in it, Feastmark falls back to the spoken audio in the video. Sharing from Safari often works better than pasting a link for sites that block automated fetches."
           },
           {
             "q": "A link didn&rsquo;t come through &mdash; now what?",
-            "a": "Save it as a draft and finish it by hand: every field is editable, and you can write a recipe from scratch. One thing that will not work is a page holding a whole collection of recipes &mdash; save the individual recipe&rsquo;s page instead."
+            "a": "Try Share to Feastmark from Safari first. If it still fails, save it as a draft and finish by hand &mdash; every field is editable. Pages that are whole recipe collections will not import; open the individual recipe instead."
           },
           {
             "q": "Does Feastmark work offline?",
@@ -89,7 +89,7 @@
         "chips": [
           "🎙 Hears spoken recipes",
           "👨‍🍳 Hands-free Cook Mode",
-          "✏️ Edit anything",
+          "📏 Metric or US",
           "🔒 Private by design"
         ],
         "cta": "Explore Feastmark →"
@@ -190,7 +190,7 @@
         "blurb": "Plan your way out of debt. Compare Snowball and Avalanche with your real numbers, simulate what-ifs, and track every payment to debt-free — all private, all on your phone.",
         "chips": [
           "📊 Snowball vs Avalanche",
-          "🔮 What-if scenarios",
+          "🔮 What-if scenarios (Pro)",
           "🔔 Payment reminders",
           "🔒 No account, pay once"
         ],
@@ -200,8 +200,8 @@
         "store_name": "PayoffPilot",
         "category": "Finance",
         "platform": "iPhone — requires iOS 17.6 or later",
-        "version": "1.0",
-        "price": "Free; PayoffPilot Pro is a one-time purchase, launch price $6.99 — no subscription",
+        "version": "1.0.2",
+        "price": "Free; PayoffPilot Pro is a one-time purchase, $9.99 — no subscription",
         "privacy_note": "No account, no bank linking, no data collection — everything stays on the device."
       }
     },
@@ -290,7 +290,7 @@
       },
       "press": {
         "store_name": "Reel Talk – Fishing Stickers",
-        "category": "Entertainment",
+        "category": "Stickers",
         "platform": "iPhone, iPad, iMessage — requires iOS 16 or later",
         "version": "1.0",
         "price": "$0.99 — one-time purchase, no subscription",
@@ -354,7 +354,7 @@
       ],
       "support": {
         "_comment": "intro must not name a release state — status is derived everywhere else on the site, and prose here cannot follow it. Use a faq with \"status\" for anything that is only true in one state.",
-        "intro": "iPhone, iOS 18 or later. No accounts, no servers &mdash; your collection never leaves the device.",
+        "intro": "iPhone, iOS 18 or later. No Gunmark account and no Gunmark servers &mdash; your collection stays on the device (optional Apple iCloud backup uses your iCloud).",
         "faqs": [
           {
             "status": "beta",
@@ -363,24 +363,26 @@
           },
           {
             "q": "Where is my collection stored?",
-            "a": "On the device, and only there. Gunmark makes zero network calls &mdash; there is no account to create and no server holding your photos or paperwork."
+            "a": "On your device. There is no Gunmark account and no Gunmark server. Optional Apple iCloud backup (when you turn it on) uses your own iCloud &mdash; not a studio backend."
           }
         ]
       },
       "badges": [
         {
           "page": "gunmark/index.html",
-          "class": "badge"
+          "class": "badge",
+          "review_text": "Public TestFlight &middot; beta open"
         }
       ],
       "showcase": {
         "modifier": "--gm",
-        "blurb": "Your armory, documented. Every gun, every angle, every mod, every receipt and tax stamp — on your device, nowhere else. Beta signups open now.",
+        "blurb": "Your armory, documented. Every gun, every angle, every mod, every receipt and tax stamp — on your device, nowhere else. Public TestFlight is open now.",
         "chips": [
           "📸 Guided photo checklists",
           "🔧 Per-gun build history",
           "🧾 Receipts & tax stamps",
-          "🔒 No accounts, no servers"
+          "📥 CSV import &amp; Recently Deleted",
+          "🔒 No Gunmark servers"
         ],
         "cta": "Explore Gunmark →"
       },
@@ -390,7 +392,7 @@
         "platform": "iPhone — requires iOS 18 or later",
         "version": "1.0",
         "price": "Free for your first 3 firearms with every feature; Gunmark Pro is a one-time purchase — no subscription",
-        "privacy_note": "No accounts, no servers, no tracking. The app makes zero network calls — collection, photos, and documents never leave the device."
+        "privacy_note": "No Gunmark accounts or servers. Collection data stays on your device; optional Apple iCloud sync (when enabled) uses your iCloud account — never a Gunmark backend."
       }
     },
     {
@@ -449,7 +451,7 @@
         }
       ],
       "support": {
-        "intro": "HuntMark is early in development — there is no beta yet. iPhone, iOS 17 or later (planned). No accounts, no servers — your saved spots never leave the device.",
+        "intro": "HuntMark is early in development — there is no beta yet. iPhone, iOS 17 or later (planned). No HuntMark account; saved spots stay on the device. App Store billing (when it ships) is handled by Apple.",
         "faqs": [
           {
             "status": "development",
@@ -458,7 +460,7 @@
           },
           {
             "q": "Where is my data stored?",
-            "a": "On the device, and only there. HuntMark ships with the location catalog built in and makes no network calls — there is nothing to sync and nothing to leak."
+            "a": "On the device. There is no HuntMark account or HuntMark server. When the app ships, App Store purchases go through Apple. Optional features like weather (later) will need a network connection for that data only."
           }
         ]
       },
@@ -470,15 +472,15 @@
       ],
       "showcase": {
         "modifier": "--hm",
-        "blurb": "Public land hunting, by species. Browse hunting locations by land type — WMAs, State Parks, National Forests, Army Corps and more — filter by the species you're after, and save your favorite spots. No account, no server, nothing leaves the device.",
+        "blurb": "Public land hunting, by species. Browse hunting locations by land type — WMAs, State Parks, National Forests, Army Corps and more — filter by the species you're after, and save your favorite spots. No HuntMark account; spots stay on the device.",
         "chips": [
           "🦌 Search by species",
           "🗺️ Real parcel boundaries, not just pins",
           "⭐ Save your favorite spots",
-          "🔒 No accounts, no servers",
+          "🔒 On-device by design",
           "🇺🇸 Veteran owned"
         ],
-        "cta": "Try HuntMark →",
+        "cta": "Try the live map →",
         "cta_href": "https://huntmark.app"
       },
       "press": {
@@ -487,7 +489,7 @@
         "platform": "iPhone — requires iOS 17 or later (planned)",
         "version": "—",
         "price": "$19.99/year subscription (7-day free trial; cancel before it ends to avoid renewal charges; Founding Member rate: $14.99/year for the first 1,000 subscribers)",
-        "privacy_note": "No accounts, no servers, no tracking. The app makes zero network calls — saved spots never leave the device."
+        "privacy_note": "No HuntMark accounts or servers. Saved spots stay on the device. App Store billing is handled by Apple; future optional features like weather may need network access."
       }
     }
   ]

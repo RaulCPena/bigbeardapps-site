@@ -21,7 +21,8 @@ from html.parser import HTMLParser
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Directories that are not app directories
-NON_APP_DIRS = {"assets", "press", "tools", "templates", "data", "_snap", ".git", "docs"}
+NON_APP_DIRS = {"assets", "press", "tools", "templates", "data", "_snap", ".git",
+                "docs", "ops-auth", "node_modules"}
 
 # Prose number words we check against the real app count
 NUMBER_WORDS = {

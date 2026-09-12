@@ -60,8 +60,8 @@
     <p>Gunmark has no studio backend. There is no Gunmark account, no Gunmark API, and no Gunmark server holding your collection. Every firearm entry, component, photo, document, receipt, and note you add is stored locally on your device using Apple's SwiftData framework.</p>
     <ul>
         <li>Nothing is uploaded to Big Beard Apps or shared with any third party by us.</li>
-        <li>Optional Apple iCloud backup or sync (when you enable it) uses your Apple iCloud account — not a Gunmark backend.</li>
-        <li>If you delete the app without a backup or export, your data is gone.</li>
+        <li>Optional Apple iCloud sync (available since build 20) uses CloudKit under your Apple ID — not a Gunmark backend. You can leave it off; the app works fully on-device.</li>
+        <li>If you delete the app without a backup, export, or iCloud sync, your data is gone.</li>
     </ul>
 
     <h2>Photos &amp; Documents</h2>
@@ -73,11 +73,8 @@
     <h2>App Lock</h2>
     <p>If you enable the optional Face ID / Touch ID lock, authentication is handled entirely by Apple's LocalAuthentication framework on your device. Biometric data never reaches Gunmark or Big Beard Apps.</p>
 
-    <h2>In-App Purchases</h2>
-    <p>Gunmark Pro is a one-time in-app purchase processed entirely by Apple through StoreKit. We do not receive or store your payment information — that relationship is between you and Apple.</p>
-
-    <h2>TestFlight Beta</h2>
-    <p>While Gunmark is in beta, people can join through Apple&rsquo;s TestFlight using a public link posted on <a href="https://gunmark.app" target="_blank" rel="noopener">gunmark.app</a> and this site. That join flow is handled by Apple. The Gunmark app itself still collects nothing.</p>
+    <h2>App Store &amp; purchases</h2>
+    <p>When Gunmark is on the App Store, downloads and Gunmark Pro purchases are processed by Apple through StoreKit. We do not receive or store your payment information — that relationship is between you and Apple.</p>
 
     <h2>Analytics</h2>
     <p>Gunmark does not use any third-party analytics or advertising services. We do not track how you use the app.</p>

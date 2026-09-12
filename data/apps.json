@@ -99,7 +99,7 @@
         "category": "Food &amp; Drink",
         "platform": "iPhone — requires iOS 18 or later",
         "version": "1.0",
-        "price": "Free at launch. Paid imports wait until 1,000 monthly active users or $50/month infra — whichever comes first. A lifetime purchase will be offered; an annual option may ship too if extraction costs require it. Everything already saved stays free.",
+        "price": "Free now. Paid imports activate at 1,000 monthly active users or $50/month infra. Planned: free tier keeps the full app + 20 smart imports/month; Unlimited Imports $14.99/year or $49.99 lifetime. Nothing already saved is ever paywalled.",
         "privacy_note": "No account required. Recipes stay on the device. No data sold, ever."
       }
     },
@@ -305,7 +305,7 @@
         "mark"
       ],
       "order": 4,
-      "status": "beta",
+      "status": "review",
       "app_store_url": null,
       "release_date": null,
       "tagline": "Your armory, documented.",
@@ -354,16 +354,16 @@
       ],
       "support": {
         "_comment": "intro must not name a release state — status is derived everywhere else on the site, and prose here cannot follow it. Use a faq with \"status\" for anything that is only true in one state.",
-        "intro": "iPhone, iOS 18 or later. No Gunmark account and no Gunmark servers &mdash; your collection stays on the device (optional Apple iCloud backup uses your iCloud).",
+        "intro": "iPhone, iOS 18 or later. No Gunmark account and no Gunmark servers &mdash; optional Apple iCloud sync (when you turn it on) uses your iCloud.",
         "faqs": [
           {
-            "status": "beta",
-            "q": "How do I join the beta?",
-            "a": "Join via the public TestFlight link: <a href=\"https://testflight.apple.com/join/AMJF9pAk\">testflight.apple.com/join/AMJF9pAk</a>. You will need an iPhone on iOS 18 or later and Apple&rsquo;s TestFlight app."
+            "status": "review",
+            "q": "When does Gunmark launch?",
+            "a": "It&rsquo;s in App Review now. The &ldquo;Know when the next app launches&rdquo; signup on this site is the list that gets one email when it goes live."
           },
           {
             "q": "Where is my collection stored?",
-            "a": "On your device. There is no Gunmark account and no Gunmark server. Optional Apple iCloud backup (when you turn it on) uses your own iCloud &mdash; not a studio backend."
+            "a": "On your device by default. There is no Gunmark account and no Gunmark server. Optional Apple iCloud sync (shipped in build 20) uses CloudKit under your Apple ID &mdash; not a studio backend."
           }
         ]
       },
@@ -371,16 +371,16 @@
         {
           "page": "gunmark/index.html",
           "class": "badge",
-          "review_text": "Public TestFlight &middot; beta open"
+          "review_text": "In App Review"
         }
       ],
       "showcase": {
         "modifier": "--gm",
-        "blurb": "Your armory, documented. Every gun, every angle, every mod, every receipt and tax stamp — on your device, nowhere else. Public TestFlight is open now.",
+        "blurb": "Your armory, documented — not just inventoried. Guided photos, per-gun build history, optional Apple iCloud sync, paperwork on-device. Submitted to the App Store; Pro is one-time, not a subscription.",
         "chips": [
           "📸 Guided photo checklists",
           "🔧 Per-gun build history",
-          "🧾 Receipts & tax stamps",
+          "☁️ Optional iCloud sync",
           "📥 CSV import &amp; Recently Deleted",
           "🔒 No Gunmark servers"
         ],
@@ -392,7 +392,7 @@
         "platform": "iPhone — requires iOS 18 or later",
         "version": "1.0",
         "price": "Free for your first 3 firearms with every feature; Gunmark Pro is a one-time purchase — no subscription",
-        "privacy_note": "No Gunmark accounts or servers. Collection data stays on your device; optional Apple iCloud sync (when enabled) uses your iCloud account — never a Gunmark backend."
+        "privacy_note": "No Gunmark accounts or servers. Collection stays on your device by default; optional Apple iCloud sync (CloudKit) uses your iCloud account — never a Gunmark backend."
       }
     },
     {

@@ -100,22 +100,14 @@ https://bigbeardapps.com/reeltalk/
 
 ### Gunmark
 
-**Not on this runbook's path yet.** Gunmark is at `status: "beta"` — in
-TestFlight, not submitted — with signups on gunmark.app. Step 1 still works
-when it is approved (same three fields, same sync), but there is no approval to
-announce yet, so there is no post here.
+**Status path:** `beta` (TestFlight) → set `status` to `"review"` when submitted →
+`"live"` on launch day with `app_store_url` + `release_date`, then `tools/sync.py`.
 
-**When it goes from beta to submitted, set `status` to `"review"`.** That one
-edit is what makes the site say four apps are in App Review instead of three,
-and swaps its pills from "Beta signups open" back to "Coming soon to the App
-Store" and its press release-date row from "In TestFlight beta" to "Pending App
-Review". Leaving it on `beta` after submitting understates the queue; moving it
-early overstates it, which is the bug that existed until it was caught on
-Gunmark's own page.
+While it is in review, badges read “In App Review”, press release-date reads
+“Pending App Review”, and gunmark.app / the product page are marketing surfaces
+(notify via the launch list) — not TestFlight signup.
 
-Write the announce copy when it has a real App Store URL, not before. Until
-then the roll-up below stays at three, because that is what "all out" means for
-the apps that are actually in the queue.
+Write the announce copy when it has a real App Store URL, not before.
 
 ### When all three App Store apps are out
 ```

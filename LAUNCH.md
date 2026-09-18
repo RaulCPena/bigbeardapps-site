@@ -99,23 +99,27 @@ https://bigbeardapps.com/reeltalk/
 ```
 
 ### Gunmark
-
-**Status path:** `beta` (TestFlight) → set `status` to `"review"` when submitted →
-`"live"` on launch day with `app_store_url` + `release_date`, then `tools/sync.py`.
-
-While it is in review, badges read “In App Review”, press release-date reads
-“Pending App Review”, and gunmark.app / the product page are marketing surfaces
-(notify via the launch list) — not TestFlight signup.
-
-Write the announce copy when it has a real App Store URL, not before.
-
-### When all three App Store apps are out
 ```
-Three apps. One bearded guy. All live on the App Store 🧔
+Gunmark is live on the App Store.
 
-🍽️ Feastmark — recipe videos → your cookbook
-📊 PayoffPilot — plan your way out of debt
-🎣 ReelTalk — fishing pun stickers
+A private catalog for your own firearm collection: guided photos, per-gun build history, receipts and tax stamps — on your device, not on a Gunmark server.
+
+Free for three firearms. Pro is one-time, never a subscription.
+
+https://apps.apple.com/us/app/gunmark/id6795672837
+https://bigbeardapps.com/gunmark/
+```
+
+Mastodon: append `#iOSDev #IndieDev #BuildInPublic`. Skip firearm hashtags — they trip automated advertising filters.
+
+### When four App Store apps are out
+```
+Four apps. One bearded guy. All live on the App Store.
+
+Feastmark — recipe videos become your cookbook
+PayoffPilot — plan your way out of debt
+ReelTalk — fishing pun stickers
+Gunmark — your armory, documented
 
 Privacy-first, every one. No ads, no tracking, no accounts.
 

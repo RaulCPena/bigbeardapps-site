@@ -1,5 +1,5 @@
 {
-  "_comment": "Single source of truth for the app list. LAUNCH DAY: set an app's status to 'live' and fill app_store_url + release_date, then run tools/sync.py — every badge, press-kit row and the About line update themselves. Apps can go live independently.",
+  "_comment": "Single source of truth for the app list. LAUNCH DAY: set an app's status to 'live' and fill app_store_url + release_date, then run tools/sync.py \u2014 every badge, press-kit row and the About line update themselves. Apps can go live independently.",
   "apps": [
     {
       "slug": "feastmark",
@@ -85,19 +85,19 @@
       ],
       "showcase": {
         "modifier": null,
-        "blurb": "Turn recipe videos into your personal cookbook. One tap from Instagram, TikTok, or YouTube — even when the recipe is only spoken in the video.",
+        "blurb": "Turn recipe videos into your personal cookbook. One tap from Instagram, TikTok, or YouTube \u2014 even when the recipe is only spoken in the video.",
         "chips": [
-          "🎙 Hears spoken recipes",
-          "👨‍🍳 Hands-free Cook Mode",
-          "📏 Metric or US",
-          "🔒 Private by design"
+          "\ud83c\udf99 Hears spoken recipes",
+          "\ud83d\udc68\u200d\ud83c\udf73 Hands-free Cook Mode",
+          "\ud83d\udccf Metric or US",
+          "\ud83d\udd12 Private by design"
         ],
-        "cta": "Explore Feastmark →"
+        "cta": "Explore Feastmark \u2192"
       },
       "press": {
         "store_name": "Feastmark",
         "category": "Food &amp; Drink",
-        "platform": "iPhone — requires iOS 18 or later",
+        "platform": "iPhone \u2014 requires iOS 18 or later",
         "version": "1.0",
         "price": "Free now. Paid imports activate at 1,000 monthly active users or $50/month infra. Planned: free tier keeps the full app + 20 smart imports/month; Unlimited Imports $14.99/year or $49.99 lifetime. Nothing already saved is ever paywalled.",
         "privacy_note": "No account required. Recipes stay on the device. No data sold, ever."
@@ -187,22 +187,22 @@
       ],
       "showcase": {
         "modifier": "--pp",
-        "blurb": "Plan your way out of debt. Compare Snowball and Avalanche with your real numbers, simulate what-ifs, and track every payment to debt-free — all private, all on your phone.",
+        "blurb": "Plan your way out of debt. Compare Snowball and Avalanche with your real numbers, simulate what-ifs, and track every payment to debt-free \u2014 all private, all on your phone.",
         "chips": [
-          "📊 Snowball vs Avalanche",
-          "🔮 What-if scenarios (Pro)",
-          "🔔 Payment reminders",
-          "🔒 No account, pay once"
+          "\ud83d\udcca Snowball vs Avalanche",
+          "\ud83d\udd2e What-if scenarios (Pro)",
+          "\ud83d\udd14 Payment reminders",
+          "\ud83d\udd12 No account, pay once"
         ],
-        "cta": "Explore PayoffPilot →"
+        "cta": "Explore PayoffPilot \u2192"
       },
       "press": {
         "store_name": "PayoffPilot",
         "category": "Finance",
-        "platform": "iPhone — requires iOS 17.6 or later",
+        "platform": "iPhone \u2014 requires iOS 17.6 or later",
         "version": "1.0.2",
-        "price": "Free; PayoffPilot Pro is a one-time purchase, $9.99 — no subscription",
-        "privacy_note": "No account, no bank linking, no data collection — everything stays on the device."
+        "price": "Free; PayoffPilot Pro is a one-time purchase, $9.99 \u2014 no subscription",
+        "privacy_note": "No account, no bank linking, no data collection \u2014 everything stays on the device."
       }
     },
     {
@@ -279,22 +279,22 @@
       ],
       "showcase": {
         "modifier": "--rt",
-        "blurb": "Fishing pun stickers for iMessage. Thirty hand-made originals starring a bass with sunglasses — big bass energy for your group chats, $0.99 one time.",
+        "blurb": "Fishing pun stickers for iMessage. Thirty hand-made originals starring a bass with sunglasses \u2014 big bass energy for your group chats, $0.99 one time.",
         "chips": [
-          "🎣 30 original puns",
-          "💬 Right in Messages",
-          "🖼 Browse the whole pack",
-          "🔒 No ads, no tracking"
+          "\ud83c\udfa3 30 original puns",
+          "\ud83d\udcac Right in Messages",
+          "\ud83d\uddbc Browse the whole pack",
+          "\ud83d\udd12 No ads, no tracking"
         ],
-        "cta": "Explore ReelTalk →"
+        "cta": "Explore ReelTalk \u2192"
       },
       "press": {
-        "store_name": "Reel Talk – Fishing Stickers",
+        "store_name": "Reel Talk \u2013 Fishing Stickers",
         "category": "Stickers",
-        "platform": "iPhone, iPad, iMessage — requires iOS 16 or later",
+        "platform": "iPhone, iPad, iMessage \u2014 requires iOS 16 or later",
         "version": "1.0",
-        "price": "$0.99 — one-time purchase, no subscription",
-        "privacy_note": "No network access, no accounts, no tracking — everything runs on the device."
+        "price": "$0.99 \u2014 one-time purchase, no subscription",
+        "privacy_note": "No network access, no accounts, no tracking \u2014 everything runs on the device."
       }
     },
     {
@@ -305,9 +305,9 @@
         "mark"
       ],
       "order": 4,
-      "status": "review",
-      "app_store_url": null,
-      "release_date": null,
+      "status": "live",
+      "app_store_url": "https://apps.apple.com/us/app/gunmark/id6795672837",
+      "release_date": "September 18, 2026",
       "tagline": "Your armory, documented.",
       "accent": {
         "base": "#c8872b",
@@ -353,9 +353,14 @@
         }
       ],
       "support": {
-        "_comment": "intro must not name a release state — status is derived everywhere else on the site, and prose here cannot follow it. Use a faq with \"status\" for anything that is only true in one state.",
+        "_comment": "intro must not name a release state \u2014 status is derived everywhere else on the site, and prose here cannot follow it. Use a faq with \"status\" for anything that is only true in one state.",
         "intro": "iPhone, iOS 18 or later. No Gunmark account and no Gunmark servers &mdash; optional Apple iCloud sync (when you turn it on) uses your iCloud.",
         "faqs": [
+          {
+            "status": "live",
+            "q": "Where do I get Gunmark?",
+            "a": "On the App Store. Free for your first three firearms with every feature; Gunmark Pro is a one-time unlock &mdash; never a subscription. <a href=\"https://apps.apple.com/us/app/gunmark/id6795672837\">Download Gunmark</a>."
+          },
           {
             "status": "review",
             "q": "When does Gunmark launch?",
@@ -376,23 +381,23 @@
       ],
       "showcase": {
         "modifier": "--gm",
-        "blurb": "Your armory, documented — not just inventoried. Guided photos, per-gun build history, optional Apple iCloud sync, paperwork on-device. Submitted to the App Store; Pro is one-time, not a subscription.",
+        "blurb": "Your armory, documented \u2014 not just inventoried. Guided photos, per-gun build history, optional Apple iCloud sync, paperwork on-device. Pro is one-time, not a subscription.",
         "chips": [
-          "📸 Guided photo checklists",
-          "🔧 Per-gun build history",
-          "☁️ Optional iCloud sync",
-          "📥 CSV import &amp; Recently Deleted",
-          "🔒 No Gunmark servers"
+          "\ud83d\udcf8 Guided photo checklists",
+          "\ud83d\udd27 Per-gun build history",
+          "\u2601\ufe0f Optional iCloud sync",
+          "\ud83d\udce5 CSV import &amp; Recently Deleted",
+          "\ud83d\udd12 No Gunmark servers"
         ],
-        "cta": "Explore Gunmark →"
+        "cta": "Explore Gunmark \u2192"
       },
       "press": {
         "store_name": "Gunmark",
         "category": "Utilities",
-        "platform": "iPhone — requires iOS 18 or later",
+        "platform": "iPhone \u2014 requires iOS 18 or later",
         "version": "1.0",
-        "price": "Free for your first 3 firearms with every feature; Gunmark Pro is a one-time purchase — no subscription",
-        "privacy_note": "No Gunmark accounts or servers. Collection stays on your device by default; optional Apple iCloud sync (CloudKit) uses your iCloud account — never a Gunmark backend."
+        "price": "Free for your first 3 firearms with every feature; Gunmark Pro is a one-time purchase \u2014 no subscription",
+        "privacy_note": "No Gunmark accounts or servers. Collection stays on your device by default; optional Apple iCloud sync (CloudKit) uses your iCloud account \u2014 never a Gunmark backend."
       }
     },
     {
@@ -451,7 +456,7 @@
         }
       ],
       "support": {
-        "intro": "HuntMark is early in development — there is no beta yet. iPhone, iOS 17 or later (planned). No HuntMark account; saved spots stay on the device. App Store billing (when it ships) is handled by Apple.",
+        "intro": "HuntMark is early in development \u2014 there is no beta yet. iPhone, iOS 17 or later (planned). No HuntMark account; saved spots stay on the device. App Store billing (when it ships) is handled by Apple.",
         "faqs": [
           {
             "status": "development",
@@ -472,22 +477,22 @@
       ],
       "showcase": {
         "modifier": "--hm",
-        "blurb": "Public land hunting, by species. Browse hunting locations by land type — WMAs, State Parks, National Forests, Army Corps and more — filter by the species you're after, and save your favorite spots. No HuntMark account; spots stay on the device.",
+        "blurb": "Public land hunting, by species. Browse hunting locations by land type \u2014 WMAs, State Parks, National Forests, Army Corps and more \u2014 filter by the species you're after, and save your favorite spots. No HuntMark account; spots stay on the device.",
         "chips": [
-          "🦌 Search by species",
-          "🗺️ Real parcel boundaries, not just pins",
-          "⭐ Save your favorite spots",
-          "🔒 On-device by design",
-          "🇺🇸 Veteran owned"
+          "\ud83e\udd8c Search by species",
+          "\ud83d\uddfa\ufe0f Real parcel boundaries, not just pins",
+          "\u2b50 Save your favorite spots",
+          "\ud83d\udd12 On-device by design",
+          "\ud83c\uddfa\ud83c\uddf8 Veteran owned"
         ],
-        "cta": "Try the live map →",
+        "cta": "Try the live map \u2192",
         "cta_href": "https://huntmark.app"
       },
       "press": {
         "store_name": "HuntMark",
         "category": "Navigation",
-        "platform": "iPhone — requires iOS 17 or later (planned)",
-        "version": "—",
+        "platform": "iPhone \u2014 requires iOS 17 or later (planned)",
+        "version": "\u2014",
         "price": "$19.99/year subscription (7-day free trial; cancel before it ends to avoid renewal charges; Founding Member rate: $14.99/year for the first 1,000 subscribers)",
         "privacy_note": "No HuntMark accounts or servers. Saved spots stay on the device. App Store billing is handled by Apple; future optional features like weather may need network access."
       }

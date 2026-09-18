@@ -1,57 +1,62 @@
 {
-  "_comment": "Build log on about.html — newest first, and NOT derived from apps.json on purpose. These are dated journal entries: 'three apps in App Review, July 2026' stays true after they ship, so regenerating it from current status would rewrite history. Add an entry at the top and run tools/sync.py.",
+  "_comment": "Build log on about.html \u2014 newest first, and NOT derived from apps.json on purpose. These are dated journal entries: 'three apps in App Review, July 2026' stays true after they ship, so regenerating it from current status would rewrite history. Add an entry at the top and run tools/sync.py.",
   "heading": "Build log",
   "blurb": "Notes from building in the open. Newest first.",
   "entries": [
     {
       "date": "September 2026",
+      "title": "Gunmark is on the App Store",
+      "body": "Gunmark is live &mdash; a private firearm collection catalog with guided photo checklists, per-gun build history, and paperwork on-device. No Gunmark accounts or servers. <a href=\"https://apps.apple.com/us/app/gunmark/id6795672837\">Get it on the App Store</a>."
+    },
+    {
+      "date": "September 2026",
       "title": "Gunmark submitted for App Review",
-      "body": "Gunmark is in Apple&rsquo;s review queue — a private firearm collection catalog with guided photo checklists, build history, and paperwork on-device. <a href=\"https://gunmark.app\">gunmark.app</a> · <a href=\"/gunmark/\">product page</a>."
+      "body": "Gunmark is in Apple&rsquo;s review queue \u2014 a private firearm collection catalog with guided photo checklists, build history, and paperwork on-device. <a href=\"https://gunmark.app\">gunmark.app</a> \u00b7 <a href=\"/gunmark/\">product page</a>."
     },
     {
       "date": "September 2026",
       "title": "ReelTalk is on the App Store",
-      "body": "ReelTalk is live — thirty original fishing-pun stickers for iMessage, 99 cents once. No ads, no tracking, no network access at all. <a href=\"https://apps.apple.com/us/app/reel-talk-fishing-stickers/id6794788951\">Get it on the App Store</a>."
+      "body": "ReelTalk is live \u2014 thirty original fishing-pun stickers for iMessage, 99 cents once. No ads, no tracking, no network access at all. <a href=\"https://apps.apple.com/us/app/reel-talk-fishing-stickers/id6794788951\">Get it on the App Store</a>."
     },
     {
       "date": "August 2026",
       "title": "Feastmark is on the App Store",
-      "body": "Feastmark is live — share a recipe from Instagram, TikTok, or YouTube and it becomes a real recipe in your cookbook, even when it was only spoken. No account, no ads. <a href=\"https://apps.apple.com/app/feastmark-save-any-recipe/id6762322193\">Get it on the App Store</a>."
+      "body": "Feastmark is live \u2014 share a recipe from Instagram, TikTok, or YouTube and it becomes a real recipe in your cookbook, even when it was only spoken. No account, no ads. <a href=\"https://apps.apple.com/app/feastmark-save-any-recipe/id6762322193\">Get it on the App Store</a>."
     },
     {
       "date": "August 2026",
       "title": "Feastmark back in App Review",
-      "body": "Feastmark is back in Apple's review queue after twenty-six days of fixes — a share extension that never asked Safari for the page, and a Cook Mode scroll cue that took six attempts to land. <a href=\"https://raulcpena.com/blog/i-wrote-the-lesson-down-on-day-one/\">The long version is on the blog</a>."
+      "body": "Feastmark is back in Apple's review queue after twenty-six days of fixes \u2014 a share extension that never asked Safari for the page, and a Cook Mode scroll cue that took six attempts to land. <a href=\"https://raulcpena.com/blog/i-wrote-the-lesson-down-on-day-one/\">The long version is on the blog</a>."
     },
     {
       "date": "August 2026",
       "title": "ReelTalk cleared App Review",
-      "body": "ReelTalk is approved and scheduled to reach the App Store on September 1, 2026 — thirty original fishing-pun stickers for iMessage, 99 cents once. Getting there took <a href=\"https://raulcpena.com/blog/apples-uploader-wanted-an-icon-size-that-doesnt-exist/\">a long detour through an upload check</a> that demanded an icon size the sticker-pack format has no slot for."
+      "body": "ReelTalk is approved and scheduled to reach the App Store on September 1, 2026 \u2014 thirty original fishing-pun stickers for iMessage, 99 cents once. Getting there took <a href=\"https://raulcpena.com/blog/apples-uploader-wanted-an-icon-size-that-doesnt-exist/\">a long detour through an upload check</a> that demanded an icon size the sticker-pack format has no slot for."
     },
     {
       "date": "August 2026",
       "title": "Feastmark reads recipes properly now",
-      "body": "Rewrote how Feastmark imports from the web. It reads <a href=\"https://raulcpena.com/blog/the-model-read-the-wrong-2000-characters/\">a page's own structured recipe data</a> instead of guessing from the article text, so ingredients keep their quantities and the oven temperature survives the trip — and it does that without calling an AI model at all."
+      "body": "Rewrote how Feastmark imports from the web. It reads <a href=\"https://raulcpena.com/blog/the-model-read-the-wrong-2000-characters/\">a page's own structured recipe data</a> instead of guessing from the article text, so ingredients keep their quantities and the oven temperature survives the trip \u2014 and it does that without calling an AI model at all."
     },
     {
       "date": "July 2026",
       "title": "Gunmark joins the lineup",
-      "body": "Gunmark — a private firearm collection catalog with zero network calls — opened beta signups and joined the site alongside Feastmark, PayoffPilot, and ReelTalk."
+      "body": "Gunmark \u2014 a private firearm collection catalog with zero network calls \u2014 opened beta signups and joined the site alongside Feastmark, PayoffPilot, and ReelTalk."
     },
     {
       "date": "July 2026",
       "title": "Feastmark, PayoffPilot &amp; ReelTalk in App Review",
-      "body": "Feastmark, PayoffPilot, and ReelTalk are in Apple's review queue — coming soon to the App Store."
+      "body": "Feastmark, PayoffPilot, and ReelTalk are in Apple's review queue \u2014 coming soon to the App Store."
     },
     {
       "date": "July 2026",
       "title": "Rebuilt the site as one design system",
-      "body": "Pulled every page onto a shared stylesheet so the whole studio reads as one thing — and gave PayoffPilot a public Now / Next / Later roadmap."
+      "body": "Pulled every page onto a shared stylesheet so the whole studio reads as one thing \u2014 and gave PayoffPilot a public Now / Next / Later roadmap."
     },
     {
       "date": "2018 &ndash; today",
       "title": "From late-night code to a studio",
-      "body": "Started learning to code after the kids went to bed, became a software engineer, and turned that into Big Beard Apps — building the private, useful apps I wanted for myself."
+      "body": "Started learning to code after the kids went to bed, became a software engineer, and turned that into Big Beard Apps \u2014 building the private, useful apps I wanted for myself."
     }
   ]
 }

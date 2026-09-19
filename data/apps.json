@@ -57,7 +57,7 @@
         }
       ],
       "support": {
-        "intro": "iPhone, iOS 18 or later. No account, no ads, no trackers &mdash; your recipes live on the device.",
+        "intro": "iPhone, iOS 18 or later. No account, no ads, no trackers &mdash; your recipes live on the device. Version 1.1 (iPad and optional iCloud) is in App Review.",
         "faqs": [
           {
             "q": "What can I save recipes from?",
@@ -73,7 +73,7 @@
           },
           {
             "q": "How do I get my recipes onto another device?",
-            "a": "You can&rsquo;t yet. There is no account and no sync &mdash; recipes live on the iPhone that saved them. Worth knowing before you build up a big library."
+            "a": "On today&rsquo;s App Store build, the library stays on that iPhone. Feastmark 1.1 (in App Review) adds Settings &rarr; Sync Library with iCloud: confirm, quit, and reopen. Recipes use your Apple ID&rsquo;s private iCloud. Feastmark never sees them. An in-progress cook stays on the device you started it on."
           }
         ]
       },
@@ -89,7 +89,6 @@
         "chips": [
           "\ud83c\udf99 Hears spoken recipes",
           "\ud83d\udc68\u200d\ud83c\udf73 Hands-free Cook Mode",
-          "\ud83d\udccf Metric or US",
           "\ud83d\udd12 Private by design"
         ],
         "cta": "Explore Feastmark \u2192"

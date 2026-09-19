@@ -48,9 +48,9 @@
     "feastmark/index.html": {
       "url": "https://bigbeardapps.com/feastmark/",
       "title": "Feastmark \u2014 Save Recipes from Anywhere",
-      "description": "Feastmark for iPhone \u2014 turn Instagram, TikTok, and YouTube recipe videos into a private cookbook. On the App Store. One-tap save, Cook Mode, no account.",
+      "description": "Feastmark for iPhone \u2014 turn Instagram, TikTok, and YouTube recipe videos into a private cookbook. On the App Store. Version 1.1 (iPad Cook Mode and optional iCloud) is in App Review.",
       "og_title": "Feastmark \u2014 Save Recipes from Anywhere",
-      "og_description": "Feastmark for iPhone \u2014 turn Instagram, TikTok, and YouTube recipe videos into a private cookbook. On the App Store. One-tap save, Cook Mode, no account.",
+      "og_description": "Feastmark for iPhone \u2014 turn Instagram, TikTok, and YouTube recipe videos into a private cookbook. On the App Store. Version 1.1 (iPad and optional iCloud) is in App Review.",
       "og_image": "https://bigbeardapps.com/feastmark/images/og-card.png",
       "og_image_alt": "Feastmark \u2014 turn recipe videos into your personal cookbook.",
       "nav_current": "/feastmark/",
@@ -59,9 +59,9 @@
     "feastmark/privacy.html": {
       "url": "https://bigbeardapps.com/feastmark/privacy.html",
       "title": "Feastmark \u2014 Privacy Policy",
-      "description": "Feastmark's privacy policy \u2014 no account required, no analytics, and your recipes stay on your device.",
+      "description": "Feastmark's privacy policy \u2014 no account required, no analytics. Recipes stay on your device, or in your private iCloud if you turn sync on.",
       "og_title": "Feastmark \u2014 Privacy Policy",
-      "og_description": "Feastmark's privacy policy \u2014 no accounts, no analytics, your recipes stay on your device.",
+      "og_description": "Feastmark's privacy policy \u2014 no accounts, no analytics. Recipes stay on your device; optional iCloud uses your Apple ID.",
       "og_image": "https://bigbeardapps.com/feastmark/images/og-card.png",
       "og_image_alt": "Feastmark \u2014 turn recipe videos into your personal cookbook.",
       "nav_current": "/feastmark/",

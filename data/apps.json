@@ -57,7 +57,7 @@
         }
       ],
       "support": {
-        "intro": "iPhone, iOS 18 or later. No account, no ads, no trackers &mdash; your recipes live on the device. Version 1.1 (iPad and optional iCloud) is in App Review.",
+        "intro": "iPhone and iPad, iOS 18 or later. No account, no ads, no trackers &mdash; your recipes live on the device, or in your private iCloud if you turn sync on.",
         "faqs": [
           {
             "q": "What can I save recipes from?",
@@ -73,7 +73,7 @@
           },
           {
             "q": "How do I get my recipes onto another device?",
-            "a": "On today&rsquo;s App Store build, the library stays on that iPhone. Feastmark 1.1 (in App Review) adds Settings &rarr; Sync Library with iCloud: confirm, quit, and reopen. Recipes use your Apple ID&rsquo;s private iCloud. Feastmark never sees them. An in-progress cook stays on the device you started it on."
+            "a": "Settings &rarr; Sync Library with iCloud, confirm, then quit and reopen. Recipes use your Apple ID&rsquo;s private iCloud. Feastmark never sees them. An in-progress cook stays on the device you started it on."
           }
         ]
       },
@@ -89,6 +89,7 @@
         "chips": [
           "\ud83c\udf99 Hears spoken recipes",
           "\ud83d\udc68\u200d\ud83c\udf73 Hands-free Cook Mode",
+          "\ud83d\udcf1 iPhone and iPad",
           "\ud83d\udd12 Private by design"
         ],
         "cta": "Explore Feastmark \u2192"
@@ -96,10 +97,10 @@
       "press": {
         "store_name": "Feastmark",
         "category": "Food &amp; Drink",
-        "platform": "iPhone \u2014 requires iOS 18 or later",
-        "version": "1.0",
+        "platform": "iPhone and iPad \u2014 requires iOS 18 or later",
+        "version": "1.1",
         "price": "Free now. Paid imports activate at 1,000 monthly active users or $50/month infra. Planned: free tier keeps the full app + 20 smart imports/month; Unlimited Imports $14.99/year or $49.99 lifetime. Nothing already saved is ever paywalled.",
-        "privacy_note": "No account required. Recipes stay on the device. No data sold, ever."
+        "privacy_note": "No account required. Recipes stay on your device, or in your private iCloud if you turn sync on. Feastmark never sees them. No data sold, ever."
       }
     },
     {

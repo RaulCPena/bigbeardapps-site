@@ -75,6 +75,42 @@
         .about-section p { color: var(--text-2); margin-bottom: 16px; }
         .about-section p strong { color: var(--text); }
 
+        /* ── Founder photo ── */
+        .founder-intro {
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            margin-top: 24px;
+        }
+        .founder-photo {
+            flex-shrink: 0;
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 3px solid var(--border);
+        }
+        .founder-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .founder-text {
+            flex: 1;
+        }
+        @media (max-width: 640px) {
+            .founder-intro {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .founder-photo {
+                width: 160px;
+                height: 160px;
+                margin: 0 auto;
+            }
+        }
+
         /* ── Journey timeline ── */
         .journey { position: relative; }
         .j-entry {
@@ -203,6 +239,7 @@
             .about-section p strong { color: var(--on-dark-strong); }
             .driver, .app-card, .fact { background: #201d18; border-color: #322d25; }
             .fact { color: var(--on-dark); }
+            .founder-photo { border-color: #322d25; }
             .j-entry, .log-entry { border-left-color: #322d25; }
             .j-entry::before, .log-entry::before { border-color: var(--ink-soft); box-shadow: 0 0 0 1px #322d25; }
             .j-year { background: rgba(212,146,42,0.14); border-color: #3a3226; color: var(--amber-light); }
@@ -241,8 +278,15 @@
 
 <section class="about-section">
     <h2>Hi, I'm Raul.</h2>
-    <p>I build Big Beard Apps out of Georgetown, Texas — a one-person iOS studio, run around a full-time engineering job and family life, on a stubborn belief that software should work for the people using it, not the other way around.</p>
-    <p>My path here wasn't a straight line, and that shaped everything: <strong>your data belongs on your device.</strong> No accounts, no ads, no trackers, nothing sold to anyone. Where an app genuinely needs a server, it sends the least it can and remembers nothing about you.</p>
+    <div class="founder-intro">
+        <div class="founder-photo">
+            <img src="/assets/raul-pena-founder.jpg" alt="Raul Peña, founder of Big Beard Apps">
+        </div>
+        <div class="founder-text">
+            <p>I build Big Beard Apps out of Georgetown, Texas — a one-person iOS studio, run around a full-time engineering job and family life, on a stubborn belief that software should work for the people using it, not the other way around.</p>
+            <p>My path here wasn't a straight line, and that shaped everything: <strong>your data belongs on your device.</strong> No accounts, no ads, no trackers, nothing sold to anyone. Where an app genuinely needs a server, it sends the least it can and remembers nothing about you.</p>
+        </div>
+    </div>
 </section>
 
 <section class="about-section">

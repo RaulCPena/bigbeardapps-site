@@ -91,8 +91,6 @@ em, .accent-serif {
 .site-nav__brand img {
     height: 30px;
     border-radius: 8px;
-    background: #fff;
-    padding: 3px;
     color-scheme: light;
 }
 .site-nav__links {

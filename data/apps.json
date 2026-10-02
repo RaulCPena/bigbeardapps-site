@@ -485,8 +485,8 @@
           "\ud83d\udd12 On-device by design",
           "\ud83c\uddfa\ud83c\uddf8 Veteran owned"
         ],
-                "cta": "Try the web map preview \u2192",
-                "cta_href": "https://huntmark.app"
+        "cta": "Try the web map preview \u2192",
+        "cta_href": "https://huntmark.app"
       },
       "press": {
         "store_name": "HuntMark",

@@ -1,0 +1,23 @@
+# Assets Inventory for Social Media Banners
+
+## Location: `/workspace/assets/`
+
+### ✅ Primary Logo Files (Installed & Ready)
+1. **bigbeard-logo.png** - Main logo (1024×1024)
+2. **bigbeard-logo-dark.png** - Dark mode (1200×630)
+3. **bigbeard-icon.png** - Icon only (512×512)
+4. **bigbeard-horizontal.png** - Horizontal layout (16:9)
+5. **bigbeard-mono.png** - Monochrome (1024×1024)
+6. **bigbeard-wordmark.png** - Text only (4:3)
+7. **og-card.png** - Social sharing (1200×630)
+8. **favicon-96.png** - Browser icon (512×512)
+9. **apple-touch-icon.png** - iOS icon (512×512)
+
+### 📦 Backup
+- **bigbeard-logo-OLD-backup.png** - Original logo with Apple trademark issue
+
+## All files ready for you to create social media banners when you get home!
+
+**Quick Access:** All files are in `/workspace/assets/` and also saved in `/opt/cursor/artifacts/assets/`
+
+See SOCIAL-MEDIA-ASSETS-README.md for platform-specific banner sizes and recommendations.

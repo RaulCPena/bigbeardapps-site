@@ -50,7 +50,7 @@
             flex-wrap: wrap;
         }
         .hero-copy { max-width: 460px; text-align: left; }
-        .hero-icon { font-size: 3em; margin-bottom: 14px; }
+        .hero-icon-img { width: 76px; height: 76px; border-radius: 22%; margin-bottom: 16px; box-shadow: 0 10px 26px rgba(0,0,0,0.28); }
         .hero h1 {
             font-size: 3.2em;
             font-weight: 700;
@@ -149,7 +149,17 @@
             border-radius: 16px;
             padding: 28px;
         }
-        .feature-icon { font-size: 2em; margin-bottom: 14px; }
+        .feature-icon {
+            width: 2em;
+            height: 2em;
+            margin-bottom: 14px;
+            color: #D4922A;
+        }
+        .feature-icon svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
         .feature h3 { font-size: 1.1em; font-weight: 700; margin-bottom: 8px; }
         .feature p { font-size: 0.95em; color: #555; }
 
@@ -287,7 +297,7 @@
 <section class="hero">
     <div class="hero-inner">
         <div class="hero-copy">
-            <div class="hero-icon">🍽</div>
+            <img class="hero-icon-img" src="/feastmark/images/app-icon.png" alt="Feastmark app icon" width="76" height="76">
             <h1>Feast<span style="color:#D4922A;">mark</span></h1>
             <p class="coming-note">Now on iPhone and iPad</p>
             <p>Save recipes from Instagram, TikTok, and YouTube in one tap — even when the recipe is only spoken in the video. Your kitchen, organized.</p>
@@ -309,62 +319,62 @@
 
     <div class="features">
         <div class="feature">
-            <div class="feature-icon">⚡️</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8z"/></svg></div>
             <h3>Save in One Tap</h3>
             <p>Share any recipe video or post to Feastmark. We extract the full recipe automatically — even when it's only spoken in the video.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">👨‍🍳</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13c0-3.5 2-5 3.5-6 .5-2 2-3.5 2.5-3.5S14 5 14.5 7C16 8 18 9.5 18 13"/><path d="M6 13h12v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2z"/><path d="M8 17v3h8v-3"/></svg></div>
             <h3>Cook Mode</h3>
             <p>The step you're on fills the screen in big type. Ingredients sit inline beside the steps — still checked off where you left them — and the screen never sleeps mid-recipe. On iPad, turn it sideways and the step sits beside the list.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">📓</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h8"/></svg></div>
             <h3>Cook Log</h3>
             <p>Cook it again, better. Rate what you made, add a photo, and note what you'd change — that note is the first thing waiting for you the next time you open the recipe.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">⏱</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M9 2h6"/></svg></div>
             <h3>Step Timers</h3>
             <p>Cook Mode reads the time out of the step — "simmer for 20 minutes" — and offers it as a one-tap countdown. No time in the text? Start one yourself.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">✏️</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
             <h3>Make It Yours</h3>
             <p>Edit any recipe, add personal notes, or write one from scratch with your own photo. Your cookbook, your rules.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">📚</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M12 6v7"/><path d="M8 6h1M15 6h1"/></svg></div>
             <h3>Collections</h3>
             <p>Organize recipes into collections like "Weeknight Dinners" or "Date Night." Filter your library in seconds.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">⚖️</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7 2 13h6L5 7z"/><path d="M19 7l-3 6h6l-3-6z"/></svg></div>
             <h3>Ingredient Scaling</h3>
             <p>Cooking for two or twelve? Adjust serving size and every ingredient scales automatically.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">📏</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.3 8.7 8.7 21.3a2 2 0 0 1-2.8 0L2.7 18a2 2 0 0 1 0-2.8L15.3 2.7a2 2 0 0 1 2.8 0L21.3 6a2 2 0 0 1 0 2.7z"/><path d="m14.5 6.5 3 3"/><path d="m11.5 9.5 3 3"/><path d="m8.5 12.5 3 3"/><path d="m5.5 15.5 3 3"/></svg></div>
             <h3>Metric or US</h3>
             <p>Flip a whole recipe between measurement systems — steps included — without rewriting anything.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">🍸</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2h8l-1 7a4 4 0 0 1-6 0L8 2z"/><path d="M12 9v13"/><path d="M9 22h6"/></svg></div>
             <h3>Drinks, Too</h3>
             <p>Save a cocktail and Feastmark says Make, not Cook — and keeps a Pour Log in place of the Cook Log.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">📎</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></div>
             <h3>Add from Anywhere</h3>
             <p>No share sheet handy? Paste a link right in the app. Can't extract it? Save it as a draft and finish it later.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">🔍</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
             <h3>Search Everything</h3>
             <p>Search by name, tag, or ingredient — "what can I make with chicken?" — and find exactly what you're craving.</p>
         </div>
         <div class="feature">
-            <div class="feature-icon">🔒</div>
+            <div class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
             <h3>Private by Design</h3>
             <p>Your recipes stay on your device. No account required, no data sold. Ever. Optional iCloud uses your Apple ID, not a Feastmark account.</p>
         </div>
@@ -382,11 +392,11 @@
     </div>
 
     <div class="screens">
-        <img src="images/screen-library.png?v=b461fa86" alt="The Feastmark library, with collections across the top and recipe cards below">
-        <img src="images/screen-recipe-detail.png?v=d4cb79fd" alt="A recipe, with the cook log's note for next time sitting above the ingredients">
+        <img src="images/screen-library.png?v=31216349" alt="The Feastmark library, with collections across the top and recipe cards below">
+        <img src="images/screen-recipe-detail.png?v=f30df331" alt="A recipe, with the cook log's note for next time sitting above the ingredients">
         <img src="images/screen-cook-mode.png?v=582c8096" alt="Cook Mode, with the current step filling the screen in large type">
         <img src="images/screen-cook-timer.png?v=061d795d" alt="Cook Mode offering a 35 minute timer it read out of the step">
-        <img src="images/screen-search.png?v=bd06e6b7" alt="Searching the library for an ingredient">
+        <img src="images/screen-search.png?v=2c015ca8" alt="Searching the library for an ingredient">
         <img class="screen-ipad" src="images/screen-ipad-cook.png?v=16d74683" alt="iPad landscape Cook Mode, with the step on the left and the ingredient list on the right">
     </div>
 
